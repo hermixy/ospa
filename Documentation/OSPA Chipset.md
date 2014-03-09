@@ -1,7 +1,5 @@
 # OSPA Chipset
 
-![Scribble](Untitled.png)
-
 ## Modules
 
 ### SBMM: SPI Bus Master Module
@@ -21,7 +19,7 @@
 
 ## Module Configuration
 
-At minimum, every PLC requires one SBMM and one ULEM.  The board may contain up to 6 additional modules, for a total of 8 modules.
+At minimum, a PLC requires one SBMM and one ULEM.  The board may contain up to 6 additional modules, for a total of 8 modules.  With the exception of the LIIM, a maximum of one of each type of module may be used.  The PLC can have multiple LIIMs.
 
 The maximum number of modules is determined by the number of pins available on the SBMM's microcontroller.  Each chip on the board requires 2 additional pins: one for the *slave select* and one for the *master request*.
 
