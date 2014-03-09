@@ -5,6 +5,7 @@
 ### Symbol
 
 Format: $(Name)
+
 Examples: $MY_VARIABLE, $TEMP-123, $FOO.BAR
 
 ## Grammar

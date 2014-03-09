@@ -2,22 +2,22 @@
 
 ## Modules
 
-### SBMM: SPI Bus Master Module
+### [SBMM - SPI Bus Master Module](Chipset/SBMM - SPI Bus Master Module.md)
 
-### ULEM: User Logic Execution Module
+### [ULEM - User Logic Execution Module](Chipset/ULEM - User Logic Execution Module.md)
 
-### TOIM: TCP/IP Operator Interface Module (Ethernet)
+### [TOIM - TCP/IP Operator Interface Module (Ethernet)](Chipset/TOIM - TCPIP Operator Interface Module.md)
 
-### SOIM: Serial Operator Interface Module (RS-232)
+### [SOIM - Serial Operator Interface Module (RS-232)](Chipset/SOIM - Serial Operator Interface Module.md)
 
-### MMIM: Modbus Master Interface Module (RS-485)
+### [MMIM - Modbus Master Interface Module (RS-485)](Chipset/MMIM - Modbus Master Interface Module.md)
 
-### MSIM: Modbus Slave Interface Module (RS-485)
+### [MSIM - Modbus Slave Interface Module (RS-485)](Chipset/MSIM - Modbus Slave Interface Module.md)
 
-### LIIM: Local I/O Interface Module
+### [LIIM - Local I/O Interface Module](Chipset/LIIM - Local IO Interface Module.md)
 
 
-## Module Configuration
+## Configuration
 
 At minimum, a PLC requires one SBMM and one ULEM.  The board may contain up to 6 additional modules, for a total of 8 modules.  With the exception of the LIIM, a maximum of one of each type of module may be used.  The PLC can have multiple LIIMs.
 
