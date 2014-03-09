@@ -27,7 +27,7 @@ todo
 
 ## Abstract Syntax Tree
 
-![Assembly Program AST](Assembly/Assembly Program AST.png)
+![Assembly Program AST](Assembly/Assembly Program AST.svg)
 
 ## Instructions
 
