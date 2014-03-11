@@ -1,0 +1,137 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0302 
+header_name {.h} 
+code_name {.cpp}
+class NewTaskWindow {} {
+  Function {NewTaskWindow()} {open
+  } {
+    Fl_Window FlWindow {
+      label {New Task} open selected
+      xywh {476 625 277 161} type Double labelsize 12 align 80 visible
+    } {
+      Fl_Input TaskSymbolTxt {
+        label {Task symbol: }
+        xywh {92 15 170 25} labelsize 12 textfont 4
+      }
+      Fl_Choice ActivationCmb {
+        label {Activation: } open
+        xywh {92 45 170 25} down_box BORDER_BOX labelsize 12 textsize 12
+      } {}
+      Fl_Spinner IntervalNum {
+        label {Interval (ms): }
+        xywh {92 75 65 25} labelsize 12 textfont 4 deactivate
+      }
+      Fl_Return_Button OkBtn {
+        label {Create task}
+        xywh {70 120 109 25} labelsize 12
+      }
+      Fl_Button CancelBtn {
+        label Cancel
+        xywh {189 120 73 25} labelsize 12
+      }
+    }
+  }
+} 
+
+class ProgramWindow {} {
+  Function {ProgramWindow()} {open
+  } {
+    Fl_Window FlWindow {
+      label {Program - OSPASOFT} open
+      xywh {361 147 394 410} type Double labelsize 13 align 80 resizable visible
+    } {
+      Fl_Group {} {open
+        xywh {0 30 394 371} labelsize 12 resizable
+      } {}
+      Fl_Menu_Bar MenuBar {open
+        xywh {0 0 394 25} box THIN_UP_BOX labelsize 12 textsize 11
+      } {
+        Submenu FileMnu {
+          label {&File} open
+          xywh {0 0 100 20} labelsize 12
+        } {
+          MenuItem NewProgramMnu {
+            label {&New program }
+            xywh {0 0 100 20} shortcut 0x4006e labelsize 12
+          }
+        }
+        Submenu EditMnu {
+          label {&Edit} open
+          xywh {10 10 100 20} labelsize 12
+        } {}
+        Submenu ProgramMnu {
+          label {&Program} open
+          xywh {20 20 100 20} labelsize 12
+        } {}
+        Submenu ToolsMnu {
+          label {&Tools} open
+          xywh {30 30 100 20} labelsize 12
+        } {}
+        Submenu HelpMnu {
+          label {&Help} open
+          xywh {40 40 100 20} labelsize 12
+        } {}
+      }
+      Fl_Tabs {} {open
+        xywh {0 23 395 384} labelsize 12
+      } {
+        Fl_Group TasksGrp {
+          label {T&asks} open
+          xywh {0 23 394 356} labelsize 12
+        } {
+          Fl_Table {} {open
+            xywh {0 23 394 354} color 7 labelfont 4 resizable
+          } {}
+        }
+        Fl_Group SymbolsGrp {
+          label {&Symbols} open
+          xywh {0 25 394 350} labelsize 12 hide resizable
+        } {}
+        Fl_Group ObjectsGrp {
+          label {&Objects} open
+          xywh {0 25 394 350} labelsize 12 hide
+        } {}
+        Fl_Group TemplatesGrp {
+          label {Te&mplates} open
+          xywh {0 25 394 350} labelsize 12 hide
+        } {}
+      }
+    }
+  }
+} 
+
+class AboutWindow {open
+} {
+  Function {AboutWindow()} {open
+  } {
+    Fl_Window FlWindow {
+      label {About OSPASOFT} open
+      xywh {341 253 375 145} type Double align 80 modal visible
+    } {
+      Fl_Text_Display {} {
+        label OSPASOFT
+        xywh {-2 15 15 25} box NO_BOX labelfont 1 labelsize 24 align 8
+      }
+      Fl_Text_Display {} {
+        label {Programming software for the Open Source PLC Architecture}
+        xywh {-1 40 15 25} box NO_BOX labelsize 12 align 8 textsize 12
+      }
+      Fl_Text_Display {} {
+        label {Copyright © 2014 Brian Luft}
+        xywh {-1 70 15 25} box NO_BOX labelsize 12 align 8 textsize 12
+      }
+      Fl_Return_Button CloseBtn {
+        label Close
+        xywh {275 105 85 25} labelsize 12
+      }
+      Fl_Button {} {
+        label {View GitHub}
+        xywh {120 105 100 25} labelsize 12
+      }
+      Fl_Button {} {
+        label {View website}
+        xywh {15 105 100 25} labelsize 12
+      }
+    }
+  }
+} 
