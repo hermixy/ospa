@@ -7,16 +7,16 @@ NewTaskWindow::NewTaskWindow() {
     FlWindow->labelsize(12);
     FlWindow->user_data((void*)(this));
     FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
-    { TaskSymbolTxt = new Fl_Input(93, 12, 170, 25, "Task symbol: ");
+    { TaskSymbolTxt = new Fl_Input(92, 15, 170, 25, "Task symbol: ");
       TaskSymbolTxt->labelsize(12);
       TaskSymbolTxt->textfont(4);
     } // Fl_Input* TaskSymbolTxt
-    { ActivationCmb = new Fl_Choice(93, 42, 170, 25, "Activation: ");
+    { ActivationCmb = new Fl_Choice(92, 45, 170, 25, "Activation: ");
       ActivationCmb->down_box(FL_BORDER_BOX);
       ActivationCmb->labelsize(12);
       ActivationCmb->textsize(12);
     } // Fl_Choice* ActivationCmb
-    { IntervalNum = new Fl_Spinner(93, 72, 65, 25, "Interval (ms): ");
+    { IntervalNum = new Fl_Spinner(92, 75, 65, 25, "Interval (ms): ");
       IntervalNum->labelsize(12);
       IntervalNum->textfont(4);
       IntervalNum->deactivate();
@@ -103,7 +103,7 @@ ProgramWindow::ProgramWindow() {
 }
 
 AboutWindow::AboutWindow() {
-  { FlWindow = new Fl_Double_Window(375, 145, "About OSPASOFT");
+  { FlWindow = new Fl_Double_Window(375, 195, "About OSPASOFT");
     FlWindow->user_data((void*)(this));
     FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
     { Fl_Text_Display* o = new Fl_Text_Display(-2, 15, 15, 25, "OSPASOFT");
@@ -124,15 +124,16 @@ AboutWindow::AboutWindow() {
       o->textsize(12);
       o->align(Fl_Align(FL_ALIGN_RIGHT));
     } // Fl_Text_Display* o
-    { CloseBtn = new Fl_Return_Button(275, 105, 85, 25, "Close");
+    { CloseBtn = new Fl_Return_Button(275, 155, 85, 25, "Close");
       CloseBtn->labelsize(12);
     } // Fl_Return_Button* CloseBtn
-    { Fl_Button* o = new Fl_Button(120, 105, 100, 25, "View GitHub");
+    { Fl_Text_Display* o = new Fl_Text_Display(-1, 108, 15, 25, "OSPASOFT is based in part on the work of the FLTK project (http://www.fltk.or\
+g).");
+      o->box(FL_NO_BOX);
       o->labelsize(12);
-    } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(15, 105, 100, 25, "View website");
-      o->labelsize(12);
-    } // Fl_Button* o
+      o->textsize(12);
+      o->align(Fl_Align(136));
+    } // Fl_Text_Display* o
     FlWindow->set_modal();
     FlWindow->end();
   } // Fl_Double_Window* FlWindow
