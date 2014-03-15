@@ -16,7 +16,9 @@ mac:
 	make -f Makefile.mac
 
 clean:
-	rm -f bin/* obj/*
+	rm -rf ./bin/OSPASOFT.app
+	rm -f ./bin/*
+	rm -f ./obj/*
 
 run:
 	./bin/ospasoft 2> /dev/null &
