@@ -7,8 +7,8 @@ class NewTaskWindow {open
   Function {NewTaskWindow()} {open
   } {
     Fl_Window FlWindow {
-      label {New Task} open
-      xywh {543 579 330 145} type Double labelsize 12 align 80 hide modal
+      label {New Task} open selected
+      xywh {149 735 330 145} type Double labelsize 12 align 80 modal visible
     } {
       Fl_Input TaskSymbolTxt {
         label {Task symbol: }
@@ -40,7 +40,7 @@ class ProgramWindow {open
   } {
     Fl_Window FlWindow {
       label {Program - OSPASOFT} open
-      xywh {361 147 390 410} type Double labelsize 13 align 80 resizable visible
+      xywh {352 204 390 410} type Double labelsize 13 align 80 hide resizable
     } {
       Fl_Group {} {open
         xywh {0 30 394 371} labelsize 12 resizable
@@ -112,8 +112,8 @@ class AboutWindow {open
   Function {AboutWindow()} {open
   } {
     Fl_Window FlWindow {
-      label {About OSPASOFT} open selected
-      xywh {36 725 405 190} type Double align 80 modal visible
+      label {About OSPASOFT} open
+      xywh {36 725 405 190} type Double align 80 hide modal
     } {
       Fl_Text_Display {} {
         label OSPASOFT

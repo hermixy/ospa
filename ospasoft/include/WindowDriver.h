@@ -71,5 +71,5 @@ protected:
 
 #define WD_REGISTER(widgetName) Register(_Window. widgetName )
 #define WD_CALLBACK_NAME(widgetName) On##widgetName
-#define WD_CALLBACK(widgetName) if (widget == _Window. widgetName ) { WD_CALLBACK_NAME(widgetName)(); }
+#define WD_CALLBACK(widgetName) if (widget == _Window. widgetName ) { WD_CALLBACK_NAME(widgetName)(); return; }
 
