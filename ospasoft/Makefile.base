@@ -1,0 +1,25 @@
+# The following variables are exported by the platform-specific parent Makefile:
+# CC, CFLAGS, LDFLAGS, EXECUTABLE
+
+SOURCES=\
+	src/main.cpp \
+	src/NewTaskWindowDriver.cpp \
+	src/ProgramWindowDriver.cpp \
+	src/UserInterface.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+
+all: obj bin $(SOURCES) $(EXECUTABLE)
+
+obj:
+	mkdir obj/
+
+bin:
+	mkdir bin/
+
+$(EXECUTABLE): $(OBJECTS) 
+	@echo $(CC) -o $@
+	@$(CC) $(CFLAGS) $(subst src/,obj/,$(OBJECTS)) $(LDFLAGS) -o $@ 
+
+.cpp.o:
+	@echo $(CC) $(subst .o,.cpp,$@)
+	@$(CC) $(CFLAGS) -c $< -o $(subst src/,obj/,$@)
