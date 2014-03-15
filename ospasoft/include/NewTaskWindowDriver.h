@@ -29,4 +29,3 @@ private:
    void OnOkBtn();
    void OnCancelBtn();
 };
-
