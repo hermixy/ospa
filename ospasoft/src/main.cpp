@@ -13,7 +13,6 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 #include <FL/Fl.H>
-#include <FL/Fl_Window.H>
 #include <stdio.h>
 #include "UserInterface.h"
 #include "ProgramWindowDriver.h"
@@ -21,6 +20,7 @@
 int main(int argc, char* argv[]) 
 {
    Fl::scheme("gtk+");
+   Fl::visual(FL_DOUBLE | FL_INDEX);
 
    ProgramWindowDriver pwd;
    pwd.Show();

@@ -21,5 +21,7 @@ public:
    void Show();
 
 private:
+   static void OnNewProgramClick(class Fl_Widget* widget, void* self);
+
    class ProgramWindow _Window;
 };

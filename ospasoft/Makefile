@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-std=c++0x -Wall -Wunused -Wno-format-y2k -fno-exceptions -fno-strict-aliasing -I./include -I./lib/fltk/include -mwindows -DWIN32 -DUSE_OPENGL32  -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
-LDFLAGS=-L./lib/fltk/lib -lfltk -lole32 -luuid -lcomctl32 -mwindows -static-libgcc -static-libstdc++
+LDFLAGS=-L./lib/fltk/lib-mingw32 -lfltk -lole32 -luuid -lcomctl32 -mwindows -static-libgcc -static-libstdc++
 SOURCES=\
 	src/main.cpp \
 	src/NewTaskWindowDriver.cpp \
@@ -12,7 +12,8 @@ EXECUTABLE=bin/ospasoft.exe
 all: obj bin $(SOURCES) $(EXECUTABLE)
 
 clean:
-	rm -f bin/* obj/*
+	rm -f obj/*.o
+	rm -f $(EXECUTABLE)
 
 run:
 	./$(EXECUTABLE) &

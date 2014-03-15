@@ -17,6 +17,7 @@
 
 NewTaskWindowDriver::NewTaskWindowDriver()
 {
+   _Window.FlWindow->set_modal();
 }
 
 void NewTaskWindowDriver::Show()

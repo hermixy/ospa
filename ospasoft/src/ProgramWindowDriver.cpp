@@ -13,13 +13,21 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 #include "UserInterface.h"
+#include "NewTaskWindowDriver.h"
 #include "ProgramWindowDriver.h"
 
 ProgramWindowDriver::ProgramWindowDriver()
 {
+   _Window.NewProgramMnu->callback(OnNewProgramClick, this);
 }
 
 void ProgramWindowDriver::Show()
 {
    _Window.FlWindow->show(0, NULL);
+}
+
+void ProgramWindowDriver::OnNewProgramClick(class Fl_Widget* widget, void* self)
+{
+   NewTaskWindowDriver driver;
+   driver.Show();
 }
