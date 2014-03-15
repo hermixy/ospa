@@ -11,6 +11,9 @@ windows:
 linux:
 	make -f Makefile.linux
 
+mac:
+	make -f Makefile.mac
+
 clean:
 	rm -f bin/* obj/*
 
