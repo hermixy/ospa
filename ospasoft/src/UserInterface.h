@@ -4,22 +4,6 @@
 #define UserInterface_h
 #include <FL/Fl.H>
 #include <FL/Fl_Double_Window.H>
-#include <FL/Fl_Input.H>
-#include <FL/Fl_Choice.H>
-#include <FL/Fl_Spinner.H>
-#include <FL/Fl_Return_Button.H>
-#include <FL/Fl_Button.H>
-
-class NewTaskWindow {
-public:
-  NewTaskWindow();
-  Fl_Double_Window *FlWindow;
-  Fl_Input *TaskSymbolTxt;
-  Fl_Choice *ActivationCmb;
-  Fl_Spinner *IntervalNum;
-  Fl_Return_Button *OkBtn;
-  Fl_Button *CancelBtn;
-};
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Menu_Bar.H>
 #include <FL/Fl_Tabs.H>
@@ -44,6 +28,7 @@ public:
   Fl_Group *TemplatesGrp;
 };
 #include <FL/Fl_Text_Display.H>
+#include <FL/Fl_Return_Button.H>
 
 class AboutWindow {
 public:

@@ -2,36 +2,6 @@
 
 #include "UserInterface.h"
 
-NewTaskWindow::NewTaskWindow() {
-  { FlWindow = new Fl_Double_Window(330, 145, "New Task");
-    FlWindow->labelsize(12);
-    FlWindow->user_data((void*)(this));
-    FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
-    { TaskSymbolTxt = new Fl_Input(150, 10, 170, 25, "Task symbol: ");
-      TaskSymbolTxt->labelsize(12);
-      TaskSymbolTxt->textfont(4);
-    } // Fl_Input* TaskSymbolTxt
-    { ActivationCmb = new Fl_Choice(150, 40, 170, 25, "Activation: ");
-      ActivationCmb->down_box(FL_BORDER_BOX);
-      ActivationCmb->labelsize(12);
-      ActivationCmb->textsize(12);
-    } // Fl_Choice* ActivationCmb
-    { IntervalNum = new Fl_Spinner(150, 70, 65, 25, "Interval (ms): ");
-      IntervalNum->labelsize(12);
-      IntervalNum->textfont(4);
-      IntervalNum->deactivate();
-    } // Fl_Spinner* IntervalNum
-    { OkBtn = new Fl_Return_Button(128, 110, 109, 25, "Create task");
-      OkBtn->labelsize(12);
-    } // Fl_Return_Button* OkBtn
-    { CancelBtn = new Fl_Button(247, 110, 73, 25, "Cancel");
-      CancelBtn->labelsize(12);
-    } // Fl_Button* CancelBtn
-    FlWindow->set_modal();
-    FlWindow->end();
-  } // Fl_Double_Window* FlWindow
-}
-
 Fl_Menu_Item ProgramWindow::menu_MenuBar[] = {
  {"&File", 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 12, 0},
  {"&New program ", 0x4006e,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},

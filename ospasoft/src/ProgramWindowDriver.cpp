@@ -13,13 +13,11 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 #include "UserInterface.h"
-#include "NewTaskWindowDriver.h"
 #include "AboutWindowDriver.h"
 #include "ProgramWindowDriver.h"
 
 ProgramWindowDriver::ProgramWindowDriver()
 {
-   _NewTaskWindowDriver = std::make_shared<NewTaskWindowDriver>();
    _AboutWindowDriver = std::make_shared<AboutWindowDriver>();
 
    Register(_Window.NewProgramMnu);
@@ -34,7 +32,6 @@ void ProgramWindowDriver::OnCallback(void* widget)
 
 void ProgramWindowDriver::OnNewProgramMnu()
 {
-   _NewTaskWindowDriver->Show();
 }
 
 void ProgramWindowDriver::OnAboutMnu()

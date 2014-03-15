@@ -28,6 +28,5 @@ private:
    void OnNewProgramMnu();
    void OnAboutMnu();
 
-   std::shared_ptr<class NewTaskWindowDriver> _NewTaskWindowDriver;
    std::shared_ptr<class AboutWindowDriver> _AboutWindowDriver;
 };
