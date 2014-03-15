@@ -6,6 +6,3 @@ export
 
 all:
 	make -f Makefile.base
-
-run:
-	./$(EXECUTABLE) &
