@@ -2,43 +2,45 @@
 version 1.0302 
 header_name {.h} 
 code_name {.cpp}
-class NewTaskWindow {} {
+class NewTaskWindow {open
+} {
   Function {NewTaskWindow()} {open
   } {
     Fl_Window FlWindow {
       label {New Task} open
-      xywh {476 625 277 161} type Double labelsize 12 align 80 visible
+      xywh {543 579 330 145} type Double labelsize 12 align 80 hide modal
     } {
       Fl_Input TaskSymbolTxt {
         label {Task symbol: }
-        xywh {92 15 170 25} labelsize 12 textfont 4
+        xywh {150 10 170 25} labelsize 12 textfont 4
       }
       Fl_Choice ActivationCmb {
         label {Activation: } open
-        xywh {92 45 170 25} down_box BORDER_BOX labelsize 12 textsize 12
+        xywh {150 40 170 25} down_box BORDER_BOX labelsize 12 textsize 12
       } {}
       Fl_Spinner IntervalNum {
         label {Interval (ms): }
-        xywh {92 75 65 25} labelsize 12 textfont 4 deactivate
+        xywh {150 70 65 25} labelsize 12 textfont 4 deactivate
       }
       Fl_Return_Button OkBtn {
         label {Create task}
-        xywh {70 120 109 25} labelsize 12
+        xywh {128 110 109 25} labelsize 12
       }
       Fl_Button CancelBtn {
         label Cancel
-        xywh {189 120 73 25} labelsize 12
+        xywh {247 110 73 25} labelsize 12
       }
     }
   }
 } 
 
-class ProgramWindow {} {
+class ProgramWindow {open
+} {
   Function {ProgramWindow()} {open
   } {
     Fl_Window FlWindow {
       label {Program - OSPASOFT} open
-      xywh {361 147 394 410} type Double labelsize 13 align 80 resizable visible
+      xywh {361 147 390 410} type Double labelsize 13 align 80 resizable visible
     } {
       Fl_Group {} {open
         xywh {0 30 394 371} labelsize 12 resizable
@@ -70,7 +72,12 @@ class ProgramWindow {} {
         Submenu HelpMnu {
           label {&Help} open
           xywh {40 40 100 20} labelsize 12
-        } {}
+        } {
+          MenuItem AboutMnu {
+            label {&About OSPASOFT }
+            xywh {10 10 100 20} labelsize 12
+          }
+        }
       }
       Fl_Tabs {} {open
         xywh {0 23 395 384} labelsize 12
@@ -106,7 +113,7 @@ class AboutWindow {open
   } {
     Fl_Window FlWindow {
       label {About OSPASOFT} open selected
-      xywh {341 253 375 195} type Double align 80 modal visible
+      xywh {36 725 405 190} type Double align 80 modal visible
     } {
       Fl_Text_Display {} {
         label OSPASOFT
@@ -122,7 +129,7 @@ class AboutWindow {open
       }
       Fl_Return_Button CloseBtn {
         label Close
-        xywh {275 155 85 25} labelsize 12
+        xywh {310 155 85 25} labelsize 12
       }
       Fl_Text_Display {} {
         label {OSPASOFT is based in part on the work of the FLTK project (http://www.fltk.org).}

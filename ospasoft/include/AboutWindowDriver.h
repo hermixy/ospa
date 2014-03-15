@@ -16,18 +16,15 @@
 
 #include "WindowDriver.h"
 
-class ProgramWindowDriver : public WindowDriver<class ProgramWindow>
+class AboutWindowDriver : public WindowDriver<class AboutWindow>
 {
 public:
-   ProgramWindowDriver();
-
+   AboutWindowDriver();
+   
 protected:
    virtual void OnCallback(void* widget);
-
+   
 private:
-   void OnNewProgramMnu();
-   void OnAboutMnu();
-
-   std::shared_ptr<class NewTaskWindowDriver> _NewTaskWindowDriver;
-   std::shared_ptr<class AboutWindowDriver> _AboutWindowDriver;
+   void OnCloseBtn();
 };
+

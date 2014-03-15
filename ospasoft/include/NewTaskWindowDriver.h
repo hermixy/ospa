@@ -14,12 +14,19 @@
 
 #pragma once
 
-class NewTaskWindowDriver
+#include "WindowDriver.h"
+
+class NewTaskWindowDriver : public WindowDriver<class NewTaskWindow>
 {
 public:
    NewTaskWindowDriver();
-   void Show();
-
+   
+protected:
+   virtual void OnCallback(void* widget);
+   
 private:
-   class NewTaskWindow _Window;
+   void OnActivationCmb();
+   void OnOkBtn();
+   void OnCancelBtn();
 };
+

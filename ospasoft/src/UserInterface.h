@@ -37,6 +37,7 @@ public:
   static Fl_Menu_Item *ProgramMnu;
   static Fl_Menu_Item *ToolsMnu;
   static Fl_Menu_Item *HelpMnu;
+  static Fl_Menu_Item *AboutMnu;
   Fl_Group *TasksGrp;
   Fl_Group *SymbolsGrp;
   Fl_Group *ObjectsGrp;

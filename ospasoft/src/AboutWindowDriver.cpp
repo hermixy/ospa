@@ -12,22 +12,20 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#pragma once
+#include "UserInterface.h"
+#include "AboutWindowDriver.h"
 
-#include "WindowDriver.h"
-
-class ProgramWindowDriver : public WindowDriver<class ProgramWindow>
+AboutWindowDriver::AboutWindowDriver()
 {
-public:
-   ProgramWindowDriver();
+   WD_REGISTER(CloseBtn);
+}
 
-protected:
-   virtual void OnCallback(void* widget);
+void AboutWindowDriver::OnCallback(void* widget)
+{
+   WD_CALLBACK(CloseBtn);
+}
 
-private:
-   void OnNewProgramMnu();
-   void OnAboutMnu();
-
-   std::shared_ptr<class NewTaskWindowDriver> _NewTaskWindowDriver;
-   std::shared_ptr<class AboutWindowDriver> _AboutWindowDriver;
-};
+void AboutWindowDriver::OnCloseBtn()
+{
+   _Window.FlWindow->hide();
+}

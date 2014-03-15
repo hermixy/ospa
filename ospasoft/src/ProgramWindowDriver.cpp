@@ -14,20 +14,30 @@
 
 #include "UserInterface.h"
 #include "NewTaskWindowDriver.h"
+#include "AboutWindowDriver.h"
 #include "ProgramWindowDriver.h"
 
 ProgramWindowDriver::ProgramWindowDriver()
 {
-   _Window.NewProgramMnu->callback(OnNewProgramClick, this);
+   _NewTaskWindowDriver = std::make_shared<NewTaskWindowDriver>();
+   _AboutWindowDriver = std::make_shared<AboutWindowDriver>();
+
+   Register(_Window.NewProgramMnu);
+   Register(_Window.AboutMnu);
 }
 
-void ProgramWindowDriver::Show()
+void ProgramWindowDriver::OnCallback(void* widget)
 {
-   _Window.FlWindow->show(0, NULL);
+   WD_CALLBACK(NewProgramMnu);
+   WD_CALLBACK(AboutMnu);
 }
 
-void ProgramWindowDriver::OnNewProgramClick(class Fl_Widget* widget, void* self)
+void ProgramWindowDriver::OnNewProgramMnu()
 {
-   NewTaskWindowDriver driver;
-   driver.Show();
+   _NewTaskWindowDriver->Show();
+}
+
+void ProgramWindowDriver::OnAboutMnu()
+{
+   _AboutWindowDriver->Show();
 }

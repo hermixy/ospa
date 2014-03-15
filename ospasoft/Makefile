@@ -15,4 +15,4 @@ clean:
 	rm -f bin/* obj/*
 
 run:
-	./bin/ospasoft &
+	./bin/ospasoft 2> /dev/null &

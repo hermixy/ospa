@@ -3,30 +3,31 @@
 #include "UserInterface.h"
 
 NewTaskWindow::NewTaskWindow() {
-  { FlWindow = new Fl_Double_Window(277, 161, "New Task");
+  { FlWindow = new Fl_Double_Window(330, 145, "New Task");
     FlWindow->labelsize(12);
     FlWindow->user_data((void*)(this));
     FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
-    { TaskSymbolTxt = new Fl_Input(92, 15, 170, 25, "Task symbol: ");
+    { TaskSymbolTxt = new Fl_Input(150, 10, 170, 25, "Task symbol: ");
       TaskSymbolTxt->labelsize(12);
       TaskSymbolTxt->textfont(4);
     } // Fl_Input* TaskSymbolTxt
-    { ActivationCmb = new Fl_Choice(92, 45, 170, 25, "Activation: ");
+    { ActivationCmb = new Fl_Choice(150, 40, 170, 25, "Activation: ");
       ActivationCmb->down_box(FL_BORDER_BOX);
       ActivationCmb->labelsize(12);
       ActivationCmb->textsize(12);
     } // Fl_Choice* ActivationCmb
-    { IntervalNum = new Fl_Spinner(92, 75, 65, 25, "Interval (ms): ");
+    { IntervalNum = new Fl_Spinner(150, 70, 65, 25, "Interval (ms): ");
       IntervalNum->labelsize(12);
       IntervalNum->textfont(4);
       IntervalNum->deactivate();
     } // Fl_Spinner* IntervalNum
-    { OkBtn = new Fl_Return_Button(70, 120, 109, 25, "Create task");
+    { OkBtn = new Fl_Return_Button(128, 110, 109, 25, "Create task");
       OkBtn->labelsize(12);
     } // Fl_Return_Button* OkBtn
-    { CancelBtn = new Fl_Button(189, 120, 73, 25, "Cancel");
+    { CancelBtn = new Fl_Button(247, 110, 73, 25, "Cancel");
       CancelBtn->labelsize(12);
     } // Fl_Button* CancelBtn
+    FlWindow->set_modal();
     FlWindow->end();
   } // Fl_Double_Window* FlWindow
 }
@@ -42,6 +43,7 @@ Fl_Menu_Item ProgramWindow::menu_MenuBar[] = {
  {"&Tools", 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 12, 0},
  {0,0,0,0,0,0,0,0,0},
  {"&Help", 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 12, 0},
+ {"&About OSPASOFT ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
  {0,0,0,0,0,0,0,0,0},
  {0,0,0,0,0,0,0,0,0}
 };
@@ -51,9 +53,10 @@ Fl_Menu_Item* ProgramWindow::EditMnu = ProgramWindow::menu_MenuBar + 3;
 Fl_Menu_Item* ProgramWindow::ProgramMnu = ProgramWindow::menu_MenuBar + 5;
 Fl_Menu_Item* ProgramWindow::ToolsMnu = ProgramWindow::menu_MenuBar + 7;
 Fl_Menu_Item* ProgramWindow::HelpMnu = ProgramWindow::menu_MenuBar + 9;
+Fl_Menu_Item* ProgramWindow::AboutMnu = ProgramWindow::menu_MenuBar + 10;
 
 ProgramWindow::ProgramWindow() {
-  { FlWindow = new Fl_Double_Window(394, 410, "Program - OSPASOFT");
+  { FlWindow = new Fl_Double_Window(390, 410, "Program - OSPASOFT");
     FlWindow->labelsize(13);
     FlWindow->user_data((void*)(this));
     FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
@@ -103,7 +106,7 @@ ProgramWindow::ProgramWindow() {
 }
 
 AboutWindow::AboutWindow() {
-  { FlWindow = new Fl_Double_Window(375, 195, "About OSPASOFT");
+  { FlWindow = new Fl_Double_Window(405, 190, "About OSPASOFT");
     FlWindow->user_data((void*)(this));
     FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
     { Fl_Text_Display* o = new Fl_Text_Display(-2, 15, 15, 25, "OSPASOFT");
@@ -124,7 +127,7 @@ AboutWindow::AboutWindow() {
       o->textsize(12);
       o->align(Fl_Align(FL_ALIGN_RIGHT));
     } // Fl_Text_Display* o
-    { CloseBtn = new Fl_Return_Button(275, 155, 85, 25, "Close");
+    { CloseBtn = new Fl_Return_Button(310, 155, 85, 25, "Close");
       CloseBtn->labelsize(12);
     } // Fl_Return_Button* CloseBtn
     { Fl_Text_Display* o = new Fl_Text_Display(-1, 108, 15, 25, "OSPASOFT is based in part on the work of the FLTK project (http://www.fltk.or\

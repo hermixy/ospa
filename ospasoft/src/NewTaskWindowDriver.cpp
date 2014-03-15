@@ -17,10 +17,27 @@
 
 NewTaskWindowDriver::NewTaskWindowDriver()
 {
-   _Window.FlWindow->set_modal();
+   WD_REGISTER(ActivationCmb);
+   WD_REGISTER(OkBtn);
+   WD_REGISTER(CancelBtn);
 }
 
-void NewTaskWindowDriver::Show()
+void NewTaskWindowDriver::OnCallback(void* widget)
 {
-   _Window.FlWindow->show(0, NULL);
+   WD_CALLBACK(ActivationCmb);
+   WD_CALLBACK(OkBtn);
+   WD_CALLBACK(CancelBtn);
+}
+
+void NewTaskWindowDriver::OnActivationCmb()
+{
+}
+
+void NewTaskWindowDriver::OnOkBtn()
+{
+}
+
+void NewTaskWindowDriver::OnCancelBtn()
+{
+   _Window.FlWindow->hide();
 }

@@ -2,6 +2,7 @@
 # CC, CFLAGS, LDFLAGS, EXECUTABLE
 
 SOURCES=\
+	src/AboutWindowDriver.cpp \
 	src/main.cpp \
 	src/NewTaskWindowDriver.cpp \
 	src/ProgramWindowDriver.cpp \
