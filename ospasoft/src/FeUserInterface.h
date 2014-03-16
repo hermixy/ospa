@@ -24,7 +24,6 @@ public:
   static Fl_Menu_Item *NewTaskMnu;
   static Fl_Menu_Item *NewObjectMnu;
   static Fl_Menu_Item *NewTemplateMnu;
-  static Fl_Menu_Item *NewSymbolMnu;
   static Fl_Menu_Item *OpenItemMnu;
   static Fl_Menu_Item *DeleteItemMnu;
   static Fl_Menu_Item *ProgramMnu;
@@ -36,6 +35,7 @@ public:
   Fl_Group *ObjectsGrp;
   Fl_Group *TemplatesGrp;
   Fl_Group *SymbolsGrp;
+  Fl_Group *LibrariesGrp;
 };
 #include <FL/Fl_Text_Display.H>
 #include <FL/Fl_Return_Button.H>
@@ -45,5 +45,22 @@ public:
   AboutWindow();
   Fl_Double_Window *FlWindow;
   Fl_Return_Button *CloseBtn;
+};
+#include <FL/Fl_Input.H>
+#include <FL/Fl_Choice.H>
+#include <FL/Fl_Value_Input.H>
+#include <FL/Fl_Button.H>
+
+class TaskPropertiesWindow {
+public:
+  TaskPropertiesWindow();
+  Fl_Double_Window *FlWindow;
+  Fl_Input *NameTxt;
+  Fl_Choice *ActivationCmb;
+  Fl_Value_Input *IntervalTxt;
+  Fl_Group *MillisecondsLbl;
+  Fl_Choice *LanguageCmb;
+  Fl_Return_Button *OkBtn;
+  Fl_Button *CancelBtn;
 };
 #endif

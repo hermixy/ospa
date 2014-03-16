@@ -20,6 +20,7 @@ class FeProgramWindowDriver : public FeWindowDriver<class ProgramWindow>
 {
    WD_BEGIN_CALLBACKS(FeProgramWindowDriver)
    WD_CALLBACK(NewProgramMnu, OnNewProgramClicked)
+   WD_CALLBACK(NewTaskMnu, OnNewTaskClicked)
    WD_CALLBACK(AboutMnu, OnAboutClicked)
    WD_END_CALLBACKS()
 
@@ -28,7 +29,9 @@ public:
 
 private:
    void OnNewProgramClicked();
+   void OnNewTaskClicked();
    void OnAboutClicked();
 
+   std::shared_ptr<class FeTaskPropertiesWindowDriver> _TaskPropertiesWindow;
    std::shared_ptr<class FeAboutWindowDriver> _AboutWindow;
 };

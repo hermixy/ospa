@@ -12,34 +12,23 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#include "FeRect.h"
+#include "FeUserInterface.h"
+#include "FeTaskPropertiesWindowDriver.h"
 
-FeRect::FeRect(int x, int y, int w, int h)
-:  X(x), Y(y), W(w), H(h)
+FeTaskPropertiesWindowDriver::FeTaskPropertiesWindowDriver()
+{
+   WD_INIT();
+}
+
+void FeTaskPropertiesWindowDriver::OnActivationChanged()
 {
 }
 
-bool FeRect::operator ==(const FeRect& other) const
+void FeTaskPropertiesWindowDriver::OnOkClicked()
 {
-   return X == other.X && Y == other.Y && W == other.W && H == other.H;
 }
 
-FeRect FeRect::InflateBy(int left, int top, int right, int bottom) const
+void FeTaskPropertiesWindowDriver::OnCancelClicked()
 {
-   FeRect inflated;
-   inflated.X = X - left;
-   inflated.Y = Y - top;
-   inflated.W = W + left + right;
-   inflated.H = H + top + bottom;
-   return inflated;
-}
-
-FeRect FeRect::CenterIn(const FeRect& outer) const
-{
-   FeRect centered;
-   centered.X = outer.W / 2 - W / 2 + outer.X;
-   centered.Y = outer.H / 2 - H / 2 + outer.Y;
-   centered.W = W;
-   centered.H = H;
-   return centered;
+   Close();
 }

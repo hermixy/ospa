@@ -8,7 +8,7 @@ class ProgramWindow {open
   } {
     Fl_Window FlWindow {
       label {Program - OSPASOFT} open
-      xywh {534 228 394 410} type Double labelsize 13 align 80 resizable visible
+      xywh {534 228 394 410} type Double labelsize 13 align 80 resizable size_range {325 200 0 0} visible
     } {
       Fl_Group {} {open
         xywh {0 30 394 371} labelsize 12 resizable
@@ -38,7 +38,7 @@ class ProgramWindow {open
           }
         }
         Submenu EditMnu {
-          label {&Edit} open
+          label {&Edit} open selected
           xywh {10 10 100 20} labelsize 12
         } {
           MenuItem NewTaskMnu {
@@ -52,10 +52,6 @@ class ProgramWindow {open
           MenuItem NewTemplateMnu {
             label {New te&mplate }
             xywh {60 60 100 20} labelsize 12
-          }
-          MenuItem NewSymbolMnu {
-            label {New &symbol }
-            xywh {70 70 100 20} labelsize 12 divider
           }
           MenuItem OpenItemMnu {
             label {O&pen item }
@@ -84,7 +80,7 @@ class ProgramWindow {open
           }
         }
       }
-      Fl_Tabs Tabs {open selected
+      Fl_Tabs Tabs {open
         xywh {0 23 394 384} labelsize 12
       } {
         Fl_Group TasksGrp {
@@ -105,6 +101,10 @@ class ProgramWindow {open
         } {}
         Fl_Group SymbolsGrp {
           label {&Symbols} open
+          xywh {0 25 394 350} labelsize 12 hide
+        } {}
+        Fl_Group LibrariesGrp {
+          label {&Libraries} open
           xywh {0 25 394 350} labelsize 12 hide resizable
         } {}
       }
@@ -139,6 +139,46 @@ class AboutWindow {open
       Fl_Text_Display {} {
         label {OSPASOFT is based in part on the work of the FLTK project (http://www.fltk.org).}
         xywh {-1 108 15 25} box NO_BOX labelsize 12 align 136 textsize 12
+      }
+    }
+  }
+} 
+
+class TaskPropertiesWindow {open
+} {
+  Function {TaskPropertiesWindow()} {open
+  } {
+    Fl_Window FlWindow {
+      label {Task Properties} open
+      xywh {409 365 376 181} type Double modal visible
+    } {
+      Fl_Input NameTxt {
+        label {Task name: }
+        xywh {125 10 242 25} labelsize 12 textfont 4 textsize 12
+      }
+      Fl_Choice ActivationCmb {
+        label {Activation: } open
+        xywh {125 40 140 25} down_box BORDER_BOX labelsize 12 textsize 12
+      } {}
+      Fl_Value_Input IntervalTxt {
+        label {Interval: }
+        xywh {125 70 60 25} labelsize 12 textfont 4 textsize 12
+      }
+      Fl_Group MillisecondsLbl {
+        label ms open
+        xywh {212 70 25 25} labelsize 12 align 4
+      } {}
+      Fl_Choice LanguageCmb {
+        label {Language: } open
+        xywh {125 100 140 25} down_box BORDER_BOX labelsize 12 textsize 12
+      } {}
+      Fl_Return_Button OkBtn {
+        label OK
+        xywh {211 145 75 25} labelsize 12
+      }
+      Fl_Button CancelBtn {
+        label Cancel
+        xywh {291 145 75 25} labelsize 12
       }
     }
   }

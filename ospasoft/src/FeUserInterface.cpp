@@ -13,7 +13,6 @@ Fl_Menu_Item ProgramWindow::menu_MenuBar[] = {
  {"New &task ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
  {"New &object ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
  {"New te&mplate ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
- {"New &symbol ", 0,  0, 0, 128, FL_NORMAL_LABEL, 0, 12, 0},
  {"O&pen item ", 0,  0, 0, 128, FL_NORMAL_LABEL, 0, 12, 0},
  {"&Delete item... ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
  {0,0,0,0,0,0,0,0,0},
@@ -35,13 +34,12 @@ Fl_Menu_Item* ProgramWindow::EditMnu = ProgramWindow::menu_MenuBar + 6;
 Fl_Menu_Item* ProgramWindow::NewTaskMnu = ProgramWindow::menu_MenuBar + 7;
 Fl_Menu_Item* ProgramWindow::NewObjectMnu = ProgramWindow::menu_MenuBar + 8;
 Fl_Menu_Item* ProgramWindow::NewTemplateMnu = ProgramWindow::menu_MenuBar + 9;
-Fl_Menu_Item* ProgramWindow::NewSymbolMnu = ProgramWindow::menu_MenuBar + 10;
-Fl_Menu_Item* ProgramWindow::OpenItemMnu = ProgramWindow::menu_MenuBar + 11;
-Fl_Menu_Item* ProgramWindow::DeleteItemMnu = ProgramWindow::menu_MenuBar + 12;
-Fl_Menu_Item* ProgramWindow::ProgramMnu = ProgramWindow::menu_MenuBar + 14;
-Fl_Menu_Item* ProgramWindow::ToolsMnu = ProgramWindow::menu_MenuBar + 16;
-Fl_Menu_Item* ProgramWindow::HelpMnu = ProgramWindow::menu_MenuBar + 18;
-Fl_Menu_Item* ProgramWindow::AboutMnu = ProgramWindow::menu_MenuBar + 19;
+Fl_Menu_Item* ProgramWindow::OpenItemMnu = ProgramWindow::menu_MenuBar + 10;
+Fl_Menu_Item* ProgramWindow::DeleteItemMnu = ProgramWindow::menu_MenuBar + 11;
+Fl_Menu_Item* ProgramWindow::ProgramMnu = ProgramWindow::menu_MenuBar + 13;
+Fl_Menu_Item* ProgramWindow::ToolsMnu = ProgramWindow::menu_MenuBar + 15;
+Fl_Menu_Item* ProgramWindow::HelpMnu = ProgramWindow::menu_MenuBar + 17;
+Fl_Menu_Item* ProgramWindow::AboutMnu = ProgramWindow::menu_MenuBar + 18;
 
 ProgramWindow::ProgramWindow() {
   { FlWindow = new Fl_Double_Window(394, 410, "Program - OSPASOFT");
@@ -86,10 +84,16 @@ ProgramWindow::ProgramWindow() {
         SymbolsGrp->labelsize(12);
         SymbolsGrp->hide();
         SymbolsGrp->end();
-        Fl_Group::current()->resizable(SymbolsGrp);
       } // Fl_Group* SymbolsGrp
+      { LibrariesGrp = new Fl_Group(0, 25, 394, 350, "&Libraries");
+        LibrariesGrp->labelsize(12);
+        LibrariesGrp->hide();
+        LibrariesGrp->end();
+        Fl_Group::current()->resizable(LibrariesGrp);
+      } // Fl_Group* LibrariesGrp
       Tabs->end();
     } // Fl_Tabs* Tabs
+    FlWindow->size_range(325, 200);
     FlWindow->end();
   } // Fl_Double_Window* FlWindow
 }
@@ -126,6 +130,45 @@ g).");
       o->textsize(12);
       o->align(Fl_Align(136));
     } // Fl_Text_Display* o
+    FlWindow->set_modal();
+    FlWindow->end();
+  } // Fl_Double_Window* FlWindow
+}
+
+TaskPropertiesWindow::TaskPropertiesWindow() {
+  { FlWindow = new Fl_Double_Window(376, 181, "Task Properties");
+    FlWindow->user_data((void*)(this));
+    { NameTxt = new Fl_Input(125, 10, 242, 25, "Task name: ");
+      NameTxt->labelsize(12);
+      NameTxt->textfont(4);
+      NameTxt->textsize(12);
+    } // Fl_Input* NameTxt
+    { ActivationCmb = new Fl_Choice(125, 40, 140, 25, "Activation: ");
+      ActivationCmb->down_box(FL_BORDER_BOX);
+      ActivationCmb->labelsize(12);
+      ActivationCmb->textsize(12);
+    } // Fl_Choice* ActivationCmb
+    { IntervalTxt = new Fl_Value_Input(125, 70, 60, 25, "Interval: ");
+      IntervalTxt->labelsize(12);
+      IntervalTxt->textfont(4);
+      IntervalTxt->textsize(12);
+    } // Fl_Value_Input* IntervalTxt
+    { MillisecondsLbl = new Fl_Group(212, 70, 25, 25, "ms");
+      MillisecondsLbl->labelsize(12);
+      MillisecondsLbl->align(Fl_Align(FL_ALIGN_LEFT));
+      MillisecondsLbl->end();
+    } // Fl_Group* MillisecondsLbl
+    { LanguageCmb = new Fl_Choice(125, 100, 140, 25, "Language: ");
+      LanguageCmb->down_box(FL_BORDER_BOX);
+      LanguageCmb->labelsize(12);
+      LanguageCmb->textsize(12);
+    } // Fl_Choice* LanguageCmb
+    { OkBtn = new Fl_Return_Button(211, 145, 75, 25, "OK");
+      OkBtn->labelsize(12);
+    } // Fl_Return_Button* OkBtn
+    { CancelBtn = new Fl_Button(291, 145, 75, 25, "Cancel");
+      CancelBtn->labelsize(12);
+    } // Fl_Button* CancelBtn
     FlWindow->set_modal();
     FlWindow->end();
   } // Fl_Double_Window* FlWindow
