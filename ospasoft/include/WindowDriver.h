@@ -16,7 +16,6 @@
 
 #include <vector>
 #include <memory>
-#include <stdio.h> //temp
 
 template<class WindowType>
 class WindowDriver
