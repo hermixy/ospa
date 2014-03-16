@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\FeAboutWindowDriver.cpp" />
+    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\FeProgramWindowDriver.cpp" />
+    <ClCompile Include="..\..\src\FeUserInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\FeAboutWindowDriver.h" />
+    <ClInclude Include="..\..\include\FeProgramWindowDriver.h" />
+    <ClInclude Include="..\..\include\FeWindowDriver.h" />
+    <ClInclude Include="..\..\src\FeUserInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Makefile.base" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{36C9DD58-15F7-438D-8BB6-E0D0B19B735E}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>C:\Projects\ospa\ospasoft\bin\ospasoft.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <IncludePath>C:\Projects\ospa\ospasoft\include;C:\Projects\ospa\ospasoft\lib\fltk\include;$(IncludePath)</IncludePath>
+    <NMakeBuildCommandLine>C:\Projects\ospa\ospasoft\vs2013\build.bat</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>C:\Projects\ospa\ospasoft\vs2013\build.bat</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>C:\Projects\ospa\ospasoft\vs2013\clean.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>C:\Projects\ospa\ospasoft\bin\ospasoft.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <IncludePath>C:\Projects\ospa\ospasoft\include;$(IncludePath)</IncludePath>
+    <NMakeBuildCommandLine>C:\Projects\ospa\ospasoft\vs2013\build.bat</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>C:\Projects\ospa\ospasoft\vs2013\build.bat</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>C:\Projects\ospa\ospasoft\vs2013\clean.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
