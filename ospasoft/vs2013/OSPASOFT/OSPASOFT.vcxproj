@@ -12,9 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\FeAboutWindowDriver.cpp" />
-    <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\FeProgramWindowDriver.cpp" />
     <ClCompile Include="..\..\src\FeUserInterface.cpp" />
+    <ClCompile Include="..\..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\FeAboutWindowDriver.h" />
