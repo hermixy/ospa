@@ -17,15 +17,10 @@
 
 AboutWindowDriver::AboutWindowDriver()
 {
-   WD_REGISTER(CloseBtn);
+   WD_INIT();
 }
 
-void AboutWindowDriver::OnCallback(void* widget)
-{
-   WD_CALLBACK(CloseBtn);
-}
-
-void AboutWindowDriver::OnCloseBtn()
+void AboutWindowDriver::OnCloseClicked()
 {
    _Window.FlWindow->hide();
 }

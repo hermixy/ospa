@@ -69,7 +69,49 @@ protected:
    WindowType _Window;
 };
 
-#define WD_REGISTER(widgetName) Register(_Window. widgetName )
-#define WD_CALLBACK_NAME(widgetName) On##widgetName
-#define WD_CALLBACK(widgetName) if (widget == _Window. widgetName ) { WD_CALLBACK_NAME(widgetName)(); return; }
+template<class WindowDriverType>
+class CallbackDefinition
+{
+public:
+   WindowDriverType* WindowDriver;
+   void* Widget;
+};
+
+// Optional macros for handling FLTK callbacks in member functions.
+
+// Call this from the constructor.
+#define WD_INIT() _WD_MemberCallback(NULL)
+
+// Add these to the header, as the first thing inside the braces of the class.
+#define WD_BEGIN_CALLBACKS(className) \
+   std::vector<std::shared_ptr<CallbackDefinition< className >>> _WD_CallbackDefinitions; \
+   static void _WD_StaticCallback(class Fl_Widget* widget, void* ptr) \
+   { \
+      auto cbDef = static_cast<CallbackDefinition< className >*>(ptr); \
+      cbDef->WindowDriver->_WD_MemberCallback(cbDef->Widget); \
+   } \
+   std::shared_ptr<CallbackDefinition< className >> _WD_NewCallbackDefinition() \
+   { \
+      return std::make_shared<CallbackDefinition< className >>(); \
+   } \
+   void _WD_MemberCallback(void* widget) \
+   {
+
+#define WD_CALLBACK(widgetName, methodName) \
+   if (widget == NULL) \
+   { \
+      auto cbDefPtr = _WD_NewCallbackDefinition(); \
+      cbDefPtr->WindowDriver = this; \
+      cbDefPtr->Widget = _Window. widgetName ; \
+      _WD_CallbackDefinitions.push_back(cbDefPtr); \
+      _Window. widgetName ->callback(_WD_StaticCallback, cbDefPtr.get()); \
+   } \
+   else if (widget == _Window. widgetName) \
+   { \
+      methodName (); \
+      return; \
+   }
+
+#define WD_END_CALLBACKS() \
+   }
 

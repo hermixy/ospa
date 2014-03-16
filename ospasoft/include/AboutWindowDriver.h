@@ -18,13 +18,14 @@
 
 class AboutWindowDriver : public WindowDriver<class AboutWindow>
 {
+private:
+   WD_BEGIN_CALLBACKS(AboutWindowDriver)
+   WD_CALLBACK(CloseBtn, OnCloseClicked)
+   WD_END_CALLBACKS()
+
 public:
    AboutWindowDriver();
    
-protected:
-   virtual void OnCallback(void* widget);
-   
 private:
-   void OnCloseBtn();
+   void OnCloseClicked();
 };
-

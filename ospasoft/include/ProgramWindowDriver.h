@@ -18,15 +18,17 @@
 
 class ProgramWindowDriver : public WindowDriver<class ProgramWindow>
 {
+   WD_BEGIN_CALLBACKS(ProgramWindowDriver)
+   WD_CALLBACK(NewProgramMnu, OnNewProgramClicked)
+   WD_CALLBACK(AboutMnu, OnAboutClicked)
+   WD_END_CALLBACKS()
+
 public:
    ProgramWindowDriver();
 
-protected:
-   virtual void OnCallback(void* widget);
-
 private:
-   void OnNewProgramMnu();
-   void OnAboutMnu();
+   void OnNewProgramClicked();
+   void OnAboutClicked();
 
    std::shared_ptr<class AboutWindowDriver> _AboutWindowDriver;
 };

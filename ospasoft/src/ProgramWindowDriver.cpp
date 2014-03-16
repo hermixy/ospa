@@ -18,23 +18,15 @@
 
 ProgramWindowDriver::ProgramWindowDriver()
 {
+   WD_INIT();
    _AboutWindowDriver = std::make_shared<AboutWindowDriver>();
-
-   Register(_Window.NewProgramMnu);
-   Register(_Window.AboutMnu);
 }
 
-void ProgramWindowDriver::OnCallback(void* widget)
-{
-   WD_CALLBACK(NewProgramMnu);
-   WD_CALLBACK(AboutMnu);
-}
-
-void ProgramWindowDriver::OnNewProgramMnu()
+void ProgramWindowDriver::OnNewProgramClicked()
 {
 }
 
-void ProgramWindowDriver::OnAboutMnu()
+void ProgramWindowDriver::OnAboutClicked()
 {
    _AboutWindowDriver->Show();
 }
