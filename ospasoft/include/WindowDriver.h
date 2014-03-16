@@ -14,7 +14,7 @@
 
 #pragma once
 
-#include <vector>
+#include <list>
 #include <memory>
 
 template<class WindowType>
@@ -58,7 +58,7 @@ public:
 
 // Add these to the header, as the first thing inside the braces of the class.
 #define WD_BEGIN_CALLBACKS(className) \
-   std::vector<std::shared_ptr<CallbackDefinition< className >>> _WD_CallbackDefinitions; \
+   std::list<std::shared_ptr<CallbackDefinition< className >>> _WD_CallbackDefinitions; \
    static void _WD_StaticCallback(class Fl_Widget* widget, void* ptr) \
    { \
       auto cbDef = static_cast<CallbackDefinition< className >*>(ptr); \
@@ -77,7 +77,7 @@ public:
       auto cbDefPtr = _WD_NewCallbackDefinition(); \
       cbDefPtr->WindowDriver = this; \
       cbDefPtr->Widget = _Window. widgetName ; \
-      _WD_CallbackDefinitions.push_back(cbDefPtr); \
+      _WD_CallbackDefinitions.push_front(cbDefPtr); \
       _Window. widgetName ->callback(_WD_StaticCallback, cbDefPtr.get()); \
    } \
    else if (widget == _Window. widgetName) \
