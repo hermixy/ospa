@@ -17,9 +17,9 @@
 #include "FeProgramWindowDriver.h"
 
 FeProgramWindowDriver::FeProgramWindowDriver()
+   : _AboutWindow(std::make_shared<FeAboutWindowDriver>())
 {
    WD_INIT();
-   _FeAboutWindowDriver = std::make_shared<FeAboutWindowDriver>();
 }
 
 void FeProgramWindowDriver::OnNewProgramClicked()
@@ -28,6 +28,6 @@ void FeProgramWindowDriver::OnNewProgramClicked()
 
 void FeProgramWindowDriver::OnAboutClicked()
 {
-   _FeAboutWindowDriver->CenterIn(*this);
-   _FeAboutWindowDriver->Show();
+   _AboutWindow->CenterIn(*this);
+   _AboutWindow->Show();
 }

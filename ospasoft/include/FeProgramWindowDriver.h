@@ -30,5 +30,5 @@ private:
    void OnNewProgramClicked();
    void OnAboutClicked();
 
-   std::shared_ptr<class FeAboutWindowDriver> _FeAboutWindowDriver;
+   std::shared_ptr<class FeAboutWindowDriver> _AboutWindow;
 };

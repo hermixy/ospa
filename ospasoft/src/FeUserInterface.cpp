@@ -10,6 +10,12 @@ Fl_Menu_Item ProgramWindow::menu_MenuBar[] = {
  {"E&xit ", 0x8ffc1,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
  {0,0,0,0,0,0,0,0,0},
  {"&Edit", 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 12, 0},
+ {"New &task ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
+ {"New &object ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
+ {"New te&mplate ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
+ {"New &symbol ", 0,  0, 0, 128, FL_NORMAL_LABEL, 0, 12, 0},
+ {"O&pen item ", 0,  0, 0, 128, FL_NORMAL_LABEL, 0, 12, 0},
+ {"&Delete item... ", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
  {0,0,0,0,0,0,0,0,0},
  {"&Program", 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 12, 0},
  {0,0,0,0,0,0,0,0,0},
@@ -26,10 +32,16 @@ Fl_Menu_Item* ProgramWindow::OpenProgramMnu = ProgramWindow::menu_MenuBar + 2;
 Fl_Menu_Item* ProgramWindow::SaveProgramMnu = ProgramWindow::menu_MenuBar + 3;
 Fl_Menu_Item* ProgramWindow::ExitMnu = ProgramWindow::menu_MenuBar + 4;
 Fl_Menu_Item* ProgramWindow::EditMnu = ProgramWindow::menu_MenuBar + 6;
-Fl_Menu_Item* ProgramWindow::ProgramMnu = ProgramWindow::menu_MenuBar + 8;
-Fl_Menu_Item* ProgramWindow::ToolsMnu = ProgramWindow::menu_MenuBar + 10;
-Fl_Menu_Item* ProgramWindow::HelpMnu = ProgramWindow::menu_MenuBar + 12;
-Fl_Menu_Item* ProgramWindow::AboutMnu = ProgramWindow::menu_MenuBar + 13;
+Fl_Menu_Item* ProgramWindow::NewTaskMnu = ProgramWindow::menu_MenuBar + 7;
+Fl_Menu_Item* ProgramWindow::NewObjectMnu = ProgramWindow::menu_MenuBar + 8;
+Fl_Menu_Item* ProgramWindow::NewTemplateMnu = ProgramWindow::menu_MenuBar + 9;
+Fl_Menu_Item* ProgramWindow::NewSymbolMnu = ProgramWindow::menu_MenuBar + 10;
+Fl_Menu_Item* ProgramWindow::OpenItemMnu = ProgramWindow::menu_MenuBar + 11;
+Fl_Menu_Item* ProgramWindow::DeleteItemMnu = ProgramWindow::menu_MenuBar + 12;
+Fl_Menu_Item* ProgramWindow::ProgramMnu = ProgramWindow::menu_MenuBar + 14;
+Fl_Menu_Item* ProgramWindow::ToolsMnu = ProgramWindow::menu_MenuBar + 16;
+Fl_Menu_Item* ProgramWindow::HelpMnu = ProgramWindow::menu_MenuBar + 18;
+Fl_Menu_Item* ProgramWindow::AboutMnu = ProgramWindow::menu_MenuBar + 19;
 
 ProgramWindow::ProgramWindow() {
   { FlWindow = new Fl_Double_Window(394, 410, "Program - OSPASOFT");
@@ -41,17 +53,18 @@ ProgramWindow::ProgramWindow() {
       o->end();
       Fl_Group::current()->resizable(o);
     } // Fl_Group* o
-    { MenuBar = new Fl_Menu_Bar(0, 0, 394, 25);
+    { MenuBar = new Fl_Menu_Bar(0, 0, 394, 23);
       MenuBar->box(FL_THIN_UP_BOX);
       MenuBar->labelsize(12);
       MenuBar->textsize(11);
       MenuBar->menu(menu_MenuBar);
     } // Fl_Menu_Bar* MenuBar
-    { Fl_Tabs* o = new Fl_Tabs(0, 23, 394, 384);
-      o->labelsize(12);
+    { Tabs = new Fl_Tabs(0, 23, 394, 384);
+      Tabs->labelsize(12);
       { TasksGrp = new Fl_Group(0, 23, 394, 356, "T&asks");
         TasksGrp->labelsize(12);
-        { Fl_Table* o = new Fl_Table(0, 23, 393, 354);
+        { Fl_Table* o = new Fl_Table(0, 23, 393, 355);
+          o->box(FL_NO_BOX);
           o->color(FL_BACKGROUND2_COLOR);
           o->labelfont(4);
           o->end();
@@ -59,12 +72,6 @@ ProgramWindow::ProgramWindow() {
         } // Fl_Table* o
         TasksGrp->end();
       } // Fl_Group* TasksGrp
-      { SymbolsGrp = new Fl_Group(0, 25, 394, 350, "&Symbols");
-        SymbolsGrp->labelsize(12);
-        SymbolsGrp->hide();
-        SymbolsGrp->end();
-        Fl_Group::current()->resizable(SymbolsGrp);
-      } // Fl_Group* SymbolsGrp
       { ObjectsGrp = new Fl_Group(0, 25, 394, 350, "&Objects");
         ObjectsGrp->labelsize(12);
         ObjectsGrp->hide();
@@ -75,8 +82,14 @@ ProgramWindow::ProgramWindow() {
         TemplatesGrp->hide();
         TemplatesGrp->end();
       } // Fl_Group* TemplatesGrp
-      o->end();
-    } // Fl_Tabs* o
+      { SymbolsGrp = new Fl_Group(0, 25, 394, 350, "&Symbols");
+        SymbolsGrp->labelsize(12);
+        SymbolsGrp->hide();
+        SymbolsGrp->end();
+        Fl_Group::current()->resizable(SymbolsGrp);
+      } // Fl_Group* SymbolsGrp
+      Tabs->end();
+    } // Fl_Tabs* Tabs
     FlWindow->end();
   } // Fl_Double_Window* FlWindow
 }

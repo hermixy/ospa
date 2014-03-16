@@ -21,14 +21,21 @@ public:
   static Fl_Menu_Item *SaveProgramMnu;
   static Fl_Menu_Item *ExitMnu;
   static Fl_Menu_Item *EditMnu;
+  static Fl_Menu_Item *NewTaskMnu;
+  static Fl_Menu_Item *NewObjectMnu;
+  static Fl_Menu_Item *NewTemplateMnu;
+  static Fl_Menu_Item *NewSymbolMnu;
+  static Fl_Menu_Item *OpenItemMnu;
+  static Fl_Menu_Item *DeleteItemMnu;
   static Fl_Menu_Item *ProgramMnu;
   static Fl_Menu_Item *ToolsMnu;
   static Fl_Menu_Item *HelpMnu;
   static Fl_Menu_Item *AboutMnu;
+  Fl_Tabs *Tabs;
   Fl_Group *TasksGrp;
-  Fl_Group *SymbolsGrp;
   Fl_Group *ObjectsGrp;
   Fl_Group *TemplatesGrp;
+  Fl_Group *SymbolsGrp;
 };
 #include <FL/Fl_Text_Display.H>
 #include <FL/Fl_Return_Button.H>
