@@ -12,22 +12,20 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#include "FeUserInterface.h"
-#include "FeAboutWindowDriver.h"
-#include "FeProgramWindowDriver.h"
+#pragma once
 
-FeProgramWindowDriver::FeProgramWindowDriver()
+class FeRect
 {
-   WD_INIT();
-   _FeAboutWindowDriver = std::make_shared<FeAboutWindowDriver>();
-}
+public:
+   int X;
+   int Y;
+   int W;
+   int H;
 
-void FeProgramWindowDriver::OnNewProgramClicked()
-{
-}
+   FeRect(int x = 0, int y = 0, int w = 0, int h = 0);
 
-void FeProgramWindowDriver::OnAboutClicked()
-{
-   _FeAboutWindowDriver->CenterIn(*this);
-   _FeAboutWindowDriver->Show();
-}
+   bool operator ==(const FeRect& other) const;
+
+   FeRect InflateBy(int left, int top, int right, int bottom) const;
+   FeRect CenterIn(const FeRect& outer) const;
+};

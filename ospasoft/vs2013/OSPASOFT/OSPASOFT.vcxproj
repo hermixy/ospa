@@ -13,12 +13,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\FeAboutWindowDriver.cpp" />
     <ClCompile Include="..\..\src\FeProgramWindowDriver.cpp" />
+    <ClCompile Include="..\..\src\FeRect.cpp" />
     <ClCompile Include="..\..\src\FeUserInterface.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\FeAboutWindowDriver.h" />
     <ClInclude Include="..\..\include\FeProgramWindowDriver.h" />
+    <ClInclude Include="..\..\include\FeRect.h" />
     <ClInclude Include="..\..\include\FeWindowDriver.h" />
     <ClInclude Include="..\..\src\FeUserInterface.h" />
   </ItemGroup>

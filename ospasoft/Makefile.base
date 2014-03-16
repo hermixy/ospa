@@ -4,6 +4,7 @@
 SOURCES=\
 	src/FeAboutWindowDriver.cpp \
 	src/FeProgramWindowDriver.cpp \
+	src/FeRect.cpp \
 	src/FeUserInterface.cpp \
 	src/main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)

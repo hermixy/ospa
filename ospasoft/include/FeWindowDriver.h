@@ -16,12 +16,24 @@
 
 #include <list>
 #include <memory>
+#include "FeRect.h"
 
-template<class WindowType>
-class FeWindowDriver
+class FeWindowDriverBase
 {
 public:
-   FeWindowDriver() 
+   virtual ~FeWindowDriverBase() {}
+   virtual void Show() = 0;
+   virtual void Close() = 0;
+   virtual FeRect Bounds() const = 0;
+   virtual void Bounds(const FeRect& rect) = 0;
+   virtual void CenterIn(const FeWindowDriverBase& parent) = 0;
+};
+
+template<class WindowType>
+class FeWindowDriver : public FeWindowDriverBase
+{
+public:
+   FeWindowDriver()
    {
    }
    
@@ -39,11 +51,27 @@ public:
       _Window.FlWindow->hide();
    }
 
+   virtual FeRect Bounds() const
+   {
+      auto fl = _Window.FlWindow;
+      return FeRect(fl->x(), fl->y(), fl->w(), fl->h());
+   }
+
+   virtual void Bounds(const FeRect& rect)
+   {
+      _Window.FlWindow->resize(rect.X, rect.Y, rect.W, rect.H);
+   }
+
+   virtual void CenterIn(const FeWindowDriverBase& parent)
+   {
+      Bounds(Bounds().CenterIn(parent.Bounds()));
+   }
+
 protected:
-   WindowType _Window;
+   mutable WindowType _Window;
 };
 
-/*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ***/
+/*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ******************************/
 
 template<class WindowDriverType>
 class CallbackDefinition
