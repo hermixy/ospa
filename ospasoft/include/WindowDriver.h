@@ -43,6 +43,8 @@ protected:
    WindowType _Window;
 };
 
+/*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ***/
+
 template<class WindowDriverType>
 class CallbackDefinition
 {
@@ -50,8 +52,6 @@ public:
    WindowDriverType* WindowDriver;
    void* Widget;
 };
-
-/*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ***/
 
 // Call this from the constructor.
 #define WD_INIT() _WD_MemberCallback(this)
