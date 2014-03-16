@@ -22,5 +22,5 @@ AboutWindowDriver::AboutWindowDriver()
 
 void AboutWindowDriver::OnCloseClicked()
 {
-   _Window.FlWindow->hide();
+   Close();
 }

@@ -35,6 +35,11 @@ public:
       _Window.FlWindow->show(0, NULL); 
    }
 
+   virtual void Close()
+   {
+      _Window.FlWindow->hide();
+   }
+
 private:
    class Registration
    {
@@ -46,26 +51,6 @@ private:
    std::vector<Registration*> _Registrations;
    
 protected:
-   static void Callback(class Fl_Widget* widget, void* self)
-   {
-      Registration* r = static_cast<Registration*>(self);
-      r->Driver->OnCallback(r->Widget);
-   }
-
-   template<class WidgetType>
-   void Register(WidgetType* widget)
-   {
-      Registration* r = new Registration;
-      r->Driver = this;
-      r->Widget = widget;
-      _Registrations.push_back(r);
-      widget->callback(Callback, r);
-   }
-   
-   virtual void OnCallback(void* widget)
-   {
-   }
-
    WindowType _Window;
 };
 
@@ -77,10 +62,10 @@ public:
    void* Widget;
 };
 
-// Optional macros for handling FLTK callbacks in member functions.
+/*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ***/
 
 // Call this from the constructor.
-#define WD_INIT() _WD_MemberCallback(NULL)
+#define WD_INIT() _WD_MemberCallback(this)
 
 // Add these to the header, as the first thing inside the braces of the class.
 #define WD_BEGIN_CALLBACKS(className) \
@@ -98,7 +83,7 @@ public:
    {
 
 #define WD_CALLBACK(widgetName, methodName) \
-   if (widget == NULL) \
+   if (widget == this) \
    { \
       auto cbDefPtr = _WD_NewCallbackDefinition(); \
       cbDefPtr->WindowDriver = this; \
@@ -114,4 +99,3 @@ public:
 
 #define WD_END_CALLBACKS() \
    }
-
