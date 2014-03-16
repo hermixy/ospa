@@ -8,7 +8,7 @@ class ProgramWindow {open
   } {
     Fl_Window FlWindow {
       label {Program - OSPASOFT} open
-      xywh {352 204 390 410} type Double labelsize 13 align 80 hide resizable
+      xywh {534 228 394 410} type Double labelsize 13 align 80 resizable visible
     } {
       Fl_Group {} {open
         xywh {0 30 394 371} labelsize 12 resizable
@@ -23,6 +23,18 @@ class ProgramWindow {open
           MenuItem NewProgramMnu {
             label {&New program }
             xywh {0 0 100 20} shortcut 0x4006e labelsize 12
+          }
+          MenuItem OpenProgramMnu {
+            label {&Open program }
+            xywh {10 10 100 20} shortcut 0x4006f labelsize 12
+          }
+          MenuItem SaveProgramMnu {
+            label {&Save program }
+            xywh {20 20 100 20} shortcut 0x40073 labelsize 12 divider
+          }
+          MenuItem ExitMnu {
+            label {E&xit }
+            xywh {30 30 100 20} shortcut 0x8ffc1 labelsize 12
           }
         }
         Submenu EditMnu {
@@ -48,14 +60,14 @@ class ProgramWindow {open
         }
       }
       Fl_Tabs {} {open
-        xywh {0 23 395 384} labelsize 12
+        xywh {0 23 394 384} labelsize 12
       } {
         Fl_Group TasksGrp {
           label {T&asks} open
           xywh {0 23 394 356} labelsize 12
         } {
-          Fl_Table {} {open
-            xywh {0 23 394 354} color 7 labelfont 4 resizable
+          Fl_Table {} {open selected
+            xywh {0 23 393 354} color 7 labelfont 4 resizable
           } {}
         }
         Fl_Group SymbolsGrp {

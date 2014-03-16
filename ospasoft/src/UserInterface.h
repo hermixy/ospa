@@ -17,6 +17,9 @@ public:
   static Fl_Menu_Item menu_MenuBar[];
   static Fl_Menu_Item *FileMnu;
   static Fl_Menu_Item *NewProgramMnu;
+  static Fl_Menu_Item *OpenProgramMnu;
+  static Fl_Menu_Item *SaveProgramMnu;
+  static Fl_Menu_Item *ExitMnu;
   static Fl_Menu_Item *EditMnu;
   static Fl_Menu_Item *ProgramMnu;
   static Fl_Menu_Item *ToolsMnu;

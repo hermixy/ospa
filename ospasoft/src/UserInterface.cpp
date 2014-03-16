@@ -5,6 +5,9 @@
 Fl_Menu_Item ProgramWindow::menu_MenuBar[] = {
  {"&File", 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 12, 0},
  {"&New program ", 0x4006e,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
+ {"&Open program ", 0x4006f,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
+ {"&Save program ", 0x40073,  0, 0, 128, FL_NORMAL_LABEL, 0, 12, 0},
+ {"E&xit ", 0x8ffc1,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
  {0,0,0,0,0,0,0,0,0},
  {"&Edit", 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 12, 0},
  {0,0,0,0,0,0,0,0,0},
@@ -19,14 +22,17 @@ Fl_Menu_Item ProgramWindow::menu_MenuBar[] = {
 };
 Fl_Menu_Item* ProgramWindow::FileMnu = ProgramWindow::menu_MenuBar + 0;
 Fl_Menu_Item* ProgramWindow::NewProgramMnu = ProgramWindow::menu_MenuBar + 1;
-Fl_Menu_Item* ProgramWindow::EditMnu = ProgramWindow::menu_MenuBar + 3;
-Fl_Menu_Item* ProgramWindow::ProgramMnu = ProgramWindow::menu_MenuBar + 5;
-Fl_Menu_Item* ProgramWindow::ToolsMnu = ProgramWindow::menu_MenuBar + 7;
-Fl_Menu_Item* ProgramWindow::HelpMnu = ProgramWindow::menu_MenuBar + 9;
-Fl_Menu_Item* ProgramWindow::AboutMnu = ProgramWindow::menu_MenuBar + 10;
+Fl_Menu_Item* ProgramWindow::OpenProgramMnu = ProgramWindow::menu_MenuBar + 2;
+Fl_Menu_Item* ProgramWindow::SaveProgramMnu = ProgramWindow::menu_MenuBar + 3;
+Fl_Menu_Item* ProgramWindow::ExitMnu = ProgramWindow::menu_MenuBar + 4;
+Fl_Menu_Item* ProgramWindow::EditMnu = ProgramWindow::menu_MenuBar + 6;
+Fl_Menu_Item* ProgramWindow::ProgramMnu = ProgramWindow::menu_MenuBar + 8;
+Fl_Menu_Item* ProgramWindow::ToolsMnu = ProgramWindow::menu_MenuBar + 10;
+Fl_Menu_Item* ProgramWindow::HelpMnu = ProgramWindow::menu_MenuBar + 12;
+Fl_Menu_Item* ProgramWindow::AboutMnu = ProgramWindow::menu_MenuBar + 13;
 
 ProgramWindow::ProgramWindow() {
-  { FlWindow = new Fl_Double_Window(390, 410, "Program - OSPASOFT");
+  { FlWindow = new Fl_Double_Window(394, 410, "Program - OSPASOFT");
     FlWindow->labelsize(13);
     FlWindow->user_data((void*)(this));
     FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
@@ -41,11 +47,11 @@ ProgramWindow::ProgramWindow() {
       MenuBar->textsize(11);
       MenuBar->menu(menu_MenuBar);
     } // Fl_Menu_Bar* MenuBar
-    { Fl_Tabs* o = new Fl_Tabs(0, 23, 395, 384);
+    { Fl_Tabs* o = new Fl_Tabs(0, 23, 394, 384);
       o->labelsize(12);
       { TasksGrp = new Fl_Group(0, 23, 394, 356, "T&asks");
         TasksGrp->labelsize(12);
-        { Fl_Table* o = new Fl_Table(0, 23, 394, 354);
+        { Fl_Table* o = new Fl_Table(0, 23, 393, 354);
           o->color(FL_BACKGROUND2_COLOR);
           o->labelfont(4);
           o->end();

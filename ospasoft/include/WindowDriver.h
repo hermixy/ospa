@@ -40,16 +40,6 @@ public:
       _Window.FlWindow->hide();
    }
 
-private:
-   class Registration
-   {
-   public:
-      WindowDriver* Driver;
-      void* Widget;
-   };
-   
-   std::vector<Registration*> _Registrations;
-   
 protected:
    WindowType _Window;
 };
