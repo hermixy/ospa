@@ -16,9 +16,8 @@
 
 #include "FeWindowDriver.h"
 
-class FeTaskPropertiesWindowDriver : public FeWindowDriver<class TaskPropertiesWindow>
+class FeTaskPropertiesWindowDriver : public FeWindowDriver<class FeTaskPropertiesWindow>
 {
-private:
    WD_BEGIN_CALLBACKS(FeTaskPropertiesWindowDriver)
    WD_CALLBACK(ActivationCmb, OnActivationChanged)
    WD_CALLBACK(OkBtn, OnOkClicked)

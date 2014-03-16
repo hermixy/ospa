@@ -56,5 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile.base" />
+    <None Include="..\..\src\FeUserInterface.fl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\Makefile" />
+    <None Include="..\..\Makefile.linux" />
+    <None Include="..\..\Makefile.mac" />
+    <None Include="..\..\Makefile.windows" />
   </ItemGroup>
 </Project>

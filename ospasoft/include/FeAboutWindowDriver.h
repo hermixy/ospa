@@ -16,9 +16,8 @@
 
 #include "FeWindowDriver.h"
 
-class FeAboutWindowDriver : public FeWindowDriver<class AboutWindow>
+class FeAboutWindowDriver : public FeWindowDriver<class FeAboutWindow>
 {
-private:
    WD_BEGIN_CALLBACKS(FeAboutWindowDriver)
    WD_CALLBACK(CloseBtn, OnCloseClicked)
    WD_END_CALLBACKS()

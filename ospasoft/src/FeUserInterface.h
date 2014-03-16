@@ -9,9 +9,9 @@
 #include <FL/Fl_Tabs.H>
 #include <FL/Fl_Table.H>
 
-class ProgramWindow {
+class FeProgramWindow {
 public:
-  ProgramWindow();
+  FeProgramWindow();
   Fl_Double_Window *FlWindow;
   Fl_Menu_Bar *MenuBar;
   static Fl_Menu_Item menu_MenuBar[];
@@ -40,9 +40,9 @@ public:
 #include <FL/Fl_Text_Display.H>
 #include <FL/Fl_Return_Button.H>
 
-class AboutWindow {
+class FeAboutWindow {
 public:
-  AboutWindow();
+  FeAboutWindow();
   Fl_Double_Window *FlWindow;
   Fl_Return_Button *CloseBtn;
 };
@@ -51,9 +51,9 @@ public:
 #include <FL/Fl_Value_Input.H>
 #include <FL/Fl_Button.H>
 
-class TaskPropertiesWindow {
+class FeTaskPropertiesWindow {
 public:
-  TaskPropertiesWindow();
+  FeTaskPropertiesWindow();
   Fl_Double_Window *FlWindow;
   Fl_Input *NameTxt;
   Fl_Choice *ActivationCmb;

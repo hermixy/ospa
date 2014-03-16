@@ -86,6 +86,7 @@ public:
 
 // Add these to the header, as the first thing inside the braces of the class.
 #define WD_BEGIN_CALLBACKS(className) \
+   private: \
    std::list<std::shared_ptr<CallbackDefinition< className >>> _WD_CallbackDefinitions; \
    static void _WD_StaticCallback(class Fl_Widget* widget, void* ptr) \
    { \

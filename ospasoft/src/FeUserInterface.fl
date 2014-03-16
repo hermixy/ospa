@@ -2,9 +2,9 @@
 version 1.0302 
 header_name {.h} 
 code_name {.cpp}
-class ProgramWindow {open
+class FeProgramWindow {open
 } {
-  Function {ProgramWindow()} {open
+  Function {FeProgramWindow()} {open
   } {
     Fl_Window FlWindow {
       label {Program - OSPASOFT} open
@@ -38,7 +38,7 @@ class ProgramWindow {open
           }
         }
         Submenu EditMnu {
-          label {&Edit} open selected
+          label {&Edit} open
           xywh {10 10 100 20} labelsize 12
         } {
           MenuItem NewTaskMnu {
@@ -112,9 +112,9 @@ class ProgramWindow {open
   }
 } 
 
-class AboutWindow {open
+class FeAboutWindow {open
 } {
-  Function {AboutWindow()} {open
+  Function {FeAboutWindow()} {open
   } {
     Fl_Window FlWindow {
       label {About OSPASOFT} open
@@ -144,17 +144,17 @@ class AboutWindow {open
   }
 } 
 
-class TaskPropertiesWindow {open
+class FeTaskPropertiesWindow {open
 } {
-  Function {TaskPropertiesWindow()} {open
+  Function {FeTaskPropertiesWindow()} {open selected
   } {
     Fl_Window FlWindow {
       label {Task Properties} open
-      xywh {409 365 376 181} type Double modal visible
+      xywh {409 365 376 181} type Double labelsize 12 align 80 modal visible
     } {
       Fl_Input NameTxt {
         label {Task name: }
-        xywh {125 10 242 25} labelsize 12 textfont 4 textsize 12
+        xywh {125 10 242 25} labelsize 12 textsize 12
       }
       Fl_Choice ActivationCmb {
         label {Activation: } open
@@ -162,11 +162,11 @@ class TaskPropertiesWindow {open
       } {}
       Fl_Value_Input IntervalTxt {
         label {Interval: }
-        xywh {125 70 60 25} labelsize 12 textfont 4 textsize 12
+        xywh {125 70 60 25} labelsize 12 textsize 12
       }
       Fl_Group MillisecondsLbl {
         label ms open
-        xywh {212 70 25 25} labelsize 12 align 4
+        xywh {185 70 0 25} labelsize 12 align 8
       } {}
       Fl_Choice LanguageCmb {
         label {Language: } open

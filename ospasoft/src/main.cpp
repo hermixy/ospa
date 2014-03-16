@@ -17,7 +17,7 @@
 #include "FeUserInterface.h"
 #include "FeProgramWindowDriver.h"
 
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
    Fl::scheme("gtk+");
    Fl::visual(FL_DOUBLE | FL_INDEX);

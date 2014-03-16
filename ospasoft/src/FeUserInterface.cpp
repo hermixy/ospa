@@ -2,7 +2,7 @@
 
 #include "FeUserInterface.h"
 
-Fl_Menu_Item ProgramWindow::menu_MenuBar[] = {
+Fl_Menu_Item FeProgramWindow::menu_MenuBar[] = {
  {"&File", 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 12, 0},
  {"&New program ", 0x4006e,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
  {"&Open program ", 0x4006f,  0, 0, 0, FL_NORMAL_LABEL, 0, 12, 0},
@@ -25,23 +25,23 @@ Fl_Menu_Item ProgramWindow::menu_MenuBar[] = {
  {0,0,0,0,0,0,0,0,0},
  {0,0,0,0,0,0,0,0,0}
 };
-Fl_Menu_Item* ProgramWindow::FileMnu = ProgramWindow::menu_MenuBar + 0;
-Fl_Menu_Item* ProgramWindow::NewProgramMnu = ProgramWindow::menu_MenuBar + 1;
-Fl_Menu_Item* ProgramWindow::OpenProgramMnu = ProgramWindow::menu_MenuBar + 2;
-Fl_Menu_Item* ProgramWindow::SaveProgramMnu = ProgramWindow::menu_MenuBar + 3;
-Fl_Menu_Item* ProgramWindow::ExitMnu = ProgramWindow::menu_MenuBar + 4;
-Fl_Menu_Item* ProgramWindow::EditMnu = ProgramWindow::menu_MenuBar + 6;
-Fl_Menu_Item* ProgramWindow::NewTaskMnu = ProgramWindow::menu_MenuBar + 7;
-Fl_Menu_Item* ProgramWindow::NewObjectMnu = ProgramWindow::menu_MenuBar + 8;
-Fl_Menu_Item* ProgramWindow::NewTemplateMnu = ProgramWindow::menu_MenuBar + 9;
-Fl_Menu_Item* ProgramWindow::OpenItemMnu = ProgramWindow::menu_MenuBar + 10;
-Fl_Menu_Item* ProgramWindow::DeleteItemMnu = ProgramWindow::menu_MenuBar + 11;
-Fl_Menu_Item* ProgramWindow::ProgramMnu = ProgramWindow::menu_MenuBar + 13;
-Fl_Menu_Item* ProgramWindow::ToolsMnu = ProgramWindow::menu_MenuBar + 15;
-Fl_Menu_Item* ProgramWindow::HelpMnu = ProgramWindow::menu_MenuBar + 17;
-Fl_Menu_Item* ProgramWindow::AboutMnu = ProgramWindow::menu_MenuBar + 18;
+Fl_Menu_Item* FeProgramWindow::FileMnu = FeProgramWindow::menu_MenuBar + 0;
+Fl_Menu_Item* FeProgramWindow::NewProgramMnu = FeProgramWindow::menu_MenuBar + 1;
+Fl_Menu_Item* FeProgramWindow::OpenProgramMnu = FeProgramWindow::menu_MenuBar + 2;
+Fl_Menu_Item* FeProgramWindow::SaveProgramMnu = FeProgramWindow::menu_MenuBar + 3;
+Fl_Menu_Item* FeProgramWindow::ExitMnu = FeProgramWindow::menu_MenuBar + 4;
+Fl_Menu_Item* FeProgramWindow::EditMnu = FeProgramWindow::menu_MenuBar + 6;
+Fl_Menu_Item* FeProgramWindow::NewTaskMnu = FeProgramWindow::menu_MenuBar + 7;
+Fl_Menu_Item* FeProgramWindow::NewObjectMnu = FeProgramWindow::menu_MenuBar + 8;
+Fl_Menu_Item* FeProgramWindow::NewTemplateMnu = FeProgramWindow::menu_MenuBar + 9;
+Fl_Menu_Item* FeProgramWindow::OpenItemMnu = FeProgramWindow::menu_MenuBar + 10;
+Fl_Menu_Item* FeProgramWindow::DeleteItemMnu = FeProgramWindow::menu_MenuBar + 11;
+Fl_Menu_Item* FeProgramWindow::ProgramMnu = FeProgramWindow::menu_MenuBar + 13;
+Fl_Menu_Item* FeProgramWindow::ToolsMnu = FeProgramWindow::menu_MenuBar + 15;
+Fl_Menu_Item* FeProgramWindow::HelpMnu = FeProgramWindow::menu_MenuBar + 17;
+Fl_Menu_Item* FeProgramWindow::AboutMnu = FeProgramWindow::menu_MenuBar + 18;
 
-ProgramWindow::ProgramWindow() {
+FeProgramWindow::FeProgramWindow() {
   { FlWindow = new Fl_Double_Window(394, 410, "Program - OSPASOFT");
     FlWindow->labelsize(13);
     FlWindow->user_data((void*)(this));
@@ -98,7 +98,7 @@ ProgramWindow::ProgramWindow() {
   } // Fl_Double_Window* FlWindow
 }
 
-AboutWindow::AboutWindow() {
+FeAboutWindow::FeAboutWindow() {
   { FlWindow = new Fl_Double_Window(405, 190, "About OSPASOFT");
     FlWindow->user_data((void*)(this));
     FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
@@ -135,12 +135,13 @@ g).");
   } // Fl_Double_Window* FlWindow
 }
 
-TaskPropertiesWindow::TaskPropertiesWindow() {
+FeTaskPropertiesWindow::FeTaskPropertiesWindow() {
   { FlWindow = new Fl_Double_Window(376, 181, "Task Properties");
+    FlWindow->labelsize(12);
     FlWindow->user_data((void*)(this));
+    FlWindow->align(Fl_Align(FL_ALIGN_CLIP|FL_ALIGN_INSIDE));
     { NameTxt = new Fl_Input(125, 10, 242, 25, "Task name: ");
       NameTxt->labelsize(12);
-      NameTxt->textfont(4);
       NameTxt->textsize(12);
     } // Fl_Input* NameTxt
     { ActivationCmb = new Fl_Choice(125, 40, 140, 25, "Activation: ");
@@ -150,12 +151,11 @@ TaskPropertiesWindow::TaskPropertiesWindow() {
     } // Fl_Choice* ActivationCmb
     { IntervalTxt = new Fl_Value_Input(125, 70, 60, 25, "Interval: ");
       IntervalTxt->labelsize(12);
-      IntervalTxt->textfont(4);
       IntervalTxt->textsize(12);
     } // Fl_Value_Input* IntervalTxt
-    { MillisecondsLbl = new Fl_Group(212, 70, 25, 25, "ms");
+    { MillisecondsLbl = new Fl_Group(185, 70, 0, 25, "ms");
       MillisecondsLbl->labelsize(12);
-      MillisecondsLbl->align(Fl_Align(FL_ALIGN_LEFT));
+      MillisecondsLbl->align(Fl_Align(FL_ALIGN_RIGHT));
       MillisecondsLbl->end();
     } // Fl_Group* MillisecondsLbl
     { LanguageCmb = new Fl_Choice(125, 100, 140, 25, "Language: ");

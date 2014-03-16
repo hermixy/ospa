@@ -16,7 +16,7 @@
 
 #include "FeWindowDriver.h"
 
-class FeProgramWindowDriver : public FeWindowDriver<class ProgramWindow>
+class FeProgramWindowDriver : public FeWindowDriver<class FeProgramWindow>
 {
    WD_BEGIN_CALLBACKS(FeProgramWindowDriver)
    WD_CALLBACK(NewProgramMnu, OnNewProgramClicked)

@@ -27,7 +27,12 @@
     <ClInclude Include="..\..\src\FeUserInterface.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Makefile" />
     <None Include="..\..\Makefile.base" />
+    <None Include="..\..\Makefile.linux" />
+    <None Include="..\..\Makefile.mac" />
+    <None Include="..\..\Makefile.windows" />
+    <None Include="..\..\src\FeUserInterface.fl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{36C9DD58-15F7-438D-8BB6-E0D0B19B735E}</ProjectGuid>
