@@ -2,10 +2,10 @@
 # CC, CFLAGS, LDFLAGS, EXECUTABLE
 
 SOURCES=\
-	src/AboutWindowDriver.cpp \
-	src/main.cpp \
-	src/ProgramWindowDriver.cpp \
-	src/UserInterface.cpp
+	src/FeAboutWindowDriver.cpp \
+	src/FeProgramWindowDriver.cpp \
+	src/FeUserInterface.cpp \
+	src/main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all: obj bin $(SOURCES) $(EXECUTABLE)

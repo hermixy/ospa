@@ -14,15 +14,15 @@
 
 #include <FL/Fl.H>
 #include <stdio.h>
-#include "UserInterface.h"
-#include "ProgramWindowDriver.h"
+#include "FeUserInterface.h"
+#include "FeProgramWindowDriver.h"
 
 int main(int argc, char* argv[]) 
 {
    Fl::scheme("gtk+");
    Fl::visual(FL_DOUBLE | FL_INDEX);
 
-   ProgramWindowDriver pwd;
+   FeProgramWindowDriver pwd;
    pwd.Show();
    return Fl::run();
 }

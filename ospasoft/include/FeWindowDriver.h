@@ -18,14 +18,14 @@
 #include <memory>
 
 template<class WindowType>
-class WindowDriver
+class FeWindowDriver
 {
 public:
-   WindowDriver() 
+   FeWindowDriver() 
    {
    }
    
-   virtual ~WindowDriver() 
+   virtual ~FeWindowDriver() 
    {
    }
    

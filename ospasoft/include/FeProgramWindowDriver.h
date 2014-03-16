@@ -12,15 +12,23 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#include "UserInterface.h"
-#include "AboutWindowDriver.h"
+#pragma once
 
-AboutWindowDriver::AboutWindowDriver()
-{
-   WD_INIT();
-}
+#include "FeWindowDriver.h"
 
-void AboutWindowDriver::OnCloseClicked()
+class FeProgramWindowDriver : public FeWindowDriver<class ProgramWindow>
 {
-   Close();
-}
+   WD_BEGIN_CALLBACKS(FeProgramWindowDriver)
+   WD_CALLBACK(NewProgramMnu, OnNewProgramClicked)
+   WD_CALLBACK(AboutMnu, OnAboutClicked)
+   WD_END_CALLBACKS()
+
+public:
+   FeProgramWindowDriver();
+
+private:
+   void OnNewProgramClicked();
+   void OnAboutClicked();
+
+   std::shared_ptr<class FeAboutWindowDriver> _FeAboutWindowDriver;
+};
