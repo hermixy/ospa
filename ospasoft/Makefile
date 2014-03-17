@@ -31,17 +31,18 @@ mac:
 	@make -f Makefile.mac
 
 chm:
-	mkdir ./srcdoc/
+	mkdir srcdoc/
 	doxygen
-	mv ./srcdoc/html/OSPASOFT.chm ./
-	rm -rf ./srcdoc
+	mv srcdoc/html/OSPASOFT.chm .
+	rm -rf srcdoc
 
 clean:
-	rm -f ./src/FeUserInterface.cpp
-	rm -f ./include/FeUserInterface.h
-	rm -rf ./bin/OSPASOFT.app
-	rm -f ./bin/*
-	rm -f ./obj/*
+	rm -rf bin
+	rm -rf obj
+	rm -f src/FeUserInterface.cpp
+	rm -f include/FeUserInterface.h
+	rm -f OSPASOFT.chm
+	rm -f OSPASOFT.chw
 
 run:
-	./bin/ospasoft 2> /dev/null &
+	bin/ospasoft 2> /dev/null &
