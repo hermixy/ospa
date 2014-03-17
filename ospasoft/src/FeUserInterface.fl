@@ -81,8 +81,9 @@ class FeProgramWindowView {open
           }
         }
       }
-      Fl_Tabs Tabs {open
+      Fl_Tabs Tabs {open selected
         xywh {0 23 394 384} labelsize 12
+        class FxTabs
       } {
         Fl_Group TasksGrp {
           label {T&asks} open
@@ -185,7 +186,7 @@ class FeTaskPropertiesWindowView {open
         class FxReturnButton
       }
       Fl_Button CancelBtn {
-        label Cancel selected
+        label Cancel
         xywh {291 145 75 25} labelsize 12
         class FxButton
       }

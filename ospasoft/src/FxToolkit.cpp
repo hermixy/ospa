@@ -103,3 +103,11 @@ FX_CONSTRUCTOR_CB(FxButton, Fl_Button)
 FX_BEGIN_HANDLE(FxButton, Fl_Button)
 FX_END_HANDLE()
 FX_CALLBACK(FxButton, Clicked)
+
+//
+// FxTabs
+//
+FX_CONSTRUCTOR_CB(FxTabs, Fl_Tabs)
+FX_BEGIN_HANDLE(FxTabs, Fl_Tabs)
+FX_END_HANDLE()
+FX_CALLBACK(FxTabs, ValueChanged)

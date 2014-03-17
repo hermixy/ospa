@@ -18,6 +18,7 @@
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Return_Button.H>
 #include <FL/Fl_Menu_Item.H>
+#include <FL/Fl_Tabs.H>
 #include "SpEvent.h"
 
 class FxEventArgs : public SpEventArgs
@@ -65,6 +66,18 @@ public:
    virtual int handle(int event);
 
    SpEvent<SpEventArgs> Clicked;
+
+private:
+   static void StaticCallback(Fl_Widget*, void* ptr);
+};
+
+class FxTabs : public Fl_Tabs
+{
+public:
+   FxTabs(int X, int Y, int W, int H, const char* l = 0);
+   virtual int handle(int event);
+
+   SpEvent<SpEventArgs> ValueChanged;
 
 private:
    static void StaticCallback(Fl_Widget*, void* ptr);
