@@ -21,6 +21,7 @@ SOURCES=\
 	src/FeRect.cpp \
 	src/FeTaskPropertiesWindow.cpp \
 	src/FeUserInterface.cpp \
+	src/FxToolkit.cpp \
 	src/main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
@@ -35,8 +36,11 @@ bin:
 fluid:
 	@echo fluid src/FeUserInterface.fl
 	@$(FLUID) -c src/FeUserInterface.fl
+	@echo "#include \"FxToolkit.h\"" > fluid.tmp
+	@cat FeUserInterface.h >> fluid.tmp
+	@rm -f FeUserInterface.h
+	@mv -f fluid.tmp include/FeUserInterface.h
 	@mv -f FeUserInterface.cpp src/
-	@mv -f FeUserInterface.h include/
 
 $(EXECUTABLE): $(OBJECTS) 
 	@echo $(CC) -o $@

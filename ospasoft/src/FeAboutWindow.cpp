@@ -12,15 +12,18 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+#include <functional>
+#include "FL/fl_ask.H"
 #include "FeUserInterface.h"
 #include "FeAboutWindow.h"
+#include "SpEvent.h"
 
 FeAboutWindow::FeAboutWindow()
 {
-   W_INIT();
+   W_SET_HANDLER(FeAboutWindow, _Window.CloseBtn->Clicked, OnCloseClicked);
 }
 
-void FeAboutWindow::OnCloseClicked()
+void FeAboutWindow::OnCloseClicked(SpEventArgs& e)
 {
    Close();
 }

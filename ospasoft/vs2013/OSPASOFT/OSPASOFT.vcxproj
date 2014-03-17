@@ -16,6 +16,7 @@
     <ClCompile Include="..\..\src\FeRect.cpp" />
     <ClCompile Include="..\..\src\FeTaskPropertiesWindow.cpp" />
     <ClCompile Include="..\..\src\FeUserInterface.cpp" />
+    <ClCompile Include="..\..\src\FxToolkit.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -24,10 +25,10 @@
     <ClInclude Include="..\..\include\FeProgramWindow.h" />
     <ClInclude Include="..\..\include\FeRect.h" />
     <ClInclude Include="..\..\include\FeTaskPropertiesWindow.h" />
-    <ClInclude Include="..\..\include\FeToolkit.h" />
     <ClInclude Include="..\..\include\FeUserInterface.h" />
     <ClInclude Include="..\..\include\FeWindow.h" />
     <ClInclude Include="..\..\include\FeWindowBase.h" />
+    <ClInclude Include="..\..\include\FxToolkit.h" />
     <ClInclude Include="..\..\include\SpEvent.h" />
   </ItemGroup>
   <ItemGroup>

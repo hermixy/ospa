@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include <functional>
 #include <list>
 #include <memory>
 #include "SpEvent.h"
@@ -75,41 +76,5 @@ protected:
    mutable ViewType _Window;
 };
 
-/*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ******************************/
-
-// Call this from the constructor.
-#define W_INIT() _WD_MemberCallback(this)
-
-// Add these to the header, as the first thing inside the braces of the class.
-#define W_BEGIN_CALLBACKS(className) \
-   private: \
-   std::list<std::shared_ptr<FeCallbackDefinition< className >>> _W_CALLBACKDefinitions; \
-   static void _WD_StaticCallback(class Fl_Widget* widget, void* ptr) \
-   { \
-      auto cbDef = static_cast<FeCallbackDefinition< className >*>(ptr); \
-      cbDef->WindowDriver->_WD_MemberCallback(cbDef->Widget); \
-   } \
-   std::shared_ptr<FeCallbackDefinition< className >> _WD_NewCallbackDefinition() \
-   { \
-      return std::make_shared<FeCallbackDefinition< className >>(); \
-   } \
-   void _WD_MemberCallback(void* widget) \
-   {
-
-#define W_CALLBACK(widgetName, methodName) \
-   if (widget == this) \
-   { \
-      auto cbDefPtr = _WD_NewCallbackDefinition(); \
-      cbDefPtr->WindowDriver = this; \
-      cbDefPtr->Widget = _Window. widgetName ; \
-      _W_CALLBACKDefinitions.push_front(cbDefPtr); \
-      _Window. widgetName ->callback(_WD_StaticCallback, cbDefPtr.get()); \
-   } \
-   else if (widget == _Window. widgetName) \
-   { \
-      methodName (); \
-      return; \
-   }
-
-#define W_END_CALLBACKS() \
-   }
+#define W_SET_HANDLER(className, widgetEvent, methodName) \
+   widgetEvent .SetHandler(HANDLER( className , methodName ))

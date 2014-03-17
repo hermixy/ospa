@@ -19,12 +19,6 @@
 /// Driver for the Task Properties window.
 class FeTaskPropertiesWindow : public FeWindow<class FeTaskPropertiesWindowView>
 {
-   W_BEGIN_CALLBACKS(FeTaskPropertiesWindow)
-   W_CALLBACK(ActivationCmb, OnActivationChanged)
-   W_CALLBACK(OkBtn, OnOkClicked)
-   W_CALLBACK(CancelBtn, OnCancelClicked)
-   W_END_CALLBACKS()
-
 public:
    /// Constructor.
    FeTaskPropertiesWindow();

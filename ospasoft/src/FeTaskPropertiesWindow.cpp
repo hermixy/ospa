@@ -17,7 +17,6 @@
 
 FeTaskPropertiesWindow::FeTaskPropertiesWindow()
 {
-   W_INIT();
 }
 
 void FeTaskPropertiesWindow::OnActivationChanged()

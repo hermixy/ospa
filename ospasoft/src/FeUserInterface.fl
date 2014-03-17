@@ -8,7 +8,8 @@ class FeProgramWindowView {open
   } {
     Fl_Window FlWindow {
       label {Program - OSPASOFT} open
-      xywh {534 228 394 410} type Double labelsize 13 align 80 resizable size_range {325 200 0 0} visible
+      xywh {534 228 394 410} type Double labelsize 13 align 80 hide resizable
+      class FxWindow size_range {325 200 0 0}
     } {
       Fl_Group {} {open
         xywh {0 30 394 371} labelsize 12 resizable
@@ -20,7 +21,7 @@ class FeProgramWindowView {open
           label {&File} open
           xywh {0 0 100 20} labelsize 12
         } {
-          MenuItem NewProgramMnu {
+          MenuItem FlNewProgramMnu {
             label {&New program }
             xywh {0 0 100 20} shortcut 0x4006e labelsize 12
           }
@@ -74,7 +75,7 @@ class FeProgramWindowView {open
           label {&Help} open
           xywh {40 40 100 20} labelsize 12
         } {
-          MenuItem AboutMnu {
+          MenuItem FlAboutMnu {
             label {&About OSPASOFT }
             xywh {10 10 100 20} labelsize 12
           }
@@ -109,6 +110,10 @@ class FeProgramWindowView {open
         } {}
       }
     }
+    code {AboutMnu.Attach(FlAboutMnu);} {selected
+    }
+  }
+  decl {FxMenuItem AboutMnu} {public local
   }
 } 
 
@@ -118,7 +123,8 @@ class FeAboutWindowView {open
   } {
     Fl_Window FlWindow {
       label {About OSPASOFT} open
-      xywh {36 725 405 190} type Double align 80 hide modal
+      xywh {36 725 405 190} type Double align 80 hide
+      class FxWindow modal
     } {
       Fl_Text_Display {} {
         label OSPASOFT
@@ -135,6 +141,7 @@ class FeAboutWindowView {open
       Fl_Return_Button CloseBtn {
         label Close
         xywh {310 155 85 25} labelsize 12
+        class FxReturnButton
       }
       Fl_Text_Display {} {
         label {OSPASOFT is based in part on the work of the FLTK project (http://www.fltk.org).}
@@ -146,11 +153,12 @@ class FeAboutWindowView {open
 
 class FeTaskPropertiesWindowView {open
 } {
-  Function {FeTaskPropertiesWindowView()} {open selected
+  Function {FeTaskPropertiesWindowView()} {open
   } {
     Fl_Window FlWindow {
       label {Task Properties} open
-      xywh {409 365 376 181} type Double labelsize 12 align 80 modal visible
+      xywh {409 365 376 181} type Double labelsize 12 align 80 hide
+      class FxWindow modal
     } {
       Fl_Input NameTxt {
         label {Task name: }
@@ -175,6 +183,7 @@ class FeTaskPropertiesWindowView {open
       Fl_Return_Button OkBtn {
         label OK
         xywh {211 145 75 25} labelsize 12
+        class FxReturnButton
       }
       Fl_Button CancelBtn {
         label Cancel

@@ -18,23 +18,13 @@
 #include "FeProgramWindow.h"
 
 FeProgramWindow::FeProgramWindow()
-:  _TaskPropertiesWindow(std::unique_ptr<FeTaskPropertiesWindow>(new FeTaskPropertiesWindow)),
-   _AboutWindow(std::unique_ptr<FeAboutWindow>(new FeAboutWindow()))
+:  _TaskPropertiesWindow(std::make_shared<FeTaskPropertiesWindow>()),
+   _AboutWindow(std::make_shared<FeAboutWindow>())
 {
-   W_INIT();
+   W_SET_HANDLER(FeProgramWindow, _Window.AboutMnu.Clicked, OnAboutClicked);
 }
 
-void FeProgramWindow::OnNewProgramClicked()
-{
-}
-
-void FeProgramWindow::OnNewTaskClicked()
-{
-   _TaskPropertiesWindow->CenterIn(*this);
-   _TaskPropertiesWindow->Show();
-}
-
-void FeProgramWindow::OnAboutClicked()
+void FeProgramWindow::OnAboutClicked(SpEventArgs& e)
 {
    _AboutWindow->CenterIn(*this);
    _AboutWindow->Show();

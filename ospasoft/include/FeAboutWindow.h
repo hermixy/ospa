@@ -19,14 +19,10 @@
 /// Driver for the About window.   
 class FeAboutWindow : public FeWindow<class FeAboutWindowView>
 {
-   W_BEGIN_CALLBACKS(FeAboutWindow)
-   W_CALLBACK(CloseBtn, OnCloseClicked)
-   W_END_CALLBACKS()
-
 public:
    /// Constructor.
    FeAboutWindow();
    
 private:
-   void OnCloseClicked();
+   void OnCloseClicked(class SpEventArgs& e);
 };

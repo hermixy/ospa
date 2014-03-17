@@ -21,21 +21,13 @@
 /// Driver for the main Program window.
 class FeProgramWindow : public FeWindow<class FeProgramWindowView>
 {
-   W_BEGIN_CALLBACKS(FeProgramWindow)
-   W_CALLBACK(NewProgramMnu, OnNewProgramClicked)
-   W_CALLBACK(NewTaskMnu, OnNewTaskClicked)
-   W_CALLBACK(AboutMnu, OnAboutClicked)
-   W_END_CALLBACKS()
-
 public:
    /// Constructor.
    FeProgramWindow();
 
 private:
-   void OnNewProgramClicked();
-   void OnNewTaskClicked();
-   void OnAboutClicked();
+   void OnAboutClicked(class SpEventArgs& e);
 
-   std::unique_ptr<FeTaskPropertiesWindow> _TaskPropertiesWindow;
-   std::unique_ptr<FeAboutWindow> _AboutWindow;
+   std::shared_ptr<FeTaskPropertiesWindow> _TaskPropertiesWindow;
+   std::shared_ptr<FeAboutWindow> _AboutWindow;
 };
