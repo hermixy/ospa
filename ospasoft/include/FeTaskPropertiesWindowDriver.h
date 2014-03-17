@@ -16,6 +16,7 @@
 
 #include "FeWindowDriver.h"
 
+/// Driver for the Task Properties window.
 class FeTaskPropertiesWindowDriver : public FeWindowDriver<class FeTaskPropertiesWindow>
 {
    WD_BEGIN_CALLBACKS(FeTaskPropertiesWindowDriver)
@@ -25,6 +26,7 @@ class FeTaskPropertiesWindowDriver : public FeWindowDriver<class FeTaskPropertie
    WD_END_CALLBACKS()
 
 public:
+   /// Constructor.
    FeTaskPropertiesWindowDriver();
    
 private:

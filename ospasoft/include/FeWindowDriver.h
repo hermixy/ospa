@@ -19,32 +19,54 @@
 #include "FeRect.h"
 #include "SpEvent.h"
 
+/// Non-templated base class for window drivers.
 class FeWindowDriverBase
 {
 public:
+   /// Destructor.
    virtual ~FeWindowDriverBase() {}
+   
+   /// Shows the window.
    virtual void Show() = 0;
+   
+   /// Closes the window.  It may be shown again later.
    virtual void Close() = 0;
+
+   /// Gets the screen-relative bounds of the window.
+   /// \return Bounds.
    virtual FeRect Bounds() const = 0;
+
+   /// Sets the screen-relative bounds of the window.
+   /// \param rect New bounds.
    virtual void Bounds(const FeRect& rect) = 0;
+
+   /// Moves the window so that it is centered within `parent`.
+   /// \param parent Parent window in which to center this window.
    virtual void CenterIn(const FeWindowDriverBase& parent) = 0;
 
+   /// Event fired when the window is shown.
    SpEvent<SpEventArgs> Shown;
+
+   /// Event fired when the window is closed.
    SpEvent<SpEventArgs> Closed;
 };
 
+/// Templated window driver which is attached to a FLTK window class specified in the `WindowType` template argument.
 template<typename WindowType>
 class FeWindowDriver : public FeWindowDriverBase
 {
 public:
+   /// Constructor.
    FeWindowDriver()
    {
    }
    
+   /// Destructor.
    virtual ~FeWindowDriver() 
    {
    }
    
+   /// Shows the window.
    virtual void Show() 
    { 
       _Window.FlWindow->show(0, NULL); 
@@ -52,6 +74,7 @@ public:
       Shown.Fire(e);
    }
 
+   /// Closes the window.  It may be shown again later.
    virtual void Close()
    {
       _Window.FlWindow->hide();
@@ -59,33 +82,44 @@ public:
       Closed.Fire(e);
    }
 
+   /// Gets the screen-relative bounds of the window.
+   /// \return Bounds.
    virtual FeRect Bounds() const
    {
       auto fl = _Window.FlWindow;
       return FeRect(fl->x(), fl->y(), fl->w(), fl->h());
    }
 
+   /// Sets the screen-relative bounds of the window.
+   /// \param rect New bounds.
    virtual void Bounds(const FeRect& rect)
    {
       _Window.FlWindow->resize(rect.X, rect.Y, rect.W, rect.H);
    }
 
+   /// Moves the window so that it is centered within `parent`.
+   /// \param parent Parent window in which to center this window.
    virtual void CenterIn(const FeWindowDriverBase& parent)
    {
       Bounds(Bounds().CenterIn(parent.Bounds()));
    }
 
 protected:
+   /// FLTK window object.
    mutable WindowType _Window;
 };
 
 /*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ******************************/
 
+/// Context object allowing a FLTK callback to dispatch to the correct handler.
 template<typename WindowDriverType>
 class FeCallbackDefinition
 {
 public:
+   /// Window driver which is the callback recipient.
    WindowDriverType* WindowDriver;
+
+   /// FLTK widget that sent the callback.
    void* Widget;
 };
 

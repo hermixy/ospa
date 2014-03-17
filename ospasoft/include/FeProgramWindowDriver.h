@@ -18,6 +18,7 @@
 #include "FeTaskPropertiesWindowDriver.h"
 #include "FeAboutWindowDriver.h"
 
+/// Driver for the main Program window.
 class FeProgramWindowDriver : public FeWindowDriver<class FeProgramWindow>
 {
    WD_BEGIN_CALLBACKS(FeProgramWindowDriver)
@@ -27,6 +28,7 @@ class FeProgramWindowDriver : public FeWindowDriver<class FeProgramWindow>
    WD_END_CALLBACKS()
 
 public:
+   /// Constructor.
    FeProgramWindowDriver();
 
 private:

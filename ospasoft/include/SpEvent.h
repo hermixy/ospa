@@ -16,31 +16,39 @@
 
 #include <functional>
 
+/// Empty event arguments, as a convenience for events that do not require additional information.
 class SpEventArgs
 {
 };
 
+/// An event source to which a single handler can be attached.
 template<typename EventArgsType>
 class SpEvent
 {
 public:
+   /// Signature for the event handler method.
    typedef std::function<void(EventArgsType&)> Func;
 
+   /// Constructor, using a no-op handler by default.
    SpEvent()
       : _Handler(SpEvent::DefaultHandler)
    {
    }
 
+   /// Sets the event handler, replacing the existing handler.
    void SetHandler(Func handler)
    {
       _Handler = handler;
    }
 
+   /// Removes the event handler, resetting it to the no-op handler.
    void RemoveHandler()
    {
       _Handler = SpEvent::DefaultHandler;
    }
 
+   /// Firess the event handler.
+   /// \param e Event arguments object.
    void Fire(EventArgsType& e)
    {
       _Handler(e);
