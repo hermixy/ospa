@@ -82,7 +82,7 @@ protected:
 /*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ******************************/
 
 template<typename WindowDriverType>
-class CallbackDefinition
+class FeCallbackDefinition
 {
 public:
    WindowDriverType* WindowDriver;
@@ -95,15 +95,15 @@ public:
 // Add these to the header, as the first thing inside the braces of the class.
 #define WD_BEGIN_CALLBACKS(className) \
    private: \
-   std::list<std::shared_ptr<CallbackDefinition< className >>> _WD_CallbackDefinitions; \
+   std::list<std::shared_ptr<FeCallbackDefinition< className >>> _WD_CallbackDefinitions; \
    static void _WD_StaticCallback(class Fl_Widget* widget, void* ptr) \
    { \
-      auto cbDef = static_cast<CallbackDefinition< className >*>(ptr); \
+      auto cbDef = static_cast<FeCallbackDefinition< className >*>(ptr); \
       cbDef->WindowDriver->_WD_MemberCallback(cbDef->Widget); \
    } \
-   std::shared_ptr<CallbackDefinition< className >> _WD_NewCallbackDefinition() \
+   std::shared_ptr<FeCallbackDefinition< className >> _WD_NewCallbackDefinition() \
    { \
-      return std::make_shared<CallbackDefinition< className >>(); \
+      return std::make_shared<FeCallbackDefinition< className >>(); \
    } \
    void _WD_MemberCallback(void* widget) \
    {
