@@ -24,7 +24,7 @@ public:
    FeTaskPropertiesWindow();
    
 private:
-   void OnActivationChanged();
-   void OnOkClicked();
-   void OnCancelClicked();
+   void OnSelectedActivationChanged(SpEventArgs& e);
+   void OnOkClicked(SpEventArgs& e);
+   void OnCancelClicked(SpEventArgs& e);
 };

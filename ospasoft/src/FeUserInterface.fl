@@ -17,7 +17,7 @@ class FeProgramWindowView {open
       Fl_Menu_Bar MenuBar {open
         xywh {0 0 394 23} box THIN_UP_BOX labelsize 12 textsize 11
       } {
-        Submenu FileMnu {
+        Submenu FlFileMnu {
           label {&File} open
           xywh {0 0 100 20} labelsize 12
         } {
@@ -25,53 +25,53 @@ class FeProgramWindowView {open
             label {&New program }
             xywh {0 0 100 20} shortcut 0x4006e labelsize 12
           }
-          MenuItem OpenProgramMnu {
+          MenuItem FlOpenProgramMnu {
             label {&Open program }
             xywh {10 10 100 20} shortcut 0x4006f labelsize 12
           }
-          MenuItem SaveProgramMnu {
+          MenuItem FlSaveProgramMnu {
             label {&Save program }
             xywh {20 20 100 20} shortcut 0x40073 labelsize 12 divider
           }
-          MenuItem ExitMnu {
+          MenuItem FlExitMnu {
             label {E&xit }
             xywh {30 30 100 20} shortcut 0x8ffc1 labelsize 12
           }
         }
-        Submenu EditMnu {
+        Submenu FlEditMnu {
           label {&Edit} open
           xywh {10 10 100 20} labelsize 12
         } {
-          MenuItem NewTaskMnu {
+          MenuItem FlNewTaskMnu {
             label {New &task }
             xywh {40 40 100 20} labelsize 12
           }
-          MenuItem NewObjectMnu {
+          MenuItem FlNewObjectMnu {
             label {New &object }
             xywh {50 50 100 20} labelsize 12
           }
-          MenuItem NewTemplateMnu {
+          MenuItem FlNewTemplateMnu {
             label {New te&mplate }
             xywh {60 60 100 20} labelsize 12
           }
-          MenuItem OpenItemMnu {
+          MenuItem FlOpenItemMnu {
             label {O&pen item }
             xywh {80 80 100 20} labelsize 12 divider
           }
-          MenuItem DeleteItemMnu {
+          MenuItem FlDeleteItemMnu {
             label {&Delete item... }
             xywh {90 90 100 20} labelsize 12
           }
         }
-        Submenu ProgramMnu {
+        Submenu FlProgramMnu {
           label {&Program} open
           xywh {20 20 100 20} labelsize 12
         } {}
-        Submenu ToolsMnu {
+        Submenu FlToolsMnu {
           label {&Tools} open
           xywh {30 30 100 20} labelsize 12
         } {}
-        Submenu HelpMnu {
+        Submenu FlHelpMnu {
           label {&Help} open
           xywh {40 40 100 20} labelsize 12
         } {
@@ -81,13 +81,13 @@ class FeProgramWindowView {open
           }
         }
       }
-      Fl_Tabs Tabs {open selected
+      Fl_Tabs Tabs {open
         xywh {0 23 394 384} labelsize 12
         class FxTabs
       } {
         Fl_Group TasksGrp {
           label {T&asks} open
-          xywh {0 23 394 356} labelsize 12
+          xywh {0 23 394 356} labelsize 12 hide
         } {
           Fl_Table {} {open
             xywh {0 23 393 355} box NO_BOX color 7 labelfont 4 resizable
@@ -107,11 +107,14 @@ class FeProgramWindowView {open
         } {}
         Fl_Group LibrariesGrp {
           label {&Libraries} open
-          xywh {0 25 394 350} labelsize 12 hide resizable
+          xywh {0 25 394 350} labelsize 12 resizable
         } {}
       }
     }
-    code {AboutMnu.Attach(FlAboutMnu);} {}
+    code {NewTaskMnu.Attach(FlNewTaskMnu);
+AboutMnu.Attach(FlAboutMnu);} {}
+  }
+  decl {FxMenuItem NewTaskMnu} {public local
   }
   decl {FxMenuItem AboutMnu} {public local
   }
@@ -156,9 +159,9 @@ class FeTaskPropertiesWindowView {open
   Function {FeTaskPropertiesWindowView()} {open
   } {
     Fl_Window FlWindow {
-      label {Task Properties} open
-      xywh {409 365 376 181} type Double labelsize 12 align 80 hide
-      class FxWindow modal
+      label {Task Properties} open selected
+      xywh {409 365 376 151} type Double labelsize 12 align 80
+      class FxWindow modal visible
     } {
       Fl_Input NameTxt {
         label {Task name: }
@@ -166,28 +169,29 @@ class FeTaskPropertiesWindowView {open
       }
       Fl_Choice ActivationCmb {
         label {Activation: } open
-        xywh {125 40 140 25} down_box BORDER_BOX labelsize 12 textsize 12
+        xywh {125 40 125 25} down_box BORDER_BOX labelsize 12 textsize 12
+        class FxChoice
       } {}
       Fl_Value_Input IntervalTxt {
-        label {Interval: }
-        xywh {125 70 60 25} labelsize 12 textsize 12
+        xywh {255 40 81 25} labelsize 12 value 1000 textsize 12
       }
-      Fl_Group MillisecondsLbl {
+      Fl_Group MsLbl {
         label ms open
-        xywh {185 70 0 25} labelsize 12 align 8
+        xywh {336 40 0 25} labelsize 12 align 8
       } {}
       Fl_Choice LanguageCmb {
         label {Language: } open
-        xywh {125 100 140 25} down_box BORDER_BOX labelsize 12 textsize 12
+        xywh {125 70 205 25} down_box BORDER_BOX labelsize 12 textsize 12
+        class FxChoice
       } {}
       Fl_Return_Button OkBtn {
         label OK
-        xywh {211 145 75 25} labelsize 12
+        xywh {211 115 75 25} labelsize 12
         class FxReturnButton
       }
       Fl_Button CancelBtn {
         label Cancel
-        xywh {291 145 75 25} labelsize 12
+        xywh {291 115 75 25} labelsize 12
         class FxButton
       }
     }

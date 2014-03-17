@@ -28,7 +28,7 @@ public:
 
 private:
    void OnAboutClicked(SpEventArgs& e);
-   void OnTabChanged(SpEventArgs& e);
+   void OnNewTaskClicked(SpEventArgs& e);
 
    std::shared_ptr<FeTaskPropertiesWindow> _TaskPropertiesWindow;
    std::shared_ptr<FeAboutWindow> _AboutWindow;

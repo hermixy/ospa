@@ -19,6 +19,7 @@
 #include <FL/Fl_Return_Button.H>
 #include <FL/Fl_Menu_Item.H>
 #include <FL/Fl_Tabs.H>
+#include <FL/Fl_Choice.H>
 #include "SpEvent.h"
 
 /// Event arguments object containing a `Handled` flag.
@@ -134,6 +135,30 @@ public:
 
    /// Fired when the user selects a different tab.
    SpEvent<SpEventArgs> SelectedTabChanged;
+
+private:
+   static void StaticCallback(Fl_Widget*, void* ptr);
+};
+
+/// Extended version of `Fl_Choice`.
+class FxChoice : public Fl_Choice
+{
+public:
+   /// Constructor.
+   /// \param X Left coordinate.
+   /// \param Y Top coordinate.
+   /// \param W Width.
+   /// \param H Height.
+   /// \param l Label.
+   FxChoice(int X, int Y, int W, int H, const char* l = 0);
+
+   /// Handles an FLTK event.
+   /// \param event Event type.
+   /// \return 0 = unhandled, 1 = handled
+   virtual int handle(int event);
+
+   /// Fired when the user selects a different item.
+   SpEvent<SpEventArgs> SelectedIndexChanged;
 
 private:
    static void StaticCallback(Fl_Widget*, void* ptr);

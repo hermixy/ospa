@@ -117,3 +117,11 @@ FX_CONSTRUCTOR_CB(FxTabs, Fl_Tabs)
 FX_BEGIN_HANDLE(FxTabs, Fl_Tabs)
 FX_END_HANDLE()
 FX_CALLBACK(FxTabs, SelectedTabChanged)
+
+//
+// FxChoice
+//
+FX_CONSTRUCTOR_CB(FxChoice, Fl_Choice)
+FX_BEGIN_HANDLE(FxChoice, Fl_Choice)
+FX_END_HANDLE()
+FX_CALLBACK(FxChoice, SelectedIndexChanged)

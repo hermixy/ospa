@@ -12,7 +12,6 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#include <FL/fl_ask.H>
 #include "FeUserInterface.h"
 #include "FeTaskPropertiesWindow.h"
 #include "FeAboutWindow.h"
@@ -23,7 +22,7 @@ FeProgramWindow::FeProgramWindow()
    _AboutWindow(std::make_shared<FeAboutWindow>())
 {
    W_SET_HANDLER(FeProgramWindow, _View.AboutMnu.Clicked, OnAboutClicked);
-   W_SET_HANDLER(FeProgramWindow, _View.Tabs->SelectedTabChanged, OnTabChanged);
+   W_SET_HANDLER(FeProgramWindow, _View.NewTaskMnu.Clicked, OnNewTaskClicked);
 }
 
 void FeProgramWindow::OnAboutClicked(SpEventArgs& e)
@@ -32,6 +31,8 @@ void FeProgramWindow::OnAboutClicked(SpEventArgs& e)
    _AboutWindow->Show();
 }
 
-void FeProgramWindow::OnTabChanged(SpEventArgs& e)
+void FeProgramWindow::OnNewTaskClicked(SpEventArgs& e)
 {
+   _TaskPropertiesWindow->CenterIn(*this);
+   _TaskPropertiesWindow->Show();
 }

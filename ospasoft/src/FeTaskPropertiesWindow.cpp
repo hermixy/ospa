@@ -15,19 +15,51 @@
 #include "FeUserInterface.h"
 #include "FeTaskPropertiesWindow.h"
 
+#define ACT_CONTINUOUS  0
+#define ACT_CYCLIC      1
+#define ACT_MANUAL      2
+
 FeTaskPropertiesWindow::FeTaskPropertiesWindow()
 {
+   W_SET_HANDLER(FeTaskPropertiesWindow, _View.OkBtn->Clicked, OnOkClicked);
+   W_SET_HANDLER(FeTaskPropertiesWindow, _View.CancelBtn->Clicked, OnCancelClicked);
+   W_SET_HANDLER(FeTaskPropertiesWindow, _View.ActivationCmb->SelectedIndexChanged, OnSelectedActivationChanged);
+
+   _View.ActivationCmb->add("Continuous");
+   _View.ActivationCmb->add("Cyclic");
+   _View.ActivationCmb->add("Manual");
+   _View.ActivationCmb->value(0);
+
+   _View.LanguageCmb->add("Ladder diagram");
+   _View.LanguageCmb->add("Function block diagram");
+   _View.LanguageCmb->add("Structured text");
+   _View.LanguageCmb->add("Instruction list");
+   _View.LanguageCmb->add("Sequential function chart");
+   _View.LanguageCmb->value(0);
+
+   _View.IntervalTxt->hide();
+   _View.MsLbl->hide();
 }
 
-void FeTaskPropertiesWindow::OnActivationChanged()
+void FeTaskPropertiesWindow::OnSelectedActivationChanged(SpEventArgs& e)
+{
+   if (_View.ActivationCmb->value() == ACT_CYCLIC)
+   {
+      _View.IntervalTxt->show();
+      _View.MsLbl->show();
+   }
+   else
+   {
+      _View.IntervalTxt->hide();
+      _View.MsLbl->hide();
+   }
+}
+
+void FeTaskPropertiesWindow::OnOkClicked(SpEventArgs& e)
 {
 }
 
-void FeTaskPropertiesWindow::OnOkClicked()
-{
-}
-
-void FeTaskPropertiesWindow::OnCancelClicked()
+void FeTaskPropertiesWindow::OnCancelClicked(SpEventArgs& e)
 {
    Close();
 }
