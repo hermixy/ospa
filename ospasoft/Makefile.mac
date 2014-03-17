@@ -16,9 +16,11 @@ CC=clang++
 CFLAGS=-std=c++0x -Wall -Wunused -Wno-format-y2k -fno-exceptions -fno-strict-aliasing -I./include -I./lib/fltk/include -DUSE_OPENGL32 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT
 LDFLAGS=-lpthread -framework Cocoa -L./lib/fltk/lib-mac -lfltk
 EXECUTABLE=bin/ospasoft
+FLUID=./lib/fltk/bin-mac/fluid
 export
 
 all:
+	chmod +x $(FLUID)
 	@make -f Makefile.base
 	mkdir ./bin/OSPASOFT.app
 	mkdir ./bin/OSPASOFT.app/Contents

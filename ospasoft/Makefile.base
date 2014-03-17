@@ -13,24 +13,30 @@
 # Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 # The following variables are exported by the platform-specific parent Makefile:
-# CC, CFLAGS, LDFLAGS, EXECUTABLE
+# CC, CFLAGS, LDFLAGS, EXECUTABLE, FLUID
 
 SOURCES=\
 	src/FeAboutWindowDriver.cpp \
 	src/FeProgramWindowDriver.cpp \
 	src/FeRect.cpp \
-   src/FeTaskPropertiesWindowDriver.cpp \
+	src/FeTaskPropertiesWindowDriver.cpp \
 	src/FeUserInterface.cpp \
 	src/main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
-all: obj bin $(SOURCES) $(EXECUTABLE)
+all: obj bin fluid $(SOURCES) $(EXECUTABLE)
 
 obj:
 	mkdir obj/
 
 bin:
 	mkdir bin/
+
+fluid:
+	@echo fluid src/FeUserInterface.fl
+	@$(FLUID) -c src/FeUserInterface.fl
+	@mv -f FeUserInterface.cpp src/
+	@mv -f FeUserInterface.h include/
 
 $(EXECUTABLE): $(OBJECTS) 
 	@echo $(CC) -o $@
