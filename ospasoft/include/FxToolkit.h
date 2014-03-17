@@ -21,6 +21,7 @@
 #include <FL/Fl_Tabs.H>
 #include "SpEvent.h"
 
+/// Event arguments object containing a `Handled` flag.
 class FxEventArgs : public SpEventArgs
 {
 public:
@@ -28,56 +29,111 @@ public:
    bool Handled;
 };
 
+/// Extended version of `Fl_Menu_Item`.
 class FxMenuItem
 {
 public:
+   /// Attaches to an `Fl_Menu_Item`.
    void Attach(Fl_Menu_Item* flMenuItem);
 
+   /// Fired when the user clicks the menu item.
    SpEvent<SpEventArgs> Clicked;
 
 private:
    static void StaticCallback(Fl_Widget*, void* ptr);
 };
 
+/// Extended version of `Fl_Double_Window`.
 class FxWindow : public Fl_Double_Window
 {
 public:
+   /// Constructor.
+   /// \param W Width.
+   /// \param H Height.
+   /// \param l Label.
    FxWindow(int W, int H, const char* l = 0);
+
+   /// Constructor.
+   /// \param X Left coordinate.
+   /// \param Y Top coordinate.
+   /// \param W Width.
+   /// \param H Height.
+   /// \param l Label.
    FxWindow(int X, int Y, int W, int H, const char* l = 0);
+
+   /// Handles an FLTK event.
+   /// \param event Event type.
+   /// \return 0 = unhandled, 1 = handled
    virtual int handle(int event);
 };
 
+/// Extended version of `Fl_Return_Button`.
 class FxReturnButton : public Fl_Return_Button
 {
 public:
+   /// Constructor.
+   /// \param X Left coordinate.
+   /// \param Y Top coordinate.
+   /// \param W Width.
+   /// \param H Height.
+   /// \param l Label.
    FxReturnButton(int X, int Y, int W, int H, const char* l = 0);
+
+   /// Handles an FLTK event.
+   /// \param event Event type.
+   /// \return 0 = unhandled, 1 = handled
    virtual int handle(int event);
 
+   /// Fired when the user clicks the button.
    SpEvent<SpEventArgs> Clicked;
 
 private:
    static void StaticCallback(Fl_Widget*, void* ptr);
 };
 
+/// Extended version of `Fl_Button`.
 class FxButton : public Fl_Button
 {
 public:
+   /// Constructor.
+   /// \param X Left coordinate.
+   /// \param Y Top coordinate.
+   /// \param W Width.
+   /// \param H Height.
+   /// \param l Label.
    FxButton(int X, int Y, int W, int H, const char* l = 0);
+
+   /// Handles an FLTK event.
+   /// \param event Event type.
+   /// \return 0 = unhandled, 1 = handled
    virtual int handle(int event);
 
+   /// Fired when the user clicks the button.
    SpEvent<SpEventArgs> Clicked;
 
 private:
    static void StaticCallback(Fl_Widget*, void* ptr);
 };
 
+/// Extended version of `Fl_Tabs`.
 class FxTabs : public Fl_Tabs
 {
 public:
+   /// Constructor.
+   /// \param X Left coordinate.
+   /// \param Y Top coordinate.
+   /// \param W Width.
+   /// \param H Height.
+   /// \param l Label.
    FxTabs(int X, int Y, int W, int H, const char* l = 0);
+
+   /// Handles an FLTK event.
+   /// \param event Event type.
+   /// \return 0 = unhandled, 1 = handled
    virtual int handle(int event);
 
-   SpEvent<SpEventArgs> ValueChanged;
+   /// Fired when the user selects a different tab.
+   SpEvent<SpEventArgs> SelectedTabChanged;
 
 private:
    static void StaticCallback(Fl_Widget*, void* ptr);

@@ -23,7 +23,7 @@ FeProgramWindow::FeProgramWindow()
    _AboutWindow(std::make_shared<FeAboutWindow>())
 {
    W_SET_HANDLER(FeProgramWindow, _View.AboutMnu.Clicked, OnAboutClicked);
-   W_SET_HANDLER(FeProgramWindow, _View.Tabs->ValueChanged, OnTabChanged);
+   W_SET_HANDLER(FeProgramWindow, _View.Tabs->SelectedTabChanged, OnTabChanged);
 }
 
 void FeProgramWindow::OnAboutClicked(SpEventArgs& e)

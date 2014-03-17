@@ -14,6 +14,9 @@
 
 #include "FxToolkit.h"
 
+//
+// Macros to simplify the repetitive implementation of derived widget classes.
+//
 #define FX_BEGIN_HANDLE(className, superclassName) \
    int className ::handle(int event) \
    { \
@@ -60,6 +63,9 @@
       callback(StaticCallback, this); \
    }
 
+//
+// FxEventArgs
+//
 FxEventArgs::FxEventArgs() : Handled(false) {}
 
 //
@@ -110,4 +116,4 @@ FX_CALLBACK(FxButton, Clicked)
 FX_CONSTRUCTOR_CB(FxTabs, Fl_Tabs)
 FX_BEGIN_HANDLE(FxTabs, Fl_Tabs)
 FX_END_HANDLE()
-FX_CALLBACK(FxTabs, ValueChanged)
+FX_CALLBACK(FxTabs, SelectedTabChanged)
