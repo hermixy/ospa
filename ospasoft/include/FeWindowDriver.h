@@ -40,14 +40,12 @@ public:
    virtual void Show() 
    { 
       _Window.FlWindow->show(0, NULL); 
-      Shown.Fire(SpEventArgs());
    }
 
    /// Closes the window.  It may be shown again later.
    virtual void Close()
    {
       _Window.FlWindow->hide();
-      Closed.Fire(SpEventArgs());
    }
 
    /// Gets the screen-relative bounds of the window.

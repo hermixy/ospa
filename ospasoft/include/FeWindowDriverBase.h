@@ -15,7 +15,6 @@
 #pragma once
 
 #include "FeRect.h"
-#include "SpEvent.h"
 
 /// Non-templated base class for window drivers.
 class FeWindowDriverBase
@@ -41,10 +40,4 @@ public:
    /// Moves the window so that it is centered within `parent`.
    /// \param parent Parent window in which to center this window.
    virtual void CenterIn(const FeWindowDriverBase& parent) = 0;
-
-   /// Event fired when the window is shown.
-   SpEvent<SpEventArgs> Shown;
-
-   /// Event fired when the window is closed.
-   SpEvent<SpEventArgs> Closed;
 };
