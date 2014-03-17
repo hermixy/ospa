@@ -14,11 +14,11 @@
 
 all:
 	@echo Available commands:
-	@echo 	make windows
-	@echo 	make linux
-	@echo 	make mac
-	@echo 	make clean
-	@echo 	make run
+	@echo make windows
+	@echo make linux
+	@echo make mac
+	@echo make clean
+	@echo make run
 
 windows:
 	make -f Makefile.windows
