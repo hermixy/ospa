@@ -22,13 +22,13 @@ all:
 	@echo make run
 
 windows:
-	make -f Makefile.windows
+	@make -f Makefile.windows
 
 linux:
-	make -f Makefile.linux
+	@make -f Makefile.linux
 
 mac:
-	make -f Makefile.mac
+	@make -f Makefile.mac
 
 doc:
 	mkdir ./srcdoc/

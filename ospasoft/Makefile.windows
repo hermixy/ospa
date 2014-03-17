@@ -19,4 +19,4 @@ EXECUTABLE=bin/ospasoft.exe
 export
 
 all:
-	make -f Makefile.base
+	@make -f Makefile.base

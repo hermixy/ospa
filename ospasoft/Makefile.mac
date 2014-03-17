@@ -19,7 +19,7 @@ EXECUTABLE=bin/ospasoft
 export
 
 all:
-	make -f Makefile.base
+	@make -f Makefile.base
 	mkdir ./bin/OSPASOFT.app
 	mkdir ./bin/OSPASOFT.app/Contents
 	mkdir ./bin/OSPASOFT.app/Contents/Resources

@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\FeAboutWindowDriver.h" />
+    <ClInclude Include="..\..\include\FeCallbackDefinition.h" />
     <ClInclude Include="..\..\include\FeProgramWindowDriver.h" />
     <ClInclude Include="..\..\include\FeRect.h" />
     <ClInclude Include="..\..\include\FeTaskPropertiesWindowDriver.h" />
     <ClInclude Include="..\..\include\FeWindowDriver.h" />
+    <ClInclude Include="..\..\include\FeWindowDriverBase.h" />
     <ClInclude Include="..\..\include\SpEvent.h" />
     <ClInclude Include="..\..\src\FeUserInterface.h" />
   </ItemGroup>
