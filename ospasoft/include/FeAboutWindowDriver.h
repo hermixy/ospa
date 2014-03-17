@@ -16,6 +16,7 @@
 
 #include "FeWindowDriver.h"
 
+/// Driver for the About window.   
 class FeAboutWindowDriver : public FeWindowDriver<class FeAboutWindow>
 {
    WD_BEGIN_CALLBACKS(FeAboutWindowDriver)
@@ -23,6 +24,7 @@ class FeAboutWindowDriver : public FeWindowDriver<class FeAboutWindow>
    WD_END_CALLBACKS()
 
 public:
+   /// Constructor.
    FeAboutWindowDriver();
    
 private:
