@@ -61,3 +61,15 @@ public:
 private:
    static void StaticCallback(Fl_Widget*, void* ptr);
 };
+
+class FxButton : public Fl_Button
+{
+public:
+   FxButton(int X, int Y, int W, int H, const char* l = 0);
+   virtual int handle(int event);
+
+   SpEvent<SpEventArgs> Clicked;
+
+private:
+   static void StaticCallback(Fl_Widget*, void* ptr);
+};

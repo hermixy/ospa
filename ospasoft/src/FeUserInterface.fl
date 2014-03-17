@@ -110,8 +110,7 @@ class FeProgramWindowView {open
         } {}
       }
     }
-    code {AboutMnu.Attach(FlAboutMnu);} {selected
-    }
+    code {AboutMnu.Attach(FlAboutMnu);} {}
   }
   decl {FxMenuItem AboutMnu} {public local
   }
@@ -186,8 +185,9 @@ class FeTaskPropertiesWindowView {open
         class FxReturnButton
       }
       Fl_Button CancelBtn {
-        label Cancel
+        label Cancel selected
         xywh {291 145 75 25} labelsize 12
+        class FxButton
       }
     }
   }

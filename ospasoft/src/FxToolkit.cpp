@@ -47,6 +47,19 @@
       self-> spEventObj .Fire(e); \
    }
 
+#define FX_CONSTRUCTOR(className, superclassName) \
+   className :: className(int X, int Y, int W, int H, const char* l) \
+   : superclassName (X, Y, W, H, l) \
+   { \
+   }
+
+#define FX_CONSTRUCTOR_CB(className, superclassName) \
+   className :: className(int X, int Y, int W, int H, const char* l) \
+   : superclassName (X, Y, W, H, l) \
+   { \
+      callback(StaticCallback, this); \
+   }
+
 FxEventArgs::FxEventArgs() : Handled(false) {}
 
 //
@@ -66,23 +79,30 @@ void FxMenuItem::StaticCallback(Fl_Widget*, void* ptr)
 //
 // FxWindow
 //
-FxWindow::FxWindow(int W, int H, const char* l) : Fl_Double_Window(W, H, l) {}
-FxWindow::FxWindow(int X, int Y, int W, int H, const char* l) : Fl_Double_Window(X, Y, W, H, l) {}
+FxWindow::FxWindow(int W, int H, const char* l) 
+: Fl_Double_Window(W, H, l) 
+{
+}
+
+FX_CONSTRUCTOR(FxWindow, Fl_Double_Window)
 FX_BEGIN_HANDLE(FxWindow, Fl_Double_Window)
-FX_HANDLE_EVENT(FL_CLOSE, Closed)
-FX_HANDLE_EVENT(FL_ACTIVATE, Activated)
-FX_HANDLE_EVENT(FL_DEACTIVATE, Deactivated)
+   FX_HANDLE_EVENT(FL_CLOSE, Closed)
+   FX_HANDLE_EVENT(FL_ACTIVATE, Activated)
+   FX_HANDLE_EVENT(FL_DEACTIVATE, Deactivated)
 FX_END_HANDLE()
 
 //
 // FxReturnButton
 //
-FxReturnButton::FxReturnButton(int X, int Y, int W, int H, const char* l) 
-: Fl_Return_Button(X, Y, W, H, l) 
-{
-   callback(StaticCallback, this);
-}
+FX_CONSTRUCTOR_CB(FxReturnButton, Fl_Return_Button)
 FX_BEGIN_HANDLE(FxReturnButton, Fl_Return_Button)
 FX_END_HANDLE()
 FX_CALLBACK(FxReturnButton, Clicked)
 
+//
+// FxButton
+//
+FX_CONSTRUCTOR_CB(FxButton, Fl_Button)
+FX_BEGIN_HANDLE(FxButton, Fl_Button)
+FX_END_HANDLE()
+FX_CALLBACK(FxButton, Clicked)

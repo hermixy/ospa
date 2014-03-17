@@ -40,20 +40,20 @@ public:
    /// Shows the window.
    virtual void Show() 
    { 
-      _Window.FlWindow->show(0, NULL); 
+      _View.FlWindow->show(0, NULL); 
    }
 
    /// Closes the window.  It may be shown again later.
    virtual void Close()
    {
-      _Window.FlWindow->hide();
+      _View.FlWindow->hide();
    }
 
    /// Gets the screen-relative bounds of the window.
    /// \return Bounds.
    virtual FeRect Bounds() const
    {
-      auto fl = _Window.FlWindow;
+      auto fl = _View.FlWindow;
       return FeRect(fl->x(), fl->y(), fl->w(), fl->h());
    }
 
@@ -61,7 +61,7 @@ public:
    /// \param rect New bounds.
    virtual void Bounds(const FeRect& rect)
    {
-      _Window.FlWindow->resize(rect.X, rect.Y, rect.W, rect.H);
+      _View.FlWindow->resize(rect.X, rect.Y, rect.W, rect.H);
    }
 
    /// Moves the window so that it is centered within `parent`.
@@ -73,7 +73,7 @@ public:
 
 protected:
    /// FLTK window object.
-   mutable ViewType _Window;
+   mutable ViewType _View;
 };
 
 #define W_SET_HANDLER(className, widgetEvent, methodName) \

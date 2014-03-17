@@ -21,7 +21,7 @@ FeProgramWindow::FeProgramWindow()
 :  _TaskPropertiesWindow(std::make_shared<FeTaskPropertiesWindow>()),
    _AboutWindow(std::make_shared<FeAboutWindow>())
 {
-   W_SET_HANDLER(FeProgramWindow, _Window.AboutMnu.Clicked, OnAboutClicked);
+   W_SET_HANDLER(FeProgramWindow, _View.AboutMnu.Clicked, OnAboutClicked);
 }
 
 void FeProgramWindow::OnAboutClicked(SpEventArgs& e)

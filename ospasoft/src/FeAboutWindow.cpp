@@ -20,7 +20,7 @@
 
 FeAboutWindow::FeAboutWindow()
 {
-   W_SET_HANDLER(FeAboutWindow, _Window.CloseBtn->Clicked, OnCloseClicked);
+   W_SET_HANDLER(FeAboutWindow, _View.CloseBtn->Clicked, OnCloseClicked);
 }
 
 void FeAboutWindow::OnCloseClicked(SpEventArgs& e)
