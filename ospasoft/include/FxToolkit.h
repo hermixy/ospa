@@ -44,10 +44,6 @@ public:
    FxWindow(int W, int H, const char* l = 0);
    FxWindow(int X, int Y, int W, int H, const char* l = 0);
    virtual int handle(int event);
-
-   SpEvent<FxEventArgs> Closed;
-   SpEvent<FxEventArgs> Activated;
-   SpEvent<FxEventArgs> Deactivated;
 };
 
 class FxReturnButton : public Fl_Return_Button

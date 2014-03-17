@@ -86,9 +86,6 @@ FxWindow::FxWindow(int W, int H, const char* l)
 
 FX_CONSTRUCTOR(FxWindow, Fl_Double_Window)
 FX_BEGIN_HANDLE(FxWindow, Fl_Double_Window)
-   FX_HANDLE_EVENT(FL_CLOSE, Closed)
-   FX_HANDLE_EVENT(FL_ACTIVATE, Activated)
-   FX_HANDLE_EVENT(FL_DEACTIVATE, Deactivated)
 FX_END_HANDLE()
 
 //
