@@ -15,11 +15,7 @@
 #pragma once
 
 #include <functional>
-
-/// Empty event arguments, as a convenience for events that do not require additional information.
-class SpEventArgs
-{
-};
+#include "SpEventArgs.h"
 
 /// An event source to which a single handler can be attached.
 template<typename EventArgsType>

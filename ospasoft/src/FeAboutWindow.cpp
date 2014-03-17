@@ -12,11 +12,10 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#include <functional>
-#include "FL/fl_ask.H"
+#include <FL/fl_ask.H>
+#include "SpEvent.h"
 #include "FeUserInterface.h"
 #include "FeAboutWindow.h"
-#include "SpEvent.h"
 
 FeAboutWindow::FeAboutWindow()
 {

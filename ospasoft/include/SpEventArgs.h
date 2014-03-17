@@ -14,21 +14,7 @@
 
 #pragma once
 
-#include "SpEventArgs.h"
-#include "FeWindow.h"
-#include "FeTaskPropertiesWindow.h"
-#include "FeAboutWindow.h"
-
-/// Driver for the main Program window.
-class FeProgramWindow : public FeWindow<class FeProgramWindowView>
+/// Empty event arguments, as a convenience for events that do not require additional information.
+class SpEventArgs
 {
-public:
-   /// Constructor.
-   FeProgramWindow();
-
-private:
-   void OnAboutClicked(SpEventArgs& e);
-
-   std::shared_ptr<FeTaskPropertiesWindow> _TaskPropertiesWindow;
-   std::shared_ptr<FeAboutWindow> _AboutWindow;
 };
