@@ -14,8 +14,9 @@ class FeProgramWindowView {open
       Fl_Group {} {open
         xywh {0 30 394 371} labelsize 12 resizable
       } {}
-      Fl_Menu_Bar MenuBar {open
+      Fl_Menu_Bar MenuBar {open selected
         xywh {0 0 394 23} box THIN_UP_BOX labelsize 12 textsize 11
+        class Fl_Sys_Menu_Bar
       } {
         Submenu FlFileMnu {
           label {&File} open
@@ -159,7 +160,7 @@ class FeTaskPropertiesWindowView {open
   Function {FeTaskPropertiesWindowView()} {open
   } {
     Fl_Window FlWindow {
-      label {Task Properties} open selected
+      label {Task Properties} open
       xywh {409 365 356 181} type Double labelsize 12 align 80
       class FxWindow modal visible
     } {

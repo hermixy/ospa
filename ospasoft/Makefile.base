@@ -37,6 +37,7 @@ fluid:
 	@echo fluid src/FeUserInterface.fl
 	@$(FLUID) -c src/FeUserInterface.fl
 	@echo "#include \"FxToolkit.h\"" > fluid.tmp
+	@echo "#include <FL/Fl_Sys_Menu_Bar.H>" >> fluid.tmp
 	@cat FeUserInterface.h >> fluid.tmp
 	@rm -f FeUserInterface.h
 	@mv -f fluid.tmp include/FeUserInterface.h
