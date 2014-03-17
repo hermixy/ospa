@@ -14,19 +14,28 @@
 
 #pragma once
 
-#include "FeWindowDriver.h"
+#include "FeWindow.h"
+#include "FeTaskPropertiesWindow.h"
+#include "FeAboutWindow.h"
 
-/// Driver for the About window.   
-class FeAboutWindowDriver : public FeWindowDriver<class FeAboutWindow>
+/// Driver for the main Program window.
+class FeProgramWindow : public FeWindow<class FeProgramWindowView>
 {
-   WD_BEGIN_CALLBACKS(FeAboutWindowDriver)
-   WD_CALLBACK(CloseBtn, OnCloseClicked)
-   WD_END_CALLBACKS()
+   W_BEGIN_CALLBACKS(FeProgramWindow)
+   W_CALLBACK(NewProgramMnu, OnNewProgramClicked)
+   W_CALLBACK(NewTaskMnu, OnNewTaskClicked)
+   W_CALLBACK(AboutMnu, OnAboutClicked)
+   W_END_CALLBACKS()
 
 public:
    /// Constructor.
-   FeAboutWindowDriver();
-   
+   FeProgramWindow();
+
 private:
-   void OnCloseClicked();
+   void OnNewProgramClicked();
+   void OnNewTaskClicked();
+   void OnAboutClicked();
+
+   std::unique_ptr<FeTaskPropertiesWindow> _TaskPropertiesWindow;
+   std::unique_ptr<FeAboutWindow> _AboutWindow;
 };

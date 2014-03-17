@@ -16,10 +16,10 @@
 # CC, CFLAGS, LDFLAGS, EXECUTABLE, FLUID
 
 SOURCES=\
-	src/FeAboutWindowDriver.cpp \
-	src/FeProgramWindowDriver.cpp \
+	src/FeAboutWindow.cpp \
+	src/FeProgramWindow.cpp \
 	src/FeRect.cpp \
-	src/FeTaskPropertiesWindowDriver.cpp \
+	src/FeTaskPropertiesWindow.cpp \
 	src/FeUserInterface.cpp \
 	src/main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)

@@ -14,30 +14,3 @@
 
 #pragma once
 
-#include "FeRect.h"
-
-/// Non-templated base class for window drivers.
-class FeWindowDriverBase
-{
-public:
-   /// Destructor.
-   virtual ~FeWindowDriverBase() {}
-   
-   /// Shows the window.
-   virtual void Show() = 0;
-   
-   /// Closes the window.  It may be shown again later.
-   virtual void Close() = 0;
-
-   /// Gets the screen-relative bounds of the window.
-   /// \return Bounds.
-   virtual FeRect Bounds() const = 0;
-
-   /// Sets the screen-relative bounds of the window.
-   /// \param rect New bounds.
-   virtual void Bounds(const FeRect& rect) = 0;
-
-   /// Moves the window so that it is centered within `parent`.
-   /// \param parent Parent window in which to center this window.
-   virtual void CenterIn(const FeWindowDriverBase& parent) = 0;
-};

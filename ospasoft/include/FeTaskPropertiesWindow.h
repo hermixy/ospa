@@ -12,17 +12,25 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#include <FL/Fl.H>
-#include <stdio.h>
-#include "FeUserInterface.h"
-#include "FeProgramWindow.h"
+#pragma once
 
-int main(int argc, char* argv[])
+#include "FeWindow.h"
+
+/// Driver for the Task Properties window.
+class FeTaskPropertiesWindow : public FeWindow<class FeTaskPropertiesWindowView>
 {
-   Fl::scheme("gtk+");
-   Fl::visual(FL_DOUBLE | FL_INDEX);
+   W_BEGIN_CALLBACKS(FeTaskPropertiesWindow)
+   W_CALLBACK(ActivationCmb, OnActivationChanged)
+   W_CALLBACK(OkBtn, OnOkClicked)
+   W_CALLBACK(CancelBtn, OnCancelClicked)
+   W_END_CALLBACKS()
 
-   FeProgramWindow pwd;
-   pwd.Show();
-   return Fl::run();
-}
+public:
+   /// Constructor.
+   FeTaskPropertiesWindow();
+   
+private:
+   void OnActivationChanged();
+   void OnOkClicked();
+   void OnCancelClicked();
+};

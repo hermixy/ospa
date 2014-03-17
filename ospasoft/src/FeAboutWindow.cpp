@@ -12,25 +12,15 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#pragma once
+#include "FeUserInterface.h"
+#include "FeAboutWindow.h"
 
-#include "FeWindowDriver.h"
-
-/// Driver for the Task Properties window.
-class FeTaskPropertiesWindowDriver : public FeWindowDriver<class FeTaskPropertiesWindow>
+FeAboutWindow::FeAboutWindow()
 {
-   WD_BEGIN_CALLBACKS(FeTaskPropertiesWindowDriver)
-   WD_CALLBACK(ActivationCmb, OnActivationChanged)
-   WD_CALLBACK(OkBtn, OnOkClicked)
-   WD_CALLBACK(CancelBtn, OnCancelClicked)
-   WD_END_CALLBACKS()
+   W_INIT();
+}
 
-public:
-   /// Constructor.
-   FeTaskPropertiesWindowDriver();
-   
-private:
-   void OnActivationChanged();
-   void OnOkClicked();
-   void OnCancelClicked();
-};
+void FeAboutWindow::OnCloseClicked()
+{
+   Close();
+}

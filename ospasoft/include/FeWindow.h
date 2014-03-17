@@ -18,21 +18,21 @@
 #include <memory>
 #include "SpEvent.h"
 #include "FeRect.h"
-#include "FeWindowDriverBase.h"
+#include "FeWindowBase.h"
 #include "FeCallbackDefinition.h"
 
-/// Templated window driver which is attached to a FLTK window class specified in the `WindowType` template argument.
-template<typename WindowType>
-class FeWindowDriver : public FeWindowDriverBase
+/// Templated window which is attached to a FLTK window class specified in the `ViewType` template argument.
+template<typename ViewType>
+class FeWindow : public FeWindowBase
 {
 public:
    /// Constructor.
-   FeWindowDriver()
+   FeWindow()
    {
    }
    
    /// Destructor.
-   virtual ~FeWindowDriver() 
+   virtual ~FeWindow() 
    {
    }
    
@@ -65,25 +65,25 @@ public:
 
    /// Moves the window so that it is centered within `parent`.
    /// \param parent Parent window in which to center this window.
-   virtual void CenterIn(const FeWindowDriverBase& parent)
+   virtual void CenterIn(const FeWindowBase& parent)
    {
       Bounds(Bounds().CenterIn(parent.Bounds()));
    }
 
 protected:
    /// FLTK window object.
-   mutable WindowType _Window;
+   mutable ViewType _Window;
 };
 
 /*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ******************************/
 
 // Call this from the constructor.
-#define WD_INIT() _WD_MemberCallback(this)
+#define W_INIT() _WD_MemberCallback(this)
 
 // Add these to the header, as the first thing inside the braces of the class.
-#define WD_BEGIN_CALLBACKS(className) \
+#define W_BEGIN_CALLBACKS(className) \
    private: \
-   std::list<std::shared_ptr<FeCallbackDefinition< className >>> _WD_CallbackDefinitions; \
+   std::list<std::shared_ptr<FeCallbackDefinition< className >>> _W_CALLBACKDefinitions; \
    static void _WD_StaticCallback(class Fl_Widget* widget, void* ptr) \
    { \
       auto cbDef = static_cast<FeCallbackDefinition< className >*>(ptr); \
@@ -96,13 +96,13 @@ protected:
    void _WD_MemberCallback(void* widget) \
    {
 
-#define WD_CALLBACK(widgetName, methodName) \
+#define W_CALLBACK(widgetName, methodName) \
    if (widget == this) \
    { \
       auto cbDefPtr = _WD_NewCallbackDefinition(); \
       cbDefPtr->WindowDriver = this; \
       cbDefPtr->Widget = _Window. widgetName ; \
-      _WD_CallbackDefinitions.push_front(cbDefPtr); \
+      _W_CALLBACKDefinitions.push_front(cbDefPtr); \
       _Window. widgetName ->callback(_WD_StaticCallback, cbDefPtr.get()); \
    } \
    else if (widget == _Window. widgetName) \
@@ -111,5 +111,5 @@ protected:
       return; \
    }
 
-#define WD_END_CALLBACKS() \
+#define W_END_CALLBACKS() \
    }

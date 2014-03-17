@@ -13,22 +13,29 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 #include "FeUserInterface.h"
-#include "FeTaskPropertiesWindowDriver.h"
+#include "FeTaskPropertiesWindow.h"
+#include "FeAboutWindow.h"
+#include "FeProgramWindow.h"
 
-FeTaskPropertiesWindowDriver::FeTaskPropertiesWindowDriver()
+FeProgramWindow::FeProgramWindow()
+:  _TaskPropertiesWindow(std::unique_ptr<FeTaskPropertiesWindow>(new FeTaskPropertiesWindow)),
+   _AboutWindow(std::unique_ptr<FeAboutWindow>(new FeAboutWindow()))
 {
-   WD_INIT();
+   W_INIT();
 }
 
-void FeTaskPropertiesWindowDriver::OnActivationChanged()
+void FeProgramWindow::OnNewProgramClicked()
 {
 }
 
-void FeTaskPropertiesWindowDriver::OnOkClicked()
+void FeProgramWindow::OnNewTaskClicked()
 {
+   _TaskPropertiesWindow->CenterIn(*this);
+   _TaskPropertiesWindow->Show();
 }
 
-void FeTaskPropertiesWindowDriver::OnCancelClicked()
+void FeProgramWindow::OnAboutClicked()
 {
-   Close();
+   _AboutWindow->CenterIn(*this);
+   _AboutWindow->Show();
 }

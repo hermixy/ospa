@@ -2,9 +2,9 @@
 version 1.0302 
 header_name {.h} 
 code_name {.cpp}
-class FeProgramWindow {open
+class FeProgramWindowView {open
 } {
-  Function {FeProgramWindow()} {open
+  Function {FeProgramWindowView()} {open
   } {
     Fl_Window FlWindow {
       label {Program - OSPASOFT} open
@@ -112,9 +112,9 @@ class FeProgramWindow {open
   }
 } 
 
-class FeAboutWindow {open
+class FeAboutWindowView {open
 } {
-  Function {FeAboutWindow()} {open
+  Function {FeAboutWindowView()} {open
   } {
     Fl_Window FlWindow {
       label {About OSPASOFT} open
@@ -144,9 +144,9 @@ class FeAboutWindow {open
   }
 } 
 
-class FeTaskPropertiesWindow {open
+class FeTaskPropertiesWindowView {open
 } {
-  Function {FeTaskPropertiesWindow()} {open selected
+  Function {FeTaskPropertiesWindowView()} {open selected
   } {
     Fl_Window FlWindow {
       label {Task Properties} open

@@ -14,28 +14,30 @@
 
 #pragma once
 
-#include "FeWindowDriver.h"
-#include "FeTaskPropertiesWindowDriver.h"
-#include "FeAboutWindowDriver.h"
+#include "FeRect.h"
 
-/// Driver for the main Program window.
-class FeProgramWindowDriver : public FeWindowDriver<class FeProgramWindow>
+/// Non-templated base class for front end windows.
+class FeWindowBase
 {
-   WD_BEGIN_CALLBACKS(FeProgramWindowDriver)
-   WD_CALLBACK(NewProgramMnu, OnNewProgramClicked)
-   WD_CALLBACK(NewTaskMnu, OnNewTaskClicked)
-   WD_CALLBACK(AboutMnu, OnAboutClicked)
-   WD_END_CALLBACKS()
-
 public:
-   /// Constructor.
-   FeProgramWindowDriver();
+   /// Destructor.
+   virtual ~FeWindowBase() {}
+   
+   /// Shows the window.
+   virtual void Show() = 0;
+   
+   /// Closes the window.  It may be shown again later.
+   virtual void Close() = 0;
 
-private:
-   void OnNewProgramClicked();
-   void OnNewTaskClicked();
-   void OnAboutClicked();
+   /// Gets the screen-relative bounds of the window.
+   /// \return Bounds.
+   virtual FeRect Bounds() const = 0;
 
-   std::unique_ptr<FeTaskPropertiesWindowDriver> _TaskPropertiesWindow;
-   std::unique_ptr<FeAboutWindowDriver> _AboutWindow;
+   /// Sets the screen-relative bounds of the window.
+   /// \param rect New bounds.
+   virtual void Bounds(const FeRect& rect) = 0;
+
+   /// Moves the window so that it is centered within `parent`.
+   /// \param parent Parent window in which to center this window.
+   virtual void CenterIn(const FeWindowBase& parent) = 0;
 };

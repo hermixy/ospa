@@ -12,15 +12,21 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#include "FeUserInterface.h"
-#include "FeAboutWindowDriver.h"
+#pragma once
 
-FeAboutWindowDriver::FeAboutWindowDriver()
-{
-   WD_INIT();
-}
+#include "FeWindow.h"
 
-void FeAboutWindowDriver::OnCloseClicked()
+/// Driver for the About window.   
+class FeAboutWindow : public FeWindow<class FeAboutWindowView>
 {
-   Close();
-}
+   W_BEGIN_CALLBACKS(FeAboutWindow)
+   W_CALLBACK(CloseBtn, OnCloseClicked)
+   W_END_CALLBACKS()
+
+public:
+   /// Constructor.
+   FeAboutWindow();
+   
+private:
+   void OnCloseClicked();
+};
