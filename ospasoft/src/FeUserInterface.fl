@@ -160,38 +160,42 @@ class FeTaskPropertiesWindowView {open
   } {
     Fl_Window FlWindow {
       label {Task Properties} open selected
-      xywh {409 365 376 151} type Double labelsize 12 align 80
+      xywh {409 365 356 181} type Double labelsize 12 align 80
       class FxWindow modal visible
     } {
       Fl_Input NameTxt {
         label {Task name: }
-        xywh {125 10 242 25} labelsize 12 textsize 12
+        xywh {105 10 242 25} labelsize 12 textsize 12
+      }
+      Fl_Input DescriptionTxt {
+        label {Description: }
+        xywh {105 40 242 25} labelsize 12 textsize 12
       }
       Fl_Choice ActivationCmb {
         label {Activation: } open
-        xywh {125 40 125 25} down_box BORDER_BOX labelsize 12 textsize 12
+        xywh {105 70 125 25} down_box BORDER_BOX labelsize 12 textsize 12
         class FxChoice
       } {}
       Fl_Value_Input IntervalTxt {
-        xywh {255 40 81 25} labelsize 12 value 1000 textsize 12
+        xywh {235 70 81 25} labelsize 12 value 1000 textsize 12
       }
       Fl_Group MsLbl {
         label ms open
-        xywh {336 40 0 25} labelsize 12 align 8
+        xywh {316 70 0 25} labelsize 12 align 8
       } {}
       Fl_Choice LanguageCmb {
         label {Language: } open
-        xywh {125 70 205 25} down_box BORDER_BOX labelsize 12 textsize 12
+        xywh {105 100 205 25} down_box BORDER_BOX labelsize 12 textsize 12
         class FxChoice
       } {}
       Fl_Return_Button OkBtn {
         label OK
-        xywh {211 115 75 25} labelsize 12
+        xywh {191 145 75 25} labelsize 12
         class FxReturnButton
       }
       Fl_Button CancelBtn {
         label Cancel
-        xywh {291 115 75 25} labelsize 12
+        xywh {271 145 75 25} labelsize 12
         class FxButton
       }
     }
