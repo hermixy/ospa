@@ -47,8 +47,15 @@ public:
       _Handler = SpEvent::DefaultHandler;
    }
 
-   /// Firess the event handler.
+   /// Fires the event handler by copying the event arguments structure.
    /// \param e Event arguments object.
+   void Fire(EventArgsType e)
+   {
+      _Handler(e);
+   }
+
+   /// Fires the event handler.
+   /// \param e Event arguments object reference.
    void Fire(EventArgsType& e)
    {
       _Handler(e);
