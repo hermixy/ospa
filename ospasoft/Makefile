@@ -17,6 +17,7 @@ all:
 	@echo make windows
 	@echo make linux
 	@echo make mac
+	@echo make doc
 	@echo make clean
 	@echo make run
 
@@ -28,6 +29,12 @@ linux:
 
 mac:
 	make -f Makefile.mac
+
+doc:
+	mkdir ./srcdoc/
+	doxygen
+	mv ./srcdoc/html/OSPASOFT.chm ./
+	rm -rf ./srcdoc
 
 clean:
 	rm -rf ./bin/OSPASOFT.app
