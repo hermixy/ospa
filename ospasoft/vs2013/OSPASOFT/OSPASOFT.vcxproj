@@ -24,6 +24,7 @@
     <ClInclude Include="..\..\include\FeRect.h" />
     <ClInclude Include="..\..\include\FeTaskPropertiesWindowDriver.h" />
     <ClInclude Include="..\..\include\FeWindowDriver.h" />
+    <ClInclude Include="..\..\include\SpEvent.h" />
     <ClInclude Include="..\..\src\FeUserInterface.h" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +63,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakeOutput>C:\Projects\ospa\ospasoft\bin\ospasoft.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>C:\Projects\ospa\ospasoft\include;C:\Projects\ospa\ospasoft\lib\fltk\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Projects\ospa\ospasoft\lib\srutil\include;C:\Projects\ospa\ospasoft\include;C:\Projects\ospa\ospasoft\lib\fltk\include;$(IncludePath)</IncludePath>
     <NMakeBuildCommandLine>C:\Projects\ospa\ospasoft\vs2013\build.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>C:\Projects\ospa\ospasoft\vs2013\build.bat</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>C:\Projects\ospa\ospasoft\vs2013\clean.bat</NMakeCleanCommandLine>
@@ -70,7 +71,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeOutput>C:\Projects\ospa\ospasoft\bin\ospasoft.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>C:\Projects\ospa\ospasoft\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Projects\ospa\ospasoft\lib\srutil\include;C:\Projects\ospa\ospasoft\include;C:\Projects\ospa\ospasoft\lib\fltk\include;$(IncludePath)</IncludePath>
     <NMakeBuildCommandLine>C:\Projects\ospa\ospasoft\vs2013\build.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>C:\Projects\ospa\ospasoft\vs2013\build.bat</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>C:\Projects\ospa\ospasoft\vs2013\clean.bat</NMakeCleanCommandLine>

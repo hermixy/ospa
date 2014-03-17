@@ -12,31 +12,44 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#include "FL/fl_ask.H"
-#include "FeUserInterface.h"
-#include "FeTaskPropertiesWindowDriver.h"
-#include "FeAboutWindowDriver.h"
-#include "FeProgramWindowDriver.h"
+#pragma once
 
-FeProgramWindowDriver::FeProgramWindowDriver()
-:  _TaskPropertiesWindow(std::unique_ptr<FeTaskPropertiesWindowDriver>(new FeTaskPropertiesWindowDriver)),
-   _AboutWindow(std::unique_ptr<FeAboutWindowDriver>(new FeAboutWindowDriver()))
-{
-   WD_INIT();
-}
+#include <functional>
 
-void FeProgramWindowDriver::OnNewProgramClicked()
+class SpEventArgs
 {
-}
+};
 
-void FeProgramWindowDriver::OnNewTaskClicked()
+template<typename EventArgsType>
+class SpEvent
 {
-   _TaskPropertiesWindow->CenterIn(*this);
-   _TaskPropertiesWindow->Show();
-}
+public:
+   typedef std::function<void(EventArgsType&)> Func;
 
-void FeProgramWindowDriver::OnAboutClicked()
-{
-   _AboutWindow->CenterIn(*this);
-   _AboutWindow->Show();
-}
+   SpEvent()
+      : _Handler(SpEvent::DefaultHandler)
+   {
+   }
+
+   void SetHandler(Func handler)
+   {
+      _Handler = handler;
+   }
+
+   void RemoveHandler()
+   {
+      _Handler = SpEvent::DefaultHandler;
+   }
+
+   void Fire(EventArgsType& e)
+   {
+      _Handler(e);
+   }
+
+private:
+   static void DefaultHandler(EventArgsType&)
+   {
+   }
+
+   Func _Handler;
+};

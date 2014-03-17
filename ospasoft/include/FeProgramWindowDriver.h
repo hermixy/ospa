@@ -15,6 +15,8 @@
 #pragma once
 
 #include "FeWindowDriver.h"
+#include "FeTaskPropertiesWindowDriver.h"
+#include "FeAboutWindowDriver.h"
 
 class FeProgramWindowDriver : public FeWindowDriver<class FeProgramWindow>
 {
@@ -32,6 +34,6 @@ private:
    void OnNewTaskClicked();
    void OnAboutClicked();
 
-   std::shared_ptr<class FeTaskPropertiesWindowDriver> _TaskPropertiesWindow;
-   std::shared_ptr<class FeAboutWindowDriver> _AboutWindow;
+   std::unique_ptr<FeTaskPropertiesWindowDriver> _TaskPropertiesWindow;
+   std::unique_ptr<FeAboutWindowDriver> _AboutWindow;
 };

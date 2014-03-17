@@ -17,6 +17,7 @@
 #include <list>
 #include <memory>
 #include "FeRect.h"
+#include "SpEvent.h"
 
 class FeWindowDriverBase
 {
@@ -27,9 +28,12 @@ public:
    virtual FeRect Bounds() const = 0;
    virtual void Bounds(const FeRect& rect) = 0;
    virtual void CenterIn(const FeWindowDriverBase& parent) = 0;
+
+   SpEvent<SpEventArgs> Shown;
+   SpEvent<SpEventArgs> Closed;
 };
 
-template<class WindowType>
+template<typename WindowType>
 class FeWindowDriver : public FeWindowDriverBase
 {
 public:
@@ -44,11 +48,15 @@ public:
    virtual void Show() 
    { 
       _Window.FlWindow->show(0, NULL); 
+      SpEventArgs e;
+      Shown.Fire(e);
    }
 
    virtual void Close()
    {
       _Window.FlWindow->hide();
+      SpEventArgs e;
+      Closed.Fire(e);
    }
 
    virtual FeRect Bounds() const
@@ -73,7 +81,7 @@ protected:
 
 /*** Optional macros for simplifying the mapping of FLTK callbacks to member functions. ******************************/
 
-template<class WindowDriverType>
+template<typename WindowDriverType>
 class CallbackDefinition
 {
 public:
