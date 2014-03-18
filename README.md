@@ -1,4 +1,5 @@
 # OSPA - Open Source PLC Architecture
 
-* [OSPA Architecture](Documentation/OSPA Architecture.md)
-* [OSPA Chipset](Documentation/OSPA Chipset.md)
+* [OSPA Architecture](doc/OSPA Architecture.md)
+* [OSPA Chipset](doc/OSPA Chipset.md)
+* [OSPASOFT - Programming software](ospasoft/)
