@@ -4,3 +4,4 @@ OSPASOFT.chm
 OSPASOFT.chw
 src/FeUserInterface.cpp
 include/FeUserInterface.h
+include/System.h.gch
