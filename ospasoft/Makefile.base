@@ -16,13 +16,14 @@
 # CC, CFLAGS, LDFLAGS, EXECUTABLE, FLUID
 
 SOURCES=\
+	src/CoTerminalMatcher.cpp \
 	src/FeAboutWindow.cpp \
+	src/FeMain.cpp \
 	src/FeProgramWindow.cpp \
 	src/FeRect.cpp \
 	src/FeTaskPropertiesWindow.cpp \
 	src/FeUserInterface.cpp \
-	src/FxToolkit.cpp \
-	src/main.cpp
+	src/FxToolkit.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all: obj bin fluid $(SOURCES) $(EXECUTABLE)

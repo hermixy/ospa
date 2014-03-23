@@ -11,15 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\CoTerminalMatcher.cpp" />
     <ClCompile Include="..\..\src\FeAboutWindow.cpp" />
+    <ClCompile Include="..\..\src\FeMain.cpp" />
     <ClCompile Include="..\..\src\FeProgramWindow.cpp" />
     <ClCompile Include="..\..\src\FeRect.cpp" />
     <ClCompile Include="..\..\src\FeTaskPropertiesWindow.cpp" />
     <ClCompile Include="..\..\src\FeUserInterface.cpp" />
     <ClCompile Include="..\..\src\FxToolkit.cpp" />
-    <ClCompile Include="..\..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\CoTerminalMatcher.h" />
     <ClInclude Include="..\..\include\FeAboutWindow.h" />
     <ClInclude Include="..\..\include\FeCallbackDefinition.h" />
     <ClInclude Include="..\..\include\FeProgramWindow.h" />
