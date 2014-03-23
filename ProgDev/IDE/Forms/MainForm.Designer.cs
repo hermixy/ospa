@@ -1,4 +1,4 @@
-﻿namespace ProgDev.IDE
+﻿namespace ProgDev.IDE.Forms
 {
    partial class MainForm
    {

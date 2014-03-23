@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProgDev.IDE
+namespace ProgDev.IDE.Forms
 {
    public partial class MainForm : Form
    {
