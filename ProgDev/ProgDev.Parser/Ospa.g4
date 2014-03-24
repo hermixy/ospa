@@ -34,15 +34,14 @@ Identifier                 : Letter ( Letter | Digit )*;
 // Table 3 - Comments 
 
 Comment                    : ( '//' ~( '\n' | '\r' )* '\r' ? '\n' 
-                              | '(*' ( options{greedy=false;}: . )* '*)'  
-                              | '/*' ( options{greedy=false;}: . )* '*/' ) -> channel(HIDDEN);
+                              | '(*' ( . )*? '*)' | '/*' ( . )*? '*/' ) -> channel(HIDDEN);
 WS                         : ( ' ' | '\t' | '\r' | '\n' ) -> channel(HIDDEN); // white space 
 EOL                        : '\n'; 
  
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Table 4 - Pragma 
 
-Pragma                     : '{' ( options{greedy=false;}: . )* '}' -> channel(HIDDEN); 
+Pragma                     : '{' ( . )*? '}' -> channel(HIDDEN); 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Table 5 - Numeric literal 
