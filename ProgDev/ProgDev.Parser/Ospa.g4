@@ -35,9 +35,9 @@ Identifier                 : Letter ( Letter | Digit )*;
 
 Comment                    : ( '//' ~( '\n' | '\r' )* '\r' ? '\n' 
                               | '(*' ( . )*? '*)' | '/*' ( . )*? '*/' ) -> channel(HIDDEN);
-WS                         : ( ' ' | '\t' | '\r' | '\n' ) -> channel(HIDDEN); // white space 
+WS                         : ( ' ' | '\t' | '\r' | '\n' ) -> channel(HIDDEN);
 EOL                        : '\n'; 
- 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Table 4 - Pragma 
 
@@ -70,7 +70,6 @@ S_Byte_Char_Value          : Common_Char_Value | '$\'' | '"' | '$' Hex_Digit Hex
 D_Byte_Char_Value          : Common_Char_Value | '\'' | '$"' | '$' Hex_Digit Hex_Digit Hex_Digit Hex_Digit; 
 Common_Char_Value          : ' ' | '!' | '#' | '%' | '&' | '('..'/' | '0'..'9' | ':'..'@' | 'A'..'Z' | '['..'`' 
                               | 'a'..'z' | '{'..'~' | '$$' | '$L' | '$N' | '$P' | '$R' | '$T'; 
-                              // any printable characters except $, " and ' 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Table 8 - Duration literals 
