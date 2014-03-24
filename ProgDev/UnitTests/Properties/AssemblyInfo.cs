@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OSPA ProgDev")]
-[assembly: AssemblyDescription("Programming and debugging tool")]
+[assembly: AssemblyTitle("UnitTests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Open Source PLC Architecture")]
-[assembly: AssemblyProduct("OSPA ProgDev")]
-[assembly: AssemblyCopyright("© 2014 Brian Luft")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("UnitTests")]
+[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("63df02d7-1fc3-4730-ae35-ff7595b5da10")]
+[assembly: Guid("31507e76-dec9-4a71-85d1-46483114ca6e")]
 
 // Version information for an assembly consists of the following four values:
 //
