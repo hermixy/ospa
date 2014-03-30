@@ -67,13 +67,23 @@
       <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormsFactory.cs" />
+    <Compile Include="Forms\ProgramExplorerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProgramExplorerForm.Designer.cs">
+      <DependentUpon>ProgramExplorerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProgDev.Compiler\ProgDev.Compiler.fsproj">
-      <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
-      <Name>ProgDev.Compiler</Name>
-    </ProjectReference>
+    <Compile Include="Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\AboutForm.resx">
@@ -82,9 +92,27 @@
     <EmbeddedResource Include="Forms\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProgramExplorerForm.resx">
+      <DependentUpon>ProgramExplorerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProgDev.Core\ProgDev.Core.fsproj">
+      <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
+      <Name>ProgDev.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

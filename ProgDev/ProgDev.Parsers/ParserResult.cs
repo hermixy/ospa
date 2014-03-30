@@ -12,28 +12,28 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using Antlr4.Runtime;
-using System;
+using Antlr4.Runtime.Tree;
 
-namespace ProgDev.Parser
+namespace ProgDev.Parsers
 {
-   public static class ParseHandler
+   public sealed class ParserResult
    {
-      public static ParserResult Parse(string input)
+      public readonly bool IsError;
+      public readonly string ErrorMessage;
+      public readonly IParseTree ParseTree;
+
+      public ParserResult(string errorMessage)
       {
-         try
-         {
-            var stream = new AntlrInputStream(input);
-            var lexer = new OspaLexer(stream);
-            var lexerStream = new CommonTokenStream(lexer);
-            var parser = new OspaParser(lexerStream);
-            var tree = parser.prog();
-            return new ParserResult(tree);
-         }
-         catch (Exception ex)
-         {
-            return new ParserResult(ex.Message);
-         }
+         IsError = true;
+         ErrorMessage = errorMessage;
+         ParseTree = null;
+      }
+
+      public ParserResult(IParseTree parseTree)
+      {
+         IsError = false;
+         ErrorMessage = null;
+         ParseTree = parseTree;
       }
    }
 }

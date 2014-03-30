@@ -13,6 +13,7 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using ProgDev.IDE.Common.FlexForms;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace ProgDev.IDE.Forms
@@ -20,17 +21,45 @@ namespace ProgDev.IDE.Forms
    public sealed class AboutFormViewModel : FormViewModel
    {
       public Field<string> VersionText;
+      public Signal GitHubClick;
+      public Signal FarmFreshClick;
+      public Signal FatCowClick;
+      public Signal CreativeCommonsClick;
       public Signal CloseClick;
 
       protected override void Initialize()
       {
-         VersionText.Value = "Version " + Application.ProductVersion;
+         VersionText.Value = string.Format(Strings.AboutVersionFormat, Application.ProductVersion);
       }
 
       [OnSignal("CloseClick")]
       public void OnCloseClick()
       {
          Invoke(x => x.Close());
+      }
+
+      [OnSignal("GitHubClick")]
+      public void OnGitHubClick()
+      {
+         Process.Start("https://github.com/electroly/ospa");
+      }
+
+      [OnSignal("FarmFreshClick")]
+      public void OnFarmFreshClick()
+      {
+         Process.Start("http://www.fatcow.com/free-icons");
+      }
+
+      [OnSignal("FatCowClick")]
+      public void OnFatCowClick()
+      {
+         Process.Start("http://www.fatcow.com/");
+      }
+
+      [OnSignal("CreativeCommonsClick")]
+      public void OnCreativeCommonsClick()
+      {
+         Process.Start("http://creativecommons.org/licenses/by/3.0/us/");
       }
    }
 }

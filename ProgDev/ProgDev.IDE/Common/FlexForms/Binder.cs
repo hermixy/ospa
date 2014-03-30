@@ -76,7 +76,7 @@ namespace ProgDev.IDE.Common.FlexForms
          control.CheckedChanged += Bind(property, () => control.Checked, x => control.Checked = x);
       }
 
-      public static void BindClick(this Button control, Signal command)
+      public static void BindClick(this Control control, Signal command)
       {
          control.Click += command;
       }

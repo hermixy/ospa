@@ -26,6 +26,10 @@ namespace ProgDev.IDE.Forms
 
          _VersionLabel.BindText(viewModel.VersionText);
          _CloseButton.BindClick(viewModel.CloseClick);
+         _GitHubLinkLabel.BindClick(viewModel.GitHubClick);
+         _FarmFreshLinkLabel.BindClick(viewModel.FarmFreshClick);
+         _FatCowLinkLabel.BindClick(viewModel.FatCowClick);
+         _CreativeCommonsLinkLabel.BindClick(viewModel.CreativeCommonsClick);
          viewModel.Start(this);
       }
    }

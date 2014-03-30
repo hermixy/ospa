@@ -65,16 +65,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProgDev.Compiler\ProgDev.Compiler.fsproj">
-      <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
-      <Name>ProgDev.Compiler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProgDev.Parser\ProgDev.Parser.csproj">
-      <Project>{59cc3958-f947-4dbe-a8ff-53467c77590e}</Project>
-      <Name>ProgDev.Parser</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="ProgDev.Compiler\" />
     <Folder Include="ProgDev.IDE\" />
   </ItemGroup>
@@ -88,6 +78,24 @@
     <None Include="packages.config" />
     <None Include="Resources\Global_Var_Decls_002.osp" />
     <None Include="Resources\Global_Var_Decls_001.osp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProgDev.Core\ProgDev.Core.fsproj">
+      <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
+      <Name>ProgDev.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProgDev.IDE\ProgDev.IDE.csproj">
+      <Project>{f13fff10-707c-4894-9b30-cb2daa5b2018}</Project>
+      <Name>ProgDev.IDE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProgDev.Parsers\ProgDev.Parsers.csproj">
+      <Project>{59cc3958-f947-4dbe-a8ff-53467c77590e}</Project>
+      <Name>ProgDev.Parsers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProgDev\ProgDev.csproj">
+      <Project>{34b55083-a315-4cdd-aaf4-c1877515ac15}</Project>
+      <Name>ProgDev</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

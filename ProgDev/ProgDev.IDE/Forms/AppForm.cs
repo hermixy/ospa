@@ -13,22 +13,44 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.IDE.Forms
 {
    public partial class AppForm : Form
    {
+      private ProgramExplorerForm _ProgramExplorer;
+
       public AppForm()
       {
          InitializeComponent();
+
+         if (Settings.Default.AppForm_SavedPositionExists)
+         {
+            var screenArea = Screen.PrimaryScreen.WorkingArea;
+
+            Width = Math.Max(MinimumSize.Width, Settings.Default.AppForm_Width);
+            Height = Math.Max(MinimumSize.Height, Settings.Default.AppForm_Height);
+            Left = Math.Min(screenArea.Width - Width, Math.Max(0, Settings.Default.AppForm_Left));
+            Top = Math.Min(screenArea.Height - Height, Math.Max(0, Settings.Default.AppForm_Top));
+         }
+
+         _ProgramExplorer = new ProgramExplorerForm();
+         _ProgramExplorer.Show(_DockPanel, DockState.DockLeft);
+      }
+
+      protected override void OnClosing(CancelEventArgs e)
+      {
+         Settings.Default.AppForm_SavedPositionExists = true;
+         Settings.Default.AppForm_Left = Left;
+         Settings.Default.AppForm_Top = Top;
+         Settings.Default.AppForm_Width = Width;
+         Settings.Default.AppForm_Height = Height;
+         Settings.Default.Save();
+
+         base.OnClosing(e);
       }
 
       private void OnAboutClick(object sender, EventArgs e)
