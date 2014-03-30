@@ -32,11 +32,11 @@ type Bundle = {
    Files : VirtualFile list
 }
 
-let private FoldersStart = "{[ProgDev.Folders]}"
-let private FolderStart = "\r\n{[ProgDev.Folder]}\r\n"
-let private FilesStart = "\r\n{[ProgDev.Files]}"
-let private FileStart = "\r\n{[ProgDev.File]}\r\n"
-let private FieldDelimeter = "\r\n{[======]}\r\n"
+let private FoldersStart = "{[[ProgDev.Program]]}\r\n{[[ProgDev.Folders]]}"
+let private FolderStart = "\r\n{[[ProgDev.Folder]]}\r\n"
+let private FilesStart = "\r\n{[[ProgDev.Files]]}"
+let private FileStart = "\r\n{[[ProgDev.File]]}\r\n"
+let private FieldDelimeter = "\r\n{[[======]]}\r\n"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Serialization
@@ -48,17 +48,19 @@ let private SerializeVirtualFile (file : VirtualFile) : string =
 let rec private SerializeVirtualFolder (folder : VirtualFolder) : string =
    FolderStart + folder.Path
 
-let private SerializeArchive (bundle : Bundle) : string =
-   let folderRecords = List.map SerializeVirtualFolder bundle.Folders
-   let foldersSection = String.concat "" folderRecords
-   let fileRecords = List.map SerializeVirtualFile bundle.Files
-   let filesSection = String.concat "" fileRecords
+let private SerializeBundle (bundle : Bundle) : string =
+   let foldersSection = 
+      List.map SerializeVirtualFolder bundle.Folders 
+      |> String.concat "" 
+   let filesSection = 
+      List.map SerializeVirtualFile bundle.Files
+      |> String.concat ""
    FoldersStart + foldersSection + FilesStart + filesSection
 
 let Save (bundle : Bundle) (filePath : string) : unit =
    use stream = File.Create(filePath)
    use writer = new StreamWriter(stream, Encoding.UTF8)
-   writer.Write(SerializeArchive bundle)
+   writer.Write(SerializeBundle bundle)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Deserialization
@@ -68,7 +70,9 @@ let private CheckAndChop (haystack : string) (needle : string) : string =
    if haystack.Length < needle.Length then
       raise (Exception("Premature end of file."))
    elif haystack.Substring(0, needle.Length) <> needle then
-      raise (Exception("Unexpected text in file."))
+      raise (Exception("Unexpected text in file.\r\n" 
+         + "Expected: \"" + needle + "\"\r\n" 
+         + "Actual: \"" + haystack.Substring(0, needle.Length) + "\""))
    else
       haystack.Substring(needle.Length)
 
@@ -85,7 +89,7 @@ let private DeserializeVirtualFolder (encoded : string) : VirtualFolder =
       Path = encoded
    }
 
-let private DeserializeArchive (encoded : string) : Bundle =
+let private DeserializeBundle (encoded : string) : Bundle =
    let body = CheckAndChop encoded FoldersStart
    let sections = body.Split([| FilesStart |], StringSplitOptions.None)
    let folderRecords = sections.[0].Split([| FolderStart |], StringSplitOptions.RemoveEmptyEntries)
@@ -99,4 +103,4 @@ let Load (filePath : string) : Bundle =
    use stream = File.OpenRead(filePath)
    use reader = new StreamReader(stream, Encoding.UTF8)
    let encoded = reader.ReadToEnd()
-   DeserializeArchive encoded
+   DeserializeBundle encoded
