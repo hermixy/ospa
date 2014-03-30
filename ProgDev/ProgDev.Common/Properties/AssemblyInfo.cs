@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProgDev.IDE")]
+[assembly: AssemblyTitle("ProgDev.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProgDev.IDE")]
+[assembly: AssemblyProduct("ProgDev.Common")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("78ae0a76-f660-410b-9bfc-99b25c3315f9")]
+[assembly: Guid("c65c34b8-f2b3-4b31-90cc-88b4e35bd210")]
 
 // Version information for an assembly consists of the following four values:
 //

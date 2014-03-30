@@ -1,1 +1,0 @@
-A Makefile-based project for Visual Studio 2013.  Provided as a convenience.  The batch files here have hard-coded paths that you will need to update.
