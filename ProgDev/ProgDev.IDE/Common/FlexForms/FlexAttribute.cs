@@ -18,7 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgDev.Common.FlexForms
+namespace ProgDev.IDE.Common.FlexForms
 {
    public abstract class FlexAttribute : Attribute
    {

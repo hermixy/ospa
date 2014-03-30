@@ -45,7 +45,7 @@
          this._TitleLabel.Location = new System.Drawing.Point(12, 9);
          this._TitleLabel.Name = "_TitleLabel";
          this._TitleLabel.Size = new System.Drawing.Size(155, 30);
-         this._TitleLabel.TabIndex = 0;
+         this._TitleLabel.TabIndex = 1;
          this._TitleLabel.Text = "OSPA ProgDev";
          // 
          // _CopyrightLabel
@@ -54,7 +54,7 @@
          this._CopyrightLabel.Location = new System.Drawing.Point(14, 93);
          this._CopyrightLabel.Name = "_CopyrightLabel";
          this._CopyrightLabel.Size = new System.Drawing.Size(99, 15);
-         this._CopyrightLabel.TabIndex = 1;
+         this._CopyrightLabel.TabIndex = 5;
          this._CopyrightLabel.Text = "© 2014 Brian Luft";
          // 
          // _WebsiteLinkLabel
@@ -63,7 +63,7 @@
          this._WebsiteLinkLabel.Location = new System.Drawing.Point(14, 117);
          this._WebsiteLinkLabel.Name = "_WebsiteLinkLabel";
          this._WebsiteLinkLabel.Size = new System.Drawing.Size(80, 15);
-         this._WebsiteLinkLabel.TabIndex = 2;
+         this._WebsiteLinkLabel.TabIndex = 6;
          this._WebsiteLinkLabel.TabStop = true;
          this._WebsiteLinkLabel.Text = "OSPA website";
          // 
@@ -73,16 +73,17 @@
          this._GitHubLinkLabel.Location = new System.Drawing.Point(100, 117);
          this._GitHubLinkLabel.Name = "_GitHubLinkLabel";
          this._GitHubLinkLabel.Size = new System.Drawing.Size(95, 15);
-         this._GitHubLinkLabel.TabIndex = 3;
+         this._GitHubLinkLabel.TabIndex = 7;
          this._GitHubLinkLabel.TabStop = true;
          this._GitHubLinkLabel.Text = "OSPA on GitHub";
          // 
          // _CloseButton
          // 
+         this._CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
          this._CloseButton.Location = new System.Drawing.Point(173, 154);
          this._CloseButton.Name = "_CloseButton";
          this._CloseButton.Size = new System.Drawing.Size(75, 23);
-         this._CloseButton.TabIndex = 4;
+         this._CloseButton.TabIndex = 0;
          this._CloseButton.Text = "Close";
          this._CloseButton.UseVisualStyleBackColor = true;
          // 
@@ -92,7 +93,7 @@
          this._VersionLabel.Location = new System.Drawing.Point(14, 78);
          this._VersionLabel.Name = "_VersionLabel";
          this._VersionLabel.Size = new System.Drawing.Size(73, 15);
-         this._VersionLabel.TabIndex = 5;
+         this._VersionLabel.TabIndex = 4;
          this._VersionLabel.Text = "Version X.XX";
          // 
          // _Subtitle1Label
@@ -101,7 +102,7 @@
          this._Subtitle1Label.Location = new System.Drawing.Point(14, 39);
          this._Subtitle1Label.Name = "_Subtitle1Label";
          this._Subtitle1Label.Size = new System.Drawing.Size(227, 15);
-         this._Subtitle1Label.TabIndex = 6;
+         this._Subtitle1Label.TabIndex = 2;
          this._Subtitle1Label.Text = "Programming and debugging tool for the";
          // 
          // _Subtitle2Label
@@ -110,7 +111,7 @@
          this._Subtitle2Label.Location = new System.Drawing.Point(14, 54);
          this._Subtitle2Label.Name = "_Subtitle2Label";
          this._Subtitle2Label.Size = new System.Drawing.Size(170, 15);
-         this._Subtitle2Label.TabIndex = 7;
+         this._Subtitle2Label.TabIndex = 3;
          this._Subtitle2Label.Text = "Open Source PLC Architecture.";
          // 
          // AboutForm

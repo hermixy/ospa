@@ -19,7 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProgDev.Common.FlexForms
+namespace ProgDev.IDE.Common.FlexForms
 {
    public static class Binder
    {

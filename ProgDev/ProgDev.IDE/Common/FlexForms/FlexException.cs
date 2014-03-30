@@ -14,34 +14,13 @@
 
 using System;
 
-namespace ProgDev.Common.FlexForms
+namespace ProgDev.IDE.Common.FlexForms
 {
-   public abstract class Field
+   public sealed class FlexException : Exception
    {
-      public event EventHandler Changed;
-
-      protected void Notify()
+      internal FlexException(string message)
+         : base(message)
       {
-         if (Changed != null)
-            Changed(this, EventArgs.Empty);
-      }
-   }
-
-   public sealed class Field<T> : Field
-   {
-      private T _Value;
-
-      public T Value
-      {
-         get
-         {
-            return _Value;
-         }
-         set
-         {
-            _Value = value;
-            Notify();
-         }
       }
    }
 }

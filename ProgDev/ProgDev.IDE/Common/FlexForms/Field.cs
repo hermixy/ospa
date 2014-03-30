@@ -14,14 +14,34 @@
 
 using System;
 
-namespace ProgDev.Common.FlexForms
+namespace ProgDev.IDE.Common.FlexForms
 {
-   [AttributeUsage(AttributeTargets.Method)]
-   public sealed class OnChangeAttribute : FlexAttribute
+   public abstract class Field
    {
-      public OnChangeAttribute(string fieldName)
-         : base(fieldName)
+      public event EventHandler Changed;
+
+      protected void Notify()
       {
+         if (Changed != null)
+            Changed(this, EventArgs.Empty);
+      }
+   }
+
+   public sealed class Field<T> : Field
+   {
+      private T _Value;
+
+      public T Value
+      {
+         get
+         {
+            return _Value;
+         }
+         set
+         {
+            _Value = value;
+            Notify();
+         }
       }
    }
 }

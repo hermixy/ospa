@@ -14,12 +14,12 @@
 
 using System;
 
-namespace ProgDev.Common.FlexForms
+namespace ProgDev.IDE.Common.FlexForms
 {
    [AttributeUsage(AttributeTargets.Method)]
-   public sealed class OnSignalAttribute : FlexAttribute
+   public sealed class OnChangeAttribute : FlexAttribute
    {
-      public OnSignalAttribute(string fieldName)
+      public OnChangeAttribute(string fieldName)
          : base(fieldName)
       {
       }

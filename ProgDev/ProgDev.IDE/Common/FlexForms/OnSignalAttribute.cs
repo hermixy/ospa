@@ -12,23 +12,16 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.IDE.Forms;
 using System;
-using System.Windows.Forms;
 
-namespace ProgDev
+namespace ProgDev.IDE.Common.FlexForms
 {
-   static class Program
+   [AttributeUsage(AttributeTargets.Method)]
+   public sealed class OnSignalAttribute : FlexAttribute
    {
-      /// <summary>
-      /// The main entry point for the application.
-      /// </summary>
-      [STAThread]
-      static void Main()
+      public OnSignalAttribute(string fieldName)
+         : base(fieldName)
       {
-         Application.EnableVisualStyles();
-         Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(new AppForm());
       }
    }
 }

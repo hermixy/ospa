@@ -17,7 +17,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace ProgDev.Common.FlexForms
+namespace ProgDev.IDE.Common.FlexForms
 {
    public abstract class ViewModel<InterfaceType>
    {

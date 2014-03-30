@@ -14,7 +14,7 @@
 
 using System;
 
-namespace ProgDev.Common.FlexForms
+namespace ProgDev.IDE.Common.FlexForms
 {
    public sealed class Signal
    {

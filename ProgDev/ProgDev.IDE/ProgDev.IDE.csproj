@@ -44,6 +44,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\FlexForms\Binder.cs" />
+    <Compile Include="Common\FlexForms\Field.cs" />
+    <Compile Include="Common\FlexForms\FlexAttribute.cs" />
+    <Compile Include="Common\FlexForms\FlexException.cs" />
+    <Compile Include="Common\FlexForms\FormViewModel.cs" />
+    <Compile Include="Common\FlexForms\OnChangeAttribute.cs" />
+    <Compile Include="Common\FlexForms\OnSignalAttribute.cs" />
+    <Compile Include="Common\FlexForms\Signal.cs" />
+    <Compile Include="Common\FlexForms\ViewModel.cs" />
     <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,10 +70,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProgDev.Common\ProgDev.Common.csproj">
-      <Project>{8f7ec044-b164-4357-81d8-f08b30909524}</Project>
-      <Name>ProgDev.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProgDev.Compiler\ProgDev.Compiler.fsproj">
       <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
       <Name>ProgDev.Compiler</Name>

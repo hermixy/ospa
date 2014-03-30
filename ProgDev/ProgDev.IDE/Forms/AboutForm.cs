@@ -12,27 +12,17 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.Common.FlexForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ProgDev.IDE.Common.FlexForms;
 using System.Windows.Forms;
 
 namespace ProgDev.IDE.Forms
 {
    public partial class AboutForm : Form
    {
-      private readonly AboutFormViewModel _ViewModel;
-
       public AboutForm(AboutFormViewModel viewModel)
       {
          InitializeComponent();
-         _ViewModel = viewModel;
+         Tag = viewModel;
 
          _VersionLabel.BindText(viewModel.VersionText);
          _CloseButton.BindClick(viewModel.CloseClick);
