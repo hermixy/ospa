@@ -24,10 +24,17 @@ namespace ProgDev
       /// The main entry point for the application.
       /// </summary>
       [STAThread]
-      static void Main()
+      static void Main(string[] args)
       {
          Application.EnableVisualStyles();
          Application.SetCompatibleTextRenderingDefault(false);
+         
+         if (args.Length > 0)
+         {
+            Console.WriteLine("hello");
+            MessageBox.Show(args[0]);
+         }
+         
          Application.Run(new AppForm());
       }
    }

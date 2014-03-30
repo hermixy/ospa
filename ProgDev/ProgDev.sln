@@ -13,6 +13,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ProgDev.Core", "ProgDev.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgDev.Parsers", "ProgDev.Parsers\ProgDev.Parsers.csproj", "{59CC3958-F947-4DBE-A8FF-53467C77590E}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PDC", "PDC\PDC.fsproj", "{5935C6F0-D88B-4CA9-8761-C61E91FA29C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{59CC3958-F947-4DBE-A8FF-53467C77590E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59CC3958-F947-4DBE-A8FF-53467C77590E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59CC3958-F947-4DBE-A8FF-53467C77590E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5935C6F0-D88B-4CA9-8761-C61E91FA29C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5935C6F0-D88B-4CA9-8761-C61E91FA29C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5935C6F0-D88B-4CA9-8761-C61E91FA29C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5935C6F0-D88B-4CA9-8761-C61E91FA29C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

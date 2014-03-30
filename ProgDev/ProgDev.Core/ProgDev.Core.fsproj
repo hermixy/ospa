@@ -50,10 +50,12 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="Dal.fs" />
     <Compile Include="Ast.fs" />
     <Compile Include="Parser.fs" />
     <None Include="packages.config" />
+    <Compile Include="Dal.fs" />
+    <Compile Include="Bundler.fs" />
+    <Compile Include="Unbundler.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime.v4.5">
