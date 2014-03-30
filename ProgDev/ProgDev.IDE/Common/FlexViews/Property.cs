@@ -12,28 +12,36 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.IDE.Forms;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace ProgDev
+namespace ProgDev.IDE.Common.FlexViews
 {
-   static class Program
+   public abstract class Property : PropertyNotifier
    {
-      /// <summary>
-      /// The main entry point for the application.
-      /// </summary>
-      [STAThread]
-      static int Main(string[] args)
+      public Action OnChange = () => { };
+   }
+
+   public sealed class Property<T> : Property
+   {
+      private T _Value;
+
+      public T Value
       {
-         Application.EnableVisualStyles();
-         Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(new AppForm());
-         
-         return 0;
+         get
+         {
+            return _Value;
+         }
+         set
+         {
+            _Value = value;
+            Notify("Value");
+            OnChange();
+         }
       }
    }
 }

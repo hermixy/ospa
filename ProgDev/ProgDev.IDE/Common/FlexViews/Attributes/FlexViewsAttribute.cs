@@ -13,22 +13,10 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace ProgDev.IDE.Forms
+namespace ProgDev.IDE.Common.FlexViews.Attributes
 {
-   public partial class AppForm : Form
+   public abstract class FlexViewsAttribute : Attribute
    {
-      public AppForm()
-      {
-         InitializeComponent();
-      }
    }
 }

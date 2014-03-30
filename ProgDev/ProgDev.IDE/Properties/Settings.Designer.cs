@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProgDev.Properties
+namespace ProgDev.IDE.Properties
 {
 
 

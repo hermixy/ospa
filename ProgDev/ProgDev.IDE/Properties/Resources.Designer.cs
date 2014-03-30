@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProgDev.Properties
+namespace ProgDev.IDE.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace ProgDev.Properties
          {
             if ((resourceMan == null))
             {
-               global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProgDev.Properties.Resources", typeof(Resources).Assembly);
+               global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProgDev.IDE.Properties.Resources", typeof(Resources).Assembly);
                resourceMan = temp;
             }
             return resourceMan;

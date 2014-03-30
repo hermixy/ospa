@@ -69,17 +69,9 @@
       <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
       <Name>ProgDev.Compiler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProgDev.IDE\ProgDev.IDE.csproj">
-      <Project>{ef243c88-1ba5-42d4-96d3-836700a932e0}</Project>
-      <Name>ProgDev.IDE</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProgDev.Parser\ProgDev.Parser.csproj">
       <Project>{59cc3958-f947-4dbe-a8ff-53467c77590e}</Project>
       <Name>ProgDev.Parser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProgDev\ProgDev.csproj">
-      <Project>{984a7176-9bb6-4c87-acbc-dc023f25e484}</Project>
-      <Name>ProgDev</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

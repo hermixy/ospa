@@ -19,7 +19,7 @@ type UsingDirective = {
    FullyQualifiedNamespaces : string list
 }
 
-/// Global_Var_Decls
+// Global_Var_Decls
 type GlobalVariableDeclarationBlock() = class end
 
 // Data_Type_Decl

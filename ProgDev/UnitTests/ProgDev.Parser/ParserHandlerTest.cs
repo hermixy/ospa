@@ -13,7 +13,7 @@ namespace UnitTests.ProgDev.Parser
    public sealed class ParserHandlerTest
    {
       /// <summary>
-      /// VAR_GLOBAL with empty body
+      /// VAR_GLOBAL with empty body.
       /// </summary>
       [TestMethod]
       public void Test_Global_Var_Decls_001()

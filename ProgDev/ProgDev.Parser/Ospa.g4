@@ -17,7 +17,7 @@ grammar Ospa;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Root production
 
-prog: POU_Decl *;
+prog                       : POU_Decl *;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Table 1 - Character sets 
@@ -159,7 +159,7 @@ Array_Elem_Init_Value      : Constant_Expr | Enum_Value | Struct_Init | Array_In
 Struct_Type_Decl           : Struct_Type_Name ':' Struct_Spec; 
 Struct_Spec                : Struct_Decl | Struct_Spec_Init; 
 Struct_Spec_Init           : Struct_Type_Access ( ':=' Struct_Init )?; 
-Struct_Decl                :'STRUCT' 'OVERLAP' ? ( Struct_Elem_Decl ';' )+ 'END_STRUCT'; 
+Struct_Decl                : 'STRUCT' 'OVERLAP' ? ( Struct_Elem_Decl ';' )+ 'END_STRUCT'; 
 Struct_Elem_Decl           : Struct_Elem_Name ( Located_At Multibit_Part_Access ? )? ':' 
                               ( Simple_Spec_Init | Subrange_Spec_Init | Enum_Spec_Init | Array_Spec_Init 
                               | Struct_Spec_Init ); 
