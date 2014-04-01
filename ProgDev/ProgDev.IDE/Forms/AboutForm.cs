@@ -22,7 +22,6 @@ namespace ProgDev.IDE.Forms
       public AboutForm(AboutFormViewModel viewModel)
       {
          InitializeComponent();
-         Tag = viewModel;
 
          _VersionLabel.BindText(viewModel.VersionText);
          _CloseButton.BindClick(viewModel.CloseClick);

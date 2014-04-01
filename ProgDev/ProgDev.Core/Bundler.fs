@@ -17,7 +17,8 @@ open System.IO
 open System.Text
 
 let rec private GetAllFolders (path : string) : string seq =
-   Array.toSeq (Directory.GetDirectories path)
+   Directory.GetDirectories path
+   |> Array.toSeq
    |> Seq.map GetAllFolders
    |> Seq.fold Seq.append Seq.empty<string>
    |> Seq.append [| path |]
@@ -29,9 +30,7 @@ let private GetAllFiles (folders : string seq) : string seq =
    |> Seq.fold Seq.append Seq.empty<string>
 
 let private CreateVirtualFolder (folderPath : string) : Dal.VirtualFolder =
-   {
-      Path = folderPath
-   }
+   { Path = folderPath }
 
 let private CreateVirtualFile (filePath : string) : Dal.VirtualFile =
    {

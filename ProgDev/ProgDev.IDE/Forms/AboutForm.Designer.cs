@@ -52,7 +52,7 @@
          // label4
          // 
          label4.AutoSize = true;
-         label4.Location = new System.Drawing.Point(68, 112);
+         label4.Location = new System.Drawing.Point(68, 115);
          label4.Name = "label4";
          label4.Size = new System.Drawing.Size(15, 15);
          label4.TabIndex = 15;
@@ -61,7 +61,7 @@
          // label5
          // 
          label5.AutoSize = true;
-         label5.Location = new System.Drawing.Point(68, 136);
+         label5.Location = new System.Drawing.Point(68, 139);
          label5.Name = "label5";
          label5.Size = new System.Drawing.Size(15, 15);
          label5.TabIndex = 16;
@@ -71,7 +71,7 @@
          // 
          this._TitleLabel.AutoSize = true;
          this._TitleLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-         this._TitleLabel.Location = new System.Drawing.Point(66, 4);
+         this._TitleLabel.Location = new System.Drawing.Point(66, 7);
          this._TitleLabel.Name = "_TitleLabel";
          this._TitleLabel.Size = new System.Drawing.Size(155, 30);
          this._TitleLabel.TabIndex = 1;
@@ -80,7 +80,7 @@
          // _CopyrightLabel
          // 
          this._CopyrightLabel.AutoSize = true;
-         this._CopyrightLabel.Location = new System.Drawing.Point(68, 88);
+         this._CopyrightLabel.Location = new System.Drawing.Point(68, 91);
          this._CopyrightLabel.Name = "_CopyrightLabel";
          this._CopyrightLabel.Size = new System.Drawing.Size(99, 15);
          this._CopyrightLabel.TabIndex = 5;
@@ -89,7 +89,7 @@
          // _GitHubLinkLabel
          // 
          this._GitHubLinkLabel.AutoSize = true;
-         this._GitHubLinkLabel.Location = new System.Drawing.Point(82, 112);
+         this._GitHubLinkLabel.Location = new System.Drawing.Point(82, 115);
          this._GitHubLinkLabel.Name = "_GitHubLinkLabel";
          this._GitHubLinkLabel.Size = new System.Drawing.Size(95, 15);
          this._GitHubLinkLabel.TabIndex = 7;
@@ -110,7 +110,7 @@
          // _VersionLabel
          // 
          this._VersionLabel.AutoSize = true;
-         this._VersionLabel.Location = new System.Drawing.Point(68, 73);
+         this._VersionLabel.Location = new System.Drawing.Point(68, 76);
          this._VersionLabel.Name = "_VersionLabel";
          this._VersionLabel.Size = new System.Drawing.Size(73, 15);
          this._VersionLabel.TabIndex = 4;
@@ -120,7 +120,7 @@
          // 
          this._Subtitle1Label.AutoSize = true;
          this._Subtitle1Label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-         this._Subtitle1Label.Location = new System.Drawing.Point(68, 34);
+         this._Subtitle1Label.Location = new System.Drawing.Point(68, 37);
          this._Subtitle1Label.Name = "_Subtitle1Label";
          this._Subtitle1Label.Size = new System.Drawing.Size(264, 15);
          this._Subtitle1Label.TabIndex = 2;
@@ -130,7 +130,7 @@
          // 
          this._Subtitle2Label.AutoSize = true;
          this._Subtitle2Label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-         this._Subtitle2Label.Location = new System.Drawing.Point(68, 49);
+         this._Subtitle2Label.Location = new System.Drawing.Point(68, 52);
          this._Subtitle2Label.Name = "_Subtitle2Label";
          this._Subtitle2Label.Size = new System.Drawing.Size(166, 15);
          this._Subtitle2Label.TabIndex = 3;
@@ -148,7 +148,7 @@
          // _FarmFreshLinkLabel
          // 
          this._FarmFreshLinkLabel.AutoSize = true;
-         this._FarmFreshLinkLabel.Location = new System.Drawing.Point(82, 136);
+         this._FarmFreshLinkLabel.Location = new System.Drawing.Point(82, 139);
          this._FarmFreshLinkLabel.Name = "_FarmFreshLinkLabel";
          this._FarmFreshLinkLabel.Size = new System.Drawing.Size(135, 15);
          this._FarmFreshLinkLabel.TabIndex = 9;
@@ -158,7 +158,7 @@
          // label1
          // 
          this.label1.AutoSize = true;
-         this.label1.Location = new System.Drawing.Point(215, 136);
+         this.label1.Location = new System.Drawing.Point(215, 139);
          this.label1.Name = "label1";
          this.label1.Size = new System.Drawing.Size(20, 15);
          this.label1.TabIndex = 10;
@@ -167,7 +167,7 @@
          // _FatCowLinkLabel
          // 
          this._FatCowLinkLabel.AutoSize = true;
-         this._FatCowLinkLabel.Location = new System.Drawing.Point(232, 136);
+         this._FatCowLinkLabel.Location = new System.Drawing.Point(232, 139);
          this._FatCowLinkLabel.Name = "_FatCowLinkLabel";
          this._FatCowLinkLabel.Size = new System.Drawing.Size(119, 15);
          this._FatCowLinkLabel.TabIndex = 11;
@@ -177,7 +177,7 @@
          // label2
          // 
          this.label2.AutoSize = true;
-         this.label2.Location = new System.Drawing.Point(82, 151);
+         this.label2.Location = new System.Drawing.Point(82, 154);
          this.label2.Name = "label2";
          this.label2.Size = new System.Drawing.Size(95, 15);
          this.label2.TabIndex = 12;
@@ -186,7 +186,7 @@
          // _CreativeCommonsLinkLabel
          // 
          this._CreativeCommonsLinkLabel.AutoSize = true;
-         this._CreativeCommonsLinkLabel.Location = new System.Drawing.Point(174, 151);
+         this._CreativeCommonsLinkLabel.Location = new System.Drawing.Point(174, 154);
          this._CreativeCommonsLinkLabel.Name = "_CreativeCommonsLinkLabel";
          this._CreativeCommonsLinkLabel.Size = new System.Drawing.Size(58, 15);
          this._CreativeCommonsLinkLabel.TabIndex = 13;

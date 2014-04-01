@@ -19,9 +19,10 @@ using System.Windows.Forms;
 
 namespace ProgDev.IDE.Common.FlexForms
 {
-   public abstract class ViewModel<InterfaceType>
+   public abstract class ViewModel<ControlType>
+      where ControlType : Control
    {
-      public Action<Action<InterfaceType>> Invoke = f => { };
+      public Action<Action<ControlType>> Invoke = f => { };
 
       public ViewModel()
       {
@@ -30,9 +31,14 @@ namespace ProgDev.IDE.Common.FlexForms
          AttachHandlers();
       }
 
-      public void Start(InterfaceType form)
+      public void Start(ControlType form)
       {
          Invoke = action => action(form);
+         
+         // We store a reference to the view model in the form's Tag property so that the view model won't be garbage
+         // collected.  Otherwise, there won't be any remaining references to the view model, since we don't require
+         // the derived form to take care of storing the view model.
+         form.Tag = this;
 
          Initialize();
       }

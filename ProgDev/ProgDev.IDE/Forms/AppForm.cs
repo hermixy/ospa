@@ -38,7 +38,7 @@ namespace ProgDev.IDE.Forms
          }
 
          _ProgramExplorer = new ProgramExplorerForm();
-         _ProgramExplorer.Show(_DockPanel, DockState.DockLeft);
+         _ProgramExplorer.Show(_DockPanel, DockState.DockRight);
       }
 
       protected override void OnClosing(CancelEventArgs e)
