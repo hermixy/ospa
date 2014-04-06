@@ -69,6 +69,7 @@
     <Compile Include="Forms\AppForm.Designer.cs">
       <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AppFormViewModel.cs" />
     <Compile Include="Forms\FormsFactory.cs" />
     <Compile Include="Forms\ProgramExplorerForm.cs">
       <SubType>Form</SubType>

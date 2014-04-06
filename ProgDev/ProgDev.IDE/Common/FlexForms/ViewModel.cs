@@ -55,15 +55,21 @@ namespace ProgDev.IDE.Common.FlexForms
          {
             var attributes = methodInfo.GetCustomAttributes(true);
 
-            var handler = attributes.OfType<OnSignalAttribute>().SingleOrDefault();
-            if (handler != null)
+            foreach (var handler in attributes.OfType<OnSignalAttribute>())
             {
-               var callback = CreateCallback<Signal>(methodInfo, handler.FieldName, typeof(void));
-               callback.Item1.Handle += (sender, e) => callback.Item2();
+               if (methodInfo.GetParameters().Length == 1)
+               {
+                  var callback = CreateCallbackWithArg<Signal>(methodInfo, handler.FieldName, typeof(void));
+                  callback.Item1.Handle += (sender, e) => callback.Item2(e);
+               }
+               else
+               {
+                  var callback = CreateCallback<Signal>(methodInfo, handler.FieldName, typeof(void));
+                  callback.Item1.Handle += (sender, e) => callback.Item2();
+               }
             }
 
-            var onChange = attributes.OfType<OnChangeAttribute>().SingleOrDefault();
-            if (onChange != null)
+            foreach (var handler in attributes.OfType<OnChangeAttribute>())
             {
                var callback = CreateCallback<Field>(methodInfo, handler.FieldName, typeof(void));
                callback.Item1.Changed += (sender, e) => callback.Item2();
@@ -85,6 +91,28 @@ namespace ProgDev.IDE.Common.FlexForms
          return Tuple.Create<T, Func<object>>(
             (T)fieldInfo.GetValue(this),
             () => methodInfo.Invoke(this, new object[0])
+         );
+      }
+
+      private Tuple<T, Func<EventArgs, object>> CreateCallbackWithArg<T>(
+         MethodInfo methodInfo, string fieldName, Type returnType)
+      {
+         if (methodInfo.ReturnType != returnType)
+            throw new FlexException("Method must return: " + returnType.Name);
+         if (methodInfo.GetParameters().Length != 1)
+            throw new FlexException("Method must have one parameter of type EventArgs (or a derived class).");
+         var paramType = methodInfo.GetParameters()[0].ParameterType;
+         Type expectedType = typeof(EventArgs);
+         if (paramType != expectedType && !paramType.IsSubclassOf(expectedType))
+            throw new FlexException("Method must have one parameter of type EventArgs (or a derived class).");
+
+         var fieldInfo = GetType().GetFields().SingleOrDefault(x => x.Name == fieldName);
+         if (fieldInfo == null)
+            throw new FlexException("Cannot find a field named: " + fieldName);
+
+         return Tuple.Create<T, Func<EventArgs, object>>(
+            (T)fieldInfo.GetValue(this),
+            (e) => methodInfo.Invoke(this, new object[] { e })
          );
       }
 

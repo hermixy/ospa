@@ -28,25 +28,26 @@
       /// </summary>
       private void InitializeComponent()
       {
-         this.treeView1 = new System.Windows.Forms.TreeView();
+         this.listView1 = new System.Windows.Forms.ListView();
          this.SuspendLayout();
          // 
-         // treeView1
+         // listView1
          // 
-         this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-         this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.treeView1.Location = new System.Drawing.Point(0, 0);
-         this.treeView1.Name = "treeView1";
-         this.treeView1.Size = new System.Drawing.Size(393, 633);
-         this.treeView1.TabIndex = 1;
+         this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+         this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.listView1.Location = new System.Drawing.Point(0, 0);
+         this.listView1.Name = "listView1";
+         this.listView1.Size = new System.Drawing.Size(458, 730);
+         this.listView1.TabIndex = 0;
+         this.listView1.UseCompatibleStateImageBehavior = false;
          // 
          // ProgramExplorerForm
          // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(393, 633);
-         this.Controls.Add(this.treeView1);
-         this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+         this.ClientSize = new System.Drawing.Size(458, 730);
+         this.Controls.Add(this.listView1);
+         this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this.Name = "ProgramExplorerForm";
          this.Text = "Program Explorer";
          this.ResumeLayout(false);
@@ -55,7 +56,9 @@
 
       #endregion
 
-      private System.Windows.Forms.TreeView treeView1;
+      private System.Windows.Forms.ListView listView1;
+
+
 
 
    }

@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,9 +77,41 @@ namespace ProgDev.IDE.Common.FlexForms
          control.CheckedChanged += Bind(property, () => control.Checked, x => control.Checked = x);
       }
 
+      public static void BindLocation(this Control control, Field<Point> property)
+      {
+         control.LocationChanged += Bind(property, () => control.Location, x => control.Location = x);
+      }
+
+      public static void BindSize(this Control control, Field<Size> property)
+      {
+         control.SizeChanged += Bind(property, () => control.Size, x => control.Size = x);
+      }
+
+      public static void BindMinimumSize(this Control control, Field<Size> property)
+      {
+         // There is no MinimumSizeChanged event.
+         Bind(property, () => control.MinimumSize, x => control.MinimumSize = x);
+      }
+
+      public static void BindMaximumSize(this Control control, Field<Size> property)
+      {
+         // There is no MaximumSizeChanged event.
+         Bind(property, () => control.MaximumSize, x => control.MaximumSize = x);
+      }
+
       public static void BindClick(this Control control, Signal command)
       {
          control.Click += command;
+      }
+
+      public static void BindClick(this ToolStripButton control, Signal command)
+      {
+         control.Click += command;
+      }
+
+      public static void BindClosing(this Form control, Signal command)
+      {
+         control.FormClosing += (sender, e) => command.Handler(sender, e);
       }
    }
 }

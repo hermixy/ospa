@@ -25,54 +25,6 @@ namespace ProgDev.IDE {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int AppForm_Left {
-            get {
-                return ((int)(this["AppForm_Left"]));
-            }
-            set {
-                this["AppForm_Left"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int AppForm_Top {
-            get {
-                return ((int)(this["AppForm_Top"]));
-            }
-            set {
-                this["AppForm_Top"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int AppForm_Width {
-            get {
-                return ((int)(this["AppForm_Width"]));
-            }
-            set {
-                this["AppForm_Width"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int AppForm_Height {
-            get {
-                return ((int)(this["AppForm_Height"]));
-            }
-            set {
-                this["AppForm_Height"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AppForm_SavedPositionExists {
             get {
@@ -80,6 +32,30 @@ namespace ProgDev.IDE {
             }
             set {
                 this["AppForm_SavedPositionExists"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1, -1")]
+        public global::System.Drawing.Point AppForm_Location {
+            get {
+                return ((global::System.Drawing.Point)(this["AppForm_Location"]));
+            }
+            set {
+                this["AppForm_Location"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1, -1")]
+        public global::System.Drawing.Size AppForm_Size {
+            get {
+                return ((global::System.Drawing.Size)(this["AppForm_Size"]));
+            }
+            set {
+                this["AppForm_Size"] = value;
             }
         }
     }

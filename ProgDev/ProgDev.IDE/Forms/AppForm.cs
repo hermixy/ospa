@@ -12,6 +12,7 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.IDE.Common.FlexForms;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -23,34 +24,25 @@ namespace ProgDev.IDE.Forms
    {
       private ProgramExplorerForm _ProgramExplorer;
 
-      public AppForm()
+      public AppForm(AppFormViewModel viewModel)
       {
          InitializeComponent();
 
-         if (Settings.Default.AppForm_SavedPositionExists)
-         {
-            var screenArea = Screen.PrimaryScreen.WorkingArea;
-
-            Width = Math.Max(MinimumSize.Width, Settings.Default.AppForm_Width);
-            Height = Math.Max(MinimumSize.Height, Settings.Default.AppForm_Height);
-            Left = Math.Min(screenArea.Width - Width, Math.Max(0, Settings.Default.AppForm_Left));
-            Top = Math.Min(screenArea.Height - Height, Math.Max(0, Settings.Default.AppForm_Top));
-         }
-
          _ProgramExplorer = new ProgramExplorerForm();
          _ProgramExplorer.Show(_DockPanel, DockState.DockRight);
-      }
 
-      protected override void OnClosing(CancelEventArgs e)
-      {
-         Settings.Default.AppForm_SavedPositionExists = true;
-         Settings.Default.AppForm_Left = Left;
-         Settings.Default.AppForm_Top = Top;
-         Settings.Default.AppForm_Width = Width;
-         Settings.Default.AppForm_Height = Height;
-         Settings.Default.Save();
-
-         base.OnClosing(e);
+         this.BindLocation(viewModel.Location);
+         this.BindSize(viewModel.Size);
+         this.BindMinimumSize(viewModel.MinimumSize);
+         _NewButton.BindClick(viewModel.NewClick);
+         _OpenButton.BindClick(viewModel.OpenClick);
+         _SaveButton.BindClick(viewModel.SaveClick);
+         _AddButton.BindClick(viewModel.AddClick);
+         _BuildButton.BindClick(viewModel.BuildClick);
+         _DeployButton.BindClick(viewModel.DeployClick);
+         _DebugButton.BindClick(viewModel.DebugClick);
+         this.BindClosing(viewModel.Closing);
+         viewModel.Start(this);
       }
 
       private void OnAboutClick(object sender, EventArgs e)

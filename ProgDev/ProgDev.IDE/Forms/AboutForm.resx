@@ -127,7 +127,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAABTBAAAUwQFqjo7LAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAABS/AAAUvwHqGrYCAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
         aW5rc2NhcGUub3Jnm+48GgAABkZJREFUaEPtmFdMlEsUx0FYxN5LbNEHu4ka1weiseUaE0tMFI0xJJYH
         QpQYlQexUCwoiUZjT4wPmhiNopRlQUTkonJBQYrSlHLxGriASK8Cy7nnnJ1v+ViW644+8JnwS87uzpmZ
         75v/lDMz6wAAv7WZPxwc9GgHfwPT9ybAF41+aN18/1dAeXk51NTUQG1tLX9rxahddgloaWmBkpISSEtL
@@ -158,4 +158,10 @@
         fi8Dh/8ARX/v9hf1z00AAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="label3.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="label8.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

@@ -23,7 +23,7 @@ namespace ProgDev.IDE.Common.FlexForms
       public void Handler(object sender, EventArgs e)
       {
          if (Handle != null)
-            Handle(this, EventArgs.Empty);
+            Handle(this, e);
       }
 
       public static implicit operator EventHandler(Signal command)

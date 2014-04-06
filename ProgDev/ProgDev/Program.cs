@@ -18,24 +18,17 @@ using System.Windows.Forms;
 
 namespace ProgDev
 {
-   static class Program
+   public static class Program
    {
       /// <summary>
       /// The main entry point for the application.
       /// </summary>
       [STAThread]
-      static void Main(string[] args)
+      public static void Main(string[] args)
       {
          Application.EnableVisualStyles();
          Application.SetCompatibleTextRenderingDefault(false);
-         
-         if (args.Length > 0)
-         {
-            Console.WriteLine("hello");
-            MessageBox.Show(args[0]);
-         }
-         
-         Application.Run(new AppForm());
+         Application.Run(FormsFactory.NewAppForm());
       }
    }
 }

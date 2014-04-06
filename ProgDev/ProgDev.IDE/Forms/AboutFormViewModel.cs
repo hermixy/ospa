@@ -25,6 +25,8 @@ namespace ProgDev.IDE.Forms
       public Signal FarmFreshClick;
       public Signal FatCowClick;
       public Signal CreativeCommonsClick;
+      public Signal DockPanelClick;
+      public Signal AntlrClick;
       public Signal CloseClick;
 
       protected override void Initialize()
@@ -60,6 +62,18 @@ namespace ProgDev.IDE.Forms
       public void OnCreativeCommonsClick()
       {
          Process.Start("http://creativecommons.org/licenses/by/3.0/us/");
+      }
+
+      [OnSignal("DockPanelClick")]
+      public void OnDockPanelClick()
+      {
+         Process.Start("http://dockpanelsuite.com/");
+      }
+
+      [OnSignal("AntlrClick")]
+      public void OnAntlrClick()
+      {
+         Process.Start("http://www.antlr.org/");
       }
    }
 }

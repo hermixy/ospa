@@ -16,6 +16,11 @@ namespace ProgDev.IDE.Forms
 {
    public static class FormsFactory
    {
+      public static AppForm NewAppForm()
+      {
+         return new AppForm(new AppFormViewModel());
+      }
+
       public static AboutForm NewAboutForm()
       {
          return new AboutForm(new AboutFormViewModel());

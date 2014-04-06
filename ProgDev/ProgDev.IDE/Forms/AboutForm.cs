@@ -29,6 +29,8 @@ namespace ProgDev.IDE.Forms
          _FarmFreshLinkLabel.BindClick(viewModel.FarmFreshClick);
          _FatCowLinkLabel.BindClick(viewModel.FatCowClick);
          _CreativeCommonsLinkLabel.BindClick(viewModel.CreativeCommonsClick);
+         _DockPanelLinkLabel.BindClick(viewModel.DockPanelClick);
+         _AntlrLinkLabel.BindClick(viewModel.AntlrClick);
          viewModel.Start(this);
       }
    }

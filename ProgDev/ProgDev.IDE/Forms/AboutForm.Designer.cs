@@ -31,6 +31,8 @@
          System.Windows.Forms.Label label4;
          System.Windows.Forms.Label label5;
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
+         System.Windows.Forms.Label label3;
+         System.Windows.Forms.Label label8;
          this._TitleLabel = new System.Windows.Forms.Label();
          this._CopyrightLabel = new System.Windows.Forms.Label();
          this._GitHubLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -44,8 +46,14 @@
          this._FatCowLinkLabel = new System.Windows.Forms.LinkLabel();
          this.label2 = new System.Windows.Forms.Label();
          this._CreativeCommonsLinkLabel = new System.Windows.Forms.LinkLabel();
+         this._DockPanelLinkLabel = new System.Windows.Forms.LinkLabel();
+         this.label6 = new System.Windows.Forms.Label();
+         this.label7 = new System.Windows.Forms.Label();
+         this._AntlrLinkLabel = new System.Windows.Forms.LinkLabel();
          label4 = new System.Windows.Forms.Label();
          label5 = new System.Windows.Forms.Label();
+         label3 = new System.Windows.Forms.Label();
+         label8 = new System.Windows.Forms.Label();
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
          this.SuspendLayout();
          // 
@@ -100,9 +108,9 @@
          // 
          this._CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._CloseButton.Location = new System.Drawing.Point(276, 187);
+         this._CloseButton.Location = new System.Drawing.Point(263, 236);
          this._CloseButton.Name = "_CloseButton";
-         this._CloseButton.Size = new System.Drawing.Size(75, 23);
+         this._CloseButton.Size = new System.Drawing.Size(88, 26);
          this._CloseButton.TabIndex = 0;
          this._CloseButton.Text = "Close";
          this._CloseButton.UseVisualStyleBackColor = true;
@@ -193,13 +201,75 @@
          this._CreativeCommonsLinkLabel.TabStop = true;
          this._CreativeCommonsLinkLabel.Text = "CC BY 3.0";
          // 
+         // label3
+         // 
+         label3.AutoSize = true;
+         label3.Location = new System.Drawing.Point(68, 178);
+         label3.Name = "label3";
+         label3.Size = new System.Drawing.Size(15, 15);
+         label3.TabIndex = 18;
+         label3.Text = "♦";
+         // 
+         // _DockPanelLinkLabel
+         // 
+         this._DockPanelLinkLabel.AutoSize = true;
+         this._DockPanelLinkLabel.Location = new System.Drawing.Point(82, 178);
+         this._DockPanelLinkLabel.Name = "_DockPanelLinkLabel";
+         this._DockPanelLinkLabel.Size = new System.Drawing.Size(92, 15);
+         this._DockPanelLinkLabel.TabIndex = 17;
+         this._DockPanelLinkLabel.TabStop = true;
+         this._DockPanelLinkLabel.Text = "DockPanel Suite";
+         // 
+         // label6
+         // 
+         this.label6.AutoSize = true;
+         this.label6.Location = new System.Drawing.Point(171, 178);
+         this.label6.Name = "label6";
+         this.label6.Size = new System.Drawing.Size(108, 15);
+         this.label6.TabIndex = 19;
+         this.label6.Text = "© 2007 Weifen Luo";
+         // 
+         // label7
+         // 
+         this.label7.AutoSize = true;
+         this.label7.Location = new System.Drawing.Point(131, 202);
+         this.label7.Name = "label7";
+         this.label7.Size = new System.Drawing.Size(206, 15);
+         this.label7.TabIndex = 22;
+         this.label7.Text = "© 2012 Terence Parr and Sam Harwell";
+         // 
+         // label8
+         // 
+         label8.AutoSize = true;
+         label8.Location = new System.Drawing.Point(68, 202);
+         label8.Name = "label8";
+         label8.Size = new System.Drawing.Size(15, 15);
+         label8.TabIndex = 21;
+         label8.Text = "♦";
+         // 
+         // _AntlrLinkLabel
+         // 
+         this._AntlrLinkLabel.AutoSize = true;
+         this._AntlrLinkLabel.Location = new System.Drawing.Point(82, 202);
+         this._AntlrLinkLabel.Name = "_AntlrLinkLabel";
+         this._AntlrLinkLabel.Size = new System.Drawing.Size(53, 15);
+         this._AntlrLinkLabel.TabIndex = 20;
+         this._AntlrLinkLabel.TabStop = true;
+         this._AntlrLinkLabel.Text = "ANTLR 4";
+         // 
          // AboutForm
          // 
          this.AcceptButton = this._CloseButton;
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.CancelButton = this._CloseButton;
-         this.ClientSize = new System.Drawing.Size(363, 222);
+         this.ClientSize = new System.Drawing.Size(363, 274);
+         this.Controls.Add(this.label7);
+         this.Controls.Add(label8);
+         this.Controls.Add(this._AntlrLinkLabel);
+         this.Controls.Add(this.label6);
+         this.Controls.Add(label3);
+         this.Controls.Add(this._DockPanelLinkLabel);
          this.Controls.Add(label5);
          this.Controls.Add(label4);
          this.Controls.Add(this._CreativeCommonsLinkLabel);
@@ -245,5 +315,9 @@
       private System.Windows.Forms.LinkLabel _FatCowLinkLabel;
       private System.Windows.Forms.Label label2;
       private System.Windows.Forms.LinkLabel _CreativeCommonsLinkLabel;
+      private System.Windows.Forms.LinkLabel _DockPanelLinkLabel;
+      private System.Windows.Forms.Label label6;
+      private System.Windows.Forms.Label label7;
+      private System.Windows.Forms.LinkLabel _AntlrLinkLabel;
    }
 }
