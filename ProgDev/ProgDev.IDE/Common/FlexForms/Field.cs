@@ -27,11 +27,11 @@ namespace ProgDev.IDE.Common.FlexForms
       }
    }
 
-   public sealed class Field<T> : Field
+   public class Field<T> : Field
    {
-      private T _Value;
+      protected T _Value;
 
-      public T Value
+      public virtual T Value
       {
          get
          {

@@ -121,4 +121,13 @@
     <value>Version {0}</value>
     <comment>The version label in AboutWindow.</comment>
   </data>
+  <data name="ButtonCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ErrorExpectedIdentifier" xml:space="preserve">
+    <value>Must be a valid identifier (alphanumeric and underscore, starting with a letter).</value>
+  </data>
 </root>

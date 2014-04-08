@@ -43,6 +43,11 @@ namespace ProgDev.IDE.Common.FlexForms
          Initialize();
       }
 
+      public void Reset()
+      {
+         Initialize();
+      }
+
       protected abstract void Initialize();
 
       protected void Close()
@@ -52,6 +57,14 @@ namespace ProgDev.IDE.Common.FlexForms
 
          if (controlType == formType || controlType.IsSubclassOf(formType))
             Invoke(x => (x as Form).Close());
+      }
+
+      protected bool Validate<T>(
+         Field<T> inputField, Field<string> errorField, Func<T, bool> isValidFunc, string errorMessage)
+      {
+         bool isValid = isValidFunc(inputField.Value);
+         errorField.Value = isValid ? string.Empty : errorMessage;
+         return isValid;
       }
       
       private void AttachHandlers()
@@ -83,7 +96,22 @@ namespace ProgDev.IDE.Common.FlexForms
                var callback = CreateCallback<Field>(methodInfo, handler.FieldName, typeof(void));
                callback.Item1.Changed += (sender, e) => callback.Item2();
             }
+
+            foreach (var handler in attributes.OfType<EvaluateAttribute>())
+            {
+               var callback = CreateComputedCallback<IComputedField>(methodInfo, handler.FieldName);
+               callback.Item1.Dependencies = handler.FieldDependencies.Select(GetField);
+               callback.Item1.Evaluator = callback.Item2;
+            }
          }
+      }
+
+      private Field GetField(string fieldName)
+      {
+         var fieldInfo = GetType().GetFields().SingleOrDefault(x => x.Name == fieldName);
+         if (fieldInfo == null)
+            throw new FlexException("Cannot find a field named: " + fieldInfo);
+         return (Field)fieldInfo.GetValue(this);
       }
 
       private Tuple<T, Func<object>> CreateCallback<T>(MethodInfo methodInfo, string fieldName, Type returnType)
@@ -122,6 +150,21 @@ namespace ProgDev.IDE.Common.FlexForms
          return Tuple.Create<T, Func<EventArgs, object>>(
             (T)fieldInfo.GetValue(this),
             (e) => methodInfo.Invoke(this, new object[] { e })
+         );
+      }
+
+      private Tuple<T, Func<object>> CreateComputedCallback<T>(MethodInfo methodInfo, string fieldName)
+      {
+         if (methodInfo.GetParameters().Any())
+            throw new FlexException("Method must not have any parameters.");
+
+         var fieldInfo = GetType().GetFields().SingleOrDefault(x => x.Name == fieldName);
+         if (fieldInfo == null)
+            throw new FlexException("Cannot find a field named: " + fieldName);
+
+         return Tuple.Create<T, Func<object>>(
+            (T)fieldInfo.GetValue(this),
+            () => methodInfo.Invoke(this, new object[0])
          );
       }
 

@@ -12,23 +12,41 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-namespace ProgDev.IDE.Forms
+using System;
+using System.Collections.Generic;
+
+namespace ProgDev.IDE.Common.FlexForms
 {
-   public static class FormsFactory
+   public sealed class ComputedField<T> : Field<T>, IComputedField
    {
-      public static AppForm NewAppForm()
+      Func<object> IComputedField.Evaluator { get; set; }
+
+      IEnumerable<Field> IComputedField.Dependencies
       {
-         return new AppForm(new AppFormViewModel());
+         set
+         {
+            foreach (var dependency in value)
+               dependency.Changed += OnDependencyChanged;
+         }
       }
 
-      public static AboutForm NewAboutForm()
+      private void OnDependencyChanged(object sender, EventArgs e)
       {
-         return new AboutForm(new AboutFormViewModel());
+         _Value = (T)((IComputedField)this).Evaluator();
+         Notify();
       }
 
-      public static UnitForm NewUnitForm(bool isNew)
+      public override T Value
       {
-         return new UnitForm(new UnitFormViewModel(isNew));
+         get
+         {
+            return _Value;
+         }
+         set
+         {
+            // Ignore it.  This field is computed dynamically.  But notify normally.
+            Notify();
+         }
       }
    }
 }

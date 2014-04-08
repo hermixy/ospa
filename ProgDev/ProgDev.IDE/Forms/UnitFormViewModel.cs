@@ -14,51 +14,48 @@
 
 using ProgDev.Core;
 using ProgDev.IDE.Common.FlexForms;
-using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace ProgDev.IDE.Forms
 {
    public sealed class UnitFormViewModel : FormViewModel
    {
+      private bool _IsNew;
+
       public Field<string> NameText;
       public Field<string> NameError;
-      public Field<bool> IsOkEnabled;
+      public ComputedField<bool> IsOkEnabled;
+      public Field<string> OkText;
       public Signal OkClick;
+
+      public UnitFormViewModel(bool isNew)
+      {
+         _IsNew = isNew;
+      }
 
       protected override void Initialize()
       {
          NameText.Value = string.Empty;
          NameError.Value = string.Empty;
          IsOkEnabled.Value = false;
+         OkText.Value = _IsNew ? Strings.ButtonCreate : Strings.ButtonSave;
       }
 
-      [OnChange("NameText")]
-      public void OnChange()
+      [Evaluate("IsOkEnabled", new[] { "NameText" })]
+      public bool EvaluateIsOkEnabled()
       {
-         Validate();
-      }
-
-      public bool Validate()
-      {
-         bool validName = InputValidator.IsIdentifier(NameText.Value);
-         IsOkEnabled.Value = validName;
-
-         if (validName)
-            NameError.Value = string.Empty;
-         else
-            NameError.Value = "Name must be a valid identifier (alphanumeric and underscore, starting with a letter)";
-
-         return IsOkEnabled.Value;
+         return Validate();
       }
 
       [OnSignal("OkClick")]
       public void OnOkClick()
       {
          if (Validate())
-         {
             Close();
-         }
+      }
+
+      private bool Validate()
+      {
+         return Validate(NameText, NameError, InputValidator.IsIdentifier, Strings.ErrorExpectedIdentifier);
       }
    }
 }

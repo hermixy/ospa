@@ -13,11 +13,7 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProgDev.IDE.Common.FlexForms
@@ -88,6 +84,12 @@ namespace ProgDev.IDE.Common.FlexForms
       }
 
       public static void BindError(this ErrorProvider control, Control target, Field<string> property)
+      {
+         // This is a read-only control, so there's no event.
+         Bind(property, () => control.GetError(target), x => control.SetError(target, x));
+      }
+
+      public static void BindError(this Control target, ErrorProvider control, Field<string> property)
       {
          // This is a read-only control, so there's no event.
          Bind(property, () => control.GetError(target), x => control.SetError(target, x));

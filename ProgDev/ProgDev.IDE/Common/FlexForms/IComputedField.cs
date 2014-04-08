@@ -12,23 +12,14 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-namespace ProgDev.IDE.Forms
+using System;
+using System.Collections.Generic;
+
+namespace ProgDev.IDE.Common.FlexForms
 {
-   public static class FormsFactory
+   public interface IComputedField
    {
-      public static AppForm NewAppForm()
-      {
-         return new AppForm(new AppFormViewModel());
-      }
-
-      public static AboutForm NewAboutForm()
-      {
-         return new AboutForm(new AboutFormViewModel());
-      }
-
-      public static UnitForm NewUnitForm(bool isNew)
-      {
-         return new UnitForm(new UnitFormViewModel(isNew));
-      }
+      Func<object> Evaluator { get; set; }
+      IEnumerable<Field> Dependencies { set; }
    }
 }

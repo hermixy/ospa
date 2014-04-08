@@ -47,6 +47,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\FlexForms\ComputedField.cs" />
+    <Compile Include="Common\FlexForms\EvaluateAttribute.cs" />
+    <Compile Include="Common\FlexForms\IComputedField.cs" />
     <Compile Include="Common\TaskDialogFactory.cs" />
     <Compile Include="Common\FlexForms\Binder.cs" />
     <Compile Include="Common\FlexForms\Field.cs" />

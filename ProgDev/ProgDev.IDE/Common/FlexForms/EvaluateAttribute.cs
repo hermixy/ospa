@@ -12,23 +12,19 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-namespace ProgDev.IDE.Forms
+using System;
+
+namespace ProgDev.IDE.Common.FlexForms
 {
-   public static class FormsFactory
+   [AttributeUsage(AttributeTargets.Method)]
+   public sealed class EvaluateAttribute : FlexAttribute
    {
-      public static AppForm NewAppForm()
-      {
-         return new AppForm(new AppFormViewModel());
-      }
+      public string[] FieldDependencies;
 
-      public static AboutForm NewAboutForm()
+      public EvaluateAttribute(string fieldName, string[] fieldDependencies)
+         : base(fieldName)
       {
-         return new AboutForm(new AboutFormViewModel());
-      }
-
-      public static UnitForm NewUnitForm(bool isNew)
-      {
-         return new UnitForm(new UnitFormViewModel(isNew));
+         FieldDependencies = fieldDependencies;
       }
    }
 }

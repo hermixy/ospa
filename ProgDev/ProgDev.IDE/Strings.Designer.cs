@@ -68,5 +68,32 @@ namespace ProgDev.IDE {
                 return ResourceManager.GetString("AboutVersionFormat", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        internal static string ButtonCreate {
+            get {
+                return ResourceManager.GetString("ButtonCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string ButtonSave {
+            get {
+                return ResourceManager.GetString("ButtonSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be a valid identifier (alphanumeric and underscore, starting with a letter)..
+        /// </summary>
+        internal static string ErrorExpectedIdentifier {
+            get {
+                return ResourceManager.GetString("ErrorExpectedIdentifier", resourceCulture);
+            }
+        }
     }
 }
