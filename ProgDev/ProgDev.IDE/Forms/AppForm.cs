@@ -49,7 +49,7 @@ namespace ProgDev.IDE.Forms
 
       private void OnAboutClick(object sender, EventArgs e)
       {
-         FormsFactory.NewUnitForm(true).ShowDialog();
+         FormsFactory.NewUnitForm("UNTITLED1", true).ShowDialog();
          FormsFactory.NewAboutForm().ShowDialog();
       }
    }

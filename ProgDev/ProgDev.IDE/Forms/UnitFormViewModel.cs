@@ -19,43 +19,48 @@ namespace ProgDev.IDE.Forms
 {
    public sealed class UnitFormViewModel : FormViewModel
    {
-      private bool _IsNew;
+      private readonly string _Name;
+      private readonly bool _IsNew;
 
       public Field<string> NameText;
-      public Field<string> NameError;
-      public ComputedField<bool> IsOkEnabled;
-      public Field<string> OkText;
+      public ComputedField<string> NameError;
+      public ComputedField<bool> OkEnabled;
+      public ComputedField<string> OkText;
       public Signal OkClick;
 
-      public UnitFormViewModel(bool isNew)
+      public UnitFormViewModel(string name, bool isNew)
       {
+         _Name = name;
          _IsNew = isNew;
       }
 
       protected override void Initialize()
       {
-         NameText.Value = string.Empty;
-         NameError.Value = string.Empty;
-         IsOkEnabled.Value = false;
-         OkText.Value = _IsNew ? Strings.ButtonCreate : Strings.ButtonSave;
+         NameText.Value = _Name;
       }
 
-      [Evaluate("IsOkEnabled", new[] { "NameText" })]
-      public bool EvaluateIsOkEnabled()
+      [Compute("NameError"), Depends("NameText")]
+      public string ComputeNameError()
       {
-         return Validate();
+         return InputValidator.IsIdentifier(NameText.Value) ? "" : Strings.ErrorExpectedIdentifier;
+      }
+
+      [Compute("IsOkEnabled"), Depends("NameError")]
+      public bool ComputeOkEnabled()
+      {
+         return NameError.Value == "";
+      }
+
+      [Compute("OkText")]
+      public string ComputeOkText()
+      {
+         return _IsNew ? Strings.ButtonCreate : Strings.ButtonSave;
       }
 
       [OnSignal("OkClick")]
       public void OnOkClick()
       {
-         if (Validate())
-            Close();
-      }
-
-      private bool Validate()
-      {
-         return Validate(NameText, NameError, InputValidator.IsIdentifier, Strings.ErrorExpectedIdentifier);
+         Close();
       }
    }
 }

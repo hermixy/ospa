@@ -12,23 +12,16 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.IDE.Common.FlexForms;
-using System.Windows.Forms;
+using System;
 
-namespace ProgDev.IDE.Forms
+namespace ProgDev.IDE.Common.FlexForms
 {
-   public partial class UnitForm : Form
+   [AttributeUsage(AttributeTargets.Method)]
+   public sealed class ComputeAttribute : FlexAttribute
    {
-      public UnitForm(UnitFormViewModel viewModel)
+      public ComputeAttribute(string fieldName)
+         : base(fieldName)
       {
-         InitializeComponent();
-
-         _NameTxt.BindText(viewModel.NameText);
-         _NameTxt.BindError(_ErrorProvider, viewModel.NameError);
-         _OkBtn.BindEnabled(viewModel.OkEnabled);
-         _OkBtn.BindText(viewModel.OkText);
-         _OkBtn.BindClick(viewModel.OkClick);
-         viewModel.Start(this);
       }
    }
 }

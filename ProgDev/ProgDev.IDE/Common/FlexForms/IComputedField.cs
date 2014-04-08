@@ -21,5 +21,6 @@ namespace ProgDev.IDE.Common.FlexForms
    {
       Func<object> Evaluator { get; set; }
       IEnumerable<Field> Dependencies { set; }
+      void Poll();
    }
 }

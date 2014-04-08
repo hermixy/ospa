@@ -40,15 +40,45 @@ namespace ProgDev.IDE.Common.FlexForms
          // the derived form to take care of storing the view model.
          form.Tag = this;
 
-         Initialize();
+         Reset();
       }
 
       public void Reset()
       {
+         ApplyInitialValues();
+         PollComputedFields();
          Initialize();
       }
 
-      protected abstract void Initialize();
+      private void ApplyInitialValues()
+      {
+         var fields = GetType()
+            .GetFields()
+            .Where(x => x.GetCustomAttributes(true).OfType<InitialValueAttribute>().Any());
+
+         foreach (var fieldInfo in fields)
+         {
+            object value = fieldInfo.GetCustomAttributes(true).OfType<InitialValueAttribute>().Single().Value;
+            ((Field)fieldInfo.GetValue(this)).SetValue(value);
+         }
+      }
+
+      private void PollComputedFields()
+      {
+         var fields = GetType()
+            .GetFields()
+            .Where(x => x.FieldType.GetInterfaces().Any(y => y == typeof(IComputedField)));
+
+         foreach (var fieldInfo in fields)
+         {
+            var field = (IComputedField)fieldInfo.GetValue(this);
+            field.Poll();
+         }
+      }
+
+      protected virtual void Initialize()
+      {
+      }
 
       protected void Close()
       {
@@ -97,11 +127,14 @@ namespace ProgDev.IDE.Common.FlexForms
                callback.Item1.Changed += (sender, e) => callback.Item2();
             }
 
-            foreach (var handler in attributes.OfType<EvaluateAttribute>())
+            foreach (var handler in attributes.OfType<ComputeAttribute>())
             {
                var callback = CreateComputedCallback<IComputedField>(methodInfo, handler.FieldName);
-               callback.Item1.Dependencies = handler.FieldDependencies.Select(GetField);
                callback.Item1.Evaluator = callback.Item2;
+
+               var triggers = attributes.OfType<DependsAttribute>().SingleOrDefault();
+               if (triggers != null)
+                  callback.Item1.Dependencies = triggers.FieldDependencies.Select(GetField);
             }
          }
       }

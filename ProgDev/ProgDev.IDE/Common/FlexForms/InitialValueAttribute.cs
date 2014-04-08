@@ -16,15 +16,14 @@ using System;
 
 namespace ProgDev.IDE.Common.FlexForms
 {
-   [AttributeUsage(AttributeTargets.Method)]
-   public sealed class EvaluateAttribute : FlexAttribute
+   [AttributeUsage(AttributeTargets.Field)]
+   public sealed class InitialValueAttribute : Attribute
    {
-      public string[] FieldDependencies;
+      public readonly object Value;
 
-      public EvaluateAttribute(string fieldName, string[] fieldDependencies)
-         : base(fieldName)
+      public InitialValueAttribute(object value)
       {
-         FieldDependencies = fieldDependencies;
+         Value = value;
       }
    }
 }

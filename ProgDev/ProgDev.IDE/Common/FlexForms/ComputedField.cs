@@ -26,11 +26,16 @@ namespace ProgDev.IDE.Common.FlexForms
          set
          {
             foreach (var dependency in value)
-               dependency.Changed += OnDependencyChanged;
+               dependency.Changed += (sender, e) => Recompute();
          }
       }
 
-      private void OnDependencyChanged(object sender, EventArgs e)
+      void IComputedField.Poll()
+      {
+         Recompute();
+      }
+
+      private void Recompute()
       {
          _Value = (T)((IComputedField)this).Evaluator();
          Notify();

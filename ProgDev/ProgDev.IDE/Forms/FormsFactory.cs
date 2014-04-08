@@ -26,9 +26,9 @@ namespace ProgDev.IDE.Forms
          return new AboutForm(new AboutFormViewModel());
       }
 
-      public static UnitForm NewUnitForm(bool isNew)
+      public static UnitForm NewUnitForm(string name, bool isNew)
       {
-         return new UnitForm(new UnitFormViewModel(isNew));
+         return new UnitForm(new UnitFormViewModel(name, isNew));
       }
    }
 }
