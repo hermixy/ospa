@@ -14,12 +14,12 @@
 
 grammar Ospa;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Root production
 
 prog                       : POU_Decl *;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 1 - Character sets 
 // Table 2 - Identifiers 
 
@@ -30,7 +30,7 @@ Octal_Digit                : '0'..'7';
 Hex_Digit                  : '0'..'9' | 'A'..'F'; 
 Identifier                 : Letter ( Letter | Digit )*; 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 3 - Comments 
 
 Comment                    : ( '//' ~( '\n' | '\r' )* '\r' ? '\n' 
@@ -38,12 +38,12 @@ Comment                    : ( '//' ~( '\n' | '\r' )* '\r' ? '\n'
 WS                         : ( ' ' | '\t' | '\r' | '\n' ) -> channel(HIDDEN);
 EOL                        : '\n'; 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 4 - Pragma 
 
 Pragma                     : '{' ( . )*? '}' -> channel(HIDDEN); 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 5 - Numeric literal 
 
 Constant                   : Numeric_Literal | Char_Literal | Time_Literal | Bit_Str_Literal | Bool_Literal; 
@@ -58,7 +58,7 @@ Real_Literal               : ( Real_Type_Name '#' )? Signed_Int '.' Unsigned_Int
 Bit_Str_Literal            : ( Multibits_Type_Name '#' )? ( Unsigned_Int | Binary_Int | Octal_Int | Hex_Int ); 
 Bool_Literal               : ( Bool_Type_Name '#' )? ( '0' | '1' | 'FALSE' | 'TRUE' ); 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 6 - Character String literals 
 // Table 7 - Two-character combinations in character strings 
 
@@ -71,7 +71,7 @@ D_Byte_Char_Value          : Common_Char_Value | '\'' | '$"' | '$' Hex_Digit Hex
 Common_Char_Value          : ' ' | '!' | '#' | '%' | '&' | '('..'/' | '0'..'9' | ':'..'@' | 'A'..'Z' | '['..'`' 
                               | 'a'..'z' | '{'..'~' | '$$' | '$L' | '$N' | '$P' | '$R' | '$T'; 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 8 - Duration literals 
 // Table 9 – Date and time of day literals 
 
@@ -98,7 +98,7 @@ Month                      : Unsigned_Int;
 Day                        : Unsigned_Int; 
 Date_And_Time              : ( DT_Type_Name | 'LDATE_AND_TIME' ) '#' Date_Literal '-' Daytime; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 10 - Elementary data types 
 
 Data_Type_Access           : Elem_Type_Name | Derived_Type_Access; 
@@ -118,7 +118,7 @@ Bit_Str_Type_Name          : Bool_Type_Name | Multibits_Type_Name;
 Bool_Type_Name             : 'BOOL'; 
 Multibits_Type_Name        : 'BYTE' | 'WORD' | 'DWORD' | 'LWORD'; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 11 - Declaration of user-defined data types and initialization 
 
 Derived_Type_Access        : Single_Elem_Type_Access | Array_Type_Access | Struct_Type_Access | String_Type_Access 
@@ -169,13 +169,13 @@ Struct_Elem_Init           : Struct_Elem_Name ':='
                               ( Constant_Expr | Enum_Value | Array_Init | Struct_Init | Ref_Value ); 
 Str_Type_Decl              : String_Type_Name ':' String_Type_Name ( ':=' Char_Str )?; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 16 - Directly represented variables 
 
 Direct_Variable            : '%' ( 'I' | 'Q' | 'M' ) ( 'X' | 'B' | 'W' | 'D' | 'L' )? Unsigned_Int 
                               ( '.' Unsigned_Int )*; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 12 - Reference operations 
 
 Ref_Type_Decl              : Ref_Type_Name ':' Ref_Spec_Init; 
@@ -189,7 +189,7 @@ Ref_Addr                   : 'REF' '(' ( Symbolic_Variable | FB_Instance_Name | 
 Ref_Assign                 : Ref_Name ':=' ( Ref_Name | Ref_Deref | Ref_Value ); 
 Ref_Deref                  : Ref_Name '^' +; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 13 - Declaration of variables/Table 14 – Initialization of variables 
 
 Variable                   : Direct_Variable | Symbolic_Variable; 
@@ -248,7 +248,7 @@ Loc_Partly_Var             : Variable_Name 'AT' '%' ( 'I' | 'Q' | 'M' ) '*' ':' 
 Var_Spec                   : Simple_Spec | Array_Spec | Struct_Type_Access 
                               | ( 'STRING' | 'WSTRING' ) ( '[' Unsigned_Int ']' )?; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 19 - Function declaration 
 
 Func_Name                  : Std_Func_Name | Derived_Func_Name; 
@@ -266,7 +266,7 @@ IO_Var_Decls               : Input_Decls | Output_Decls | In_Out_Decls;
 Func_Var_Decls             : External_Var_Decls | Var_Decls; 
 Func_Body                  : Ladder_Diagram | FB_Diagram | Instruction_List | Stmt_List | Other_Languages; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 40 – Function block type declaration
 // Table 41 - Function block instance declaration 
 
@@ -293,7 +293,7 @@ Method_Decl                : 'METHOD' Access_Spec ( 'FINAL' | 'ABSTRACT' )? 'OVE
                               ( IO_Var_Decls | Func_Var_Decls | Temp_Var_Decls )* Func_Body 'END_METHOD'; 
 Method_Name                : Identifier; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 48 - Class 
 // Table 50 Textual call of methods – Formal and non-formal parameter list 
 
@@ -315,7 +315,7 @@ Interface_Type_Access      : ( Namespace_Name '.' )* Interface_Type_Name;
 Interface_Name             : Identifier; 
 Access_Spec                : 'PUBLIC' | 'PROTECTED' | 'PRIVATE' | 'INTERNAL'; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 47 - Program declaration 
 
 Prog_Decl                  : 'PROGRAM' Prog_Type_Name 
@@ -327,7 +327,7 @@ Prog_Access_Decls          : 'VAR_ACCESS' ( Prog_Access_Decl ';' )* 'END_VAR';
 Prog_Access_Decl           : Access_Name ':' Symbolic_Variable Multibit_Part_Access ? ':' Data_Type_Access 
                               Access_Direction ?; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 54 - 61 - Sequential Function Chart (SFC) 
 
 SFC                        : Sfc_Network +; 
@@ -347,7 +347,7 @@ Steps                      : Step_Name | '(' Step_Name ( ',' Step_Name )+ ')';
 Transition_Cond            : ':=' Expression ';' | ':' ( FBD_Network | LD_Rung ) | ':=' IL_Simple_Inst; 
 Sfc_Action                 : 'ACTION' Action_Name ':' FB_Body 'END_ACTION'; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 62 - Configuration and resource declaration 
 
 Config_Name                : Identifier; 
@@ -387,7 +387,7 @@ Config_Inst_Init           : Resource_Name '.' Prog_Name '.' ( ( FB_Instance_Nam
                               | ( ( FB_Instance_Name ':' FB_Type_Access ) 
                               | ( Class_Instance_Name ':' Class_Type_Access ) ) ':=' Struct_Init ); 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 64 - Namespace 
 
 Namespace_Decl             : 'NAMESPACE' 'INTERNAL' ? Namespace_H_Name Using_Directive * Namespace_Elements 
@@ -399,7 +399,7 @@ Using_Directive            : 'USING' Namespace_H_Name ( ',' Namespace_H_Name )* 
 POU_Decl                   : Using_Directive * ( Global_Var_Decls | Data_Type_Decl | Access_Decls | Func_Decl | FB_Decl 
                               | Class_Decl | Interface_Decl | Namespace_Decl )+; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 67 - 70 - Instruction List (IL) 
 
 Instruction_List           : IL_Instruction +; 
@@ -433,7 +433,7 @@ IL_Call_Operator           : 'CAL' | 'CALC' | 'CALCN';
 IL_Return_Operator         : 'RT' | 'RETC' | 'RETCN'; 
 IL_Jump_Operator           : 'JMP' | 'JMPC' | 'JMPCN'; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 71 - 72 - Language Structured Text (ST) 
 
 Expression                 : Xor_Expr ( 'OR' Xor_Expr )*; 
@@ -475,7 +475,7 @@ For_List                   : Expression 'TO' Expression ( 'BY' Expression )?;
 While_Stmt                 : 'WHILE' Expression 'DO' Stmt_List 'END_WHILE'; 
 Repeat_Stmt                : 'REPEAT' Stmt_List 'UNTIL' Expression 'END_REPEAT'; 
  
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=====================================================================================================================
 // Table 73 - 76 - Graphic languages elements 
 
 Ladder_Diagram             : LD_Rung *; 

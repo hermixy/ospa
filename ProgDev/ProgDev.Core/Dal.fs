@@ -38,33 +38,30 @@ let private FilesStart = "\r\n{[[ProgDev.Files]]}"
 let private FileStart = "\r\n{[[ProgDev.File]]}\r\n"
 let private FieldDelimeter = "\r\n{[[======]]}\r\n"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Serialization
-//
+(**********************************************************************************************************************
+ * Serialization
+ *)
 
-let private SerializeVirtualFile (file : VirtualFile) : string =
-   FileStart + file.Path + FieldDelimeter + file.Name + FieldDelimeter + file.Content
-
-let rec private SerializeVirtualFolder (folder : VirtualFolder) : string =
-   FolderStart + folder.Path
-
-let private SerializeBundle (bundle : Bundle) : string =
-   let foldersSection = 
-      List.map SerializeVirtualFolder bundle.Folders 
-      |> String.concat "" 
-   let filesSection = 
-      List.map SerializeVirtualFile bundle.Files
-      |> String.concat ""
-   FoldersStart + foldersSection + FilesStart + filesSection
+let rec private Serialize (x : obj) : string = 
+   match x with
+   | :? Bundle as bundle ->
+      let foldersSection = bundle.Folders |> List.map Serialize |> String.concat "" 
+      let filesSection = bundle.Files |> List.map Serialize |> String.concat ""
+      FoldersStart + foldersSection + FilesStart + filesSection   
+   | :? VirtualFolder as folder -> 
+      FolderStart + folder.Path
+   | :? VirtualFile as file -> 
+      FileStart + file.Path + FieldDelimeter + file.Name + FieldDelimeter + file.Content
+   | _ -> raise (Exception("Unrecognized type"))
 
 let Save (bundle : Bundle) (filePath : string) : unit =
    use stream = File.Create(filePath)
    use writer = new StreamWriter(stream, Encoding.UTF8)
-   writer.Write(SerializeBundle bundle)
+   Serialize bundle |> writer.Write
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Deserialization
-//
+(**********************************************************************************************************************
+ * Deserialization
+ *)
 
 let private CheckAndChop (haystack : string) (needle : string) : string =
    if haystack.Length < needle.Length then
@@ -78,26 +75,19 @@ let private CheckAndChop (haystack : string) (needle : string) : string =
 
 let private DeserializeVirtualFile (encoded : string) : VirtualFile =
    let fields = encoded.Split([| FieldDelimeter |], StringSplitOptions.None)
-   {
-      Path = fields.[0]
-      Name = fields.[1]
-      Content = fields.[2]
-   }
+   { Path = fields.[0]; Name = fields.[1]; Content = fields.[2] }
 
 let private DeserializeVirtualFolder (encoded : string) : VirtualFolder =
-   {
-      Path = encoded
-   }
+   { Path = encoded }
 
 let private DeserializeBundle (encoded : string) : Bundle =
    let body = CheckAndChop encoded FoldersStart
    let sections = body.Split([| FilesStart |], StringSplitOptions.None)
    let folderRecords = sections.[0].Split([| FolderStart |], StringSplitOptions.RemoveEmptyEntries)
    let fileRecords = sections.[1].Split([| FileStart |], StringSplitOptions.RemoveEmptyEntries)
-   {
-      Folders = List.map DeserializeVirtualFolder (Array.toList folderRecords)
-      Files = List.map DeserializeVirtualFile (Array.toList fileRecords)
-   }
+   let folders = folderRecords |> Array.map DeserializeVirtualFolder |> Array.toList
+   let files = fileRecords  |> Array.map DeserializeVirtualFile |> Array.toList
+   { Folders = folders; Files = files }
 
 let Load (filePath : string) : Bundle =
    use stream = File.OpenRead(filePath)

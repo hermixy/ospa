@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\TaskDialogFactory.cs" />
     <Compile Include="Common\FlexForms\Binder.cs" />
     <Compile Include="Common\FlexForms\Field.cs" />
     <Compile Include="Common\FlexForms\FlexAttribute.cs" />
@@ -77,6 +78,12 @@
     <Compile Include="Forms\ProgramExplorerForm.Designer.cs">
       <DependentUpon>ProgramExplorerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UnitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UnitForm.Designer.cs">
+      <DependentUpon>UnitForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProgramExplorerForm.resx">
       <DependentUpon>ProgramExplorerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UnitForm.resx">
+      <DependentUpon>UnitForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
