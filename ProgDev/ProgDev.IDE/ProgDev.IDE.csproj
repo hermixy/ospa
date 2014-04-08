@@ -63,6 +63,7 @@
     <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UnitFormViewModel.cs" />
     <Compile Include="Forms\AboutFormViewModel.cs" />
     <Compile Include="Forms\AppForm.cs">
       <SubType>Form</SubType>

@@ -22,7 +22,7 @@ namespace ProgDev.IDE.Common.FlexForms
    public abstract class ViewModel<ControlType>
       where ControlType : Control
    {
-      public Action<Action<ControlType>> Invoke = f => { };
+      private Action<Action<ControlType>> Invoke = f => { };
 
       public ViewModel()
       {
@@ -45,11 +45,20 @@ namespace ProgDev.IDE.Common.FlexForms
 
       protected abstract void Initialize();
 
+      protected void Close()
+      {
+         Type controlType = typeof(ControlType);
+         Type formType = typeof(Form);
+
+         if (controlType == formType || controlType.IsSubclassOf(formType))
+            Invoke(x => (x as Form).Close());
+      }
+      
       private void AttachHandlers()
       {
          var methods = GetType()
             .GetMethods()
-            .Where(x => x.GetCustomAttributes(true).OfType<OnSignalAttribute>().Any());
+            .Where(x => x.GetCustomAttributes(true).OfType<FlexAttribute>().Any());
 
          foreach (var methodInfo in methods)
          {

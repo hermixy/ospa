@@ -51,6 +51,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="Ast.fs" />
+    <Compile Include="InputValidator.fs" />
     <Compile Include="Parser.fs" />
     <None Include="packages.config" />
     <Compile Include="Dal.fs" />

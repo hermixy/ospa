@@ -12,23 +12,16 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-namespace ProgDev.IDE.Forms
-{
-   public static class FormsFactory
-   {
-      public static AppForm NewAppForm()
-      {
-         return new AppForm(new AppFormViewModel());
-      }
+module ProgDev.Core.InputValidator
+open System.Text.RegularExpressions
 
-      public static AboutForm NewAboutForm()
-      {
-         return new AboutForm(new AboutFormViewModel());
-      }
+let private IdentifierRegex = Regex "^[A-Za-z_][A-Za-z_0-9]*$"
 
-      public static UnitForm NewUnitForm()
-      {
-         return new UnitForm(new UnitFormViewModel());
-      }
-   }
-}
+let (| Identifier | _ |) (x : string) : string option =
+   let m = IdentifierRegex.Match(x)
+   if m.Success then Some m.Groups.[1].Value else None
+
+let IsIdentifier (x : string) : bool =
+   match x with
+   | Identifier y -> true
+   | _ -> false

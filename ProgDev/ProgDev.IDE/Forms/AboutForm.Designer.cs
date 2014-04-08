@@ -30,9 +30,9 @@
       {
          System.Windows.Forms.Label label4;
          System.Windows.Forms.Label label5;
-         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
          System.Windows.Forms.Label label3;
          System.Windows.Forms.Label label8;
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
          this._TitleLabel = new System.Windows.Forms.Label();
          this._CopyrightLabel = new System.Windows.Forms.Label();
          this._GitHubLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -75,6 +75,24 @@
          label5.TabIndex = 16;
          label5.Text = "♦";
          // 
+         // label3
+         // 
+         label3.AutoSize = true;
+         label3.Location = new System.Drawing.Point(68, 178);
+         label3.Name = "label3";
+         label3.Size = new System.Drawing.Size(15, 15);
+         label3.TabIndex = 18;
+         label3.Text = "♦";
+         // 
+         // label8
+         // 
+         label8.AutoSize = true;
+         label8.Location = new System.Drawing.Point(68, 202);
+         label8.Name = "label8";
+         label8.Size = new System.Drawing.Size(15, 15);
+         label8.TabIndex = 21;
+         label8.Text = "♦";
+         // 
          // _TitleLabel
          // 
          this._TitleLabel.AutoSize = true;
@@ -108,9 +126,9 @@
          // 
          this._CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._CloseButton.Location = new System.Drawing.Point(263, 236);
+         this._CloseButton.Location = new System.Drawing.Point(276, 239);
          this._CloseButton.Name = "_CloseButton";
-         this._CloseButton.Size = new System.Drawing.Size(88, 26);
+         this._CloseButton.Size = new System.Drawing.Size(75, 23);
          this._CloseButton.TabIndex = 0;
          this._CloseButton.Text = "Close";
          this._CloseButton.UseVisualStyleBackColor = true;
@@ -201,15 +219,6 @@
          this._CreativeCommonsLinkLabel.TabStop = true;
          this._CreativeCommonsLinkLabel.Text = "CC BY 3.0";
          // 
-         // label3
-         // 
-         label3.AutoSize = true;
-         label3.Location = new System.Drawing.Point(68, 178);
-         label3.Name = "label3";
-         label3.Size = new System.Drawing.Size(15, 15);
-         label3.TabIndex = 18;
-         label3.Text = "♦";
-         // 
          // _DockPanelLinkLabel
          // 
          this._DockPanelLinkLabel.AutoSize = true;
@@ -237,15 +246,6 @@
          this.label7.Size = new System.Drawing.Size(206, 15);
          this.label7.TabIndex = 22;
          this.label7.Text = "© 2012 Terence Parr and Sam Harwell";
-         // 
-         // label8
-         // 
-         label8.AutoSize = true;
-         label8.Location = new System.Drawing.Point(68, 202);
-         label8.Name = "label8";
-         label8.Size = new System.Drawing.Size(15, 15);
-         label8.TabIndex = 21;
-         label8.Text = "♦";
          // 
          // _AntlrLinkLabel
          // 

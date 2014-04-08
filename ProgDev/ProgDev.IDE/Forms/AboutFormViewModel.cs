@@ -37,7 +37,7 @@ namespace ProgDev.IDE.Forms
       [OnSignal("CloseClick")]
       public void OnCloseClick()
       {
-         Invoke(x => x.Close());
+         Close();
       }
 
       [OnSignal("GitHubClick")]

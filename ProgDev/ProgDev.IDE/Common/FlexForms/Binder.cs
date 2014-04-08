@@ -28,8 +28,8 @@ namespace ProgDev.IDE.Common.FlexForms
       {
          bool ignoreChangedEvent = false;
 
-         // Initialize the property by reading from the form.  The view model's Begin() method may override this later,
-         // or it may choose to accept the value set by the form.
+         // Initialize the property by reading from the form.  The view model's Initialize() method may override this 
+         // later, or it may choose to accept the value set by the form.
          property.Value = accessor();
 
          property.Changed += (sender, e) =>
@@ -85,6 +85,12 @@ namespace ProgDev.IDE.Common.FlexForms
       public static void BindSize(this Control control, Field<Size> property)
       {
          control.SizeChanged += Bind(property, () => control.Size, x => control.Size = x);
+      }
+
+      public static void BindError(this ErrorProvider control, Control target, Field<string> property)
+      {
+         // This is a read-only control, so there's no event.
+         Bind(property, () => control.GetError(target), x => control.SetError(target, x));
       }
 
       public static void BindMinimumSize(this Control control, Field<Size> property)

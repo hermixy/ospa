@@ -28,16 +28,22 @@
       /// </summary>
       private void InitializeComponent()
       {
+         this.components = new System.ComponentModel.Container();
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UnitForm));
          this._NameLbl = new System.Windows.Forms.Label();
          this._NameTxt = new System.Windows.Forms.TextBox();
          this._OkBtn = new System.Windows.Forms.Button();
          this._CancelBtn = new System.Windows.Forms.Button();
+         this._IconBox = new System.Windows.Forms.PictureBox();
+         this._ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+         ((System.ComponentModel.ISupportInitialize)(this._IconBox)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this._ErrorProvider)).BeginInit();
          this.SuspendLayout();
          // 
          // _NameLbl
          // 
          this._NameLbl.AutoSize = true;
-         this._NameLbl.Location = new System.Drawing.Point(12, 9);
+         this._NameLbl.Location = new System.Drawing.Point(59, 9);
          this._NameLbl.Name = "_NameLbl";
          this._NameLbl.Size = new System.Drawing.Size(42, 15);
          this._NameLbl.TabIndex = 0;
@@ -45,18 +51,18 @@
          // 
          // _NameTxt
          // 
-         this._NameTxt.Location = new System.Drawing.Point(12, 27);
+         this._NameTxt.Location = new System.Drawing.Point(59, 27);
          this._NameTxt.Name = "_NameTxt";
-         this._NameTxt.Size = new System.Drawing.Size(256, 23);
+         this._NameTxt.Size = new System.Drawing.Size(209, 23);
          this._NameTxt.TabIndex = 1;
          // 
          // _OkBtn
          // 
          this._OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._OkBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._OkBtn.Location = new System.Drawing.Point(86, 70);
+         this._OkBtn.Location = new System.Drawing.Point(112, 69);
          this._OkBtn.Name = "_OkBtn";
-         this._OkBtn.Size = new System.Drawing.Size(88, 26);
+         this._OkBtn.Size = new System.Drawing.Size(75, 23);
          this._OkBtn.TabIndex = 2;
          this._OkBtn.Text = "OK";
          this._OkBtn.UseVisualStyleBackColor = true;
@@ -65,18 +71,36 @@
          // 
          this._CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._CancelBtn.Location = new System.Drawing.Point(180, 70);
+         this._CancelBtn.Location = new System.Drawing.Point(193, 69);
          this._CancelBtn.Name = "_CancelBtn";
-         this._CancelBtn.Size = new System.Drawing.Size(88, 26);
+         this._CancelBtn.Size = new System.Drawing.Size(75, 23);
          this._CancelBtn.TabIndex = 3;
          this._CancelBtn.Text = "Cancel";
          this._CancelBtn.UseVisualStyleBackColor = true;
          // 
+         // _IconBox
+         // 
+         this._IconBox.Image = ((System.Drawing.Image)(resources.GetObject("_IconBox.Image")));
+         this._IconBox.Location = new System.Drawing.Point(12, 12);
+         this._IconBox.Name = "_IconBox";
+         this._IconBox.Size = new System.Drawing.Size(32, 32);
+         this._IconBox.TabIndex = 4;
+         this._IconBox.TabStop = false;
+         // 
+         // _ErrorProvider
+         // 
+         this._ErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+         this._ErrorProvider.ContainerControl = this;
+         this._ErrorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("_ErrorProvider.Icon")));
+         // 
          // UnitForm
          // 
+         this.AcceptButton = this._OkBtn;
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(280, 108);
+         this.CancelButton = this._CancelBtn;
+         this.ClientSize = new System.Drawing.Size(280, 104);
+         this.Controls.Add(this._IconBox);
          this.Controls.Add(this._CancelBtn);
          this.Controls.Add(this._OkBtn);
          this.Controls.Add(this._NameTxt);
@@ -88,6 +112,8 @@
          this.Name = "UnitForm";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
          this.Text = "Program Organization Unit";
+         ((System.ComponentModel.ISupportInitialize)(this._IconBox)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this._ErrorProvider)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -99,5 +125,7 @@
       private System.Windows.Forms.TextBox _NameTxt;
       private System.Windows.Forms.Button _OkBtn;
       private System.Windows.Forms.Button _CancelBtn;
+      private System.Windows.Forms.PictureBox _IconBox;
+      private System.Windows.Forms.ErrorProvider _ErrorProvider;
    }
 }
