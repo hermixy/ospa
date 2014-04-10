@@ -12,11 +12,8 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using Microsoft.WindowsAPICodePack.Dialogs;
-using ProgDev.IDE.Common;
 using ProgDev.IDE.Common.FlexForms;
 using System;
-using System.ComponentModel;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -24,13 +21,13 @@ namespace ProgDev.IDE.Forms
 {
    public partial class AppForm : Form
    {
-      private ProgramExplorerForm _ProgramExplorer;
+      private ProjectContentForm _ProgramExplorer;
 
       public AppForm(AppFormViewModel viewModel)
       {
          InitializeComponent();
 
-         _ProgramExplorer = new ProgramExplorerForm();
+         _ProgramExplorer = new ProjectContentForm();
          _ProgramExplorer.Show(_DockPanel, DockState.DockRight);
 
          this.BindLocation(viewModel.Location);
@@ -39,7 +36,7 @@ namespace ProgDev.IDE.Forms
          _NewButton.BindClick(viewModel.NewClick);
          _OpenButton.BindClick(viewModel.OpenClick);
          _SaveButton.BindClick(viewModel.SaveClick);
-         _AddButton.BindClick(viewModel.AddClick);
+         _NewFileBtn.BindClick(viewModel.NewFileClick);
          _BuildButton.BindClick(viewModel.BuildClick);
          _DeployButton.BindClick(viewModel.DeployClick);
          _DebugButton.BindClick(viewModel.DebugClick);
@@ -49,7 +46,6 @@ namespace ProgDev.IDE.Forms
 
       private void OnAboutClick(object sender, EventArgs e)
       {
-         FormsFactory.NewUnitForm("UNTITLED1", true).ShowDialog();
          FormsFactory.NewAboutForm().ShowDialog();
       }
    }

@@ -40,4 +40,4 @@ let main argv =
          -1
       else Handle argv.[0] (argv |> Array.toSeq |> Seq.skip(1) |> Seq.toList)
    with
-      | ex -> printfn "Fatal error!\n%s\n%s" ex.Message (ex.StackTrace.ToString()); -1
+   | ex -> printfn "Fatal error!\n%s\n%s" ex.Message (ex.StackTrace.ToString()); -1

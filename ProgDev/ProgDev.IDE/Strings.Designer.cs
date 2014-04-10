@@ -95,5 +95,113 @@ namespace ProgDev.IDE {
                 return ResourceManager.GetString("ErrorExpectedIdentifier", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Class.
+        /// </summary>
+        internal static string FileTypeClass {
+            get {
+                return ResourceManager.GetString("FileTypeClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data type.
+        /// </summary>
+        internal static string FileTypeDataType {
+            get {
+                return ResourceManager.GetString("FileTypeDataType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function.
+        /// </summary>
+        internal static string FileTypeFunction {
+            get {
+                return ResourceManager.GetString("FileTypeFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function block.
+        /// </summary>
+        internal static string FileTypeFunctionBlock {
+            get {
+                return ResourceManager.GetString("FileTypeFunctionBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Global variables.
+        /// </summary>
+        internal static string FileTypeGlobalVars {
+            get {
+                return ResourceManager.GetString("FileTypeGlobalVars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interface.
+        /// </summary>
+        internal static string FileTypeInterface {
+            get {
+                return ResourceManager.GetString("FileTypeInterface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program.
+        /// </summary>
+        internal static string FileTypeProgram {
+            get {
+                return ResourceManager.GetString("FileTypeProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function Block Diagram (FBD).
+        /// </summary>
+        internal static string LanguageFBD {
+            get {
+                return ResourceManager.GetString("LanguageFBD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instruction List (IL).
+        /// </summary>
+        internal static string LanguageIL {
+            get {
+                return ResourceManager.GetString("LanguageIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ladder Diagram (LD).
+        /// </summary>
+        internal static string LanguageLD {
+            get {
+                return ResourceManager.GetString("LanguageLD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequential Function Chart (SFC).
+        /// </summary>
+        internal static string LanguageSFC {
+            get {
+                return ResourceManager.GetString("LanguageSFC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Structured Text (ST).
+        /// </summary>
+        internal static string LanguageST {
+            get {
+                return ResourceManager.GetString("LanguageST", resourceCulture);
+            }
+        }
     }
 }

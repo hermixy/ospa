@@ -17,16 +17,21 @@ using System.Windows.Forms;
 
 namespace ProgDev.IDE.Forms
 {
-   public partial class UnitForm : Form
+   public partial class NewFileForm : Form
    {
-      public UnitForm(UnitFormViewModel viewModel)
+      public NewFileForm(NewFileFormViewModel viewModel)
       {
          InitializeComponent();
 
          _NameTxt.BindText(viewModel.NameText);
          _NameTxt.BindError(_ErrorProvider, viewModel.NameError);
+         _TypeCmb.BindItems(viewModel.TypeList);
+         _TypeCmb.BindSelectedIndex(viewModel.TypeSelectedIndex);
+         _LanguageLbl.BindEnabled(viewModel.LanguageEnabled);
+         _LanguageCmb.BindItems(viewModel.LanguageList);
+         _LanguageCmb.BindSelectedIndex(viewModel.LanguageSelectedIndex);
+         _LanguageCmb.BindEnabled(viewModel.LanguageEnabled);
          _OkBtn.BindEnabled(viewModel.OkEnabled);
-         _OkBtn.BindText(viewModel.OkText);
          _OkBtn.BindClick(viewModel.OkClick);
          viewModel.Start(this);
       }

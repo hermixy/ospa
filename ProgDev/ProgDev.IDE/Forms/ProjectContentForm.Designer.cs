@@ -1,6 +1,6 @@
 ﻿namespace ProgDev.IDE.Forms
 {
-   partial class ProgramExplorerForm
+   partial class ProjectContentForm
    {
       /// <summary>
       /// Required designer variable.
@@ -41,15 +41,15 @@
          this.listView1.TabIndex = 0;
          this.listView1.UseCompatibleStateImageBehavior = false;
          // 
-         // ProgramExplorerForm
+         // ProjectContentForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(458, 730);
          this.Controls.Add(this.listView1);
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-         this.Name = "ProgramExplorerForm";
-         this.Text = "Program Explorer";
+         this.Name = "ProjectContentForm";
+         this.Text = "Project Content";
          this.ResumeLayout(false);
 
       }

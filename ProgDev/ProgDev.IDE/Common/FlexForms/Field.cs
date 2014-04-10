@@ -25,18 +25,11 @@ namespace ProgDev.IDE.Common.FlexForms
          if (Changed != null)
             Changed(this, EventArgs.Empty);
       }
-
-      public abstract void SetValue(object value);
    }
 
    public class Field<T> : Field
    {
       protected T _Value;
-
-      public override void SetValue(object value)
-      {
-         Value = (T)value;
-      }
 
       public virtual T Value
       {

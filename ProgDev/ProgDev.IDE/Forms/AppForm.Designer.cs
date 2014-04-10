@@ -60,7 +60,8 @@
          this._OpenButton = new System.Windows.Forms.ToolStripButton();
          this._SaveButton = new System.Windows.Forms.ToolStripButton();
          this._Separator1 = new System.Windows.Forms.ToolStripSeparator();
-         this._AddButton = new System.Windows.Forms.ToolStripButton();
+         this._NewFileBtn = new System.Windows.Forms.ToolStripButton();
+         this._NewFolderBtn = new System.Windows.Forms.ToolStripButton();
          this._Separator2 = new System.Windows.Forms.ToolStripSeparator();
          this._BuildButton = new System.Windows.Forms.ToolStripButton();
          this._DeployButton = new System.Windows.Forms.ToolStripButton();
@@ -81,7 +82,7 @@
          this._DockPanel.Location = new System.Drawing.Point(0, 0);
          this._DockPanel.Name = "_DockPanel";
          this._DockPanel.ShowDocumentIcon = true;
-         this._DockPanel.Size = new System.Drawing.Size(830, 650);
+         this._DockPanel.Size = new System.Drawing.Size(830, 663);
          dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
          dockPanelGradient1.StartColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
          autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
@@ -141,7 +142,7 @@
          // _ToolStripContainer.ContentPanel
          // 
          this._ToolStripContainer.ContentPanel.Controls.Add(this._DockPanel);
-         this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(830, 650);
+         this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(830, 663);
          this._ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
          this._ToolStripContainer.Location = new System.Drawing.Point(0, 0);
          this._ToolStripContainer.Name = "_ToolStripContainer";
@@ -229,95 +230,98 @@
             this._OpenButton,
             this._SaveButton,
             this._Separator1,
-            this._AddButton,
+            this._NewFileBtn,
+            this._NewFolderBtn,
             this._Separator2,
             this._BuildButton,
             this._DeployButton,
             this._DebugButton});
          this._ToolStrip.Location = new System.Drawing.Point(3, 24);
          this._ToolStrip.Name = "_ToolStrip";
-         this._ToolStrip.Size = new System.Drawing.Size(396, 38);
+         this._ToolStrip.Size = new System.Drawing.Size(709, 25);
          this._ToolStrip.TabIndex = 1;
          // 
          // _NewButton
          // 
-         this._NewButton.AutoSize = false;
          this._NewButton.Image = ((System.Drawing.Image)(resources.GetObject("_NewButton.Image")));
          this._NewButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._NewButton.Name = "_NewButton";
-         this._NewButton.Size = new System.Drawing.Size(50, 35);
-         this._NewButton.Text = "New";
-         this._NewButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+         this._NewButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._NewButton.Size = new System.Drawing.Size(96, 22);
+         this._NewButton.Text = "New project";
          // 
          // _OpenButton
          // 
-         this._OpenButton.AutoSize = false;
          this._OpenButton.Image = ((System.Drawing.Image)(resources.GetObject("_OpenButton.Image")));
          this._OpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._OpenButton.Name = "_OpenButton";
-         this._OpenButton.Size = new System.Drawing.Size(50, 35);
-         this._OpenButton.Text = "Open…";
-         this._OpenButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+         this._OpenButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._OpenButton.Size = new System.Drawing.Size(110, 22);
+         this._OpenButton.Text = "Open project…";
          // 
          // _SaveButton
          // 
-         this._SaveButton.AutoSize = false;
          this._SaveButton.Image = ((System.Drawing.Image)(resources.GetObject("_SaveButton.Image")));
          this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._SaveButton.Name = "_SaveButton";
-         this._SaveButton.Size = new System.Drawing.Size(50, 35);
-         this._SaveButton.Text = "Save";
-         this._SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+         this._SaveButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._SaveButton.Size = new System.Drawing.Size(71, 22);
+         this._SaveButton.Text = "Save all";
          // 
          // _Separator1
          // 
          this._Separator1.Name = "_Separator1";
-         this._Separator1.Size = new System.Drawing.Size(6, 38);
+         this._Separator1.Size = new System.Drawing.Size(6, 25);
          // 
-         // _AddButton
+         // _NewFileBtn
          // 
-         this._AddButton.AutoSize = false;
-         this._AddButton.Image = ((System.Drawing.Image)(resources.GetObject("_AddButton.Image")));
-         this._AddButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this._AddButton.Name = "_AddButton";
-         this._AddButton.Size = new System.Drawing.Size(50, 35);
-         this._AddButton.Text = "Add…";
-         this._AddButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+         this._NewFileBtn.Image = ((System.Drawing.Image)(resources.GetObject("_NewFileBtn.Image")));
+         this._NewFileBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this._NewFileBtn.Name = "_NewFileBtn";
+         this._NewFileBtn.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._NewFileBtn.Size = new System.Drawing.Size(92, 22);
+         this._NewFileBtn.Text = "New POU…";
+         // 
+         // _NewFolderBtn
+         // 
+         this._NewFolderBtn.Image = ((System.Drawing.Image)(resources.GetObject("_NewFolderBtn.Image")));
+         this._NewFolderBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this._NewFolderBtn.Name = "_NewFolderBtn";
+         this._NewFolderBtn.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._NewFolderBtn.Size = new System.Drawing.Size(99, 22);
+         this._NewFolderBtn.Text = "New folder…";
          // 
          // _Separator2
          // 
          this._Separator2.Name = "_Separator2";
-         this._Separator2.Size = new System.Drawing.Size(6, 38);
+         this._Separator2.Size = new System.Drawing.Size(6, 25);
          // 
          // _BuildButton
          // 
-         this._BuildButton.AutoSize = false;
          this._BuildButton.Image = ((System.Drawing.Image)(resources.GetObject("_BuildButton.Image")));
          this._BuildButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._BuildButton.Name = "_BuildButton";
-         this._BuildButton.Size = new System.Drawing.Size(50, 35);
+         this._BuildButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._BuildButton.Size = new System.Drawing.Size(59, 22);
          this._BuildButton.Text = "Build";
-         this._BuildButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
          // 
          // _DeployButton
          // 
-         this._DeployButton.AutoSize = false;
          this._DeployButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeployButton.Image")));
          this._DeployButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._DeployButton.Name = "_DeployButton";
-         this._DeployButton.Size = new System.Drawing.Size(50, 35);
+         this._DeployButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._DeployButton.Size = new System.Drawing.Size(69, 22);
          this._DeployButton.Text = "Deploy";
-         this._DeployButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
          // 
          // _DebugButton
          // 
-         this._DebugButton.AutoSize = false;
          this._DebugButton.Image = ((System.Drawing.Image)(resources.GetObject("_DebugButton.Image")));
          this._DebugButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._DebugButton.Name = "_DebugButton";
-         this._DebugButton.Size = new System.Drawing.Size(50, 35);
+         this._DebugButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._DebugButton.Size = new System.Drawing.Size(67, 22);
          this._DebugButton.Text = "Debug";
-         this._DebugButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
          // 
          // AppForm
          // 
@@ -362,7 +366,7 @@
       private System.Windows.Forms.ToolStripButton _OpenButton;
       private System.Windows.Forms.ToolStripButton _SaveButton;
       private System.Windows.Forms.ToolStripSeparator _Separator1;
-      private System.Windows.Forms.ToolStripButton _AddButton;
+      private System.Windows.Forms.ToolStripButton _NewFolderBtn;
       private System.Windows.Forms.ToolStripSeparator _Separator2;
       private System.Windows.Forms.ToolStripButton _BuildButton;
       private System.Windows.Forms.ToolStripButton _DeployButton;
@@ -370,5 +374,6 @@
       private System.Windows.Forms.ToolStripMenuItem _EditMenu;
       private System.Windows.Forms.ToolStripMenuItem _ProgramMenu;
       private System.Windows.Forms.ToolStripMenuItem _ToolsMenu;
+      private System.Windows.Forms.ToolStripButton _NewFileBtn;
    }
 }

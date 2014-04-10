@@ -11,9 +11,9 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.IDE.Forms
 {
-   public partial class ProgramExplorerForm : DockContent
+   public partial class ProjectContentForm : DockContent
    {
-      public ProgramExplorerForm()
+      public ProjectContentForm()
       {
          InitializeComponent();
       }

@@ -130,4 +130,40 @@
   <data name="ErrorExpectedIdentifier" xml:space="preserve">
     <value>Must be a valid identifier (alphanumeric and underscore, starting with a letter).</value>
   </data>
+  <data name="FileTypeClass" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="FileTypeDataType" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="FileTypeFunction" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="FileTypeFunctionBlock" xml:space="preserve">
+    <value>Function block</value>
+  </data>
+  <data name="FileTypeGlobalVars" xml:space="preserve">
+    <value>Global variables</value>
+  </data>
+  <data name="FileTypeInterface" xml:space="preserve">
+    <value>Interface</value>
+  </data>
+  <data name="FileTypeProgram" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="LanguageFBD" xml:space="preserve">
+    <value>Function Block Diagram (FBD)</value>
+  </data>
+  <data name="LanguageIL" xml:space="preserve">
+    <value>Instruction List (IL)</value>
+  </data>
+  <data name="LanguageLD" xml:space="preserve">
+    <value>Ladder Diagram (LD)</value>
+  </data>
+  <data name="LanguageSFC" xml:space="preserve">
+    <value>Sequential Function Chart (SFC)</value>
+  </data>
+  <data name="LanguageST" xml:space="preserve">
+    <value>Structured Text (ST)</value>
+  </data>
 </root>

@@ -15,7 +15,6 @@
 using ProgDev.IDE.Common.FlexForms;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -29,7 +28,7 @@ namespace ProgDev.IDE.Forms
       public Signal NewClick;
       public Signal OpenClick;
       public Signal SaveClick;
-      public Signal AddClick;
+      public Signal NewFileClick;
       public Signal BuildClick;
       public Signal DeployClick;
       public Signal DebugClick;
@@ -50,14 +49,15 @@ namespace ProgDev.IDE.Forms
          }
       }
 
-      [OnSignal("NewClick")]
-      public void OnNewClick()
+      [OnSignal("NewFileClick")]
+      private void OnAddClick()
       {
-
+         var form = FormsFactory.NewFileForm("Untitled");
+         ShowChildDialog(form);
       }
 
       [OnSignal("Closing")]
-      public void OnClosing(CancelEventArgs e)
+      private void OnClosing(CancelEventArgs e)
       {
          Settings.Default.AppForm_SavedPositionExists = true;
          Settings.Default.AppForm_Location = Location.Value;

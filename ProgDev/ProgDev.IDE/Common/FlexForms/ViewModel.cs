@@ -13,66 +13,90 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
 namespace ProgDev.IDE.Common.FlexForms
 {
-   public abstract class ViewModel<ControlType>
+   public abstract class ViewModel
+   {
+   }
+
+   public abstract class ViewModel<ControlType> : ViewModel
       where ControlType : Control
    {
       private Action<Action<ControlType>> Invoke = f => { };
+      private IReadOnlyList<string> ComputedFieldEvaluationOrder = new string[0];
 
       public ViewModel()
       {
-         InitializeFieldsOfType<Field>();
-         InitializeFieldsOfType<Signal>();
+         ViewModelUtilities.InitializeFieldsOfType<Field>(this);
+         ViewModelUtilities.InitializeFieldsOfType<Signal>(this);
          AttachHandlers();
       }
 
       public void Start(ControlType form)
       {
-         Invoke = action => action(form);
-         
          // We store a reference to the view model in the form's Tag property so that the view model won't be garbage
          // collected.  Otherwise, there won't be any remaining references to the view model, since we don't require
          // the derived form to take care of storing the view model.
          form.Tag = this;
 
+         Invoke = action => action(form);
+         
          Reset();
       }
 
       public void Reset()
       {
-         ApplyInitialValues();
          PollComputedFields();
          Initialize();
       }
 
-      private void ApplyInitialValues()
+      private string[] GetComputedFieldDependencies(MethodInfo methodInfo)
       {
-         var fields = GetType()
-            .GetFields()
-            .Where(x => x.GetCustomAttributes(true).OfType<InitialValueAttribute>().Any());
+         var attribute = methodInfo.GetCustomAttributes<DependsAttribute>().SingleOrDefault();
+         if (attribute == null)
+            return new string[0];
+         else
+            return attribute.FieldDependencies;
+      }
 
-         foreach (var fieldInfo in fields)
-         {
-            object value = fieldInfo.GetCustomAttributes(true).OfType<InitialValueAttribute>().Single().Value;
-            ((Field)fieldInfo.GetValue(this)).SetValue(value);
-         }
+      // Field name => Array of field names that are depended on
+      private Dictionary<string, string[]> GetAllComputedFieldDependencies()
+      {
+         return GetType()
+            .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic)
+            .Where(x => x.GetCustomAttributes<ComputeAttribute>().Any())
+            .ToDictionary(
+               x => x.GetCustomAttribute<ComputeAttribute>().FieldName,
+               x => GetComputedFieldDependencies(x));
       }
 
       private void PollComputedFields()
       {
-         var fields = GetType()
-            .GetFields()
-            .Where(x => x.FieldType.GetInterfaces().Any(y => y == typeof(IComputedField)));
+         // Fields will be removed from this dictionary one-by-one as they polled.  Any field not found in this 
+         // dictionary can thus be assumed up-to-date and used.
+         var depends = GetAllComputedFieldDependencies();
 
-         foreach (var fieldInfo in fields)
+         while (depends.Any())
          {
-            var field = (IComputedField)fieldInfo.GetValue(this);
-            field.Poll();
+            foreach (string computedFieldName in depends.Keys.ToList())
+            {
+               string[] computedFieldDepends = depends[computedFieldName];
+
+               if (!computedFieldDepends.Any(x => depends.ContainsKey(x)))
+               {
+                  // This computed field either has no dependencies, or all of its dependencies have been polled
+                  // already.  We can proceed to poll it.
+                  ViewModelUtilities.GetField<IComputedField>(this, computedFieldName).Poll();
+
+                  // Indicate that this field has been polled by removing it from the depends dictionary.
+                  depends.Remove(computedFieldName);
+               }
+            }
          }
       }
 
@@ -82,30 +106,27 @@ namespace ProgDev.IDE.Common.FlexForms
 
       protected void Close()
       {
-         Type controlType = typeof(ControlType);
-         Type formType = typeof(Form);
-
-         if (controlType == formType || controlType.IsSubclassOf(formType))
-            Invoke(x => (x as Form).Close());
+         ViewModelUtilities.AssertType<ControlType, Form>();
+         Invoke(x => (x as Form).Close());
       }
 
-      protected bool Validate<T>(
-         Field<T> inputField, Field<string> errorField, Func<T, bool> isValidFunc, string errorMessage)
+      protected DialogResult ShowChildDialog(Form child)
       {
-         bool isValid = isValidFunc(inputField.Value);
-         errorField.Value = isValid ? string.Empty : errorMessage;
-         return isValid;
+         ViewModelUtilities.AssertType<ControlType, Form>();
+         DialogResult result = default(DialogResult);
+         Invoke(x => result = child.ShowDialog(x as Form));
+         return result;
       }
-      
+
       private void AttachHandlers()
       {
          var methods = GetType()
-            .GetMethods()
-            .Where(x => x.GetCustomAttributes(true).OfType<FlexAttribute>().Any());
+            .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x => x.GetCustomAttributes<FlexAttribute>().Any());
 
          foreach (var methodInfo in methods)
          {
-            var attributes = methodInfo.GetCustomAttributes(true);
+            var attributes = methodInfo.GetCustomAttributes();
 
             foreach (var handler in attributes.OfType<OnSignalAttribute>())
             {
@@ -134,82 +155,46 @@ namespace ProgDev.IDE.Common.FlexForms
 
                var triggers = attributes.OfType<DependsAttribute>().SingleOrDefault();
                if (triggers != null)
-                  callback.Item1.Dependencies = triggers.FieldDependencies.Select(GetField);
+                  callback.Item1.Dependencies = 
+                     triggers
+                     .FieldDependencies
+                     .Select(x => ViewModelUtilities.GetField<Field>(this, x));
             }
          }
       }
 
-      private Field GetField(string fieldName)
-      {
-         var fieldInfo = GetType().GetFields().SingleOrDefault(x => x.Name == fieldName);
-         if (fieldInfo == null)
-            throw new FlexException("Cannot find a field named: " + fieldInfo);
-         return (Field)fieldInfo.GetValue(this);
-      }
-
       private Tuple<T, Func<object>> CreateCallback<T>(MethodInfo methodInfo, string fieldName, Type returnType)
       {
-         if (methodInfo.ReturnType != returnType)
-            throw new FlexException("Method must return: " + returnType.Name);
-         if (methodInfo.GetParameters().Any())
-            throw new FlexException("Method must not have any parameters.");
-
-         var fieldInfo = GetType().GetFields().SingleOrDefault(x => x.Name == fieldName);
-         if (fieldInfo == null)
-            throw new FlexException("Cannot find a field named: " + fieldName);
+         ViewModelUtilities.AssertReturnType(methodInfo, returnType);
+         ViewModelUtilities.AssertParameterCount(methodInfo, 0);
 
          return Tuple.Create<T, Func<object>>(
-            (T)fieldInfo.GetValue(this),
+            ViewModelUtilities.GetField<T>(this, fieldName),
             () => methodInfo.Invoke(this, new object[0])
          );
       }
 
-      private Tuple<T, Func<EventArgs, object>> CreateCallbackWithArg<T>(
-         MethodInfo methodInfo, string fieldName, Type returnType)
+      private Tuple<T, Func<EventArgs, object>> CreateCallbackWithArg<T>(MethodInfo methodInfo, string fieldName, 
+         Type returnType)
       {
-         if (methodInfo.ReturnType != returnType)
-            throw new FlexException("Method must return: " + returnType.Name);
-         if (methodInfo.GetParameters().Length != 1)
-            throw new FlexException("Method must have one parameter of type EventArgs (or a derived class).");
-         var paramType = methodInfo.GetParameters()[0].ParameterType;
-         Type expectedType = typeof(EventArgs);
-         if (paramType != expectedType && !paramType.IsSubclassOf(expectedType))
-            throw new FlexException("Method must have one parameter of type EventArgs (or a derived class).");
-
-         var fieldInfo = GetType().GetFields().SingleOrDefault(x => x.Name == fieldName);
-         if (fieldInfo == null)
-            throw new FlexException("Cannot find a field named: " + fieldName);
+         ViewModelUtilities.AssertReturnType(methodInfo, returnType);
+         ViewModelUtilities.AssertParameterCount(methodInfo, 1);
+         ViewModelUtilities.AssertParameterType(methodInfo, 0, typeof(EventArgs));
 
          return Tuple.Create<T, Func<EventArgs, object>>(
-            (T)fieldInfo.GetValue(this),
+            ViewModelUtilities.GetField<T>(this, fieldName),
             (e) => methodInfo.Invoke(this, new object[] { e })
          );
       }
 
       private Tuple<T, Func<object>> CreateComputedCallback<T>(MethodInfo methodInfo, string fieldName)
       {
-         if (methodInfo.GetParameters().Any())
-            throw new FlexException("Method must not have any parameters.");
-
-         var fieldInfo = GetType().GetFields().SingleOrDefault(x => x.Name == fieldName);
-         if (fieldInfo == null)
-            throw new FlexException("Cannot find a field named: " + fieldName);
+         ViewModelUtilities.AssertParameterCount(methodInfo, 0);
 
          return Tuple.Create<T, Func<object>>(
-            (T)fieldInfo.GetValue(this),
+            ViewModelUtilities.GetField<T>(this, fieldName),
             () => methodInfo.Invoke(this, new object[0])
          );
-      }
-
-      private void InitializeFieldsOfType<T>()
-      {
-         var type = typeof(T);
-
-         foreach (var fieldInfo in GetType().GetFields())
-         {
-            if (fieldInfo.FieldType == type || fieldInfo.FieldType.IsSubclassOf(type))
-               fieldInfo.SetValue(this, Activator.CreateInstance(fieldInfo.FieldType));
-         }
       }
    }
 }

@@ -29,49 +29,49 @@ namespace ProgDev.IDE.Forms
       public Signal AntlrClick;
       public Signal CloseClick;
 
-      protected override void Initialize()
+      public AboutFormViewModel()
       {
          VersionText.Value = string.Format(Strings.AboutVersionFormat, Application.ProductVersion);
       }
 
       [OnSignal("CloseClick")]
-      public void OnCloseClick()
+      private void OnCloseClick()
       {
          Close();
       }
 
       [OnSignal("GitHubClick")]
-      public void OnGitHubClick()
+      private void OnGitHubClick()
       {
          Process.Start("https://github.com/electroly/ospa");
       }
 
       [OnSignal("FarmFreshClick")]
-      public void OnFarmFreshClick()
+      private void OnFarmFreshClick()
       {
          Process.Start("http://www.fatcow.com/free-icons");
       }
 
       [OnSignal("FatCowClick")]
-      public void OnFatCowClick()
+      private void OnFatCowClick()
       {
          Process.Start("http://www.fatcow.com/");
       }
 
       [OnSignal("CreativeCommonsClick")]
-      public void OnCreativeCommonsClick()
+      private void OnCreativeCommonsClick()
       {
          Process.Start("http://creativecommons.org/licenses/by/3.0/us/");
       }
 
       [OnSignal("DockPanelClick")]
-      public void OnDockPanelClick()
+      private void OnDockPanelClick()
       {
          Process.Start("http://dockpanelsuite.com/");
       }
 
       [OnSignal("AntlrClick")]
-      public void OnAntlrClick()
+      private void OnAntlrClick()
       {
          Process.Start("http://www.antlr.org/");
       }
