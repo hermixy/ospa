@@ -13,6 +13,7 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -131,16 +132,99 @@ namespace ProgDev.IDE.Common.FlexForms
          {
             int selectedIndex = control.SelectedIndex;
             control.BeginUpdate();
-            control.Items.Clear();
-            control.Items.AddRange(field.ToArray());
-            control.SelectedIndex = Math.Min(control.Items.Count - 1, selectedIndex);
-            control.EndUpdate();
+            try
+            {
+               control.Items.Clear();
+               control.Items.AddRange(field.ToArray());
+               control.SelectedIndex = Math.Max(0, Math.Min(control.Items.Count - 1, selectedIndex));
+            }
+            finally
+            {
+               control.EndUpdate();
+            }
          };
       }
 
       public static void BindSelectedIndex(this ComboBox control, Field<int> field)
       {
          control.SelectedIndexChanged += Bind(field, () => control.SelectedIndex, x => control.SelectedIndex = x);
+      }
+
+      public static void BindItems(this ListView control, ListField<ListViewRow> field)
+      {
+         var groups = 
+            field
+            .Select(x => x.GroupName)
+            .Where(x => x != null)
+            .Distinct()
+            .ToDictionary(
+               x => x, 
+               x => new ListViewGroup(x, x));
+         var images =
+            field
+            .Select(x => x.Icon)
+            .Where(x => x != null)
+            .Distinct()
+            .Zip(Enumerable.Range(0, int.MaxValue), (image, index) => new { image, index })
+            .ToDictionary(x => x.image, x => x.index);
+
+         if (images.Any())
+         {
+            var imageList = new ImageList();
+            foreach (var pair in images)
+               imageList.Images.Add(pair.Key);
+            control.SmallImageList = imageList;
+            control.LargeImageList = imageList;
+         }
+
+         PopulateListView(control, field, groups, images);
+
+         field.Changed += (sender, e) => PopulateListView(control, field, groups, images);
+      }
+
+      private static void PopulateListView(ListView control, ListField<ListViewRow> field, Dictionary<string, ListViewGroup> groups, Dictionary<Image, int> images)
+      {
+         control.BeginUpdate();
+         try
+         {
+            var selectedIndices = control.SelectedIndices.Cast<int>().ToList();
+
+            control.Groups.Clear();
+            control.Items.Clear();
+
+            control.Groups.AddRange(groups.Values.ToArray());
+
+            foreach (var row in field)
+            {
+               var lvi =
+                  row.GroupName == null
+                  ? new ListViewItem()
+                  : new ListViewItem(groups[row.GroupName]);
+
+               bool first = true;
+               foreach (string cell in row.Cells)
+               {
+                  if (first)
+                     lvi.Text = cell;
+                  else
+                     lvi.SubItems.Add(cell);
+                  first = false;
+               }
+
+               if (row.Icon != null)
+                  lvi.ImageIndex = images[row.Icon];
+
+               control.Items.Add(lvi);
+            }
+
+            control.SelectedIndices.Clear();
+            foreach (int index in selectedIndices.Where(x => x < control.Items.Count))
+               control.SelectedIndices.Add(index);
+         }
+         finally
+         {
+            control.EndUpdate();
+         }
       }
    }
 }

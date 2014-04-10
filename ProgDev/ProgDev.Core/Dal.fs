@@ -38,9 +38,8 @@ let private FilesStart = "\r\n{[[ProgDev.Files]]}"
 let private FileStart = "\r\n{[[ProgDev.File]]}\r\n"
 let private FieldDelimeter = "\r\n{[[======]]}\r\n"
 
-(**********************************************************************************************************************
- * Serialization
- *)
+(*********************************************************************************************************************)
+// Serialization
 
 let rec private Serialize (x : obj) : string = 
    match x with
@@ -59,9 +58,8 @@ let Save (bundle : Bundle) (filePath : string) : unit =
    use writer = new StreamWriter(stream, Encoding.UTF8)
    Serialize bundle |> writer.Write
 
-(**********************************************************************************************************************
- * Deserialization
- *)
+(*********************************************************************************************************************)
+// Deserialization
 
 let private CheckAndChop (haystack : string) (needle : string) : string =
    if haystack.Length < needle.Length then

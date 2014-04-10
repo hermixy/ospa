@@ -52,6 +52,7 @@
     <Compile Include="Common\FlexForms\DependsAttribute.cs" />
     <Compile Include="Common\FlexForms\ComputeAttribute.cs" />
     <Compile Include="Common\FlexForms\IComputedField.cs" />
+    <Compile Include="Common\FlexForms\ListViewRow.cs" />
     <Compile Include="Common\FlexForms\ViewModelUtilities.cs" />
     <Compile Include="Common\TaskDialogFactory.cs" />
     <Compile Include="Common\FlexForms\Binder.cs" />
