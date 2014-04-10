@@ -29,6 +29,7 @@ namespace ProgDev.IDE.Forms
       public Signal OpenClick;
       public Signal SaveClick;
       public Signal NewFileClick;
+      public Signal NewFolderClick;
       public Signal BuildClick;
       public Signal DeployClick;
       public Signal DebugClick;
@@ -50,9 +51,16 @@ namespace ProgDev.IDE.Forms
       }
 
       [OnSignal("NewFileClick")]
-      private void OnAddClick()
+      private void OnNewFileClick()
       {
-         var form = FormsFactory.NewFileForm("Untitled");
+         var form = FormsFactory.NewNewFileForm("Untitled");
+         ShowChildDialog(form);
+      }
+
+      [OnSignal("NewFolderClick")]
+      private void OnNewFolderClick()
+      {
+         var form = FormsFactory.NewNewFolderForm("Untitled");
          ShowChildDialog(form);
       }
 

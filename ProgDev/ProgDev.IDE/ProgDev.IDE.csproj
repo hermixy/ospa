@@ -69,6 +69,13 @@
     <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NewFolderFormViewModel.cs" />
+    <Compile Include="Forms\NewFolderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewFolderForm.Designer.cs">
+      <DependentUpon>NewFolderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NewFileFormViewModel.cs" />
     <Compile Include="Forms\AboutFormViewModel.cs" />
     <Compile Include="Forms\AppForm.cs">
@@ -109,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewFolderForm.resx">
+      <DependentUpon>NewFolderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProjectContentForm.resx">
       <DependentUpon>ProjectContentForm.cs</DependentUpon>

@@ -12,28 +12,22 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.IDE.Common.FlexForms;
+using System.Windows.Forms;
+
 namespace ProgDev.IDE.Forms
 {
-   public static class FormsFactory
+   public partial class NewFolderForm : Form
    {
-      public static AppForm NewAppForm()
+      public NewFolderForm(NewFolderFormViewModel viewModel)
       {
-         return new AppForm(new AppFormViewModel());
-      }
+         InitializeComponent();
 
-      public static AboutForm NewAboutForm()
-      {
-         return new AboutForm(new AboutFormViewModel());
-      }
-
-      public static NewFileForm NewNewFileForm(string name)
-      {
-         return new NewFileForm(new NewFileFormViewModel(name));
-      }
-
-      public static NewFolderForm NewNewFolderForm(string name)
-      {
-         return new NewFolderForm(new NewFolderFormViewModel(name));
+         _NameTxt.BindText(viewModel.NameText);
+         _NameTxt.BindError(_ErrorProvider, viewModel.NameError);
+         _OkBtn.BindEnabled(viewModel.OkEnabled);
+         _OkBtn.BindClick(viewModel.OkClick);
+         viewModel.Start(this);
       }
    }
 }

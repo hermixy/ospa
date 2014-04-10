@@ -18,27 +18,18 @@ using System.Linq;
 
 namespace ProgDev.IDE.Forms
 {
-   public sealed class NewFileFormViewModel : FormViewModel
+   public sealed class NewFolderFormViewModel : FormViewModel
    {
       // Name textbox
       private readonly string _InitialName;
       public Field<string> NameText;
       public ComputedField<string> NameError;
 
-      // Type combobox
-      public ListField<string> TypeList;
-      public Field<int> TypeSelectedIndex;
-
-      // Language combobox
-      public ListField<string> LanguageList;
-      public Field<int> LanguageSelectedIndex;
-      public ComputedField<bool> LanguageEnabled;
-
       // OK button
       public ComputedField<bool> OkEnabled;
       public Signal OkClick;
 
-      public NewFileFormViewModel(string name)
+      public NewFolderFormViewModel(string name)
       {
          _InitialName = name;
       }
@@ -46,40 +37,6 @@ namespace ProgDev.IDE.Forms
       protected override void Initialize()
       {
          NameText.Value = _InitialName;
-         TypeList.AddRange(new[] 
-         { 
-            Strings.FileTypeProgram, 
-            Strings.FileTypeFunctionBlock, 
-            Strings.FileTypeFunction, 
-            Strings.FileTypeGlobalVars,
-            Strings.FileTypeDataType, 
-            Strings.FileTypeClass, 
-            Strings.FileTypeInterface 
-         });
-         LanguageList.AddRange(new[] 
-         { 
-            Strings.LanguageIL, 
-            Strings.LanguageLD, 
-            Strings.LanguageFBD, 
-            Strings.LanguageSFC, 
-            Strings.LanguageST 
-         });
-         TypeSelectedIndex.Value = 0; // Program
-         LanguageSelectedIndex.Value = 4; // Structured Text
-      }
-
-      [Compute("LanguageEnabled"), Depends("TypeSelectedIndex")]
-      private bool ComputeLanguageEnabled()
-      {
-         if (TypeSelectedIndex.Value == -1)
-            return false;
-
-         string type = TypeList[TypeSelectedIndex.Value];
-         return
-            type == Strings.FileTypeClass ||
-            type == Strings.FileTypeFunction ||
-            type == Strings.FileTypeFunctionBlock ||
-            type == Strings.FileTypeProgram;
       }
 
       [Compute("NameError"), Depends("NameText")]

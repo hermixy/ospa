@@ -126,9 +126,9 @@
          // 
          this._CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._CloseButton.Location = new System.Drawing.Point(276, 239);
+         this._CloseButton.Location = new System.Drawing.Point(263, 236);
          this._CloseButton.Name = "_CloseButton";
-         this._CloseButton.Size = new System.Drawing.Size(75, 23);
+         this._CloseButton.Size = new System.Drawing.Size(88, 26);
          this._CloseButton.TabIndex = 0;
          this._CloseButton.Text = "Close";
          this._CloseButton.UseVisualStyleBackColor = true;
