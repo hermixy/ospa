@@ -27,7 +27,7 @@ namespace ProgDev.IDE.Forms
       {
          InitializeComponent();
 
-         _ProgramExplorer = new ProjectContentForm();
+         _ProgramExplorer = FormsFactory.NewProjectContentForm();
          _ProgramExplorer.Show(_DockPanel, DockState.DockRight);
 
          this.BindLocation(viewModel.Location);

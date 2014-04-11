@@ -40,6 +40,8 @@
          this._TypeCmb = new System.Windows.Forms.ComboBox();
          this._LanguageCmb = new System.Windows.Forms.ComboBox();
          this._LanguageLbl = new System.Windows.Forms.Label();
+         this._FolderCmb = new System.Windows.Forms.ComboBox();
+         this._FolderLbl = new System.Windows.Forms.Label();
          ((System.ComponentModel.ISupportInitialize)(this._IconBox)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this._ErrorProvider)).BeginInit();
          this.SuspendLayout();
@@ -64,7 +66,7 @@
          // 
          this._OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._OkBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._OkBtn.Location = new System.Drawing.Point(146, 114);
+         this._OkBtn.Location = new System.Drawing.Point(146, 141);
          this._OkBtn.Name = "_OkBtn";
          this._OkBtn.Size = new System.Drawing.Size(88, 26);
          this._OkBtn.TabIndex = 8;
@@ -75,7 +77,7 @@
          // 
          this._CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._CancelBtn.Location = new System.Drawing.Point(240, 114);
+         this._CancelBtn.Location = new System.Drawing.Point(240, 141);
          this._CancelBtn.Name = "_CancelBtn";
          this._CancelBtn.Size = new System.Drawing.Size(88, 26);
          this._CancelBtn.TabIndex = 9;
@@ -100,7 +102,7 @@
          // _TypeLbl
          // 
          this._TypeLbl.AutoSize = true;
-         this._TypeLbl.Location = new System.Drawing.Point(50, 44);
+         this._TypeLbl.Location = new System.Drawing.Point(50, 74);
          this._TypeLbl.Name = "_TypeLbl";
          this._TypeLbl.Size = new System.Drawing.Size(36, 15);
          this._TypeLbl.TabIndex = 4;
@@ -110,7 +112,7 @@
          // 
          this._TypeCmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
          this._TypeCmb.FormattingEnabled = true;
-         this._TypeCmb.Location = new System.Drawing.Point(118, 41);
+         this._TypeCmb.Location = new System.Drawing.Point(118, 70);
          this._TypeCmb.Name = "_TypeCmb";
          this._TypeCmb.Size = new System.Drawing.Size(121, 23);
          this._TypeCmb.TabIndex = 5;
@@ -119,7 +121,7 @@
          // 
          this._LanguageCmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
          this._LanguageCmb.FormattingEnabled = true;
-         this._LanguageCmb.Location = new System.Drawing.Point(118, 70);
+         this._LanguageCmb.Location = new System.Drawing.Point(118, 99);
          this._LanguageCmb.Name = "_LanguageCmb";
          this._LanguageCmb.Size = new System.Drawing.Size(210, 23);
          this._LanguageCmb.TabIndex = 7;
@@ -127,11 +129,29 @@
          // _LanguageLbl
          // 
          this._LanguageLbl.AutoSize = true;
-         this._LanguageLbl.Location = new System.Drawing.Point(50, 73);
+         this._LanguageLbl.Location = new System.Drawing.Point(50, 103);
          this._LanguageLbl.Name = "_LanguageLbl";
          this._LanguageLbl.Size = new System.Drawing.Size(62, 15);
          this._LanguageLbl.TabIndex = 6;
          this._LanguageLbl.Text = "&Language:";
+         // 
+         // _FolderCmb
+         // 
+         this._FolderCmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+         this._FolderCmb.FormattingEnabled = true;
+         this._FolderCmb.Location = new System.Drawing.Point(118, 41);
+         this._FolderCmb.Name = "_FolderCmb";
+         this._FolderCmb.Size = new System.Drawing.Size(210, 23);
+         this._FolderCmb.TabIndex = 3;
+         // 
+         // _FolderLbl
+         // 
+         this._FolderLbl.AutoSize = true;
+         this._FolderLbl.Location = new System.Drawing.Point(50, 45);
+         this._FolderLbl.Name = "_FolderLbl";
+         this._FolderLbl.Size = new System.Drawing.Size(43, 15);
+         this._FolderLbl.TabIndex = 2;
+         this._FolderLbl.Text = "&Folder:";
          // 
          // NewFileForm
          // 
@@ -139,7 +159,9 @@
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.CancelButton = this._CancelBtn;
-         this.ClientSize = new System.Drawing.Size(340, 152);
+         this.ClientSize = new System.Drawing.Size(340, 179);
+         this.Controls.Add(this._FolderCmb);
+         this.Controls.Add(this._FolderLbl);
          this.Controls.Add(this._LanguageCmb);
          this.Controls.Add(this._LanguageLbl);
          this.Controls.Add(this._TypeCmb);
@@ -176,5 +198,7 @@
       private System.Windows.Forms.Label _TypeLbl;
       private System.Windows.Forms.ComboBox _LanguageCmb;
       private System.Windows.Forms.Label _LanguageLbl;
+      private System.Windows.Forms.ComboBox _FolderCmb;
+      private System.Windows.Forms.Label _FolderLbl;
    }
 }

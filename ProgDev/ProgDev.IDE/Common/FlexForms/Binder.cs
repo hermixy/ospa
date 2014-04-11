@@ -152,13 +152,20 @@ namespace ProgDev.IDE.Common.FlexForms
 
       public static void BindItems(this ListView control, ListField<ListViewRow> field)
       {
-         var groups = 
+         PopulateListView(control, field);
+
+         field.Changed += (sender, e) => PopulateListView(control, field);
+      }
+
+      private static void PopulateListView(ListView control, ListField<ListViewRow> field)
+      {
+         var groups =
             field
             .Select(x => x.GroupName)
             .Where(x => x != null)
             .Distinct()
             .ToDictionary(
-               x => x, 
+               x => x,
                x => new ListViewGroup(x, x));
          var images =
             field
@@ -173,17 +180,13 @@ namespace ProgDev.IDE.Common.FlexForms
             var imageList = new ImageList();
             foreach (var pair in images)
                imageList.Images.Add(pair.Key);
+            if (control.SmallImageList != null)
+               control.SmallImageList.Dispose();
             control.SmallImageList = imageList;
-            control.LargeImageList = imageList;
          }
 
-         PopulateListView(control, field, groups, images);
+         var boldFont = new Font(control.Font, FontStyle.Bold);
 
-         field.Changed += (sender, e) => PopulateListView(control, field, groups, images);
-      }
-
-      private static void PopulateListView(ListView control, ListField<ListViewRow> field, Dictionary<string, ListViewGroup> groups, Dictionary<Image, int> images)
-      {
          control.BeginUpdate();
          try
          {
@@ -201,13 +204,21 @@ namespace ProgDev.IDE.Common.FlexForms
                   ? new ListViewItem()
                   : new ListViewItem(groups[row.GroupName]);
 
+               lvi.Font = boldFont;
+               lvi.UseItemStyleForSubItems = false;
+
                bool first = true;
                foreach (string cell in row.Cells)
                {
                   if (first)
+                  {
                      lvi.Text = cell;
+                  }
                   else
+                  {
                      lvi.SubItems.Add(cell);
+                     lvi.SubItems.Cast<ListViewItem.ListViewSubItem>().Last().Font = control.Font;
+                  }
                   first = false;
                }
 

@@ -62,7 +62,9 @@
          this._Separator1 = new System.Windows.Forms.ToolStripSeparator();
          this._NewFileBtn = new System.Windows.Forms.ToolStripButton();
          this._NewFolderBtn = new System.Windows.Forms.ToolStripButton();
+         this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
          this._Separator2 = new System.Windows.Forms.ToolStripSeparator();
+         this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
          this._BuildButton = new System.Windows.Forms.ToolStripButton();
          this._DeployButton = new System.Windows.Forms.ToolStripButton();
          this._DebugButton = new System.Windows.Forms.ToolStripButton();
@@ -79,6 +81,10 @@
          this._DockPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
          this._DockPanel.DefaultFloatWindowSize = new System.Drawing.Size(300, 400);
          this._DockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+         this._DockPanel.DockBottomPortion = 200D;
+         this._DockPanel.DockLeftPortion = 300D;
+         this._DockPanel.DockRightPortion = 300D;
+         this._DockPanel.DockTopPortion = 200D;
          this._DockPanel.Location = new System.Drawing.Point(0, 0);
          this._DockPanel.Name = "_DockPanel";
          this._DockPanel.ShowDocumentIcon = true;
@@ -232,13 +238,15 @@
             this._Separator1,
             this._NewFileBtn,
             this._NewFolderBtn,
+            this.toolStripButton2,
             this._Separator2,
+            this.toolStripButton1,
             this._BuildButton,
             this._DeployButton,
             this._DebugButton});
          this._ToolStrip.Location = new System.Drawing.Point(3, 24);
          this._ToolStrip.Name = "_ToolStrip";
-         this._ToolStrip.Size = new System.Drawing.Size(709, 25);
+         this._ToolStrip.Size = new System.Drawing.Size(727, 25);
          this._ToolStrip.TabIndex = 1;
          // 
          // _NewButton
@@ -247,8 +255,8 @@
          this._NewButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._NewButton.Name = "_NewButton";
          this._NewButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this._NewButton.Size = new System.Drawing.Size(96, 22);
-         this._NewButton.Text = "New project";
+         this._NewButton.Size = new System.Drawing.Size(56, 22);
+         this._NewButton.Text = "New";
          // 
          // _OpenButton
          // 
@@ -256,8 +264,8 @@
          this._OpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._OpenButton.Name = "_OpenButton";
          this._OpenButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this._OpenButton.Size = new System.Drawing.Size(110, 22);
-         this._OpenButton.Text = "Open project…";
+         this._OpenButton.Size = new System.Drawing.Size(70, 22);
+         this._OpenButton.Text = "Open…";
          // 
          // _SaveButton
          // 
@@ -265,8 +273,8 @@
          this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._SaveButton.Name = "_SaveButton";
          this._SaveButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this._SaveButton.Size = new System.Drawing.Size(71, 22);
-         this._SaveButton.Text = "Save all";
+         this._SaveButton.Size = new System.Drawing.Size(56, 22);
+         this._SaveButton.Text = "Save";
          // 
          // _Separator1
          // 
@@ -291,10 +299,28 @@
          this._NewFolderBtn.Size = new System.Drawing.Size(99, 22);
          this._NewFolderBtn.Text = "New folder…";
          // 
+         // toolStripButton2
+         // 
+         this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+         this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.toolStripButton2.Name = "toolStripButton2";
+         this.toolStripButton2.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this.toolStripButton2.Size = new System.Drawing.Size(64, 22);
+         this.toolStripButton2.Text = "Find…";
+         // 
          // _Separator2
          // 
          this._Separator2.Name = "_Separator2";
          this._Separator2.Size = new System.Drawing.Size(6, 25);
+         // 
+         // toolStripButton1
+         // 
+         this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+         this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.toolStripButton1.Name = "toolStripButton1";
+         this.toolStripButton1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this.toolStripButton1.Size = new System.Drawing.Size(62, 22);
+         this.toolStripButton1.Text = "Setup";
          // 
          // _BuildButton
          // 
@@ -302,8 +328,8 @@
          this._BuildButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._BuildButton.Name = "_BuildButton";
          this._BuildButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this._BuildButton.Size = new System.Drawing.Size(59, 22);
-         this._BuildButton.Text = "Build";
+         this._BuildButton.Size = new System.Drawing.Size(77, 22);
+         this._BuildButton.Text = "Compile";
          // 
          // _DeployButton
          // 
@@ -375,5 +401,7 @@
       private System.Windows.Forms.ToolStripMenuItem _ProgramMenu;
       private System.Windows.Forms.ToolStripMenuItem _ToolsMenu;
       private System.Windows.Forms.ToolStripButton _NewFileBtn;
+      private System.Windows.Forms.ToolStripButton toolStripButton1;
+      private System.Windows.Forms.ToolStripButton toolStripButton2;
    }
 }

@@ -21,6 +21,6 @@ namespace ProgDev.IDE.Common.FlexForms
    {
       public string GroupName;
       public Image Icon;
-      public readonly List<string> Cells = new List<string>();
+      public List<string> Cells = new List<string>();
    }
 }

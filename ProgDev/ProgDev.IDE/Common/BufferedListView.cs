@@ -12,33 +12,16 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-namespace ProgDev.IDE.Forms
+using System.Windows.Forms;
+
+namespace ProgDev.IDE.Common
 {
-   public static class FormsFactory
+   public sealed class BufferedListView : ListView
    {
-      public static AppForm NewAppForm()
+      public BufferedListView()
       {
-         return new AppForm(new AppFormViewModel());
-      }
-
-      public static AboutForm NewAboutForm()
-      {
-         return new AboutForm(new AboutFormViewModel());
-      }
-
-      public static NewFileForm NewNewFileForm(string name)
-      {
-         return new NewFileForm(new NewFileFormViewModel(name));
-      }
-
-      public static NewFolderForm NewNewFolderForm(string name)
-      {
-         return new NewFolderForm(new NewFolderFormViewModel(name));
-      }
-
-      public static ProjectContentForm NewProjectContentForm()
-      {
-         return new ProjectContentForm(new ProjectContentFormViewModel());
+         SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+         UpdateStyles();
       }
    }
 }

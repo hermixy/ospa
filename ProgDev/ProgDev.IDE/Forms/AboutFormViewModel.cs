@@ -20,7 +20,7 @@ namespace ProgDev.IDE.Forms
 {
    public sealed class AboutFormViewModel : FormViewModel
    {
-      public Field<string> VersionText;
+      public ComputedField<string> VersionText;
       public Signal GitHubClick;
       public Signal FarmFreshClick;
       public Signal FatCowClick;
@@ -28,11 +28,6 @@ namespace ProgDev.IDE.Forms
       public Signal DockPanelClick;
       public Signal AntlrClick;
       public Signal CloseClick;
-
-      public AboutFormViewModel()
-      {
-         VersionText.Value = string.Format(Strings.AboutVersionFormat, Application.ProductVersion);
-      }
 
       [OnSignal("CloseClick")]
       private void OnCloseClick()
@@ -74,6 +69,12 @@ namespace ProgDev.IDE.Forms
       private void OnAntlrClick()
       {
          Process.Start("http://www.antlr.org/");
+      }
+
+      [Compute("VersionText")]
+      private string ComputeVersionText()
+      {
+         return string.Format(Strings.AboutVersionFormat, Application.ProductVersion);
       }
    }
 }

@@ -47,6 +47,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BufferedListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Common\FlexForms\ComputedField.cs" />
     <Compile Include="Common\FlexForms\ListField.cs" />
     <Compile Include="Common\FlexForms\DependsAttribute.cs" />
@@ -87,6 +90,12 @@
     </Compile>
     <Compile Include="Forms\AppFormViewModel.cs" />
     <Compile Include="Forms\FormsFactory.cs" />
+    <Compile Include="Forms\NewProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewProjectForm.Designer.cs">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProjectContentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +107,12 @@
     </Compile>
     <Compile Include="Forms\NewFileForm.Designer.cs">
       <DependentUpon>NewFileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProjectContentFormViewModel.cs" />
+    <Compile Include="Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.Designer.cs">
@@ -121,11 +136,18 @@
     <EmbeddedResource Include="Forms\NewFolderForm.resx">
       <DependentUpon>NewFolderForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewProjectForm.resx">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProjectContentForm.resx">
       <DependentUpon>ProjectContentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewFileForm.resx">
       <DependentUpon>NewFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -133,7 +155,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -145,6 +166,9 @@
       <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
       <Name>ProgDev.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1396248806_page_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
