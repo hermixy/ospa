@@ -137,7 +137,6 @@
          // 
          // _FolderCmb
          // 
-         this._FolderCmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
          this._FolderCmb.FormattingEnabled = true;
          this._FolderCmb.Location = new System.Drawing.Point(118, 41);
          this._FolderCmb.Name = "_FolderCmb";

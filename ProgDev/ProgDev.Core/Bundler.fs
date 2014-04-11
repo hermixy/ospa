@@ -16,38 +16,28 @@ module ProgDev.Core.Bundler
 open System.IO
 open System.Text
 
-let rec private GetAllFolders (path : string) : string seq =
+let private GetAllFolderPaths (path : string) : string seq =
    Directory.GetDirectories path
    |> Array.toSeq
-   |> Seq.map GetAllFolders
-   |> Seq.fold Seq.append Seq.empty<string>
-   |> Seq.append [| path |]
 
-let private GetAllFiles (folders : string seq) : string seq =
+let private GetAllFilePaths (folders : string seq) : string seq =
    folders
    |> Seq.map Directory.GetFiles
    |> Seq.map Array.toSeq
    |> Seq.fold Seq.append Seq.empty<string>
 
-let private CreateVirtualFolder (folderPath : string) : Dal.VirtualFolder =
-   { Name = folderPath }
-
 let private CreateVirtualFile (filePath : string) : Dal.VirtualFile =
    {
-      Folder = Path.GetDirectoryName(filePath)
+      Folder = Path.GetFileName(Path.GetDirectoryName(filePath))
       Name = Path.GetFileName(filePath)
       Content = File.ReadAllText(filePath)
    }
 
 let private CreateBundle (sourcePath : string) : Dal.Bundle =
-   let folderPaths = GetAllFolders sourcePath 
    {
-      Folders = 
-         folderPaths 
-         |> Seq.map CreateVirtualFolder 
-         |> Seq.toList
       Files = 
-         GetAllFiles folderPaths 
+         GetAllFolderPaths sourcePath
+         |> GetAllFilePaths
          |> Seq.map CreateVirtualFile 
          |> Seq.toList
    }

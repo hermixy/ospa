@@ -27,6 +27,13 @@ namespace ProgDev.IDE.Common.FlexForms
          Notify();
       }
 
+      public void Set(IEnumerable<T> newList)
+      {
+         _List.Clear();
+         _List.AddRange(newList);
+         Notify();
+      }
+
       public int IndexOf(T item)
       {
          return _List.IndexOf(item);

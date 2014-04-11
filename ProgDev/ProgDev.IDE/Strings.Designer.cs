@@ -203,5 +203,113 @@ namespace ProgDev.IDE {
                 return ResourceManager.GetString("LanguageST", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Class.
+        /// </summary>
+        internal static string ShortFileTypeClass {
+            get {
+                return ResourceManager.GetString("ShortFileTypeClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data type.
+        /// </summary>
+        internal static string ShortFileTypeDataType {
+            get {
+                return ResourceManager.GetString("ShortFileTypeDataType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function.
+        /// </summary>
+        internal static string ShortFileTypeFunction {
+            get {
+                return ResourceManager.GetString("ShortFileTypeFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Func. block.
+        /// </summary>
+        internal static string ShortFileTypeFunctionBlock {
+            get {
+                return ResourceManager.GetString("ShortFileTypeFunctionBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Global vars.
+        /// </summary>
+        internal static string ShortFileTypeGlobalVars {
+            get {
+                return ResourceManager.GetString("ShortFileTypeGlobalVars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interface.
+        /// </summary>
+        internal static string ShortFileTypeInterface {
+            get {
+                return ResourceManager.GetString("ShortFileTypeInterface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program.
+        /// </summary>
+        internal static string ShortFileTypeProgram {
+            get {
+                return ResourceManager.GetString("ShortFileTypeProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FBD.
+        /// </summary>
+        internal static string ShortLanguageFBD {
+            get {
+                return ResourceManager.GetString("ShortLanguageFBD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IL.
+        /// </summary>
+        internal static string ShortLanguageIL {
+            get {
+                return ResourceManager.GetString("ShortLanguageIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LD.
+        /// </summary>
+        internal static string ShortLanguageLD {
+            get {
+                return ResourceManager.GetString("ShortLanguageLD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SFC.
+        /// </summary>
+        internal static string ShortLanguageSFC {
+            get {
+                return ResourceManager.GetString("ShortLanguageSFC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ST.
+        /// </summary>
+        internal static string ShortLanguageST {
+            get {
+                return ResourceManager.GetString("ShortLanguageST", resourceCulture);
+            }
+        }
     }
 }

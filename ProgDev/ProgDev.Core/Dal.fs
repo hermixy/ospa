@@ -23,18 +23,11 @@ type VirtualFile = {
    Content : string
 }
 
-type VirtualFolder = {
-   Name : string
-}
-
 type Bundle = {
-   Folders : VirtualFolder list
    Files : VirtualFile list
 }
 
-let private FoldersStart = "{[[ProgDev.Program]]}\r\n{[[ProgDev.Folders]]}"
-let private FolderStart = "\r\n{[[ProgDev.Folder]]}\r\n"
-let private FilesStart = "\r\n{[[ProgDev.Files]]}"
+let private FilesStart = "{[[ProgDev.Project]]}\r\n"
 let private FileStart = "\r\n{[[ProgDev.File]]}\r\n"
 let private FieldDelimeter = "\r\n{[[======]]}\r\n"
 
@@ -44,11 +37,8 @@ let private FieldDelimeter = "\r\n{[[======]]}\r\n"
 let rec private Serialize (x : obj) : string = 
    match x with
    | :? Bundle as bundle ->
-      let foldersSection = bundle.Folders |> List.map Serialize |> String.concat "" 
       let filesSection = bundle.Files |> List.map Serialize |> String.concat ""
-      FoldersStart + foldersSection + FilesStart + filesSection   
-   | :? VirtualFolder as folder -> 
-      FolderStart + folder.Name
+      FilesStart + filesSection   
    | :? VirtualFile as file -> 
       FileStart + file.Folder + FieldDelimeter + file.Name + FieldDelimeter + file.Content
    | _ -> raise (Exception("Unrecognized type"))
@@ -75,17 +65,11 @@ let private DeserializeVirtualFile (encoded : string) : VirtualFile =
    let fields = encoded.Split([| FieldDelimeter |], StringSplitOptions.None)
    { Folder = fields.[0]; Name = fields.[1]; Content = fields.[2] }
 
-let private DeserializeVirtualFolder (encoded : string) : VirtualFolder =
-   { Name = encoded }
-
 let private DeserializeBundle (encoded : string) : Bundle =
-   let body = CheckAndChop encoded FoldersStart
-   let sections = body.Split([| FilesStart |], StringSplitOptions.None)
-   let folderRecords = sections.[0].Split([| FolderStart |], StringSplitOptions.RemoveEmptyEntries)
-   let fileRecords = sections.[1].Split([| FileStart |], StringSplitOptions.RemoveEmptyEntries)
-   let folders = folderRecords |> Array.map DeserializeVirtualFolder |> Array.toList
+   let body = CheckAndChop encoded FilesStart
+   let fileRecords = body.Split([| FileStart |], StringSplitOptions.RemoveEmptyEntries)
    let files = fileRecords  |> Array.map DeserializeVirtualFile |> Array.toList
-   { Folders = folders; Files = files }
+   { Files = files }
 
 let Load (filePath : string) : Bundle =
    use stream = File.OpenRead(filePath)

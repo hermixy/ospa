@@ -166,4 +166,40 @@
   <data name="LanguageST" xml:space="preserve">
     <value>Structured Text (ST)</value>
   </data>
+  <data name="ShortFileTypeClass" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="ShortFileTypeDataType" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="ShortFileTypeFunction" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="ShortFileTypeFunctionBlock" xml:space="preserve">
+    <value>Func. block</value>
+  </data>
+  <data name="ShortFileTypeGlobalVars" xml:space="preserve">
+    <value>Global vars</value>
+  </data>
+  <data name="ShortFileTypeInterface" xml:space="preserve">
+    <value>Interface</value>
+  </data>
+  <data name="ShortFileTypeProgram" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="ShortLanguageFBD" xml:space="preserve">
+    <value>FBD</value>
+  </data>
+  <data name="ShortLanguageIL" xml:space="preserve">
+    <value>IL</value>
+  </data>
+  <data name="ShortLanguageLD" xml:space="preserve">
+    <value>LD</value>
+  </data>
+  <data name="ShortLanguageSFC" xml:space="preserve">
+    <value>SFC</value>
+  </data>
+  <data name="ShortLanguageST" xml:space="preserve">
+    <value>ST</value>
+  </data>
 </root>

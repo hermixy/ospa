@@ -31,11 +31,6 @@ namespace ProgDev.IDE.Forms
          return new NewFileForm(new NewFileFormViewModel(name));
       }
 
-      public static NewFolderForm NewNewFolderForm(string name)
-      {
-         return new NewFolderForm(new NewFolderFormViewModel(name));
-      }
-
       public static ProjectContentForm NewProjectContentForm()
       {
          return new ProjectContentForm(new ProjectContentFormViewModel());

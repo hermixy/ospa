@@ -12,12 +12,10 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using System;
+using ProgDev.Core;
+using ProgDev.IDE.Common;
 using ProgDev.IDE.Common.FlexForms;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProgDev.IDE.Forms
 {
@@ -27,11 +25,25 @@ namespace ProgDev.IDE.Forms
 
       protected override void Initialize()
       {
-         /*List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = null, Cells = new List<string> { "Main", "Program", "FBD" } });
-         List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = null, Cells = new List<string> { "Blahblah", "Data type", "SFC" } });
-         List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = "Hello", Cells = new List<string> { "Whee", "Func. block", "IL" } });
-         List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = "Hello", Cells = new List<string> { "Blah_Blah", "Function", "ST" } });
-         List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = "Hello", Cells = new List<string> { "Yeah", "Interface", "LD" } });*/
+         Populate();
+      }
+
+      private void Populate()
+      {
+         var newList = new List<ListViewRow>();
+
+         foreach (var file in Project.Files)
+         {
+            var row = new ListViewRow
+            {
+               Icon = Images.PageWhite16,
+               GroupName = file.Folder,
+               Cells = new List<string> { file.Name, file.Type.ToShortString(), file.Language.ToShortString() }
+            };
+            newList.Add(row);
+         }
+
+         List.Set(newList);
       }
    }
 }

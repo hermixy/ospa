@@ -61,7 +61,6 @@
          this._SaveButton = new System.Windows.Forms.ToolStripButton();
          this._Separator1 = new System.Windows.Forms.ToolStripSeparator();
          this._NewFileBtn = new System.Windows.Forms.ToolStripButton();
-         this._NewFolderBtn = new System.Windows.Forms.ToolStripButton();
          this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
          this._Separator2 = new System.Windows.Forms.ToolStripSeparator();
          this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -237,7 +236,6 @@
             this._SaveButton,
             this._Separator1,
             this._NewFileBtn,
-            this._NewFolderBtn,
             this.toolStripButton2,
             this._Separator2,
             this.toolStripButton1,
@@ -246,7 +244,7 @@
             this._DebugButton});
          this._ToolStrip.Location = new System.Drawing.Point(3, 24);
          this._ToolStrip.Name = "_ToolStrip";
-         this._ToolStrip.Size = new System.Drawing.Size(785, 25);
+         this._ToolStrip.Size = new System.Drawing.Size(655, 25);
          this._ToolStrip.TabIndex = 1;
          // 
          // _NewButton
@@ -289,15 +287,6 @@
          this._NewFileBtn.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
          this._NewFileBtn.Size = new System.Drawing.Size(92, 22);
          this._NewFileBtn.Text = "New POU…";
-         // 
-         // _NewFolderBtn
-         // 
-         this._NewFolderBtn.Image = ((System.Drawing.Image)(resources.GetObject("_NewFolderBtn.Image")));
-         this._NewFolderBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this._NewFolderBtn.Name = "_NewFolderBtn";
-         this._NewFolderBtn.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this._NewFolderBtn.Size = new System.Drawing.Size(99, 22);
-         this._NewFolderBtn.Text = "New folder…";
          // 
          // toolStripButton2
          // 
@@ -392,7 +381,6 @@
       private System.Windows.Forms.ToolStripButton _OpenButton;
       private System.Windows.Forms.ToolStripButton _SaveButton;
       private System.Windows.Forms.ToolStripSeparator _Separator1;
-      private System.Windows.Forms.ToolStripButton _NewFolderBtn;
       private System.Windows.Forms.ToolStripSeparator _Separator2;
       private System.Windows.Forms.ToolStripButton _BuildButton;
       private System.Windows.Forms.ToolStripButton _DeployButton;

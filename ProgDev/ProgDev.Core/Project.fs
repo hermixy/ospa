@@ -26,7 +26,9 @@ type File = {
 }
 
 let mutable private _FilePath : string option = None
-let mutable private _Bundle : Dal.Bundle = { Folders = []; Files = [] }
+let mutable private _Bundle : Dal.Bundle = { Files = [] }
+
+let private NamePart (filename : string) : string = filename.Split('.').[0]
 
 let private ToFile (x : Dal.VirtualFile) : File =
    let dottedParts = x.Name.Split('.')
@@ -37,9 +39,10 @@ let private ToFile (x : Dal.VirtualFile) : File =
    { Folder = x.Folder; Filename = x.Name; Name = name; Type = pouType; Language = pouLanguage }
 
 let Folders : string seq =
-   _Bundle.Folders 
+   _Bundle.Files
    |> List.toSeq 
-   |> Seq.map (fun x -> x.Name)
+   |> Seq.map (fun x -> x.Folder)
+   |> Seq.distinct
 
 let Files : File seq =
    _Bundle.Files 
@@ -53,7 +56,7 @@ let FilePath =
 
 let New () =
    _FilePath <- None
-   _Bundle <- { Folders = []; Files = [] }
+   _Bundle <- { Files = [] }
 
 let Load (filePath : string) =
    _Bundle <- Dal.Load filePath
@@ -63,31 +66,24 @@ let Save (filePath : string) =
    Dal.Save _Bundle filePath
    _FilePath <- Some filePath
 
-let AddNewFolder (folderName : string) =
-   if _Bundle.Folders |> List.exists (fun x -> x.Name =? folderName) then raise (Exception "Folder already exists.")
-   let newFolder : Dal.VirtualFolder = { Name = folderName }
-   let folders = List.append _Bundle.Folders [ newFolder ]
-   _Bundle <- { Folders = folders; Files = _Bundle.Files }
-
 let AddNewFile (name : string) (folder : string) (pouType : PouType) (pouLanguage : PouLanguage) (content : string) =
+   if _Bundle.Files |> List.exists (fun x -> (NamePart x.Name) =? name && x.Folder =? folder) 
+      then raise (Exception "File already exists.")
    let parts = [name; FileExtensions.GetLanguageExtension pouLanguage; FileExtensions.GetTypeExtension pouType]
    let filename = String.Join(".", parts)
    let newFile : Dal.VirtualFile = { Folder = folder; Name = filename; Content = content; }
    let files = List.append _Bundle.Files [ newFile ]
-   _Bundle <- { Folders = _Bundle.Folders; Files = files }
+   _Bundle <- { Files = files }
    newFile |> ToFile
 
 let RenameFolder (oldFolderName : string) (newFolderName : string) =
-   let oldFolder = _Bundle.Folders |> List.toSeq |> Seq.filter (fun x -> x.Name =? oldFolderName) |> Seq.exactlyOne
-   let newFolder = { Name = newFolderName } : Dal.VirtualFolder
-   let folders = _Bundle.Folders |> List.map (fun x -> if x.Name =? oldFolderName then newFolder else x)
    let files = 
       _Bundle.Files 
       |> List.map (fun x -> 
          if x.Name =? oldFolderName 
-         then { Folder = newFolderName; Name = x.Name; Content = x.Content; } : Dal.VirtualFile
+            then { Folder = newFolderName; Name = x.Name; Content = x.Content; } : Dal.VirtualFile
          else x)
-   _Bundle <- { Folders = folders; Files = files }
+   _Bundle <- { Files = files }
 
 let RenameFile (folderName : string) (oldName : string) (newName : string) =
    let oldFile = 
@@ -97,13 +93,12 @@ let RenameFile (folderName : string) (oldName : string) (newName : string) =
       |> Seq.exactlyOne
    let newFile = { Folder = oldFile.Folder; Name = newName; Content = oldFile.Content } : Dal.VirtualFile
    let files = _Bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x)
-   _Bundle <- { Folders = _Bundle.Folders; Files = files }
+   _Bundle <- { Files = files }
 
 let DeleteFolder (folderName : string) =
-   let folders = _Bundle.Folders |> List.filter (fun x -> x.Name <>? folderName)
    let files = _Bundle.Files |> List.filter (fun x -> x.Folder <>? folderName)
-   _Bundle <- { Folders = folders; Files = files }
+   _Bundle <- { Files = files }
 
 let DeleteFile (folderName : string) (name : string) =
    let files = _Bundle.Files |> List.filter (fun x -> x.Folder <>? folderName || x.Name <>? name)
-   _Bundle <- { Folders = _Bundle.Folders; Files = files }
+   _Bundle <- { Files = files }

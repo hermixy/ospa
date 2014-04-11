@@ -37,7 +37,6 @@ namespace ProgDev.IDE.Forms
          _OpenButton.BindClick(viewModel.OpenClick);
          _SaveButton.BindClick(viewModel.SaveClick);
          _NewFileBtn.BindClick(viewModel.NewFileClick);
-         _NewFolderBtn.BindClick(viewModel.NewFolderClick);
          _BuildButton.BindClick(viewModel.BuildClick);
          _DeployButton.BindClick(viewModel.DeployClick);
          _DebugButton.BindClick(viewModel.DebugClick);

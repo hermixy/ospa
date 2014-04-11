@@ -16,19 +16,11 @@ module ProgDev.Core.Unbundler
 open System.IO
 open System.Text
 
-let private CreateFolder (absoluteRoot : string) (folder : Dal.VirtualFolder) : unit =
-   let absolutePath = Path.Combine(absoluteRoot, folder.Name)
-   ignore (Directory.CreateDirectory absolutePath)
-
-let private CreateFolders (absoluteRoot : string) (folders : Dal.VirtualFolder list) : unit =
-   let createFolder = CreateFolder absoluteRoot
-   ignore (List.map createFolder folders)
-
 let private CreateFile (absoluteRoot : string) (file : Dal.VirtualFile) : unit =
    let absolutePath = Path.Combine(absoluteRoot, file.Folder, file.Name)
-   use stream = File.Create absolutePath
-   use writer = new StreamWriter(stream, Encoding.UTF8)
-   writer.Write file.Content
+   let folderPath = Path.Combine(absoluteRoot, file.Folder)
+   if not (Directory.Exists folderPath) then ignore (Directory.CreateDirectory folderPath)
+   File.WriteAllText(absolutePath, file.Content)
 
 let private CreateFiles (absoluteRoot : string) (files : Dal.VirtualFile list) : unit =
    let createFile = CreateFile absoluteRoot
@@ -36,5 +28,4 @@ let private CreateFiles (absoluteRoot : string) (files : Dal.VirtualFile list) :
 
 let Unbundle (sourceFilePath : string) (targetPath : string) : unit =
    let bundle = Dal.Load sourceFilePath
-   CreateFolders targetPath bundle.Folders
    CreateFiles targetPath bundle.Files
