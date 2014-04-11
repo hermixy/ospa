@@ -246,7 +246,7 @@
             this._DebugButton});
          this._ToolStrip.Location = new System.Drawing.Point(3, 24);
          this._ToolStrip.Name = "_ToolStrip";
-         this._ToolStrip.Size = new System.Drawing.Size(727, 25);
+         this._ToolStrip.Size = new System.Drawing.Size(785, 25);
          this._ToolStrip.TabIndex = 1;
          // 
          // _NewButton
@@ -319,8 +319,8 @@
          this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
          this.toolStripButton1.Name = "toolStripButton1";
          this.toolStripButton1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this.toolStripButton1.Size = new System.Drawing.Size(62, 22);
-         this.toolStripButton1.Text = "Setup";
+         this.toolStripButton1.Size = new System.Drawing.Size(71, 22);
+         this.toolStripButton1.Text = "Setup…";
          // 
          // _BuildButton
          // 
@@ -337,8 +337,8 @@
          this._DeployButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._DeployButton.Name = "_DeployButton";
          this._DeployButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this._DeployButton.Size = new System.Drawing.Size(69, 22);
-         this._DeployButton.Text = "Deploy";
+         this._DeployButton.Size = new System.Drawing.Size(78, 22);
+         this._DeployButton.Text = "Deploy…";
          // 
          // _DebugButton
          // 
@@ -346,8 +346,8 @@
          this._DebugButton.ImageTransparentColor = System.Drawing.Color.Magenta;
          this._DebugButton.Name = "_DebugButton";
          this._DebugButton.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this._DebugButton.Size = new System.Drawing.Size(67, 22);
-         this._DebugButton.Text = "Debug";
+         this._DebugButton.Size = new System.Drawing.Size(76, 22);
+         this._DebugButton.Text = "Debug…";
          // 
          // AppForm
          // 

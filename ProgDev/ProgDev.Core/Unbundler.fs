@@ -17,7 +17,7 @@ open System.IO
 open System.Text
 
 let private CreateFolder (absoluteRoot : string) (folder : Dal.VirtualFolder) : unit =
-   let absolutePath = Path.Combine(absoluteRoot, folder.Path)
+   let absolutePath = Path.Combine(absoluteRoot, folder.Name)
    ignore (Directory.CreateDirectory absolutePath)
 
 let private CreateFolders (absoluteRoot : string) (folders : Dal.VirtualFolder list) : unit =
@@ -25,7 +25,7 @@ let private CreateFolders (absoluteRoot : string) (folders : Dal.VirtualFolder l
    ignore (List.map createFolder folders)
 
 let private CreateFile (absoluteRoot : string) (file : Dal.VirtualFile) : unit =
-   let absolutePath = Path.Combine(absoluteRoot, file.Path, file.Name)
+   let absolutePath = Path.Combine(absoluteRoot, file.Folder, file.Name)
    use stream = File.Create absolutePath
    use writer = new StreamWriter(stream, Encoding.UTF8)
    writer.Write file.Content

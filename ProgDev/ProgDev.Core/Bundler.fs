@@ -30,11 +30,11 @@ let private GetAllFiles (folders : string seq) : string seq =
    |> Seq.fold Seq.append Seq.empty<string>
 
 let private CreateVirtualFolder (folderPath : string) : Dal.VirtualFolder =
-   { Path = folderPath }
+   { Name = folderPath }
 
 let private CreateVirtualFile (filePath : string) : Dal.VirtualFile =
    {
-      Path = Path.GetDirectoryName(filePath)
+      Folder = Path.GetDirectoryName(filePath)
       Name = Path.GetFileName(filePath)
       Content = File.ReadAllText(filePath)
    }

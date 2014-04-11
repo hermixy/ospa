@@ -12,16 +12,9 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-module ProgDev.Core.InputValidator
-open System.Text.RegularExpressions
+module ProgDev.Core.Utility
+open System
 
-let private IdentifierRegex = Regex "^[A-Za-z_][A-Za-z_0-9]*$"
-
-let (| Identifier | _ |) (x : string) : string option =
-   let m = IdentifierRegex.Match(x)
-   if m.Success then Some x else None
-
-let IsIdentifier (x : string) : bool =
-   match x with
-   | Identifier y -> true
-   | _ -> false
+// Case-insensitive string comparison as an infix operator
+let (=?) (a : string) (b : string) = String.Equals(a, b, StringComparison.CurrentCultureIgnoreCase)
+let (<>?) (a : string) (b : string) = not (String.Equals(a, b, StringComparison.CurrentCultureIgnoreCase))

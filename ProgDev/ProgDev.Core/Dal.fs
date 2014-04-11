@@ -18,13 +18,13 @@ open System.IO
 open System.Text
 
 type VirtualFile = {
-   Path : string
+   Folder : string
    Name : string
    Content : string
 }
 
 type VirtualFolder = {
-   Path : string
+   Name : string
 }
 
 type Bundle = {
@@ -48,9 +48,9 @@ let rec private Serialize (x : obj) : string =
       let filesSection = bundle.Files |> List.map Serialize |> String.concat ""
       FoldersStart + foldersSection + FilesStart + filesSection   
    | :? VirtualFolder as folder -> 
-      FolderStart + folder.Path
+      FolderStart + folder.Name
    | :? VirtualFile as file -> 
-      FileStart + file.Path + FieldDelimeter + file.Name + FieldDelimeter + file.Content
+      FileStart + file.Folder + FieldDelimeter + file.Name + FieldDelimeter + file.Content
    | _ -> raise (Exception("Unrecognized type"))
 
 let Save (bundle : Bundle) (filePath : string) : unit =
@@ -73,10 +73,10 @@ let private CheckAndChop (haystack : string) (needle : string) : string =
 
 let private DeserializeVirtualFile (encoded : string) : VirtualFile =
    let fields = encoded.Split([| FieldDelimeter |], StringSplitOptions.None)
-   { Path = fields.[0]; Name = fields.[1]; Content = fields.[2] }
+   { Folder = fields.[0]; Name = fields.[1]; Content = fields.[2] }
 
 let private DeserializeVirtualFolder (encoded : string) : VirtualFolder =
-   { Path = encoded }
+   { Name = encoded }
 
 let private DeserializeBundle (encoded : string) : Bundle =
    let body = CheckAndChop encoded FoldersStart

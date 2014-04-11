@@ -27,11 +27,11 @@ namespace ProgDev.IDE.Forms
 
       protected override void Initialize()
       {
-         List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = null, Cells = new List<string> { "Main", "Program", "FBD" } });
+         /*List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = null, Cells = new List<string> { "Main", "Program", "FBD" } });
          List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = null, Cells = new List<string> { "Blahblah", "Data type", "SFC" } });
          List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = "Hello", Cells = new List<string> { "Whee", "Func. block", "IL" } });
          List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = "Hello", Cells = new List<string> { "Blah_Blah", "Function", "ST" } });
-         List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = "Hello", Cells = new List<string> { "Yeah", "Interface", "LD" } });
+         List.Add(new ListViewRow { Icon = Images.PageWhite16, GroupName = "Hello", Cells = new List<string> { "Yeah", "Interface", "LD" } });*/
       }
    }
 }
