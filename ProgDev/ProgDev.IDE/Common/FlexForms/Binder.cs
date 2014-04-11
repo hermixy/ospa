@@ -13,7 +13,6 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -136,7 +135,8 @@ namespace ProgDev.IDE.Common.FlexForms
             {
                control.Items.Clear();
                control.Items.AddRange(field.ToArray());
-               control.SelectedIndex = Math.Max(0, Math.Min(control.Items.Count - 1, selectedIndex));
+               if (control.Items.Count > 0)
+                  control.SelectedIndex = Math.Max(0, Math.Min(control.Items.Count - 1, selectedIndex));
             }
             finally
             {

@@ -14,6 +14,8 @@
 
 using ProgDev.Core;
 using ProgDev.IDE.Common.FlexForms;
+using ProgDev.Resources;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ProgDev.IDE.Forms
@@ -24,6 +26,12 @@ namespace ProgDev.IDE.Forms
       private readonly string _InitialName;
       public Field<string> NameText;
       public ComputedField<string> NameError;
+
+      // Folder combobox
+      private readonly IEnumerable<string> _InitialFolders;
+      public ListField<string> FolderList;
+      public Field<string> FolderText;
+      public ComputedField<string> FolderError;
 
       // Type combobox
       public ListField<string> TypeList;
@@ -38,14 +46,17 @@ namespace ProgDev.IDE.Forms
       public ComputedField<bool> OkEnabled;
       public Signal OkClick;
 
-      public NewFileFormViewModel(string name)
+      public NewFileFormViewModel(string name, IEnumerable<string> folders)
       {
          _InitialName = name;
+         _InitialFolders = folders;
       }
 
       protected override void Initialize()
       {
          NameText.Value = _InitialName;
+         FolderList.Set(_InitialFolders);
+         FolderText.Value = _InitialFolders.DefaultIfEmpty("").FirstOrDefault();
          TypeList.AddRange(new[] 
          { 
             Strings.FileTypeProgram, 
@@ -88,10 +99,16 @@ namespace ProgDev.IDE.Forms
          return InputValidator.IsIdentifier(NameText.Value) ? "" : Strings.ErrorExpectedIdentifier;
       }
 
-      [Compute("OkEnabled"), Depends("NameError")]
+      [Compute("FolderError"), Depends("FolderText")]
+      private string ComputeFolderError()
+      {
+         return InputValidator.IsIdentifier(FolderText.Value) ? "" : Strings.ErrorExpectedIdentifier;
+      }
+
+      [Compute("OkEnabled"), Depends("NameError", "FolderError")]
       private bool ComputeOkEnabled()
       {
-         return !NameError.Value.Any();
+         return !NameError.Value.Any() && !FolderError.Value.Any();
       }
 
       [OnSignal("OkClick")]

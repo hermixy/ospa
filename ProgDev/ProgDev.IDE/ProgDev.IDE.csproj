@@ -103,21 +103,11 @@
       <DependentUpon>NewFileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ProjectContentFormViewModel.cs" />
-    <Compile Include="Images.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Images.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -136,14 +126,6 @@
     <EmbeddedResource Include="Forms\NewFileForm.resx">
       <DependentUpon>NewFileForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Images.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -157,9 +139,13 @@
       <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
       <Name>ProgDev.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProgDev.Resources\ProgDev.Resources.csproj">
+      <Project>{5c4f9bee-2318-48a5-9099-b11c58c18eff}</Project>
+      <Name>ProgDev.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\1396248806_page_white.png" />
+    <None Include="Resources\1397211458_application.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

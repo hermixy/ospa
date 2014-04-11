@@ -18,8 +18,10 @@ open System.Text.RegularExpressions
 let private IdentifierRegex = Regex "^[A-Za-z_][A-Za-z_0-9]*$"
 
 let (| Identifier | _ |) (x : string) : string option =
-   let m = IdentifierRegex.Match(x)
-   if m.Success then Some x else None
+   if x = null then None
+   else
+      let m = IdentifierRegex.Match(x)
+      if m.Success then Some x else None
 
 let IsIdentifier (x : string) : bool =
    match x with

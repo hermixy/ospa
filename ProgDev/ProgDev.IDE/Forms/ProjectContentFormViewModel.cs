@@ -15,7 +15,9 @@
 using ProgDev.Core;
 using ProgDev.IDE.Common;
 using ProgDev.IDE.Common.FlexForms;
+using ProgDev.Resources;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProgDev.IDE.Forms
 {
@@ -30,20 +32,12 @@ namespace ProgDev.IDE.Forms
 
       private void Populate()
       {
-         var newList = new List<ListViewRow>();
-
-         foreach (var file in Project.Files)
+         List.Set(Project.Files.Select(x => new ListViewRow
          {
-            var row = new ListViewRow
-            {
-               Icon = Images.PageWhite16,
-               GroupName = file.Folder,
-               Cells = new List<string> { file.Name, file.Type.ToShortString(), file.Language.ToShortString() }
-            };
-            newList.Add(row);
-         }
-
-         List.Set(newList);
+            Icon = Images.Pou16,
+            GroupName = x.Folder,
+            Cells = new List<string> { x.Name, x.Type.ToShortString(), x.Language.ToShortString() }
+         }));
       }
    }
 }

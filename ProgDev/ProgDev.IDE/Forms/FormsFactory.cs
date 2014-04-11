@@ -12,6 +12,7 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.Core;
 namespace ProgDev.IDE.Forms
 {
    public static class FormsFactory
@@ -28,7 +29,7 @@ namespace ProgDev.IDE.Forms
 
       public static NewFileForm NewNewFileForm(string name)
       {
-         return new NewFileForm(new NewFileFormViewModel(name));
+         return new NewFileForm(new NewFileFormViewModel(name, Project.Folders));
       }
 
       public static ProjectContentForm NewProjectContentForm()

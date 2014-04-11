@@ -25,6 +25,9 @@ namespace ProgDev.IDE.Forms
 
          _NameTxt.BindText(viewModel.NameText);
          _NameTxt.BindError(_ErrorProvider, viewModel.NameError);
+         _FolderCmb.BindItems(viewModel.FolderList);
+         _FolderCmb.BindText(viewModel.FolderText);
+         _FolderCmb.BindError(_ErrorProvider, viewModel.FolderError);
          _TypeCmb.BindItems(viewModel.TypeList);
          _TypeCmb.BindSelectedIndex(viewModel.TypeSelectedIndex);
          _LanguageLbl.BindEnabled(viewModel.LanguageEnabled);

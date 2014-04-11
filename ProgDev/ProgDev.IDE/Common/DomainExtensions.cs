@@ -13,6 +13,7 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using ProgDev.Core.Domain;
+using ProgDev.Resources;
 using System;
 
 namespace ProgDev.IDE.Common
