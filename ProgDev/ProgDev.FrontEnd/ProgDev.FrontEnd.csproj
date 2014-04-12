@@ -139,10 +139,6 @@
       <Project>{606ab4d0-88e2-4c3b-938f-2d1912015298}</Project>
       <Name>ProgDev.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProgDev.Core\ProgDev.Core.fsproj">
-      <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
-      <Name>ProgDev.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProgDev.Domain\ProgDev.Domain.fsproj">
       <Project>{dead2f12-8564-49e9-9953-0d9e0546015c}</Project>
       <Name>ProgDev.Domain</Name>

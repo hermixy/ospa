@@ -80,10 +80,6 @@
     <None Include="Resources\Global_Var_Decls_001.osp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProgDev.Core\ProgDev.Core.fsproj">
-      <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
-      <Name>ProgDev.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProgDev.FrontEnd\ProgDev.FrontEnd.csproj">
       <Project>{f13fff10-707c-4894-9b30-cb2daa5b2018}</Project>
       <Name>ProgDev.FrontEnd</Name>

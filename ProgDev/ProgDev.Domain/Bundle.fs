@@ -12,30 +12,14 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.BusinessLogic;
+namespace ProgDev.Domain
 
-namespace ProgDev.FrontEnd.Forms
-{
-   public static class FormsFactory
-   {
-      public static AppForm NewAppForm()
-      {
-         return new AppForm(new AppFormViewModel());
-      }
+type BundleFile = {
+   Folder : string
+   Name : string
+   Content : string
+}
 
-      public static AboutForm NewAboutForm()
-      {
-         return new AboutForm(new AboutFormViewModel());
-      }
-
-      public static NewFileForm NewNewFileForm(string name)
-      {
-         return new NewFileForm(new NewFileFormViewModel(name, Project.Folders));
-      }
-
-      public static ProjectContentForm NewProjectContentForm()
-      {
-         return new ProjectContentForm(new ProjectContentFormViewModel());
-      }
-   }
+type Bundle = {
+   Files : BundleFile list
 }

@@ -12,10 +12,11 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-module ProgDev.Core.Project
+module ProgDev.BusinessLogic.Project
 open System
 open ProgDev.Domain
-open ProgDev.Core.Utility
+open ProgDev.Services
+open ProgDev.Services.Utility
 
 type File = {
    Folder : string
@@ -27,12 +28,12 @@ type File = {
 
 (*********************************************************************************************************************)
 let mutable private _FilePath : string option = None
-let mutable private _Bundle : Dal.Bundle = { Files = [] }
+let mutable private _Bundle : Bundle = { Files = [] }
 let private _ChangedEvent = new DelegateEvent<System.Action>()
 
 let private NamePart (filename : string) : string = filename.Split('.').[0]
 
-let private ToFile (x : Dal.BundleFile) : File =
+let private ToFile (x : BundleFile) : File =
    let dottedParts = x.Name.Split('.')
    if dottedParts.Length <> 3 then raise (Exception "Malformed filename.")
    let name = dottedParts.[0]
@@ -73,11 +74,11 @@ let New () =
    SetBundle { Files = [] }
 
 let Load (filePath : string) =
-   SetBundle (Dal.Load filePath)
+   SetBundle (Bundler.Load filePath)
    _FilePath <- Some filePath
 
 let Save (filePath : string) =
-   Dal.Save _Bundle filePath
+   Bundler.Save _Bundle filePath
    _FilePath <- Some filePath
 
 let AddNewFile (name : string) (folder : string) (pouType : PouType) (pouLanguage : PouLanguage) (content : string) =
@@ -85,7 +86,7 @@ let AddNewFile (name : string) (folder : string) (pouType : PouType) (pouLanguag
       then raise (Exception "File already exists.")
    let parts = [name; FileExtensions.GetLanguageExtension pouLanguage; FileExtensions.GetTypeExtension pouType]
    let filename = String.Join(".", parts)
-   let newFile : Dal.BundleFile = { Folder = folder; Name = filename; Content = content; }
+   let newFile : BundleFile = { Folder = folder; Name = filename; Content = content; }
    let files = List.append _Bundle.Files [ newFile ]
    SetBundle { Files = files }
    newFile |> ToFile
@@ -95,7 +96,7 @@ let RenameFolder (oldFolderName : string) (newFolderName : string) =
       _Bundle.Files 
       |> List.map (fun x -> 
          if x.Name =? oldFolderName 
-            then { Folder = newFolderName; Name = x.Name; Content = x.Content; } : Dal.BundleFile
+            then { Folder = newFolderName; Name = x.Name; Content = x.Content; } : BundleFile
          else x)
    SetBundle { Files = files }
 
@@ -105,7 +106,7 @@ let RenameFile (folderName : string) (oldName : string) (newName : string) =
       |> List.toSeq 
       |> Seq.filter (fun x -> x.Name =? oldName && x.Folder =? oldName) 
       |> Seq.exactlyOne
-   let newFile = { Folder = oldFile.Folder; Name = newName; Content = oldFile.Content } : Dal.BundleFile
+   let newFile = { Folder = oldFile.Folder; Name = newName; Content = oldFile.Content } : BundleFile
    let files = _Bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x)
    SetBundle { Files = files }
 

@@ -12,20 +12,11 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-module ProgDev.Core.Dal
+module ProgDev.Services.Bundler
+open ProgDev.Domain
 open System
 open System.IO
 open System.Text
-
-type BundleFile = {
-   Folder : string
-   Name : string
-   Content : string
-}
-
-type Bundle = {
-   Files : BundleFile list
-}
 
 let private FilesStart = "{[[--ProgDev-Project--]]}\r\n"
 let private FileStart = "\r\n{[[--ProgDev-File--]]}\r\n"
