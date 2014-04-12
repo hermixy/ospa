@@ -107,7 +107,7 @@ let Bundle (sourcePath : string) (targetFilePath : string) : unit =
    Save (BundleHelper.CreateBundle sourcePath) targetFilePath
 
 (*********************************************************************************************************************)
-module private Unbundler =
+module private UnbundleHelper =
    let private CreateFile (absoluteRoot : string) (file : BundleFile) : unit =
       let absolutePath = Path.Combine(absoluteRoot, file.Folder, file.Name)
       let folderPath = Path.Combine(absoluteRoot, file.Folder)
@@ -120,4 +120,4 @@ module private Unbundler =
 
 let Unbundle (sourceFilePath : string) (targetPath : string) : unit =
    let bundle = Load sourceFilePath
-   Unbundler.CreateFiles targetPath bundle.Files
+   UnbundleHelper.CreateFiles targetPath bundle.Files

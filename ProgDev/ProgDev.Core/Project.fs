@@ -28,10 +28,9 @@ type File = {
 (*********************************************************************************************************************)
 let mutable private _FilePath : string option = None
 let mutable private _Bundle : Dal.Bundle = { Files = [] }
+let private _ChangedEvent = new DelegateEvent<System.Action>()
 
 let private NamePart (filename : string) : string = filename.Split('.').[0]
-
-let private changedEvent = new DelegateEvent<System.Action>()
 
 let private ToFile (x : Dal.BundleFile) : File =
    let dottedParts = x.Name.Split('.')
@@ -43,12 +42,12 @@ let private ToFile (x : Dal.BundleFile) : File =
 
 let private SetBundle x =
    _Bundle <- x
-   changedEvent.Trigger([| |])
+   _ChangedEvent.Trigger([| |])
 
 (*********************************************************************************************************************)
 type EventsContainer () =
    [<CLIEvent>]
-   member this.Changed = changedEvent.Publish
+   member this.Changed = _ChangedEvent.Publish
 
 let Events : EventsContainer = new EventsContainer()
 
