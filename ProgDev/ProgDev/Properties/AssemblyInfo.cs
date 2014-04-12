@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProgDev")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("OSPA ProgDev")]
+[assembly: AssemblyDescription("Programming and debugging tool for the Open Source PLC Architecture")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProgDev")]
+[assembly: AssemblyCompany("OSPA")]
+[assembly: AssemblyProduct("OSPA ProgDev")]
 [assembly: AssemblyCopyright("© 2014 Brian Luft")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
