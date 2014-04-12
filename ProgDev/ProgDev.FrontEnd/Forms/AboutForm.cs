@@ -12,23 +12,26 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.FrontEnd.Forms;
-using System;
+using ProgDev.FrontEnd.Common.FlexForms;
 using System.Windows.Forms;
 
-namespace ProgDev
+namespace ProgDev.FrontEnd.Forms
 {
-   public static class Program
+   public partial class AboutForm : Form
    {
-      /// <summary>
-      /// The main entry point for the application.
-      /// </summary>
-      [STAThread]
-      public static void Main(string[] args)
+      public AboutForm(AboutFormViewModel viewModel)
       {
-         Application.EnableVisualStyles();
-         Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(FormsFactory.NewAppForm());
+         InitializeComponent();
+
+         _VersionLabel.BindText(viewModel.VersionText);
+         _CloseButton.BindClick(viewModel.CloseClick);
+         _GitHubLinkLabel.BindClick(viewModel.GitHubClick);
+         _FarmFreshLinkLabel.BindClick(viewModel.FarmFreshClick);
+         _FatCowLinkLabel.BindClick(viewModel.FatCowClick);
+         _CreativeCommonsLinkLabel.BindClick(viewModel.CreativeCommonsClick);
+         _DockPanelLinkLabel.BindClick(viewModel.DockPanelClick);
+         _AntlrLinkLabel.BindClick(viewModel.AntlrClick);
+         viewModel.Start(this);
       }
    }
 }

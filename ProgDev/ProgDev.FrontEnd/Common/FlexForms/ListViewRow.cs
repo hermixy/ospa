@@ -12,23 +12,15 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.FrontEnd.Forms;
-using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Drawing;
 
-namespace ProgDev
+namespace ProgDev.FrontEnd.Common.FlexForms
 {
-   public static class Program
+   public sealed class ListViewRow
    {
-      /// <summary>
-      /// The main entry point for the application.
-      /// </summary>
-      [STAThread]
-      public static void Main(string[] args)
-      {
-         Application.EnableVisualStyles();
-         Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(FormsFactory.NewAppForm());
-      }
+      public string GroupName;
+      public Image Icon;
+      public List<string> Cells = new List<string>();
    }
 }

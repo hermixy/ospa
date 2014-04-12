@@ -12,23 +12,29 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.FrontEnd.Forms;
-using System;
-using System.Windows.Forms;
-
-namespace ProgDev
+using ProgDev.Core;
+namespace ProgDev.FrontEnd.Forms
 {
-   public static class Program
+   public static class FormsFactory
    {
-      /// <summary>
-      /// The main entry point for the application.
-      /// </summary>
-      [STAThread]
-      public static void Main(string[] args)
+      public static AppForm NewAppForm()
       {
-         Application.EnableVisualStyles();
-         Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(FormsFactory.NewAppForm());
+         return new AppForm(new AppFormViewModel());
+      }
+
+      public static AboutForm NewAboutForm()
+      {
+         return new AboutForm(new AboutFormViewModel());
+      }
+
+      public static NewFileForm NewNewFileForm(string name)
+      {
+         return new NewFileForm(new NewFileFormViewModel(name, Project.Folders));
+      }
+
+      public static ProjectContentForm NewProjectContentForm()
+      {
+         return new ProjectContentForm(new ProjectContentFormViewModel());
       }
    }
 }

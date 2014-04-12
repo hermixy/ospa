@@ -59,7 +59,6 @@
   <Import Project="..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets" Condition="Exists('..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets')" />
   <ItemGroup>
     <None Include="packages.config" />
-    <Compile Include="Domain.fs" />
     <Compile Include="Utility.fs" />
     <Compile Include="Ast.fs" />
     <Compile Include="Parser.fs" />
@@ -79,6 +78,11 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+    <ProjectReference Include="..\ProgDev.Domain\ProgDev.Domain.fsproj">
+      <Name>ProgDev.Domain</Name>
+      <Project>{dead2f12-8564-49e9-9953-0d9e0546015c}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\ProgDev.Parsers\ProgDev.Parsers.csproj">
       <Name>ProgDev.Parsers</Name>
       <Project>{59cc3958-f947-4dbe-a8ff-53467c77590e}</Project>

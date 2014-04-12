@@ -12,23 +12,18 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.FrontEnd.Forms;
 using System;
-using System.Windows.Forms;
 
-namespace ProgDev
+namespace ProgDev.FrontEnd.Common.FlexForms
 {
-   public static class Program
+   [AttributeUsage(AttributeTargets.Method)]
+   public sealed class DependsAttribute : Attribute
    {
-      /// <summary>
-      /// The main entry point for the application.
-      /// </summary>
-      [STAThread]
-      public static void Main(string[] args)
+      public readonly string[] FieldDependencies;
+
+      public DependsAttribute(params string[] fieldDependencies)
       {
-         Application.EnableVisualStyles();
-         Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(FormsFactory.NewAppForm());
+         FieldDependencies = fieldDependencies;
       }
    }
 }

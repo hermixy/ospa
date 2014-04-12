@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F13FFF10-707C-4894-9B30-CB2DAA5B2018}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProgDev.FrontEnd</RootNamespace>
+    <AssemblyName>ProgDev.FrontEnd</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\packages\Windows7APICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\packages\DockPanelSuite.3.0.0-alpha8\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\BufferedListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\DomainExtensions.cs" />
+    <Compile Include="Common\FlexForms\ComputedField.cs" />
+    <Compile Include="Common\FlexForms\ListField.cs" />
+    <Compile Include="Common\FlexForms\DependsAttribute.cs" />
+    <Compile Include="Common\FlexForms\ComputeAttribute.cs" />
+    <Compile Include="Common\FlexForms\IComputedField.cs" />
+    <Compile Include="Common\FlexForms\ListViewRow.cs" />
+    <Compile Include="Common\FlexForms\ViewModelUtilities.cs" />
+    <Compile Include="Common\TaskDialogFactory.cs" />
+    <Compile Include="Common\FlexForms\Binder.cs" />
+    <Compile Include="Common\FlexForms\Field.cs" />
+    <Compile Include="Common\FlexForms\FlexAttribute.cs" />
+    <Compile Include="Common\FlexForms\FlexException.cs" />
+    <Compile Include="Common\FlexForms\FormViewModel.cs" />
+    <Compile Include="Common\FlexForms\OnChangeAttribute.cs" />
+    <Compile Include="Common\FlexForms\OnSignalAttribute.cs" />
+    <Compile Include="Common\FlexForms\Signal.cs" />
+    <Compile Include="Common\FlexForms\ViewModel.cs" />
+    <Compile Include="Forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewFileFormViewModel.cs" />
+    <Compile Include="Forms\AboutFormViewModel.cs" />
+    <Compile Include="Forms\AppForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppForm.Designer.cs">
+      <DependentUpon>AppForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AppFormViewModel.cs" />
+    <Compile Include="Forms\FormsFactory.cs" />
+    <Compile Include="Forms\NewProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewProjectForm.Designer.cs">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProjectContentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProjectContentForm.Designer.cs">
+      <DependentUpon>ProjectContentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewFileForm.Designer.cs">
+      <DependentUpon>NewFileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProjectContentFormViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppForm.resx">
+      <DependentUpon>AppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewProjectForm.resx">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProjectContentForm.resx">
+      <DependentUpon>ProjectContentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewFileForm.resx">
+      <DependentUpon>NewFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProgDev.BusinessLogic\ProgDev.BusinessLogic.fsproj">
+      <Project>{606ab4d0-88e2-4c3b-938f-2d1912015298}</Project>
+      <Name>ProgDev.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProgDev.Core\ProgDev.Core.fsproj">
+      <Project>{e513b254-e5c3-4141-94e2-720810765986}</Project>
+      <Name>ProgDev.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProgDev.Domain\ProgDev.Domain.fsproj">
+      <Project>{dead2f12-8564-49e9-9953-0d9e0546015c}</Project>
+      <Name>ProgDev.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProgDev.Resources\ProgDev.Resources.csproj">
+      <Project>{5c4f9bee-2318-48a5-9099-b11c58c18eff}</Project>
+      <Name>ProgDev.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProgDev.Services\ProgDev.Services.fsproj">
+      <Project>{38392c8e-7bba-4269-a416-07967079b04a}</Project>
+      <Name>ProgDev.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -12,23 +12,33 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.FrontEnd.Forms;
-using System;
-using System.Windows.Forms;
+using ProgDev.Core;
+using ProgDev.FrontEnd.Common;
+using ProgDev.FrontEnd.Common.FlexForms;
+using ProgDev.Resources;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace ProgDev
+namespace ProgDev.FrontEnd.Forms
 {
-   public static class Program
+   public sealed class ProjectContentFormViewModel : FormViewModel
    {
-      /// <summary>
-      /// The main entry point for the application.
-      /// </summary>
-      [STAThread]
-      public static void Main(string[] args)
+      public ListField<ListViewRow> List;
+
+      protected override void Initialize()
       {
-         Application.EnableVisualStyles();
-         Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(FormsFactory.NewAppForm());
+         Populate();
+         Project.Events.Changed += () => Populate();
+      }
+
+      private void Populate()
+      {
+         List.Set(Project.Files.Select(x => new ListViewRow
+         {
+            Icon = Images.Pou16,
+            GroupName = x.Folder,
+            Cells = new List<string> { x.Name, x.Type.ToShortString(), x.Language.ToShortString() }
+         }));
       }
    }
 }

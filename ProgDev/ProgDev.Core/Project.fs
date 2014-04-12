@@ -14,7 +14,7 @@
 
 module ProgDev.Core.Project
 open System
-open ProgDev.Core.Domain
+open ProgDev.Domain
 open ProgDev.Core.Utility
 
 type File = {
