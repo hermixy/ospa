@@ -28,6 +28,7 @@ namespace ProgDev.FrontEnd.Forms
       public Signal CreativeCommonsClick;
       public Signal DockPanelClick;
       public Signal AntlrClick;
+      public Signal MimeKitClick;
       public Signal CloseClick;
 
       [OnSignal("CloseClick")]
@@ -70,6 +71,12 @@ namespace ProgDev.FrontEnd.Forms
       private void OnAntlrClick()
       {
          Process.Start("http://www.antlr.org/");
+      }
+
+      [OnSignal("MimeKitClick")]
+      private void OnMimeKitClick()
+      {
+         Process.Start("http://jstedfast.github.io/MimeKit/");
       }
 
       [Compute("VersionText")]

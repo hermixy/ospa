@@ -127,6 +127,21 @@
   <data name="ButtonSave" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="CommandAddFile" xml:space="preserve">
+    <value>add file</value>
+  </data>
+  <data name="CommandDeleteFile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CommandDeleteFolder" xml:space="preserve">
+    <value>delete folder</value>
+  </data>
+  <data name="CommandMoveFile" xml:space="preserve">
+    <value>move file</value>
+  </data>
+  <data name="CommandRenameFile" xml:space="preserve">
+    <value>rename file</value>
+  </data>
   <data name="ErrorExpectedIdentifier" xml:space="preserve">
     <value>Must be a valid identifier (alphanumeric and underscore, starting with a letter).</value>
   </data>

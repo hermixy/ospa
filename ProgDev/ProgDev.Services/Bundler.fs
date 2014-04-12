@@ -17,74 +17,49 @@ open ProgDev.Domain
 open System
 open System.IO
 open System.Text
+open MimeKit
 
-let private FilesStart = "{[[--ProgDev-Project--]]}\r\n"
-let private FileStart = "\r\n{[[--ProgDev-File--]]}\r\n"
-let private FieldDelimeter = "\r\n{[[-----]]}\r\n"
+let private ToTextPart (file : BundleFile) =
+   let textPart = new TextPart()
+   textPart.FileName <- file.Folder + "/" + file.Name
+   textPart.Text <- file.Content
+   textPart
 
-(*********************************************************************************************************************)
-module private SaveHelper =
-   let rec Serialize (x : obj) : string = 
-      match x with
-      | :? Bundle as bundle ->
-         let filesSection = bundle.Files |> List.map Serialize |> String.concat ""
-         FilesStart + filesSection   
-      | :? BundleFile as file -> 
-         FileStart + file.Folder + FieldDelimeter + file.Name + FieldDelimeter + file.Content
-      | _ -> raise (Exception("Unrecognized type"))
+let private ToBundleFile (file : TextPart) =
+   if not (file.FileName.Contains("/")) then raise (Exception "FileName should contain a folder name.")
+   else
+      let filenameParts = file.FileName.Split '/'
+      { Folder = filenameParts.[0]; Name = filenameParts.[1]; Content = file.Text } : BundleFile
 
-let Save (bundle : Bundle) (filePath : string) : unit =
+let Save (bundle : Bundle) (filePath : string) =
+   let textParts = bundle.Files |> List.map ToTextPart |> List.toArray
+   let multipart = new Multipart()
+   for textPart in textParts do
+      multipart.Add textPart
    use stream = File.Create(filePath)
-   use writer = new StreamWriter(stream, Encoding.UTF8)
-   SaveHelper.Serialize bundle |> writer.Write
-
-(*********************************************************************************************************************)
-module private LoadHelper =
-   let private CheckAndChop (haystack : string) (needle : string) : string =
-      if haystack.Length < needle.Length then
-         raise (Exception("Premature end of file."))
-      elif haystack.Substring(0, needle.Length) <> needle then
-         raise (Exception("Unexpected text in file.\r\n" 
-            + "Expected: \"" + needle + "\"\r\n" 
-            + "Actual: \"" + haystack.Substring(0, needle.Length) + "\""))
-      else
-         haystack.Substring(needle.Length)
-
-   let private DeserializeBundleFile (encoded : string) : BundleFile =
-      let fields = encoded.Split([| FieldDelimeter |], StringSplitOptions.None)
-      { Folder = fields.[0]; Name = fields.[1]; Content = fields.[2] }
-
-   let DeserializeBundle (encoded : string) : Bundle =
-      let body = CheckAndChop encoded FilesStart
-      let fileRecords = body.Split([| FileStart |], StringSplitOptions.RemoveEmptyEntries)
-      let files = fileRecords  |> Array.map DeserializeBundleFile |> Array.toList
-      { Files = files }
+   multipart.WriteTo stream
 
 let Load (filePath : string) : Bundle =
    use stream = File.OpenRead(filePath)
-   use reader = new StreamReader(stream, Encoding.UTF8)
-   let encoded = reader.ReadToEnd()
-   LoadHelper.DeserializeBundle encoded
+   let parser = new MimeParser(stream)
+   let multipart = downcast parser.ParseEntity() : Multipart
+   { Files = multipart |> Seq.map (fun x -> ToBundleFile (downcast x : TextPart)) |> Seq.toList }
 
-(*********************************************************************************************************************)
-module private BundleHelper = 
-   let private GetAllFolderPaths (path : string) : string seq =
+let Bundle (sourcePath : string) (targetFilePath : string) : unit =
+   let GetAllFolderPaths (path : string) : string seq =
       Directory.GetDirectories path
       |> Array.toSeq
-
-   let private GetAllFilePaths (folders : string seq) : string seq =
+   let GetAllFilePaths (folders : string seq) : string seq =
       folders
       |> Seq.map Directory.GetFiles
       |> Seq.map Array.toSeq
       |> Seq.fold Seq.append Seq.empty<string>
-
-   let private CreateBundleFile (filePath : string) : BundleFile =
+   let CreateBundleFile (filePath : string) : BundleFile =
       {
          Folder = Path.GetFileName(Path.GetDirectoryName(filePath))
          Name = Path.GetFileName(filePath)
          Content = File.ReadAllText(filePath)
       }
-
    let CreateBundle (sourcePath : string) : Bundle =
       {
          Files = 
@@ -93,22 +68,15 @@ module private BundleHelper =
             |> Seq.map CreateBundleFile 
             |> Seq.toList
       }
+   Save (CreateBundle sourcePath) targetFilePath
 
-let Bundle (sourcePath : string) (targetFilePath : string) : unit =
-   Save (BundleHelper.CreateBundle sourcePath) targetFilePath
-
-(*********************************************************************************************************************)
-module private UnbundleHelper =
-   let private CreateFile (absoluteRoot : string) (file : BundleFile) : unit =
+let Unbundle (sourceFilePath : string) (targetPath : string) : unit =
+   let CreateFile (absoluteRoot : string) (file : BundleFile) : unit =
       let absolutePath = Path.Combine(absoluteRoot, file.Folder, file.Name)
       let folderPath = Path.Combine(absoluteRoot, file.Folder)
       if not (Directory.Exists folderPath) then ignore (Directory.CreateDirectory folderPath)
       File.WriteAllText(absolutePath, file.Content)
-
    let CreateFiles (absoluteRoot : string) (files : BundleFile list) : unit =
       let createFile = CreateFile absoluteRoot
       ignore (List.map createFile files)
-
-let Unbundle (sourceFilePath : string) (targetPath : string) : unit =
-   let bundle = Load sourceFilePath
-   UnbundleHelper.CreateFiles targetPath bundle.Files
+   CreateFiles targetPath (Load sourceFilePath).Files

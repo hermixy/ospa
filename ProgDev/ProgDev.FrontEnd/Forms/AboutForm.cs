@@ -31,6 +31,7 @@ namespace ProgDev.FrontEnd.Forms
          _CreativeCommonsLinkLabel.BindClick(viewModel.CreativeCommonsClick);
          _DockPanelLinkLabel.BindClick(viewModel.DockPanelClick);
          _AntlrLinkLabel.BindClick(viewModel.AntlrClick);
+         _MimeKitLinkLabel.BindClick(viewModel.MimeKitClick);
          viewModel.Start(this);
       }
    }

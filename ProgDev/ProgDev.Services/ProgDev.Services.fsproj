@@ -61,12 +61,17 @@
       <HintPath>..\packages\Antlr4.Runtime.4.2.2-alpha001\lib\net45\Antlr4.Runtime.v4.5.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MimeKitLite">
+      <HintPath>..\packages\MimeKitLite.0.31.0.0\lib\net40\MimeKitLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
     <ProjectReference Include="..\ProgDev.Domain\ProgDev.Domain.fsproj">
       <Name>ProgDev.Domain</Name>
@@ -83,6 +88,7 @@
       <Project>{5c4f9bee-2318-48a5-9099-b11c58c18eff}</Project>
       <Private>True</Private>
     </ProjectReference>
+    <Reference Include="System.Security" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

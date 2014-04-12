@@ -88,6 +88,51 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add file.
+        /// </summary>
+        public static string CommandAddFile {
+            get {
+                return ResourceManager.GetString("CommandAddFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string CommandDeleteFile {
+            get {
+                return ResourceManager.GetString("CommandDeleteFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete folder.
+        /// </summary>
+        public static string CommandDeleteFolder {
+            get {
+                return ResourceManager.GetString("CommandDeleteFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to move file.
+        /// </summary>
+        public static string CommandMoveFile {
+            get {
+                return ResourceManager.GetString("CommandMoveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rename file.
+        /// </summary>
+        public static string CommandRenameFile {
+            get {
+                return ResourceManager.GetString("CommandRenameFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must be a valid identifier (alphanumeric and underscore, starting with a letter)..
         /// </summary>
         public static string ErrorExpectedIdentifier {

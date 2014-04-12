@@ -42,7 +42,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain.fs" />
+    <Compile Include="FileExtensions.fs" />
     <Compile Include="Ast.fs" />
     <Compile Include="Bundle.fs" />
   </ItemGroup>

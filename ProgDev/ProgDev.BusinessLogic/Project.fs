@@ -13,10 +13,11 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 module ProgDev.BusinessLogic.Project
-open System
 open ProgDev.Domain
 open ProgDev.Services
 open ProgDev.Services.Utility
+open ProgDev.Resources
+open System
 
 type File = {
    Folder : string
@@ -81,39 +82,114 @@ let Save (filePath : string) =
    Bundler.Save _Bundle filePath
    _FilePath <- Some filePath
 
-let AddNewFile (name : string) (folder : string) (pouType : PouType) (pouLanguage : PouLanguage) (content : string) =
-   if _Bundle.Files |> List.exists (fun x -> (NamePart x.Name) =? name && x.Folder =? folder) 
-      then raise (Exception "File already exists.")
-   let parts = [name; FileExtensions.GetLanguageExtension pouLanguage; FileExtensions.GetTypeExtension pouType]
-   let filename = String.Join(".", parts)
-   let newFile : BundleFile = { Folder = folder; Name = filename; Content = content; }
-   let files = List.append _Bundle.Files [ newFile ]
-   SetBundle { Files = files }
-   newFile |> ToFile
-
-let RenameFolder (oldFolderName : string) (newFolderName : string) =
-   let files = 
-      _Bundle.Files 
-      |> List.map (fun x -> 
-         if x.Name =? oldFolderName 
-            then { Folder = newFolderName; Name = x.Name; Content = x.Content; } : BundleFile
-         else x)
-   SetBundle { Files = files }
-
-let RenameFile (folderName : string) (oldName : string) (newName : string) =
-   let oldFile = 
-      _Bundle.Files 
+(*********************************************************************************************************************)
+module private FileOperations =
+   let private GetFile (namespaceName : string) (name : string) (bundle : Bundle) =
+      bundle.Files 
       |> List.toSeq 
-      |> Seq.filter (fun x -> x.Name =? oldName && x.Folder =? oldName) 
+      |> Seq.filter (fun x -> x.Name =? name && x.Folder =? namespaceName) 
       |> Seq.exactlyOne
-   let newFile = { Folder = oldFile.Folder; Name = newName; Content = oldFile.Content } : BundleFile
-   let files = _Bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x)
-   SetBundle { Files = files }
 
-let DeleteFolder (folderName : string) =
-   let files = _Bundle.Files |> List.filter (fun x -> x.Folder <>? folderName)
-   SetBundle { Files = files }
+   let private GetTemplate (pouType : PouType, pouLanguage : PouLanguage) =
+      match (pouLanguage, pouType) with
+      | PouLanguage.FunctionBlockDiagram, PouType.Class -> FileTemplates.FbdClass
+      | PouLanguage.FunctionBlockDiagram, PouType.FunctionBlock -> FileTemplates.FbdBlock
+      | PouLanguage.FunctionBlockDiagram, PouType.Function -> FileTemplates.FbdFunction
+      | PouLanguage.FunctionBlockDiagram, PouType.Program -> FileTemplates.FbdProgram
+      | PouLanguage.InstructionList, PouType.Class -> FileTemplates.IlClass
+      | PouLanguage.InstructionList, PouType.FunctionBlock -> FileTemplates.IlBlock
+      | PouLanguage.InstructionList, PouType.Function -> FileTemplates.IlFunction
+      | PouLanguage.InstructionList, PouType.Program -> FileTemplates.IlProgram
+      | PouLanguage.LadderDiagram, PouType.Class -> FileTemplates.LdClass
+      | PouLanguage.LadderDiagram, PouType.FunctionBlock -> FileTemplates.LdBlock
+      | PouLanguage.LadderDiagram, PouType.Function -> FileTemplates.LdFunction
+      | PouLanguage.LadderDiagram, PouType.Program -> FileTemplates.LdProgram
+      | PouLanguage.SequentialFunctionChart, PouType.FunctionBlock -> FileTemplates.SfcBlock
+      | PouLanguage.SequentialFunctionChart, PouType.Program -> FileTemplates.SfcProgram
+      | PouLanguage.StructuredText, PouType.Class -> FileTemplates.StClass
+      | PouLanguage.StructuredText, PouType.FunctionBlock -> FileTemplates.StBlock
+      | PouLanguage.StructuredText, PouType.Function -> FileTemplates.StFunction
+      | PouLanguage.StructuredText, PouType.GlobalVars -> FileTemplates.StVariables
+      | PouLanguage.StructuredText, PouType.Interface -> FileTemplates.StInterface
+      | PouLanguage.StructuredText, PouType.Program -> FileTemplates.StProgram
+      | PouLanguage.StructuredText, PouType.DataType -> FileTemplates.StDataType
+      | _ -> raise (Exception "Invalid combination of type and language.")
 
-let DeleteFile (folderName : string) (name : string) =
-   let files = _Bundle.Files |> List.filter (fun x -> x.Folder <>? folderName || x.Name <>? name)
-   SetBundle { Files = files }
+   let private GetTemplateString (pouType : PouType, pouLanguage : PouLanguage) =
+      GetTemplate(pouType, pouLanguage) |> System.Text.Encoding.UTF8.GetString
+
+   let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) (bundle : Bundle) =
+      if bundle.Files |> List.exists (fun x -> (NamePart x.Name) =? name && x.Folder =? folder) 
+         then raise (Exception "File already exists.")
+      let parts = [name; FileExtensions.GetLanguageExtension pouLanguage; FileExtensions.GetTypeExtension pouType]
+      let filename = String.Join(".", parts)
+      let content = GetTemplateString(pouType, pouLanguage)
+      let newFile : BundleFile = { Folder = folder; Name = filename; Content = content; }
+      let files = List.append bundle.Files [ newFile ]
+      { Files = files }
+
+   let RenameFile (folder : string) (oldName : string) (newName : string) (bundle : Bundle) =
+      let oldFile = bundle |> GetFile folder oldName
+      let newFile = { Folder = oldFile.Folder; Name = newName; Content = oldFile.Content } : BundleFile
+      let files = bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x)
+      { Files = files }
+
+   let DeleteFile (folder : string) (name : string) (bundle : Bundle) =
+      let file = bundle |> GetFile folder name
+      let files = bundle.Files |> List.filter (fun x -> x <> file)
+      { Files = files }
+
+(*********************************************************************************************************************)
+module Commands =
+   type private Command = {
+      Do : Bundle -> Bundle
+      Undo : Bundle -> Bundle
+      Name : string
+   }
+
+   let mutable private _UndoStack = [] : Command list
+   let mutable private _RedoStack = [] : Command list
+
+   let private Do (command : Command) =
+      _Bundle <- _Bundle |> command.Do
+      _UndoStack <- List.Cons(command, _UndoStack)
+      _RedoStack <- []
+      
+   let CanUndo = not _UndoStack.IsEmpty
+   let CanRedo = not _RedoStack.IsEmpty
+
+   let Undo () =
+      if _UndoStack.IsEmpty then ()
+      else
+         let command = _UndoStack.Head
+         _Bundle <- _Bundle |> command.Undo
+         _UndoStack <- _UndoStack.Tail
+         _RedoStack <- List.Cons(command, _RedoStack)
+   
+   let Redo () =
+      if _RedoStack.IsEmpty then ()
+      else
+         let command = _RedoStack.Head
+         _Bundle <- _Bundle |> command.Do
+         _RedoStack <- _RedoStack.Tail
+         _UndoStack <- List.Cons(command, _UndoStack)
+   
+   let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) =
+      Do {
+         Do = (fun b -> b |> FileOperations.NewFile folder name pouType pouLanguage)
+         Undo = (fun b -> b |> FileOperations.DeleteFile folder name)
+         Name = Strings.CommandAddFile
+      }
+      (*
+   let RenameFile (folder : string) (oldName : string) (newName : string) =
+      Do {
+         Do = (fun b -> b |> FileOperations.RenameFile namespaceName oldName newName)
+         Undo = (fun b -> b |> FileOperations.RenameFile namespaceName newName oldName)
+      }
+
+   let MoveFile (folder : string) (name : string) (newnamespaceName : string) =
+      Do {
+         Do = (fun b -> b |> FileOperations.MoveFile oldnamespaceName name newnamespaceName)
+         Undo = (fun b -> b |> FileOperations.MoveFile newnamespaceName name oldnamespaceName)
+      }
+*)

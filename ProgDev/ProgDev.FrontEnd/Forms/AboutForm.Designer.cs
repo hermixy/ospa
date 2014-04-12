@@ -33,6 +33,7 @@
          System.Windows.Forms.Label label3;
          System.Windows.Forms.Label label8;
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
+         System.Windows.Forms.Label label10;
          this._TitleLabel = new System.Windows.Forms.Label();
          this._CopyrightLabel = new System.Windows.Forms.Label();
          this._GitHubLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -50,10 +51,13 @@
          this.label6 = new System.Windows.Forms.Label();
          this.label7 = new System.Windows.Forms.Label();
          this._AntlrLinkLabel = new System.Windows.Forms.LinkLabel();
+         this.label9 = new System.Windows.Forms.Label();
+         this._MimeKitLinkLabel = new System.Windows.Forms.LinkLabel();
          label4 = new System.Windows.Forms.Label();
          label5 = new System.Windows.Forms.Label();
          label3 = new System.Windows.Forms.Label();
          label8 = new System.Windows.Forms.Label();
+         label10 = new System.Windows.Forms.Label();
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
          this.SuspendLayout();
          // 
@@ -126,7 +130,7 @@
          // 
          this._CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._CloseButton.Location = new System.Drawing.Point(263, 236);
+         this._CloseButton.Location = new System.Drawing.Point(263, 262);
          this._CloseButton.Name = "_CloseButton";
          this._CloseButton.Size = new System.Drawing.Size(88, 26);
          this._CloseButton.TabIndex = 0;
@@ -257,13 +261,44 @@
          this._AntlrLinkLabel.TabStop = true;
          this._AntlrLinkLabel.Text = "ANTLR 4";
          // 
+         // label9
+         // 
+         this.label9.AutoSize = true;
+         this.label9.Location = new System.Drawing.Point(130, 226);
+         this.label9.Name = "label9";
+         this.label9.Size = new System.Drawing.Size(127, 15);
+         this.label9.TabIndex = 25;
+         this.label9.Text = "© 2014 Jeffrey Stedfast";
+         // 
+         // label10
+         // 
+         label10.AutoSize = true;
+         label10.Location = new System.Drawing.Point(68, 226);
+         label10.Name = "label10";
+         label10.Size = new System.Drawing.Size(15, 15);
+         label10.TabIndex = 24;
+         label10.Text = "♦";
+         // 
+         // _MimeKitLinkLabel
+         // 
+         this._MimeKitLinkLabel.AutoSize = true;
+         this._MimeKitLinkLabel.Location = new System.Drawing.Point(82, 226);
+         this._MimeKitLinkLabel.Name = "_MimeKitLinkLabel";
+         this._MimeKitLinkLabel.Size = new System.Drawing.Size(52, 15);
+         this._MimeKitLinkLabel.TabIndex = 23;
+         this._MimeKitLinkLabel.TabStop = true;
+         this._MimeKitLinkLabel.Text = "MimeKit";
+         // 
          // AboutForm
          // 
          this.AcceptButton = this._CloseButton;
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.CancelButton = this._CloseButton;
-         this.ClientSize = new System.Drawing.Size(363, 274);
+         this.ClientSize = new System.Drawing.Size(363, 300);
+         this.Controls.Add(this.label9);
+         this.Controls.Add(label10);
+         this.Controls.Add(this._MimeKitLinkLabel);
          this.Controls.Add(this.label7);
          this.Controls.Add(label8);
          this.Controls.Add(this._AntlrLinkLabel);
@@ -319,5 +354,7 @@
       private System.Windows.Forms.Label label6;
       private System.Windows.Forms.Label label7;
       private System.Windows.Forms.LinkLabel _AntlrLinkLabel;
+      private System.Windows.Forms.Label label9;
+      private System.Windows.Forms.LinkLabel _MimeKitLinkLabel;
    }
 }

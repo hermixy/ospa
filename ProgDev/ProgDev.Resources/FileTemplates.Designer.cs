@@ -22,7 +22,7 @@ namespace ProgDev.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class FileTemplates {
+    public class FileTemplates {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ProgDev.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProgDev.Resources.FileTemplates", typeof(FileTemplates).Assembly);
@@ -51,7 +51,7 @@ namespace ProgDev.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FbdBlock {
+        public static byte[] FbdBlock {
             get {
                 object obj = ResourceManager.GetObject("FbdBlock", resourceCulture);
                 return ((byte[])(obj));
@@ -73,7 +73,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FbdClass {
+        public static byte[] FbdClass {
             get {
                 object obj = ResourceManager.GetObject("FbdClass", resourceCulture);
                 return ((byte[])(obj));
@@ -83,7 +83,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FbdFunction {
+        public static byte[] FbdFunction {
             get {
                 object obj = ResourceManager.GetObject("FbdFunction", resourceCulture);
                 return ((byte[])(obj));
@@ -93,7 +93,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FbdProgram {
+        public static byte[] FbdProgram {
             get {
                 object obj = ResourceManager.GetObject("FbdProgram", resourceCulture);
                 return ((byte[])(obj));
@@ -103,7 +103,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] IlBlock {
+        public static byte[] IlBlock {
             get {
                 object obj = ResourceManager.GetObject("IlBlock", resourceCulture);
                 return ((byte[])(obj));
@@ -113,7 +113,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] IlClass {
+        public static byte[] IlClass {
             get {
                 object obj = ResourceManager.GetObject("IlClass", resourceCulture);
                 return ((byte[])(obj));
@@ -123,7 +123,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] IlFunction {
+        public static byte[] IlFunction {
             get {
                 object obj = ResourceManager.GetObject("IlFunction", resourceCulture);
                 return ((byte[])(obj));
@@ -133,7 +133,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] IlProgram {
+        public static byte[] IlProgram {
             get {
                 object obj = ResourceManager.GetObject("IlProgram", resourceCulture);
                 return ((byte[])(obj));
@@ -143,7 +143,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] LdBlock {
+        public static byte[] LdBlock {
             get {
                 object obj = ResourceManager.GetObject("LdBlock", resourceCulture);
                 return ((byte[])(obj));
@@ -153,7 +153,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] LdClass {
+        public static byte[] LdClass {
             get {
                 object obj = ResourceManager.GetObject("LdClass", resourceCulture);
                 return ((byte[])(obj));
@@ -163,7 +163,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] LdFunction {
+        public static byte[] LdFunction {
             get {
                 object obj = ResourceManager.GetObject("LdFunction", resourceCulture);
                 return ((byte[])(obj));
@@ -173,7 +173,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] LdProgram {
+        public static byte[] LdProgram {
             get {
                 object obj = ResourceManager.GetObject("LdProgram", resourceCulture);
                 return ((byte[])(obj));
@@ -183,7 +183,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] SfcBlock {
+        public static byte[] SfcBlock {
             get {
                 object obj = ResourceManager.GetObject("SfcBlock", resourceCulture);
                 return ((byte[])(obj));
@@ -193,7 +193,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] SfcProgram {
+        public static byte[] SfcProgram {
             get {
                 object obj = ResourceManager.GetObject("SfcProgram", resourceCulture);
                 return ((byte[])(obj));
@@ -203,7 +203,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] StBlock {
+        public static byte[] StBlock {
             get {
                 object obj = ResourceManager.GetObject("StBlock", resourceCulture);
                 return ((byte[])(obj));
@@ -213,7 +213,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] StClass {
+        public static byte[] StClass {
             get {
                 object obj = ResourceManager.GetObject("StClass", resourceCulture);
                 return ((byte[])(obj));
@@ -223,7 +223,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] StDataType {
+        public static byte[] StDataType {
             get {
                 object obj = ResourceManager.GetObject("StDataType", resourceCulture);
                 return ((byte[])(obj));
@@ -233,7 +233,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] StFunction {
+        public static byte[] StFunction {
             get {
                 object obj = ResourceManager.GetObject("StFunction", resourceCulture);
                 return ((byte[])(obj));
@@ -243,7 +243,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] StInterface {
+        public static byte[] StInterface {
             get {
                 object obj = ResourceManager.GetObject("StInterface", resourceCulture);
                 return ((byte[])(obj));
@@ -253,7 +253,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] StProgram {
+        public static byte[] StProgram {
             get {
                 object obj = ResourceManager.GetObject("StProgram", resourceCulture);
                 return ((byte[])(obj));
@@ -263,7 +263,7 @@ namespace ProgDev.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] StVariables {
+        public static byte[] StVariables {
             get {
                 object obj = ResourceManager.GetObject("StVariables", resourceCulture);
                 return ((byte[])(obj));
