@@ -15,15 +15,27 @@
 module ProgDev.Core.InputValidator
 open System.Text.RegularExpressions
 
-let private IdentifierRegex = Regex "^[A-Za-z_][A-Za-z_0-9]*$"
+let private IdentifierRegex = Regex @"^[A-Za-z_][A-Za-z_0-9]*$"
+let private DottedIdentifierListRegex = Regex @"^[A-Za-z_][A-Za-z_0-9]*(\.[A-Za-z_][A-Za-z_0-9]*)*$"
 
 let (| Identifier | _ |) (x : string) : string option =
    if x = null then None
    else
-      let m = IdentifierRegex.Match(x)
+      let m = IdentifierRegex.Match x
+      if m.Success then Some x else None
+
+let (| DottedIdentifierList | _ |) (x : string) : string option =
+   if x = null then None
+   else
+      let m = DottedIdentifierListRegex.Match x
       if m.Success then Some x else None
 
 let IsIdentifier (x : string) : bool =
    match x with
    | Identifier y -> true
+   | _ -> false
+
+let IsNamespace (x : string) : bool =
+   match x with
+   | DottedIdentifierList y -> true
    | _ -> false

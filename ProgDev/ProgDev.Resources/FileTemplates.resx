@@ -117,92 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutVersionFormat" xml:space="preserve">
-    <value>Version {0}</value>
-    <comment>The version label in AboutWindow.</comment>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="FbdBlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.fbd.fblk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ButtonCreate" xml:space="preserve">
-    <value>Create</value>
+  <data name="FbdClass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.fbd.clas;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ButtonSave" xml:space="preserve">
-    <value>Save</value>
+  <data name="FbdFunction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.fbd.func;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ErrorExpectedIdentifier" xml:space="preserve">
-    <value>Must be a valid identifier (alphanumeric and underscore, starting with a letter).</value>
+  <data name="FbdProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.fbd.prog;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ErrorExpectedNamespaceOrEmpty" xml:space="preserve">
-    <value>Must either be blank or one or more identifiers separated by periods.</value>
+  <data name="IlBlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.il.fblk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FileTypeClass" xml:space="preserve">
-    <value>Class</value>
+  <data name="IlClass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.il.clas;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FileTypeDataType" xml:space="preserve">
-    <value>Data type</value>
+  <data name="IlFunction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.il.func;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FileTypeFunction" xml:space="preserve">
-    <value>Function</value>
+  <data name="IlProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.il.prog;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FileTypeFunctionBlock" xml:space="preserve">
-    <value>Function block</value>
+  <data name="LdBlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.ld.fblk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FileTypeGlobalVars" xml:space="preserve">
-    <value>Global variables</value>
+  <data name="LdClass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.ld.clas;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FileTypeInterface" xml:space="preserve">
-    <value>Interface</value>
+  <data name="LdFunction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.ld.func;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FileTypeProgram" xml:space="preserve">
-    <value>Program</value>
+  <data name="LdProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.ld.prog;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LanguageFBD" xml:space="preserve">
-    <value>Function Block Diagram (FBD)</value>
+  <data name="SfcBlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.sfc.fblk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LanguageIL" xml:space="preserve">
-    <value>Instruction List (IL)</value>
+  <data name="SfcProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.sfc.prog;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LanguageLD" xml:space="preserve">
-    <value>Ladder Diagram (LD)</value>
+  <data name="StBlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.st.fblk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LanguageSFC" xml:space="preserve">
-    <value>Sequential Function Chart (SFC)</value>
+  <data name="StClass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.st.clas;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LanguageST" xml:space="preserve">
-    <value>Structured Text (ST)</value>
+  <data name="StDataType" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.st.type;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ShortFileTypeClass" xml:space="preserve">
-    <value>Class</value>
+  <data name="StFunction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.st.func;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ShortFileTypeDataType" xml:space="preserve">
-    <value>Data type</value>
+  <data name="StInterface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.st.intf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ShortFileTypeFunction" xml:space="preserve">
-    <value>Function</value>
+  <data name="StProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.st.prog;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ShortFileTypeFunctionBlock" xml:space="preserve">
-    <value>Func. block</value>
-  </data>
-  <data name="ShortFileTypeGlobalVars" xml:space="preserve">
-    <value>Global vars</value>
-  </data>
-  <data name="ShortFileTypeInterface" xml:space="preserve">
-    <value>Interface</value>
-  </data>
-  <data name="ShortFileTypeProgram" xml:space="preserve">
-    <value>Program</value>
-  </data>
-  <data name="ShortLanguageFBD" xml:space="preserve">
-    <value>FBD</value>
-  </data>
-  <data name="ShortLanguageIL" xml:space="preserve">
-    <value>IL</value>
-  </data>
-  <data name="ShortLanguageLD" xml:space="preserve">
-    <value>LD</value>
-  </data>
-  <data name="ShortLanguageSFC" xml:space="preserve">
-    <value>SFC</value>
-  </data>
-  <data name="ShortLanguageST" xml:space="preserve">
-    <value>ST</value>
+  <data name="StVariables" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FileTemplates\Template.st.gvar;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

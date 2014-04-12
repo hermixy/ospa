@@ -15,6 +15,7 @@
 namespace ProgDev.Core.Domain
 open System
 
+(*********************************************************************************************************************)
 type PouType =
    | Class = 0
    | DataType = 1
@@ -24,6 +25,7 @@ type PouType =
    | Interface = 5
    | Program = 6
 
+(*********************************************************************************************************************)
 type PouLanguage =
    | FunctionBlockDiagram = 0
    | InstructionList = 1
@@ -31,43 +33,70 @@ type PouLanguage =
    | SequentialFunctionChart = 3
    | StructuredText = 4
 
+(*********************************************************************************************************************)
 module FileExtensions =
+   [<Literal>]
+   let private LangFBD = "fbd"
+   [<Literal>]
+   let private LangIL = "il"
+   [<Literal>]
+   let private LangLD = "ld"
+   [<Literal>]
+   let private LangSFC = "sfc"
+   [<Literal>]
+   let private LangST = "st"
+
+   [<Literal>]
+   let private TypeClass = "clas"
+   [<Literal>]
+   let private TypeDataType = "type"
+   [<Literal>]
+   let private TypeFunction = "func"
+   [<Literal>]
+   let private TypeFunctionBlock = "fblk"
+   [<Literal>]
+   let private TypeGlobalVars = "gvar"
+   [<Literal>]
+   let private TypeInterface = "intf"
+   [<Literal>]
+   let private TypeProgram = "prog"
+
    let GetLanguageExtension (x : PouLanguage) : string =
       match x with
-      | PouLanguage.FunctionBlockDiagram -> "fbd"
-      | PouLanguage.InstructionList -> "il"
-      | PouLanguage.LadderDiagram -> "ld"
-      | PouLanguage.SequentialFunctionChart -> "sfc"
-      | PouLanguage.StructuredText -> "st"
+      | PouLanguage.FunctionBlockDiagram -> LangFBD
+      | PouLanguage.InstructionList -> LangIL
+      | PouLanguage.LadderDiagram -> LangLD
+      | PouLanguage.SequentialFunctionChart -> LangSFC
+      | PouLanguage.StructuredText -> LangST
       | _ -> raise (Exception "Invalid PouLanguage.")
 
    let ParseLanguageExtension (x : string) : PouLanguage =
       match x with
-      | "fbd" -> PouLanguage.FunctionBlockDiagram
-      | "il" -> PouLanguage.InstructionList
-      | "ld" -> PouLanguage.LadderDiagram
-      | "sfc" -> PouLanguage.SequentialFunctionChart
-      | "st" -> PouLanguage.StructuredText
+      | LangFBD -> PouLanguage.FunctionBlockDiagram
+      | LangIL -> PouLanguage.InstructionList
+      | LangLD -> PouLanguage.LadderDiagram
+      | LangSFC -> PouLanguage.SequentialFunctionChart
+      | LangST -> PouLanguage.StructuredText
       | _ -> raise (Exception "Invalid language extension.")
 
    let GetTypeExtension (x : PouType) : string =
       match x with
-      | PouType.Class -> "cls"
-      | PouType.DataType -> "typ"
-      | PouType.Function -> "fun"
-      | PouType.FunctionBlock -> "fb"
-      | PouType.GlobalVars -> "var"
-      | PouType.Interface -> "int"
-      | PouType.Program -> "prg"
+      | PouType.Class -> TypeClass
+      | PouType.DataType -> TypeDataType
+      | PouType.Function -> TypeFunction
+      | PouType.FunctionBlock -> TypeFunctionBlock
+      | PouType.GlobalVars -> TypeGlobalVars
+      | PouType.Interface -> TypeInterface
+      | PouType.Program -> TypeProgram
       | _ -> raise (Exception "Invalid PouType.")
 
    let ParseTypeExtension (x : string) : PouType =
       match x with
-      | "cls" -> PouType.Class
-      | "typ" -> PouType.DataType
-      | "fun" -> PouType.Function
-      | "fb" -> PouType.FunctionBlock
-      | "var" -> PouType.GlobalVars
-      | "int" -> PouType.Interface
-      | "prg" -> PouType.Program
+      | TypeClass -> PouType.Class
+      | TypeDataType -> PouType.DataType
+      | TypeFunction -> PouType.Function
+      | TypeFunctionBlock -> PouType.FunctionBlock
+      | TypeGlobalVars -> PouType.GlobalVars
+      | TypeInterface -> PouType.Interface
+      | TypeProgram -> PouType.Program
       | _ -> raise (Exception "Invalid type extension.")

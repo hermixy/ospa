@@ -28,6 +28,7 @@ namespace ProgDev.IDE.Forms
       protected override void Initialize()
       {
          Populate();
+         Project.Events.Changed += () => Populate();
       }
 
       private void Populate()

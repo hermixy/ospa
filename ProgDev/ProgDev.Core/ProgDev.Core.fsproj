@@ -49,19 +49,23 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.props'))" />
+    <Error Condition="!Exists('..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets'))" />
+  </Target>
+  <Import Project="..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets" Condition="Exists('..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets')" />
   <ItemGroup>
-     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-     <Compile Include="Domain.fs" />
-     <Compile Include="Utility.fs" />
-     <Compile Include="Ast.fs" />
-     <Compile Include="Parser.fs" />
-     <Compile Include="Dal.fs" />
-     <Compile Include="Bundler.fs" />
-     <Compile Include="Unbundler.fs" />
-     <Compile Include="InputValidator.fs" />
-     <Compile Include="Project.fs" />
+    <None Include="packages.config" />
+    <Compile Include="Domain.fs" />
+    <Compile Include="Utility.fs" />
+    <Compile Include="Ast.fs" />
+    <Compile Include="Parser.fs" />
+    <Compile Include="Dal.fs" />
+    <Compile Include="InputValidator.fs" />
+    <Compile Include="Project.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime.v4.5">
@@ -75,22 +79,12 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ProgDev.Parsers\ProgDev.Parsers.csproj">
       <Name>ProgDev.Parsers</Name>
       <Project>{59cc3958-f947-4dbe-a8ff-53467c77590e}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.props'))" />
-    <Error Condition="!Exists('..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets'))" />
-  </Target>
-  <Import Project="..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets" Condition="Exists('..\packages\Antlr4.4.2.0-alpha001\build\Antlr4.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

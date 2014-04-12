@@ -105,6 +105,10 @@
       <Project>{59cc3958-f947-4dbe-a8ff-53467c77590e}</Project>
       <Name>ProgDev.Parsers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProgDev.Resources\ProgDev.Resources.csproj">
+      <Project>{5c4f9bee-2318-48a5-9099-b11c58c18eff}</Project>
+      <Name>ProgDev.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProgDev App Icon 32.ico" />

@@ -102,7 +102,7 @@ namespace ProgDev.IDE.Forms
       [Compute("FolderError"), Depends("FolderText")]
       private string ComputeFolderError()
       {
-         return InputValidator.IsIdentifier(FolderText.Value) ? "" : Strings.ErrorExpectedIdentifier;
+         return (FolderText.Value == "" || InputValidator.IsNamespace(FolderText.Value)) ? "" : Strings.ErrorExpectedNamespaceOrEmpty;
       }
 
       [Compute("OkEnabled"), Depends("NameError", "FolderError")]

@@ -20,10 +20,10 @@ open System.Text
 let Handle (verb : string) (args : string list) : int =
    match verb with
    | "bundle" -> 
-      if args.Length = 2 then Bundler.Bundle args.[0] args.[1]; 0
+      if args.Length = 2 then Dal.Bundle args.[0] args.[1]; 0
       else printfn "Usage: pdc bundle <source directory> <output .OSP file path>"; -1
    | "unbundle" ->
-      if args.Length = 2 then Unbundler.Unbundle args.[0] args.[1]; 0
+      if args.Length = 2 then Dal.Unbundle args.[0] args.[1]; 0
       else printfn "Usage: pdc unbundle <source .OSP file path> <output directory>"; -1
    | _ -> 
       printfn "Invalid command."; -1

@@ -97,6 +97,15 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must either be blank or one or more identifiers separated by periods..
+        /// </summary>
+        public static string ErrorExpectedNamespaceOrEmpty {
+            get {
+                return ResourceManager.GetString("ErrorExpectedNamespaceOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Class.
         /// </summary>
         public static string FileTypeClass {

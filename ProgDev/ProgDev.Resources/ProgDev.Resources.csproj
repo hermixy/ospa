@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileTemplates.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileTemplates.resx</DependentUpon>
+    </Compile>
     <Compile Include="Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -53,6 +58,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FileTemplates.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FileTemplates.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
@@ -63,8 +72,30 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\1397211458_application.png" />
+    <None Include="FileTemplates\Template.fbd.clas" />
+    <None Include="FileTemplates\Template.fbd.fblk" />
+    <None Include="FileTemplates\Template.fbd.func" />
+    <None Include="FileTemplates\Template.fbd.prog" />
+    <None Include="FileTemplates\Template.il.clas" />
+    <None Include="FileTemplates\Template.il.fblk" />
+    <None Include="FileTemplates\Template.il.func" />
+    <None Include="FileTemplates\Template.il.prog" />
+    <None Include="FileTemplates\Template.ld.clas" />
+    <None Include="FileTemplates\Template.ld.fblk" />
+    <None Include="FileTemplates\Template.ld.func" />
+    <None Include="FileTemplates\Template.ld.prog" />
+    <None Include="FileTemplates\Template.sfc.fblk" />
+    <None Include="FileTemplates\Template.sfc.prog" />
+    <None Include="FileTemplates\Template.st.clas" />
+    <None Include="FileTemplates\Template.st.fblk" />
+    <None Include="FileTemplates\Template.st.func" />
+    <None Include="FileTemplates\Template.st.gvar" />
+    <None Include="FileTemplates\Template.st.intf" />
+    <None Include="FileTemplates\Template.st.prog" />
+    <None Include="FileTemplates\Template.st.type" />
+    <None Include="Images\1397211458_application.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
