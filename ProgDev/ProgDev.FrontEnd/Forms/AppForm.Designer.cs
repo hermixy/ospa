@@ -50,9 +50,24 @@
          this._StatusStrip = new System.Windows.Forms.StatusStrip();
          this._MenuStrip = new System.Windows.Forms.MenuStrip();
          this._FileMenu = new System.Windows.Forms.ToolStripMenuItem();
+         this._NewProjectMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._OpenProjectMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._SaveProjectMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._Separator3 = new System.Windows.Forms.ToolStripSeparator();
+         this._ExitMnu = new System.Windows.Forms.ToolStripMenuItem();
          this._EditMenu = new System.Windows.Forms.ToolStripMenuItem();
+         this._UndoMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._RedoMnu = new System.Windows.Forms.ToolStripMenuItem();
          this._ProgramMenu = new System.Windows.Forms.ToolStripMenuItem();
+         this._NewFileMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._FindMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._Separator4 = new System.Windows.Forms.ToolStripSeparator();
+         this._SetupMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._CompileMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._DeployMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._DebugMnu = new System.Windows.Forms.ToolStripMenuItem();
          this._ToolsMenu = new System.Windows.Forms.ToolStripMenuItem();
+         this._OptionsMnu = new System.Windows.Forms.ToolStripMenuItem();
          this._HelpMenu = new System.Windows.Forms.ToolStripMenuItem();
          this._AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this._ToolStrip = new System.Windows.Forms.ToolStrip();
@@ -61,9 +76,9 @@
          this._SaveButton = new System.Windows.Forms.ToolStripButton();
          this._Separator1 = new System.Windows.Forms.ToolStripSeparator();
          this._NewFileBtn = new System.Windows.Forms.ToolStripButton();
-         this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+         this._FindBtn = new System.Windows.Forms.ToolStripButton();
          this._Separator2 = new System.Windows.Forms.ToolStripSeparator();
-         this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+         this._SetupBtn = new System.Windows.Forms.ToolStripButton();
          this._BuildButton = new System.Windows.Forms.ToolStripButton();
          this._DeployButton = new System.Windows.Forms.ToolStripButton();
          this._DebugButton = new System.Windows.Forms.ToolStripButton();
@@ -189,27 +204,151 @@
          // 
          // _FileMenu
          // 
+         this._FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._NewProjectMnu,
+            this._OpenProjectMnu,
+            this._SaveProjectMnu,
+            this._Separator3,
+            this._ExitMnu});
          this._FileMenu.Name = "_FileMenu";
          this._FileMenu.Size = new System.Drawing.Size(37, 20);
          this._FileMenu.Text = "&File";
          // 
+         // _NewProjectMnu
+         // 
+         this._NewProjectMnu.Image = ((System.Drawing.Image)(resources.GetObject("_NewProjectMnu.Image")));
+         this._NewProjectMnu.Name = "_NewProjectMnu";
+         this._NewProjectMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+         this._NewProjectMnu.Size = new System.Drawing.Size(186, 22);
+         this._NewProjectMnu.Text = "&New project";
+         // 
+         // _OpenProjectMnu
+         // 
+         this._OpenProjectMnu.Image = ((System.Drawing.Image)(resources.GetObject("_OpenProjectMnu.Image")));
+         this._OpenProjectMnu.Name = "_OpenProjectMnu";
+         this._OpenProjectMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+         this._OpenProjectMnu.Size = new System.Drawing.Size(186, 22);
+         this._OpenProjectMnu.Text = "&Open project";
+         // 
+         // _SaveProjectMnu
+         // 
+         this._SaveProjectMnu.Image = ((System.Drawing.Image)(resources.GetObject("_SaveProjectMnu.Image")));
+         this._SaveProjectMnu.Name = "_SaveProjectMnu";
+         this._SaveProjectMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+         this._SaveProjectMnu.Size = new System.Drawing.Size(186, 22);
+         this._SaveProjectMnu.Text = "&Save project";
+         // 
+         // _Separator3
+         // 
+         this._Separator3.Name = "_Separator3";
+         this._Separator3.Size = new System.Drawing.Size(183, 6);
+         // 
+         // _ExitMnu
+         // 
+         this._ExitMnu.Name = "_ExitMnu";
+         this._ExitMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+         this._ExitMnu.Size = new System.Drawing.Size(186, 22);
+         this._ExitMnu.Text = "E&xit";
+         // 
          // _EditMenu
          // 
+         this._EditMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._UndoMnu,
+            this._RedoMnu});
          this._EditMenu.Name = "_EditMenu";
          this._EditMenu.Size = new System.Drawing.Size(39, 20);
          this._EditMenu.Text = "&Edit";
          // 
+         // _UndoMnu
+         // 
+         this._UndoMnu.Image = ((System.Drawing.Image)(resources.GetObject("_UndoMnu.Image")));
+         this._UndoMnu.Name = "_UndoMnu";
+         this._UndoMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+         this._UndoMnu.Size = new System.Drawing.Size(152, 22);
+         this._UndoMnu.Text = "&Undo";
+         // 
+         // _RedoMnu
+         // 
+         this._RedoMnu.Image = ((System.Drawing.Image)(resources.GetObject("_RedoMnu.Image")));
+         this._RedoMnu.Name = "_RedoMnu";
+         this._RedoMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+         this._RedoMnu.Size = new System.Drawing.Size(152, 22);
+         this._RedoMnu.Text = "&Redo";
+         // 
          // _ProgramMenu
          // 
+         this._ProgramMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._NewFileMnu,
+            this._FindMnu,
+            this._Separator4,
+            this._SetupMnu,
+            this._CompileMnu,
+            this._DeployMnu,
+            this._DebugMnu});
          this._ProgramMenu.Name = "_ProgramMenu";
-         this._ProgramMenu.Size = new System.Drawing.Size(65, 20);
-         this._ProgramMenu.Text = "&Program";
+         this._ProgramMenu.Size = new System.Drawing.Size(56, 20);
+         this._ProgramMenu.Text = "&Project";
+         // 
+         // _NewFileMnu
+         // 
+         this._NewFileMnu.Image = ((System.Drawing.Image)(resources.GetObject("_NewFileMnu.Image")));
+         this._NewFileMnu.Name = "_NewFileMnu";
+         this._NewFileMnu.Size = new System.Drawing.Size(157, 22);
+         this._NewFileMnu.Text = "Add &new POU…";
+         // 
+         // _FindMnu
+         // 
+         this._FindMnu.Image = ((System.Drawing.Image)(resources.GetObject("_FindMnu.Image")));
+         this._FindMnu.Name = "_FindMnu";
+         this._FindMnu.Size = new System.Drawing.Size(157, 22);
+         this._FindMnu.Text = "&Find…";
+         // 
+         // _Separator4
+         // 
+         this._Separator4.Name = "_Separator4";
+         this._Separator4.Size = new System.Drawing.Size(154, 6);
+         // 
+         // _SetupMnu
+         // 
+         this._SetupMnu.Image = ((System.Drawing.Image)(resources.GetObject("_SetupMnu.Image")));
+         this._SetupMnu.Name = "_SetupMnu";
+         this._SetupMnu.Size = new System.Drawing.Size(157, 22);
+         this._SetupMnu.Text = "&Setup…";
+         // 
+         // _CompileMnu
+         // 
+         this._CompileMnu.Image = ((System.Drawing.Image)(resources.GetObject("_CompileMnu.Image")));
+         this._CompileMnu.Name = "_CompileMnu";
+         this._CompileMnu.Size = new System.Drawing.Size(157, 22);
+         this._CompileMnu.Text = "&Compile";
+         // 
+         // _DeployMnu
+         // 
+         this._DeployMnu.Image = ((System.Drawing.Image)(resources.GetObject("_DeployMnu.Image")));
+         this._DeployMnu.Name = "_DeployMnu";
+         this._DeployMnu.Size = new System.Drawing.Size(157, 22);
+         this._DeployMnu.Text = "&Deploy…";
+         // 
+         // _DebugMnu
+         // 
+         this._DebugMnu.Image = ((System.Drawing.Image)(resources.GetObject("_DebugMnu.Image")));
+         this._DebugMnu.Name = "_DebugMnu";
+         this._DebugMnu.Size = new System.Drawing.Size(157, 22);
+         this._DebugMnu.Text = "De&bug…";
          // 
          // _ToolsMenu
          // 
+         this._ToolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._OptionsMnu});
          this._ToolsMenu.Name = "_ToolsMenu";
          this._ToolsMenu.Size = new System.Drawing.Size(48, 20);
          this._ToolsMenu.Text = "&Tools";
+         // 
+         // _OptionsMnu
+         // 
+         this._OptionsMnu.Name = "_OptionsMnu";
+         this._OptionsMnu.Size = new System.Drawing.Size(152, 22);
+         this._OptionsMnu.Text = "&Options…";
          // 
          // _HelpMenu
          // 
@@ -236,9 +375,9 @@
             this._SaveButton,
             this._Separator1,
             this._NewFileBtn,
-            this.toolStripButton2,
+            this._FindBtn,
             this._Separator2,
-            this.toolStripButton1,
+            this._SetupBtn,
             this._BuildButton,
             this._DeployButton,
             this._DebugButton});
@@ -288,28 +427,28 @@
          this._NewFileBtn.Size = new System.Drawing.Size(92, 22);
          this._NewFileBtn.Text = "New POU…";
          // 
-         // toolStripButton2
+         // _FindBtn
          // 
-         this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-         this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.toolStripButton2.Name = "toolStripButton2";
-         this.toolStripButton2.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this.toolStripButton2.Size = new System.Drawing.Size(64, 22);
-         this.toolStripButton2.Text = "Find…";
+         this._FindBtn.Image = ((System.Drawing.Image)(resources.GetObject("_FindBtn.Image")));
+         this._FindBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this._FindBtn.Name = "_FindBtn";
+         this._FindBtn.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._FindBtn.Size = new System.Drawing.Size(64, 22);
+         this._FindBtn.Text = "Find…";
          // 
          // _Separator2
          // 
          this._Separator2.Name = "_Separator2";
          this._Separator2.Size = new System.Drawing.Size(6, 25);
          // 
-         // toolStripButton1
+         // _SetupBtn
          // 
-         this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-         this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.toolStripButton1.Name = "toolStripButton1";
-         this.toolStripButton1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-         this.toolStripButton1.Size = new System.Drawing.Size(71, 22);
-         this.toolStripButton1.Text = "Setup…";
+         this._SetupBtn.Image = ((System.Drawing.Image)(resources.GetObject("_SetupBtn.Image")));
+         this._SetupBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this._SetupBtn.Name = "_SetupBtn";
+         this._SetupBtn.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+         this._SetupBtn.Size = new System.Drawing.Size(71, 22);
+         this._SetupBtn.Text = "Setup…";
          // 
          // _BuildButton
          // 
@@ -389,7 +528,22 @@
       private System.Windows.Forms.ToolStripMenuItem _ProgramMenu;
       private System.Windows.Forms.ToolStripMenuItem _ToolsMenu;
       private System.Windows.Forms.ToolStripButton _NewFileBtn;
-      private System.Windows.Forms.ToolStripButton toolStripButton1;
-      private System.Windows.Forms.ToolStripButton toolStripButton2;
+      private System.Windows.Forms.ToolStripButton _SetupBtn;
+      private System.Windows.Forms.ToolStripButton _FindBtn;
+      private System.Windows.Forms.ToolStripMenuItem _NewProjectMnu;
+      private System.Windows.Forms.ToolStripMenuItem _OpenProjectMnu;
+      private System.Windows.Forms.ToolStripMenuItem _SaveProjectMnu;
+      private System.Windows.Forms.ToolStripSeparator _Separator3;
+      private System.Windows.Forms.ToolStripMenuItem _ExitMnu;
+      private System.Windows.Forms.ToolStripMenuItem _UndoMnu;
+      private System.Windows.Forms.ToolStripMenuItem _RedoMnu;
+      private System.Windows.Forms.ToolStripMenuItem _SetupMnu;
+      private System.Windows.Forms.ToolStripMenuItem _CompileMnu;
+      private System.Windows.Forms.ToolStripMenuItem _DeployMnu;
+      private System.Windows.Forms.ToolStripMenuItem _DebugMnu;
+      private System.Windows.Forms.ToolStripMenuItem _NewFileMnu;
+      private System.Windows.Forms.ToolStripMenuItem _FindMnu;
+      private System.Windows.Forms.ToolStripSeparator _Separator4;
+      private System.Windows.Forms.ToolStripMenuItem _OptionsMnu;
    }
 }

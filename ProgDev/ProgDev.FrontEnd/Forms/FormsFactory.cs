@@ -30,7 +30,7 @@ namespace ProgDev.FrontEnd.Forms
 
       public static NewFileForm NewNewFileForm(string name)
       {
-         return new NewFileForm(new NewFileFormViewModel(name, Project.Folders));
+         return new NewFileForm(new NewFileFormViewModel(name));
       }
 
       public static ProjectContentForm NewProjectContentForm()

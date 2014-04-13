@@ -27,6 +27,7 @@ namespace ProgDev.FrontEnd.Common.FlexForms
    public abstract class ViewModel<ControlType> : ViewModel
       where ControlType : Control
    {
+      private bool _Started = false;
       private Action<Action<ControlType>> Invoke = f => { };
       private IReadOnlyList<string> ComputedFieldEvaluationOrder = new string[0];
 
@@ -39,18 +40,18 @@ namespace ProgDev.FrontEnd.Common.FlexForms
 
       public void Start(ControlType form)
       {
+         if (_Started)
+            throw new FlexException("View model already started.");
+
+         _Started = true;
+
          // We store a reference to the view model in the form's Tag property so that the view model won't be garbage
          // collected.  Otherwise, there won't be any remaining references to the view model, since we don't require
          // the derived form to take care of storing the view model.
          form.Tag = this;
 
          Invoke = action => action(form);
-         
-         Reset();
-      }
 
-      public void Reset()
-      {
          PollComputedFields();
          Initialize();
       }
@@ -111,6 +112,14 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       }
 
       protected DialogResult ShowChildDialog(Form child)
+      {
+         ViewModelUtilities.AssertType<ControlType, Form>();
+         DialogResult result = default(DialogResult);
+         Invoke(x => result = child.ShowDialog(x as Form));
+         return result;
+      }
+
+      protected DialogResult ShowChildDialog(CommonDialog child)
       {
          ViewModelUtilities.AssertType<ControlType, Form>();
          DialogResult result = default(DialogResult);

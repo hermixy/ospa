@@ -33,13 +33,24 @@ namespace ProgDev.FrontEnd.Forms
          this.BindLocation(viewModel.Location);
          this.BindSize(viewModel.Size);
          this.BindMinimumSize(viewModel.MinimumSize);
+         this.BindWindowState(viewModel.WindowState);
+         this.BindText(viewModel.Title);
          _NewButton.BindClick(viewModel.NewClick);
+         _NewProjectMnu.BindClick(viewModel.NewClick);
          _OpenButton.BindClick(viewModel.OpenClick);
+         _OpenProjectMnu.BindClick(viewModel.OpenClick);
          _SaveButton.BindClick(viewModel.SaveClick);
+         _SaveButton.BindEnabled(viewModel.SaveEnabled);
+         _SaveProjectMnu.BindClick(viewModel.SaveClick);
+         _SaveProjectMnu.BindEnabled(viewModel.SaveEnabled);
          _NewFileBtn.BindClick(viewModel.NewFileClick);
+         _NewFileMnu.BindClick(viewModel.NewFileClick);
          _BuildButton.BindClick(viewModel.BuildClick);
+         _CompileMnu.BindClick(viewModel.BuildClick);
          _DeployButton.BindClick(viewModel.DeployClick);
+         _DeployMnu.BindClick(viewModel.DeployClick);
          _DebugButton.BindClick(viewModel.DebugClick);
+         _DebugMnu.BindClick(viewModel.DebugClick);
          this.BindClosing(viewModel.Closing);
          viewModel.Start(this);
       }

@@ -12,10 +12,16 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.BusinessLogic;
+using ProgDev.Domain;
+using ProgDev.FrontEnd.Common;
 using ProgDev.FrontEnd.Common.FlexForms;
+using ProgDev.Resources;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ProgDev.FrontEnd.Forms
@@ -25,6 +31,9 @@ namespace ProgDev.FrontEnd.Forms
       public Field<Point> Location;
       public Field<Size> Size;
       public Field<Size> MinimumSize;
+      public Field<FormWindowState> WindowState;
+      public Field<string> Title;
+      public ComputedField<bool> SaveEnabled;
       public Signal NewClick;
       public Signal OpenClick;
       public Signal SaveClick;
@@ -33,7 +42,7 @@ namespace ProgDev.FrontEnd.Forms
       public Signal DeployClick;
       public Signal DebugClick;
       public Signal Closing;
-      
+
       protected override void Initialize()
       {
          if (Settings.Default.AppForm_SavedPositionExists)
@@ -46,13 +55,121 @@ namespace ProgDev.FrontEnd.Forms
             int top = Math.Min(screenArea.Height - height, Math.Max(0, Settings.Default.AppForm_Location.Y));
             Location.Value = new Point(left, top);
             Size.Value = new Size(width, height);
+            WindowState.Value = Settings.Default.AppForm_WindowState;
          }
+
+         OnProjectChanged();
+         Project.Events.Changed += OnProjectChanged;
+      }
+
+      void OnProjectChanged()
+      {
+         string filename = Project.ProjectName();
+         if (Project.IsDirty)
+            filename += "*";
+         Title.Value = string.Format(Strings.AppFormTitle, filename);
+         SaveEnabled.Poll();
+      }
+
+      private bool DoSave()
+      {
+         if (Project.FilePath() == null)
+         {
+            var dlg = new SaveFileDialog
+            {
+               AddExtension = true,
+               AutoUpgradeEnabled = true,
+               CheckPathExists = true,
+               DefaultExt = "." + FileExtensions.ProjectExtension,
+               Filter = string.Format(Strings.OpenProjectFilter, FileExtensions.ProjectExtension),
+               OverwritePrompt = true,
+               Title = Strings.SaveProjectTitle
+            };
+            var result = ShowChildDialog(dlg);
+            if (result == DialogResult.OK)
+            {
+               Project.Save(dlg.FileName);
+               return true;
+            }
+            else
+            {
+               return false;
+            }
+         }
+         else
+         {
+            Project.Save(Project.FilePath());
+            return true;
+         }
+      }
+
+      [Compute("SaveEnabled")]
+      private bool ComputeSaveEnabled()
+      {
+         return Project.IsDirty;
+      }
+
+      [OnSignal("NewClick")]
+      private void OnNewClick()
+      {
+         Process.Start(Application.ExecutablePath);
+      }
+
+      [OnSignal("OpenClick")]
+      private void OnOpenClick()
+      {
+         if (!Project.IsDirty)
+         {
+            string projectName = 
+               Project.FilePath() == null 
+               ? Strings.Untitled
+               : Path.GetFileNameWithoutExtension(Project.FilePath());
+            string message = string.Format(Strings.SaveChangedPrompt, projectName);
+
+            var dlg = new MessageForm(message, Strings.OpenProjectTitle, 
+               new[] { Strings.ButtonSave, Strings.ButtonDontSave, Strings.ButtonCancel }, Images.Page32);
+            if (ShowChildDialog(dlg) == DialogResult.Cancel)
+               return;
+            else if (dlg.Result == Strings.ButtonSave)
+               DoSave();
+         }
+
+         var openDlg = new OpenFileDialog
+         {
+            AutoUpgradeEnabled = true,
+            CheckFileExists = true,
+            CheckPathExists = true,
+            DefaultExt = "." + FileExtensions.ProjectExtension, 
+            Filter = string.Format(Strings.OpenProjectFilter, FileExtensions.ProjectExtension),
+            Multiselect = false, 
+            Title = Strings.OpenProjectTitle,
+            ValidateNames = true
+         };
+         if (ShowChildDialog(openDlg) == DialogResult.OK)
+         {
+            try
+            {
+               Project.Load(openDlg.FileName);
+            }
+            catch (Exception ex)
+            {
+               ShowChildDialog(new MessageForm(
+                  Strings.ErrorOpenProject, Strings.OpenProjectTitle, detail: ex.ToDetailString()));
+               return;
+            }
+         }
+      }
+
+      [OnSignal("SaveClick")]
+      private void OnSaveClick()
+      {
+         DoSave();
       }
 
       [OnSignal("NewFileClick")]
       private void OnNewFileClick()
       {
-         var form = FormsFactory.NewNewFileForm("Untitled");
+         var form = FormsFactory.NewNewFileForm(Strings.Untitled);
          ShowChildDialog(form);
       }
 
@@ -60,8 +177,12 @@ namespace ProgDev.FrontEnd.Forms
       private void OnClosing(CancelEventArgs e)
       {
          Settings.Default.AppForm_SavedPositionExists = true;
-         Settings.Default.AppForm_Location = Location.Value;
-         Settings.Default.AppForm_Size = Size.Value;
+         Settings.Default.AppForm_WindowState = WindowState.Value;
+         if (WindowState.Value == FormWindowState.Normal)
+         {
+            Settings.Default.AppForm_Location = Location.Value;
+            Settings.Default.AppForm_Size = Size.Value;
+         }
          Settings.Default.Save();
       }
    }

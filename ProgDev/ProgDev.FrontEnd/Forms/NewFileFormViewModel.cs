@@ -22,41 +22,34 @@ namespace ProgDev.FrontEnd.Forms
 {
    public sealed class NewFileFormViewModel : FormViewModel
    {
-      // Name textbox
       private readonly string _InitialName;
       public Field<string> NameText;
       public ComputedField<string> NameError;
 
-      // Folder combobox
-      private readonly IEnumerable<string> _InitialFolders;
       public ListField<string> FolderList;
       public Field<string> FolderText;
       public ComputedField<string> FolderError;
 
-      // Type combobox
       public ListField<string> TypeList;
       public Field<int> TypeSelectedIndex;
 
-      // Language combobox
       public ListField<string> LanguageList;
       public Field<int> LanguageSelectedIndex;
       public ComputedField<bool> LanguageEnabled;
 
-      // OK button
       public ComputedField<bool> OkEnabled;
       public Signal OkClick;
 
-      public NewFileFormViewModel(string name, IEnumerable<string> folders)
+      public NewFileFormViewModel(string name)
       {
          _InitialName = name;
-         _InitialFolders = folders;
       }
 
       protected override void Initialize()
       {
          NameText.Value = _InitialName;
-         FolderList.Set(_InitialFolders);
-         FolderText.Value = _InitialFolders.DefaultIfEmpty("").FirstOrDefault();
+         FolderList.Set(Project.Folders());
+         FolderText.Value = Project.Folders().DefaultIfEmpty("").FirstOrDefault();
          TypeList.AddRange(new[] 
          { 
             Strings.FileTypeProgram, 

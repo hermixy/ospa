@@ -30,7 +30,7 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          }
       }
 
-      void IComputedField.Poll()
+      public void Poll()
       {
          Recompute();
       }

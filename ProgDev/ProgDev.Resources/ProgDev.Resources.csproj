@@ -95,7 +95,18 @@
     <None Include="FileTemplates\Template.st.type" />
     <None Include="Images\1397211458_application.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\1397375926_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1397375938_information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1397375954_question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1397108362_page_white.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

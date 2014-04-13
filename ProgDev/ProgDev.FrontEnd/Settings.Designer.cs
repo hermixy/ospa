@@ -58,5 +58,17 @@ namespace ProgDev.FrontEnd {
                 this["AppForm_Size"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState AppForm_WindowState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["AppForm_WindowState"]));
+            }
+            set {
+                this["AppForm_WindowState"] = value;
+            }
+        }
     }
 }

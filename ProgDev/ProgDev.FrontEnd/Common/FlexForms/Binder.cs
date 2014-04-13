@@ -64,6 +64,11 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          control.EnabledChanged += Bind(field, () => control.Enabled, x => control.Enabled = x);
       }
 
+      public static void BindEnabled(this ToolStripItem control, Field<bool> field)
+      {
+         control.EnabledChanged += Bind(field, () => control.Enabled, x => control.Enabled = x);
+      }
+
       public static void BindChecked(this CheckBox control, Field<bool> field)
       {
          control.CheckedChanged += Bind(field, () => control.Checked, x => control.Checked = x);
@@ -118,9 +123,29 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          control.Click += command;
       }
 
+      public static void BindClick(this ToolStripMenuItem control, Signal command)
+      {
+         control.Click += command;
+      }
+
       public static void BindClosing(this Form control, Signal command)
       {
          control.FormClosing += (sender, e) => command.Handler(sender, e);
+      }
+
+      public static void BindWindowState(this Form control, Field<FormWindowState> field)
+      {
+         var eventHandler = Bind(field, () => control.WindowState, x => control.WindowState = x);
+
+         var lastWindowState = control.WindowState;
+         control.Resize += (sender, e) =>
+         {
+            if (control.WindowState != lastWindowState)
+            {
+               lastWindowState = control.WindowState;
+               eventHandler(control, EventArgs.Empty);
+            }
+         };
       }
 
       public static void BindItems(this ComboBox control, ListField<string> field)

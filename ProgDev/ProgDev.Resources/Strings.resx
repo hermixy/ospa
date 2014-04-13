@@ -121,8 +121,18 @@
     <value>Version {0}</value>
     <comment>The version label in AboutWindow.</comment>
   </data>
+  <data name="AppFormTitle" xml:space="preserve">
+    <value>{0} - OSPA ProgDev</value>
+    <comment>0 = project name</comment>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ButtonCreate" xml:space="preserve">
     <value>Create</value>
+  </data>
+  <data name="ButtonDontSave" xml:space="preserve">
+    <value>Don't save</value>
   </data>
   <data name="ButtonSave" xml:space="preserve">
     <value>Save</value>
@@ -147,6 +157,9 @@
   </data>
   <data name="ErrorExpectedNamespaceOrEmpty" xml:space="preserve">
     <value>Must either be blank or one or more identifiers separated by periods.</value>
+  </data>
+  <data name="ErrorOpenProject" xml:space="preserve">
+    <value>There was a problem opening the project.</value>
   </data>
   <data name="FileTypeClass" xml:space="preserve">
     <value>Class</value>
@@ -184,6 +197,20 @@
   <data name="LanguageST" xml:space="preserve">
     <value>Structured Text (ST)</value>
   </data>
+  <data name="OpenProjectFilter" xml:space="preserve">
+    <value>OSPA ProgDev projects (*.{0})|*.{0}</value>
+    <comment>0 = project extension</comment>
+  </data>
+  <data name="OpenProjectTitle" xml:space="preserve">
+    <value>Open Project</value>
+  </data>
+  <data name="SaveChangedPrompt" xml:space="preserve">
+    <value>Do you want to save changes to {0}?</value>
+    <comment>0 = project name</comment>
+  </data>
+  <data name="SaveProjectTitle" xml:space="preserve">
+    <value>Save Project</value>
+  </data>
   <data name="ShortFileTypeClass" xml:space="preserve">
     <value>Class</value>
   </data>
@@ -219,5 +246,8 @@
   </data>
   <data name="ShortLanguageST" xml:space="preserve">
     <value>ST</value>
+  </data>
+  <data name="Untitled" xml:space="preserve">
+    <value>Untitled</value>
   </data>
 </root>

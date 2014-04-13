@@ -15,6 +15,7 @@
 using ProgDev.Domain;
 using ProgDev.Resources;
 using System;
+using System.Reflection;
 
 namespace ProgDev.FrontEnd.Common
 {
@@ -46,6 +47,14 @@ namespace ProgDev.FrontEnd.Common
             case PouLanguage.StructuredText: return Strings.ShortLanguageST;
             default: throw new ArgumentOutOfRangeException("self");
          }
+      }
+
+      public static string ToDetailString(this Exception ex)
+      {
+         if (ex is TargetInvocationException)
+            return ((TargetInvocationException)ex).InnerException.ToDetailString();
+         else
+            return ex.Message;
       }
    }
 }

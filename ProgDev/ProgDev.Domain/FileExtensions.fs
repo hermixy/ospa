@@ -61,6 +61,9 @@ module FileExtensions =
    [<Literal>]
    let private TypeProgram = "prog"
 
+   [<Literal>]
+   let ProjectExtension = "osp"
+
    let GetLanguageExtension (x : PouLanguage) : string =
       match x with
       | PouLanguage.FunctionBlockDiagram -> LangFBD

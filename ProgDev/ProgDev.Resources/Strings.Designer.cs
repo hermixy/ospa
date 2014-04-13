@@ -70,11 +70,38 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} - OSPA ProgDev.
+        /// </summary>
+        public static string AppFormTitle {
+            get {
+                return ResourceManager.GetString("AppFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ButtonCancel {
+            get {
+                return ResourceManager.GetString("ButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string ButtonCreate {
             get {
                 return ResourceManager.GetString("ButtonCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t save.
+        /// </summary>
+        public static string ButtonDontSave {
+            get {
+                return ResourceManager.GetString("ButtonDontSave", resourceCulture);
             }
         }
         
@@ -147,6 +174,15 @@ namespace ProgDev.Resources {
         public static string ErrorExpectedNamespaceOrEmpty {
             get {
                 return ResourceManager.GetString("ErrorExpectedNamespaceOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was a problem opening the project..
+        /// </summary>
+        public static string ErrorOpenProject {
+            get {
+                return ResourceManager.GetString("ErrorOpenProject", resourceCulture);
             }
         }
         
@@ -259,6 +295,42 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OSPA ProgDev projects (*.{0})|*.{0}.
+        /// </summary>
+        public static string OpenProjectFilter {
+            get {
+                return ResourceManager.GetString("OpenProjectFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Project.
+        /// </summary>
+        public static string OpenProjectTitle {
+            get {
+                return ResourceManager.GetString("OpenProjectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save changes to {0}?.
+        /// </summary>
+        public static string SaveChangedPrompt {
+            get {
+                return ResourceManager.GetString("SaveChangedPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Project.
+        /// </summary>
+        public static string SaveProjectTitle {
+            get {
+                return ResourceManager.GetString("SaveProjectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Class.
         /// </summary>
         public static string ShortFileTypeClass {
@@ -363,6 +435,15 @@ namespace ProgDev.Resources {
         public static string ShortLanguageST {
             get {
                 return ResourceManager.GetString("ShortLanguageST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Untitled.
+        /// </summary>
+        public static string Untitled {
+            get {
+                return ResourceManager.GetString("Untitled", resourceCulture);
             }
         }
     }

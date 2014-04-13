@@ -33,7 +33,7 @@ namespace ProgDev.FrontEnd.Forms
 
       private void Populate()
       {
-         List.Set(Project.Files.Select(x => new ListViewRow
+         List.Set(Project.Files().Select(x => new ListViewRow
          {
             Icon = Images.Pou16,
             GroupName = x.Folder,

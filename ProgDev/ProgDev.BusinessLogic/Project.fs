@@ -30,6 +30,7 @@ type File = {
 (*********************************************************************************************************************)
 let mutable private _FilePath : string option = None
 let mutable private _Bundle : Bundle = { Files = [] }
+let mutable private _Dirty : bool = false
 let private _ChangedEvent = new DelegateEvent<System.Action>()
 
 let private NamePart (filename : string) : string = filename.Split('.').[0]
@@ -53,34 +54,47 @@ type EventsContainer () =
 
 let Events : EventsContainer = new EventsContainer()
 
-let Folders : string seq =
+let Folders () =
    _Bundle.Files
    |> List.toSeq 
    |> Seq.map (fun x -> x.Folder)
    |> Seq.distinct
 
-let Files : File seq =
+let Files () =
    _Bundle.Files 
    |> List.toSeq 
    |> Seq.map ToFile
 
-let FilePath =
+let FilePath () =
    match _FilePath with
    | Some x -> x
    | None -> null
+
+let ProjectName () =
+   match _FilePath with
+   | Some x -> System.IO.Path.GetFileNameWithoutExtension x
+   | None -> Strings.Untitled
+
+let IsDirty = _Dirty
 
 (*********************************************************************************************************************)
 let New () =
    _FilePath <- None
    SetBundle { Files = [] }
+   _Dirty <- false
+   _ChangedEvent.Trigger([| |])
 
 let Load (filePath : string) =
    SetBundle (Bundler.Load filePath)
    _FilePath <- Some filePath
+   _Dirty <- false
+   _ChangedEvent.Trigger([| |])
 
 let Save (filePath : string) =
    Bundler.Save _Bundle filePath
    _FilePath <- Some filePath
+   _Dirty <- false
+   _ChangedEvent.Trigger([| |])
 
 (*********************************************************************************************************************)
 module private FileOperations =
@@ -154,6 +168,7 @@ module Commands =
       _Bundle <- _Bundle |> command.Do
       _UndoStack <- List.Cons(command, _UndoStack)
       _RedoStack <- []
+      _Dirty <- true
       
    let CanUndo = not _UndoStack.IsEmpty
    let CanRedo = not _RedoStack.IsEmpty
@@ -165,6 +180,7 @@ module Commands =
          _Bundle <- _Bundle |> command.Undo
          _UndoStack <- _UndoStack.Tail
          _RedoStack <- List.Cons(command, _RedoStack)
+         _Dirty <- true
    
    let Redo () =
       if _RedoStack.IsEmpty then ()
@@ -173,6 +189,7 @@ module Commands =
          _Bundle <- _Bundle |> command.Do
          _RedoStack <- _RedoStack.Tail
          _UndoStack <- List.Cons(command, _UndoStack)
+         _Dirty <- true
    
    let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) =
       Do {
