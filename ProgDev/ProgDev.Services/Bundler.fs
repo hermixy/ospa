@@ -39,13 +39,13 @@ let Save (bundle : Bundle) (filePath : string) =
    use stream = File.Create(filePath)
    multipart.WriteTo stream
 
-let Load (filePath : string) : Bundle =
+let Load (filePath : string) =
    use stream = File.OpenRead(filePath)
    let parser = new MimeParser(stream)
    let multipart = downcast parser.ParseEntity() : Multipart
    { Files = multipart |> Seq.map (fun x -> ToBundleFile (downcast x : TextPart)) |> Seq.toList }
 
-let Bundle (sourcePath : string) (targetFilePath : string) : unit =
+let Bundle (sourcePath : string) (targetFilePath : string) =
    let GetAllFolderPaths (path : string) : string seq =
       Directory.GetDirectories path
       |> Array.toSeq
@@ -70,13 +70,12 @@ let Bundle (sourcePath : string) (targetFilePath : string) : unit =
       }
    Save (CreateBundle sourcePath) targetFilePath
 
-let Unbundle (sourceFilePath : string) (targetPath : string) : unit =
-   let CreateFile (absoluteRoot : string) (file : BundleFile) : unit =
+let Unbundle (sourceFilePath : string) (targetPath : string) =
+   let CreateFile (absoluteRoot : string) (file : BundleFile) =
       let absolutePath = Path.Combine(absoluteRoot, file.Folder, file.Name)
       let folderPath = Path.Combine(absoluteRoot, file.Folder)
       if not (Directory.Exists folderPath) then ignore (Directory.CreateDirectory folderPath)
       File.WriteAllText(absolutePath, file.Content)
-   let CreateFiles (absoluteRoot : string) (files : BundleFile list) : unit =
-      let createFile = CreateFile absoluteRoot
-      ignore (List.map createFile files)
+   let CreateFiles (absoluteRoot : string) (files : BundleFile list) =
+      ignore (List.map (CreateFile absoluteRoot) files)
    CreateFiles targetPath (Load sourceFilePath).Files

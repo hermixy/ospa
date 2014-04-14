@@ -28,8 +28,7 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       where ControlType : Control
    {
       private bool _Started = false;
-      private Action<Action<ControlType>> Invoke = f => { };
-      private IReadOnlyList<string> ComputedFieldEvaluationOrder = new string[0];
+      private Action<Action<ControlType>> _Invoke = f => { };
 
       public ViewModel()
       {
@@ -50,7 +49,7 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          // the derived form to take care of storing the view model.
          form.Tag = this;
 
-         Invoke = action => action(form);
+         _Invoke = action => action(form);
 
          PollComputedFields();
          Initialize();
@@ -108,14 +107,14 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       protected void Close()
       {
          ViewModelUtilities.AssertType<ControlType, Form>();
-         Invoke(x => (x as Form).Close());
+         _Invoke(x => (x as Form).Close());
       }
 
       protected DialogResult ShowChildDialog(Form child)
       {
          ViewModelUtilities.AssertType<ControlType, Form>();
          DialogResult result = default(DialogResult);
-         Invoke(x => result = child.ShowDialog(x as Form));
+         _Invoke(x => result = child.ShowDialog(x as Form));
          return result;
       }
 
@@ -123,7 +122,7 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       {
          ViewModelUtilities.AssertType<ControlType, Form>();
          DialogResult result = default(DialogResult);
-         Invoke(x => result = child.ShowDialog(x as Form));
+         _Invoke(x => result = child.ShowDialog(x as Form));
          return result;
       }
 
