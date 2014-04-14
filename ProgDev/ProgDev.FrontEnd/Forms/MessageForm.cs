@@ -15,6 +15,11 @@ namespace ProgDev.FrontEnd.Forms
    {
       public string Result { get; private set; }
 
+      public static MessageForm ErrorBox(string message, string detail = null)
+      {
+         return new MessageForm(message, Strings.ErrorTitle, detail: detail);
+      }
+
       public MessageForm(string message, string title, string[] buttons = null, Image icon = null, string detail = null)
       {
          InitializeComponent();

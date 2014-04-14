@@ -37,64 +37,73 @@ let private NamePart (filename : string) : string = filename.Split('.').[0]
 
 let private ToFile (x : BundleFile) : File =
    let dottedParts = x.Name.Split('.')
-   if dottedParts.Length <> 3 then raise (Exception "Malformed filename.")
+   if dottedParts.Length <> 3 then raise (Exception Strings.ErrorMalformedFilename)
    let name = dottedParts.[0]
    let pouLanguage = dottedParts.[1] |> FileExtensions.ParseLanguageExtension
    let pouType = dottedParts.[2] |> FileExtensions.ParseTypeExtension
    { Folder = x.Folder; Filename = x.Name; Name = name; Type = pouType; Language = pouLanguage }
 
-let private SetBundle x =
-   _Bundle <- x
+let private Notify () =
    _ChangedEvent.Trigger([| |])
 
 (*********************************************************************************************************************)
-type EventsContainer () =
+type ProjectEvents () =
    [<CLIEvent>]
    member this.Changed = _ChangedEvent.Publish
 
-let Events : EventsContainer = new EventsContainer()
+type ProjectContents () =
+   member this.Folders
+      with get () = 
+         _Bundle.Files
+         |> List.toSeq 
+         |> Seq.map (fun x -> x.Folder)
+         |> Seq.distinct
+         |> Seq.sort
 
-let Folders () =
-   _Bundle.Files
-   |> List.toSeq 
-   |> Seq.map (fun x -> x.Folder)
-   |> Seq.distinct
+   member this.Files
+      with get () = 
+         _Bundle.Files 
+         |> List.toSeq 
+         |> Seq.map ToFile
+         |> Seq.sortBy (fun x -> x.Folder)
 
-let Files () =
-   _Bundle.Files 
-   |> List.toSeq 
-   |> Seq.map ToFile
+   member this.FilePath
+      with get () =
+         match _FilePath with
+         | Some x -> x
+         | None -> null
 
-let FilePath () =
-   match _FilePath with
-   | Some x -> x
-   | None -> null
+   member this.ProjectName
+      with get () =
+         match _FilePath with
+         | Some x -> System.IO.Path.GetFileNameWithoutExtension x
+         | None -> Strings.Untitled
 
-let ProjectName () =
-   match _FilePath with
-   | Some x -> System.IO.Path.GetFileNameWithoutExtension x
-   | None -> Strings.Untitled
+   member this.IsDirty
+      with get () = _Dirty
 
-let IsDirty = _Dirty
+let Events = new ProjectEvents()
+
+let Contents = new ProjectContents()
 
 (*********************************************************************************************************************)
 let New () =
    _FilePath <- None
-   SetBundle { Files = [] }
+   _Bundle <- { Files = [] }
    _Dirty <- false
-   _ChangedEvent.Trigger([| |])
+   Notify()
 
 let Load (filePath : string) =
-   SetBundle (Bundler.Load filePath)
+   _Bundle <- Bundler.Load filePath
    _FilePath <- Some filePath
    _Dirty <- false
-   _ChangedEvent.Trigger([| |])
+   Notify()
 
 let Save (filePath : string) =
    Bundler.Save _Bundle filePath
    _FilePath <- Some filePath
    _Dirty <- false
-   _ChangedEvent.Trigger([| |])
+   Notify()
 
 (*********************************************************************************************************************)
 module private FileOperations =
@@ -127,14 +136,14 @@ module private FileOperations =
       | PouLanguage.StructuredText, PouType.Interface -> FileTemplates.StInterface
       | PouLanguage.StructuredText, PouType.Program -> FileTemplates.StProgram
       | PouLanguage.StructuredText, PouType.DataType -> FileTemplates.StDataType
-      | _ -> raise (Exception "Invalid combination of type and language.")
+      | _ -> raise (Exception Strings.ErrorInvalidTypeLanguageCombo)
 
    let private GetTemplateString (pouType : PouType, pouLanguage : PouLanguage) =
       GetTemplate(pouType, pouLanguage) |> System.Text.Encoding.UTF8.GetString
 
    let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) (bundle : Bundle) =
       if bundle.Files |> List.exists (fun x -> (NamePart x.Name) =? name && x.Folder =? folder) 
-         then raise (Exception "File already exists.")
+         then raise (Exception (String.Format(Strings.ErrorFileExists, name, folder)))
       let parts = [name; FileExtensions.GetLanguageExtension pouLanguage; FileExtensions.GetTypeExtension pouType]
       let filename = String.Join(".", parts)
       let content = GetTemplateString(pouType, pouLanguage)
@@ -145,7 +154,7 @@ module private FileOperations =
    let RenameFile (folder : string) (oldName : string) (newName : string) (bundle : Bundle) =
       let oldFile = bundle |> GetFile folder oldName
       let newFile = { Folder = oldFile.Folder; Name = newName; Content = oldFile.Content } : BundleFile
-      let files = bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x)
+      let files = bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x) 
       { Files = files }
 
    let DeleteFile (folder : string) (name : string) (bundle : Bundle) =
@@ -169,6 +178,7 @@ module Commands =
       _UndoStack <- List.Cons(command, _UndoStack)
       _RedoStack <- []
       _Dirty <- true
+      Notify()
       
    let CanUndo = not _UndoStack.IsEmpty
    let CanRedo = not _RedoStack.IsEmpty
@@ -181,6 +191,7 @@ module Commands =
          _UndoStack <- _UndoStack.Tail
          _RedoStack <- List.Cons(command, _RedoStack)
          _Dirty <- true
+         Notify()
    
    let Redo () =
       if _RedoStack.IsEmpty then ()
@@ -190,6 +201,7 @@ module Commands =
          _RedoStack <- _RedoStack.Tail
          _UndoStack <- List.Cons(command, _UndoStack)
          _Dirty <- true
+         Notify()
    
    let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) =
       Do {

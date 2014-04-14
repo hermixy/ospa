@@ -64,8 +64,8 @@ namespace ProgDev.FrontEnd.Forms
 
       void OnProjectChanged()
       {
-         string filename = Project.ProjectName();
-         if (Project.IsDirty)
+         string filename = Project.Contents.ProjectName;
+         if (Project.Contents.IsDirty)
             filename += "*";
          Title.Value = string.Format(Strings.AppFormTitle, filename);
          SaveEnabled.Poll();
@@ -73,7 +73,7 @@ namespace ProgDev.FrontEnd.Forms
 
       private bool DoSave()
       {
-         if (Project.FilePath() == null)
+         if (Project.Contents.FilePath == null)
          {
             var dlg = new SaveFileDialog
             {
@@ -98,7 +98,7 @@ namespace ProgDev.FrontEnd.Forms
          }
          else
          {
-            Project.Save(Project.FilePath());
+            Project.Save(Project.Contents.FilePath);
             return true;
          }
       }
@@ -106,7 +106,7 @@ namespace ProgDev.FrontEnd.Forms
       [Compute("SaveEnabled")]
       private bool ComputeSaveEnabled()
       {
-         return Project.IsDirty;
+         return Project.Contents.IsDirty;
       }
 
       [OnSignal("NewClick")]
@@ -118,12 +118,12 @@ namespace ProgDev.FrontEnd.Forms
       [OnSignal("OpenClick")]
       private void OnOpenClick()
       {
-         if (!Project.IsDirty)
+         if (Project.Contents.IsDirty)
          {
             string projectName = 
-               Project.FilePath() == null 
+               Project.Contents.FilePath == null 
                ? Strings.Untitled
-               : Path.GetFileNameWithoutExtension(Project.FilePath());
+               : Path.GetFileNameWithoutExtension(Project.Contents.FilePath);
             string message = string.Format(Strings.SaveChangedPrompt, projectName);
 
             var dlg = new MessageForm(message, Strings.OpenProjectTitle, 

@@ -124,42 +124,6 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string CommandDeleteFile {
-            get {
-                return ResourceManager.GetString("CommandDeleteFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to delete folder.
-        /// </summary>
-        public static string CommandDeleteFolder {
-            get {
-                return ResourceManager.GetString("CommandDeleteFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to move file.
-        /// </summary>
-        public static string CommandMoveFile {
-            get {
-                return ResourceManager.GetString("CommandMoveFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to rename file.
-        /// </summary>
-        public static string CommandRenameFile {
-            get {
-                return ResourceManager.GetString("CommandRenameFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Must be a valid identifier (alphanumeric and underscore, starting with a letter)..
         /// </summary>
         public static string ErrorExpectedIdentifier {
@@ -178,11 +142,47 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A POU named &quot;{0}&quot; already exists in the folder &quot;{1}&quot;..
+        /// </summary>
+        public static string ErrorFileExists {
+            get {
+                return ResourceManager.GetString("ErrorFileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid combination of type and language..
+        /// </summary>
+        public static string ErrorInvalidTypeLanguageCombo {
+            get {
+                return ResourceManager.GetString("ErrorInvalidTypeLanguageCombo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Malformed filename..
+        /// </summary>
+        public static string ErrorMalformedFilename {
+            get {
+                return ResourceManager.GetString("ErrorMalformedFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was a problem opening the project..
         /// </summary>
         public static string ErrorOpenProject {
             get {
                 return ResourceManager.GetString("ErrorOpenProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorTitle {
+            get {
+                return ResourceManager.GetString("ErrorTitle", resourceCulture);
             }
         }
         

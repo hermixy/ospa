@@ -13,8 +13,10 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using ProgDev.BusinessLogic;
+using ProgDev.Domain;
 using ProgDev.FrontEnd.Common.FlexForms;
 using ProgDev.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -48,8 +50,8 @@ namespace ProgDev.FrontEnd.Forms
       protected override void Initialize()
       {
          NameText.Value = _InitialName;
-         FolderList.Set(Project.Folders());
-         FolderText.Value = Project.Folders().DefaultIfEmpty("").FirstOrDefault();
+         FolderList.Set(Project.Contents.Folders);
+         FolderText.Value = Project.Contents.Folders.DefaultIfEmpty("").FirstOrDefault();
          TypeList.AddRange(new[] 
          { 
             Strings.FileTypeProgram, 
@@ -95,7 +97,8 @@ namespace ProgDev.FrontEnd.Forms
       [Compute("FolderError"), Depends("FolderText")]
       private string ComputeFolderError()
       {
-         return (FolderText.Value == "" || InputValidator.IsNamespace(FolderText.Value)) ? "" : Strings.ErrorExpectedNamespaceOrEmpty;
+         return (FolderText.Value == "" || InputValidator.IsNamespace(FolderText.Value))
+            ? "" : Strings.ErrorExpectedNamespaceOrEmpty;
       }
 
       [Compute("OkEnabled"), Depends("NameError", "FolderError")]
@@ -104,10 +107,42 @@ namespace ProgDev.FrontEnd.Forms
          return !NameError.Value.Any() && !FolderError.Value.Any();
       }
 
+      private readonly static IReadOnlyDictionary<string, PouType> _TypeMap = new Dictionary<string, PouType>
+      {
+         { Strings.FileTypeProgram, PouType.Program },
+         { Strings.FileTypeFunctionBlock, PouType.FunctionBlock },
+         { Strings.FileTypeFunction, PouType.Function },
+         { Strings.FileTypeGlobalVars, PouType.GlobalVars },
+         { Strings.FileTypeDataType, PouType.DataType },
+         { Strings.FileTypeClass, PouType.Class },
+         { Strings.FileTypeInterface, PouType.Interface }
+      };
+
+      private readonly static IReadOnlyDictionary<string, PouLanguage> _LangMap = new Dictionary<string, PouLanguage>
+      {
+         { Strings.LanguageIL, PouLanguage.InstructionList },
+         { Strings.LanguageLD, PouLanguage.LadderDiagram },
+         { Strings.LanguageFBD, PouLanguage.FunctionBlockDiagram },
+         { Strings.LanguageSFC, PouLanguage.SequentialFunctionChart },
+         { Strings.LanguageST, PouLanguage.StructuredText }
+      };
+
       [OnSignal("OkClick")]
       private void OnOkClick()
       {
-         Close();
+         try
+         {
+            Project.Commands.NewFile(
+               folder: FolderText.Value, 
+               name: NameText.Value, 
+               pouType: _TypeMap[TypeList[TypeSelectedIndex.Value]],
+               pouLanguage: _LangMap[LanguageList[LanguageSelectedIndex.Value]]);
+            Close();
+         }
+         catch (Exception ex)
+         {
+            ShowChildDialog(MessageForm.ErrorBox(ex.Message));
+         }
       }
    }
 }

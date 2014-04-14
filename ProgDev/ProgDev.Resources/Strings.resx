@@ -140,26 +140,27 @@
   <data name="CommandAddFile" xml:space="preserve">
     <value>add file</value>
   </data>
-  <data name="CommandDeleteFile" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CommandDeleteFolder" xml:space="preserve">
-    <value>delete folder</value>
-  </data>
-  <data name="CommandMoveFile" xml:space="preserve">
-    <value>move file</value>
-  </data>
-  <data name="CommandRenameFile" xml:space="preserve">
-    <value>rename file</value>
-  </data>
   <data name="ErrorExpectedIdentifier" xml:space="preserve">
     <value>Must be a valid identifier (alphanumeric and underscore, starting with a letter).</value>
   </data>
   <data name="ErrorExpectedNamespaceOrEmpty" xml:space="preserve">
     <value>Must either be blank or one or more identifiers separated by periods.</value>
   </data>
+  <data name="ErrorFileExists" xml:space="preserve">
+    <value>A POU named "{0}" already exists in the folder "{1}".</value>
+    <comment>0 = filename, 1 = folder name</comment>
+  </data>
+  <data name="ErrorInvalidTypeLanguageCombo" xml:space="preserve">
+    <value>Invalid combination of type and language.</value>
+  </data>
+  <data name="ErrorMalformedFilename" xml:space="preserve">
+    <value>Malformed filename.</value>
+  </data>
   <data name="ErrorOpenProject" xml:space="preserve">
     <value>There was a problem opening the project.</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="FileTypeClass" xml:space="preserve">
     <value>Class</value>
