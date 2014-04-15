@@ -37,7 +37,7 @@ let private NamePart (filename : string) : string = filename.Split('.').[0]
 
 let private ToFile (x : BundleFile) : File =
    let dottedParts = x.Name.Split('.')
-   if dottedParts.Length <> 3 then raise (Exception Strings.ErrorMalformedFilename)
+   if dottedParts.Length <> 3 then failwith Strings.ErrorMalformedFilename
    let name = dottedParts.[0]
    let pouLanguage = dottedParts.[1] |> FileExtensions.ParseLanguageExtension
    let pouType = dottedParts.[2] |> FileExtensions.ParseTypeExtension
@@ -136,14 +136,14 @@ module private FileOperations =
       | PouLanguage.StructuredText, PouType.Interface -> FileTemplates.StInterface
       | PouLanguage.StructuredText, PouType.Program -> FileTemplates.StProgram
       | PouLanguage.StructuredText, PouType.DataType -> FileTemplates.StDataType
-      | _ -> raise (Exception Strings.ErrorInvalidTypeLanguageCombo)
+      | _ -> failwith Strings.ErrorInvalidTypeLanguageCombo
 
    let private GetTemplateString (pouType : PouType, pouLanguage : PouLanguage) =
       GetTemplate(pouType, pouLanguage) |> System.Text.Encoding.UTF8.GetString
 
    let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) (bundle : Bundle) =
       if bundle.Files |> List.exists (fun x -> (NamePart x.Name) =? name && x.Folder =? folder) 
-         then raise (Exception (String.Format(Strings.ErrorFileExists, name, folder)))
+         then failwith (String.Format(Strings.ErrorFileExists, name, folder))
       let parts = [name; FileExtensions.GetLanguageExtension pouLanguage; FileExtensions.GetTypeExtension pouType]
       let filename = String.Join(".", parts)
       let content = GetTemplateString(pouType, pouLanguage)

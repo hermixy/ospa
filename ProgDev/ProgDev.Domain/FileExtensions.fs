@@ -14,6 +14,7 @@
 
 namespace ProgDev.Domain
 open System
+open ProgDev.Resources
 
 (*********************************************************************************************************************)
 type PouType =
@@ -71,7 +72,7 @@ module FileExtensions =
       | PouLanguage.LadderDiagram -> LangLD
       | PouLanguage.SequentialFunctionChart -> LangSFC
       | PouLanguage.StructuredText -> LangST
-      | _ -> raise (Exception "Invalid PouLanguage.")
+      | _ -> invalidArg "x" Strings.ErrorInvalidPouLanguage
 
    let ParseLanguageExtension (x : string) : PouLanguage =
       match x with
@@ -80,7 +81,7 @@ module FileExtensions =
       | LangLD -> PouLanguage.LadderDiagram
       | LangSFC -> PouLanguage.SequentialFunctionChart
       | LangST -> PouLanguage.StructuredText
-      | _ -> raise (Exception "Invalid language extension.")
+      | _ -> invalidArg "x" Strings.ErrorInvalidLanguageExtension
 
    let GetTypeExtension (x : PouType) : string =
       match x with
@@ -91,7 +92,7 @@ module FileExtensions =
       | PouType.GlobalVars -> TypeGlobalVars
       | PouType.Interface -> TypeInterface
       | PouType.Program -> TypeProgram
-      | _ -> raise (Exception "Invalid PouType.")
+      | _ -> invalidArg "x" Strings.ErrorInvalidPouType
 
    let ParseTypeExtension (x : string) : PouType =
       match x with
@@ -102,4 +103,4 @@ module FileExtensions =
       | TypeGlobalVars -> PouType.GlobalVars
       | TypeInterface -> PouType.Interface
       | TypeProgram -> PouType.Program
-      | _ -> raise (Exception "Invalid type extension.")
+      | _ -> invalidArg "x" Strings.ErrorInvalidTypeExtension

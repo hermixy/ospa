@@ -46,6 +46,13 @@
     <Compile Include="Ast.fs" />
     <Compile Include="Bundle.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProgDev.Resources\ProgDev.Resources.csproj">
+      <Name>ProgDev.Resources</Name>
+      <Project>{5c4f9bee-2318-48a5-9099-b11c58c18eff}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>

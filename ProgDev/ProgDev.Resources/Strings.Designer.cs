@@ -142,11 +142,56 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bundle files must be contained in a folder..
+        /// </summary>
+        public static string ErrorFileAtRoot {
+            get {
+                return ResourceManager.GetString("ErrorFileAtRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A POU named &quot;{0}&quot; already exists in the folder &quot;{1}&quot;..
         /// </summary>
         public static string ErrorFileExists {
             get {
                 return ResourceManager.GetString("ErrorFileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid POU language file extension..
+        /// </summary>
+        public static string ErrorInvalidLanguageExtension {
+            get {
+                return ResourceManager.GetString("ErrorInvalidLanguageExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invald PouLanguage value..
+        /// </summary>
+        public static string ErrorInvalidPouLanguage {
+            get {
+                return ResourceManager.GetString("ErrorInvalidPouLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid PouType value..
+        /// </summary>
+        public static string ErrorInvalidPouType {
+            get {
+                return ResourceManager.GetString("ErrorInvalidPouType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid POU type file extension..
+        /// </summary>
+        public static string ErrorInvalidTypeExtension {
+            get {
+                return ResourceManager.GetString("ErrorInvalidTypeExtension", resourceCulture);
             }
         }
         

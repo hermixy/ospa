@@ -14,6 +14,7 @@
 
 module ProgDev.Services.Bundler
 open ProgDev.Domain
+open ProgDev.Resources
 open System
 open System.IO
 open System.Text
@@ -26,7 +27,7 @@ let private ToTextPart (file : BundleFile) =
    textPart
 
 let private ToBundleFile (file : TextPart) =
-   if not (file.FileName.Contains("/")) then raise (Exception "FileName should contain a folder name.")
+   if not (file.FileName.Contains("/")) then failwith Strings.ErrorFileAtRoot
    else
       let filenameParts = file.FileName.Split '/'
       { Folder = filenameParts.[0]; Name = filenameParts.[1]; Content = file.Text } : BundleFile

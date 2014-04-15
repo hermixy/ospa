@@ -146,9 +146,24 @@
   <data name="ErrorExpectedNamespaceOrEmpty" xml:space="preserve">
     <value>Must either be blank or one or more identifiers separated by periods.</value>
   </data>
+  <data name="ErrorFileAtRoot" xml:space="preserve">
+    <value>Bundle files must be contained in a folder.</value>
+  </data>
   <data name="ErrorFileExists" xml:space="preserve">
     <value>A POU named "{0}" already exists in the folder "{1}".</value>
     <comment>0 = filename, 1 = folder name</comment>
+  </data>
+  <data name="ErrorInvalidLanguageExtension" xml:space="preserve">
+    <value>Invalid POU language file extension.</value>
+  </data>
+  <data name="ErrorInvalidPouLanguage" xml:space="preserve">
+    <value>Invald PouLanguage value.</value>
+  </data>
+  <data name="ErrorInvalidPouType" xml:space="preserve">
+    <value>Invalid PouType value.</value>
+  </data>
+  <data name="ErrorInvalidTypeExtension" xml:space="preserve">
+    <value>Invalid POU type file extension.</value>
   </data>
   <data name="ErrorInvalidTypeLanguageCombo" xml:space="preserve">
     <value>Invalid combination of type and language.</value>
