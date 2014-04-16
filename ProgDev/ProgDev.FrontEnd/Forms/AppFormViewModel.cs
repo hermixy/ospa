@@ -32,7 +32,7 @@ namespace ProgDev.FrontEnd.Forms
       public Field<Size> Size;
       public Field<Size> MinimumSize;
       public Field<FormWindowState> WindowState;
-      public Field<string> Title;
+      public ComputedField<string> Title;
       public ComputedField<bool> SaveEnabled;
       public Signal NewClick;
       public Signal OpenClick;
@@ -42,6 +42,9 @@ namespace ProgDev.FrontEnd.Forms
       public Signal DeployClick;
       public Signal DebugClick;
       public Signal Closing;
+      // Set from the project in code rather than bound to the window:
+      public Field<string> Project_Name;
+      public Field<bool> Project_IsDirty;
 
       protected override void Initialize()
       {
@@ -64,11 +67,8 @@ namespace ProgDev.FrontEnd.Forms
 
       void OnProjectChanged()
       {
-         string filename = Project.Contents.ProjectName;
-         if (Project.Contents.IsDirty)
-            filename += "*";
-         Title.Value = string.Format(Strings.AppFormTitle, filename);
-         SaveEnabled.Poll();
+         Project_Name.Value = Project.Contents.ProjectName;
+         Project_IsDirty.Value = Project.Contents.IsDirty;
       }
 
       private bool DoSave()
@@ -103,10 +103,19 @@ namespace ProgDev.FrontEnd.Forms
          }
       }
 
-      [Compute("SaveEnabled")]
+      [Compute("Title"), Depends("Project_Name", "Project_IsDirty")]
+      private string ComputeTitle()
+      {
+         string filename = Project_Name.Value;
+         if (Project_IsDirty.Value)
+            filename += "*";
+         return string.Format(Strings.AppFormTitle, filename);
+      }
+
+      [Compute("SaveEnabled"), Depends("Project_IsDirty")]
       private bool ComputeSaveEnabled()
       {
-         return Project.Contents.IsDirty;
+         return Project_IsDirty.Value;
       }
 
       [OnSignal("NewClick")]

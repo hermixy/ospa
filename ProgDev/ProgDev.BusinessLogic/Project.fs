@@ -27,14 +27,6 @@ type File = {
    Language : PouLanguage
 }
 
-(*********************************************************************************************************************)
-let mutable private _FilePath : string option = None
-let mutable private _Bundle : Bundle = { Files = [] }
-let mutable private _Dirty : bool = false
-let private _ChangedEvent = new DelegateEvent<System.Action>()
-
-let private NamePart (filename : string) : string = filename.Split('.').[0]
-
 let private ToFile (x : BundleFile) : File =
    let dottedParts = x.Name.Split('.')
    if dottedParts.Length <> 3 then failwith Strings.ErrorMalformedFilename
@@ -43,8 +35,77 @@ let private ToFile (x : BundleFile) : File =
    let pouType = dottedParts.[2] |> FileExtensions.ParseTypeExtension
    { Folder = x.Folder; Filename = x.Name; Name = name; Type = pouType; Language = pouLanguage }
 
-let private Notify () =
-   _ChangedEvent.Trigger([| |])
+(*********************************************************************************************************************)
+let mutable private _FilePath : string option = None
+let private _ChangedEvent = new DelegateEvent<System.Action>()
+let private Notify () = _ChangedEvent.Trigger([| |])
+
+(*********************************************************************************************************************)
+module private BundleManager =
+   type Command = {
+      Do : Bundle -> Bundle
+      Undo : Bundle -> Bundle
+      Name : string
+   }
+
+   let mutable private _Bundle : Bundle = { Files = [] }
+   let mutable private _Dirty : bool = false
+   let mutable private _UndoStack = [] : Command list
+   let mutable private _RedoStack = [] : Command list
+  
+   // Read-only access
+   let Bundle () = _Bundle
+   let IsDirty () = _Dirty
+
+   let CanUndo () = not _UndoStack.IsEmpty
+   let CanRedo () = not _RedoStack.IsEmpty
+   let UndoName () = if _UndoStack.IsEmpty then null else _UndoStack.Head.Name
+   let RedoName () = if _RedoStack.IsEmpty then null else _RedoStack.Head.Name
+
+   let Do (command : Command) =
+      _Bundle <- _Bundle |> command.Do
+      _UndoStack <- List.Cons(command, _UndoStack)
+      _RedoStack <- []
+      _Dirty <- true
+      Notify()
+      
+   let Undo () =
+      if _UndoStack.IsEmpty then ()
+      else
+         let command = _UndoStack.Head
+         _Bundle <- _Bundle |> command.Undo
+         _UndoStack <- _UndoStack.Tail
+         _RedoStack <- List.Cons(command, _RedoStack)
+         _Dirty <- true
+         Notify()
+   
+   let Redo () =
+      if _RedoStack.IsEmpty then ()
+      else
+         let command = _RedoStack.Head
+         _Bundle <- _Bundle |> command.Do
+         _RedoStack <- _RedoStack.Tail
+         _UndoStack <- List.Cons(command, _UndoStack)
+         _Dirty <- true
+         Notify()
+
+   let New () =
+      _FilePath <- None
+      _Bundle <- { Files = [] }
+      _Dirty <- false
+      Notify()
+
+   let Load (filePath : string) =
+      _Bundle <- Bundler.Load filePath
+      _FilePath <- Some filePath
+      _Dirty <- false
+      Notify()
+
+   let Save (filePath : string) =
+      Bundler.Save _Bundle filePath
+      _FilePath <- Some filePath
+      _Dirty <- false
+      Notify()
 
 (*********************************************************************************************************************)
 type ProjectEvents () =
@@ -54,7 +115,7 @@ type ProjectEvents () =
 type ProjectContents () =
    member this.Folders
       with get () = 
-         _Bundle.Files
+         BundleManager.Bundle().Files
          |> List.toSeq 
          |> Seq.map (fun x -> x.Folder)
          |> Seq.distinct
@@ -62,7 +123,7 @@ type ProjectContents () =
 
    member this.Files
       with get () = 
-         _Bundle.Files 
+         BundleManager.Bundle().Files 
          |> List.toSeq 
          |> Seq.map ToFile
          |> Seq.sortBy (fun x -> x.Folder)
@@ -80,37 +141,23 @@ type ProjectContents () =
          | None -> Strings.Untitled
 
    member this.IsDirty
-      with get () = _Dirty
+      with get () = BundleManager.IsDirty()
 
 let Events = new ProjectEvents()
 
 let Contents = new ProjectContents()
 
 (*********************************************************************************************************************)
-let New () =
-   _FilePath <- None
-   _Bundle <- { Files = [] }
-   _Dirty <- false
-   Notify()
-
-let Load (filePath : string) =
-   _Bundle <- Bundler.Load filePath
-   _FilePath <- Some filePath
-   _Dirty <- false
-   Notify()
-
-let Save (filePath : string) =
-   Bundler.Save _Bundle filePath
-   _FilePath <- Some filePath
-   _Dirty <- false
-   Notify()
+let New () = BundleManager.New()
+let Load (filePath : string) = BundleManager.Load filePath
+let Save (filePath : string) = BundleManager.Save filePath
 
 (*********************************************************************************************************************)
 module private FileOperations =
-   let private GetFile (namespaceName : string) (name : string) (bundle : Bundle) =
+   let private GetFile (folder : string) (name : string) (bundle : Bundle) =
       bundle.Files 
       |> List.toSeq 
-      |> Seq.filter (fun x -> x.Name =? name && x.Folder =? namespaceName) 
+      |> Seq.filter (fun x -> x.Name =? name && x.Folder =? folder) 
       |> Seq.exactlyOne
 
    let private GetTemplate (pouType : PouType, pouLanguage : PouLanguage) =
@@ -141,6 +188,8 @@ module private FileOperations =
    let private GetTemplateString (pouType : PouType, pouLanguage : PouLanguage) =
       GetTemplate(pouType, pouLanguage) |> System.Text.Encoding.UTF8.GetString
 
+   let private NamePart (filename : string) : string = filename.Split('.').[0]
+
    let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) (bundle : Bundle) =
       if bundle.Files |> List.exists (fun x -> (NamePart x.Name) =? name && x.Folder =? folder) 
          then failwith (String.Format(Strings.ErrorFileExists, name, folder))
@@ -163,48 +212,16 @@ module private FileOperations =
       { Files = files }
 
 (*********************************************************************************************************************)
-module Commands =
-   type private Command = {
-      Do : Bundle -> Bundle
-      Undo : Bundle -> Bundle
-      Name : string
-   }
-
-   let mutable private _UndoStack = [] : Command list
-   let mutable private _RedoStack = [] : Command list
-
-   let private Do (command : Command) =
-      _Bundle <- _Bundle |> command.Do
-      _UndoStack <- List.Cons(command, _UndoStack)
-      _RedoStack <- []
-      _Dirty <- true
-      Notify()
-      
-   let CanUndo = not _UndoStack.IsEmpty
-   let CanRedo = not _RedoStack.IsEmpty
-
-   let Undo () =
-      if _UndoStack.IsEmpty then ()
-      else
-         let command = _UndoStack.Head
-         _Bundle <- _Bundle |> command.Undo
-         _UndoStack <- _UndoStack.Tail
-         _RedoStack <- List.Cons(command, _RedoStack)
-         _Dirty <- true
-         Notify()
+type ProjectCommands () =
+   member this.CanUndo with get () = BundleManager.CanUndo()
+   member this.CanRedo with get () = BundleManager.CanRedo()
+   member this.UndoName with get () = BundleManager.UndoName()
+   member this.RedoName with get () = BundleManager.RedoName()
+   member this.Undo () = BundleManager.Undo()
+   member this.Redo () = BundleManager.Redo()
    
-   let Redo () =
-      if _RedoStack.IsEmpty then ()
-      else
-         let command = _RedoStack.Head
-         _Bundle <- _Bundle |> command.Do
-         _RedoStack <- _RedoStack.Tail
-         _UndoStack <- List.Cons(command, _UndoStack)
-         _Dirty <- true
-         Notify()
-   
-   let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) =
-      Do {
+   member this.NewFile folder name pouType pouLanguage =
+      BundleManager.Do {
          Do = (fun b -> b |> FileOperations.NewFile folder name pouType pouLanguage)
          Undo = (fun b -> b |> FileOperations.DeleteFile folder name)
          Name = Strings.CommandAddFile
@@ -221,4 +238,6 @@ module Commands =
          Do = (fun b -> b |> FileOperations.MoveFile oldnamespaceName name newnamespaceName)
          Undo = (fun b -> b |> FileOperations.MoveFile newnamespaceName name oldnamespaceName)
       }
-*)
+   *)
+
+let Commands  = new ProjectCommands()
