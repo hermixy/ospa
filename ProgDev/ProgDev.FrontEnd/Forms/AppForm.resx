@@ -126,6 +126,12 @@
   <metadata name="_MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>227, 17</value>
   </metadata>
+  <metadata name="_ToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>342, 17</value>
+  </metadata>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>448, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="_NewProjectMnu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -297,9 +303,6 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="_ToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>342, 17</value>
-  </metadata>
   <data name="_NewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -385,11 +388,11 @@
         95BIZUjPzILH44GySQtuYRG+TDkxNDQCm30YgzY7BCVC8ItLUUJfMoNdUGCR1cnRZbFCq9Mj7lzc1fvJ
         yc1N8gZ43C7weHyMjjrwYcAGh2Mcqysr8PvWMTMzg3wO108+IpzNLrAIBCVg52Zb6PcDdJ08lfFmNfZJ
         HdYW3bDbbGiUU3icnoFKURkK8/OQkZpqp/tiyQaEcLrIpZAn41ChqT5JM4sBP1Bk+YpuowFcDgfZGWlU
-        sI9UBOn9h8NcoyLF6ILdB9xpW8Yl7QrOsqXwzs9CKZP9TNRNS0J4Hepg+36O8jqomxpnQL7btoQErQfR
-        4s+IYknXDEqpl9sxBfsWcEMzg2OF7cqgtkMov11zofYThtYBVr8PCZpFxIoncTyHMtJxTEiWQnuxyYtb
-        rV6MfAeSFJMgzo5NE1nRi7FN4J7RS8sexNAnH8lRmenoFMlDOTpTtHgcl1WLuG1YwvgPgDgkCxBZ0YeH
-        XT5c0y8husaxTw7CDM2Rm6Nej+KK2oMHpjWcoZ1gxmCEsaieCFEvmGVWnGAryTj/lHcJD8ulLOGiHpwu
-        7wVxgusByK+5O6LAOP/D7sjpYjB/ARFr8b7JbDQJAAAAAElFTkSuQmCC
+        sI9UBOn9h8NcoyLF6ILdB9xpW8Yl7QrOsqXwzs+Cksl+JuqmJSG8DnWwfT9HeR3UTY0zIN9tW0KC1oNo
+        8WdEsaRrBqXUy+2Ygn0LuKGZwbHCdmVQ2yGU3665UPsJQ+sAq9+HBM0iYsWTOJ5DGek4JiRLob3Y5MWt
+        Vi9GvgNJikkQZ8emiazoxdgmcM/opWUPYuiTj+SozHR0iuShHJ0pWjyOy6pF3DYsYfwHQBySBYis6MPD
+        Lh+u6ZcQXePYJwdhhubIzVGvR3FF7cED0xrO0E4wYzDCWFRPhKgXzDIrTrCVZJx/yruEh+VSlnBRD06X
+        94I4wfUA5NfcHVFgnP9hd+R0MZi/AA/R8b24AHzGAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="_BuildButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

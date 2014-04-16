@@ -29,6 +29,7 @@ namespace ProgDev.FrontEnd.Forms
       public Signal DockPanelClick;
       public Signal AntlrClick;
       public Signal MimeKitClick;
+      public Signal TextEditorClick;
       public Signal CloseClick;
 
       [OnSignal("CloseClick")]
@@ -77,6 +78,12 @@ namespace ProgDev.FrontEnd.Forms
       private void OnMimeKitClick()
       {
          Process.Start("http://jstedfast.github.io/MimeKit/");
+      }
+
+      [OnSignal("TextEditorClick")]
+      private void OnTextEditorClick()
+      {
+         Process.Start("https://github.com/icsharpcode/SharpDevelop");
       }
 
       [Compute("VersionText")]

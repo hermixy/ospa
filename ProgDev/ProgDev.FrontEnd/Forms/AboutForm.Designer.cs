@@ -28,12 +28,12 @@
       /// </summary>
       private void InitializeComponent()
       {
-         System.Windows.Forms.Label label4;
          System.Windows.Forms.Label label5;
          System.Windows.Forms.Label label3;
          System.Windows.Forms.Label label8;
-         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
          System.Windows.Forms.Label label10;
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
+         System.Windows.Forms.Label label12;
          this._TitleLabel = new System.Windows.Forms.Label();
          this._CopyrightLabel = new System.Windows.Forms.Label();
          this._GitHubLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -53,27 +53,20 @@
          this._AntlrLinkLabel = new System.Windows.Forms.LinkLabel();
          this.label9 = new System.Windows.Forms.Label();
          this._MimeKitLinkLabel = new System.Windows.Forms.LinkLabel();
-         label4 = new System.Windows.Forms.Label();
+         this.label11 = new System.Windows.Forms.Label();
+         this._TextEditorLinkLabel = new System.Windows.Forms.LinkLabel();
          label5 = new System.Windows.Forms.Label();
          label3 = new System.Windows.Forms.Label();
          label8 = new System.Windows.Forms.Label();
          label10 = new System.Windows.Forms.Label();
+         label12 = new System.Windows.Forms.Label();
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
          this.SuspendLayout();
-         // 
-         // label4
-         // 
-         label4.AutoSize = true;
-         label4.Location = new System.Drawing.Point(68, 115);
-         label4.Name = "label4";
-         label4.Size = new System.Drawing.Size(15, 15);
-         label4.TabIndex = 15;
-         label4.Text = "♦";
          // 
          // label5
          // 
          label5.AutoSize = true;
-         label5.Location = new System.Drawing.Point(68, 139);
+         label5.Location = new System.Drawing.Point(68, 134);
          label5.Name = "label5";
          label5.Size = new System.Drawing.Size(15, 15);
          label5.TabIndex = 16;
@@ -82,7 +75,7 @@
          // label3
          // 
          label3.AutoSize = true;
-         label3.Location = new System.Drawing.Point(68, 178);
+         label3.Location = new System.Drawing.Point(68, 173);
          label3.Name = "label3";
          label3.Size = new System.Drawing.Size(15, 15);
          label3.TabIndex = 18;
@@ -91,11 +84,20 @@
          // label8
          // 
          label8.AutoSize = true;
-         label8.Location = new System.Drawing.Point(68, 202);
+         label8.Location = new System.Drawing.Point(68, 197);
          label8.Name = "label8";
          label8.Size = new System.Drawing.Size(15, 15);
          label8.TabIndex = 21;
          label8.Text = "♦";
+         // 
+         // label10
+         // 
+         label10.AutoSize = true;
+         label10.Location = new System.Drawing.Point(68, 221);
+         label10.Name = "label10";
+         label10.Size = new System.Drawing.Size(15, 15);
+         label10.TabIndex = 24;
+         label10.Text = "♦";
          // 
          // _TitleLabel
          // 
@@ -119,7 +121,7 @@
          // _GitHubLinkLabel
          // 
          this._GitHubLinkLabel.AutoSize = true;
-         this._GitHubLinkLabel.Location = new System.Drawing.Point(82, 115);
+         this._GitHubLinkLabel.Location = new System.Drawing.Point(68, 106);
          this._GitHubLinkLabel.Name = "_GitHubLinkLabel";
          this._GitHubLinkLabel.Size = new System.Drawing.Size(95, 15);
          this._GitHubLinkLabel.TabIndex = 7;
@@ -130,7 +132,7 @@
          // 
          this._CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
          this._CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-         this._CloseButton.Location = new System.Drawing.Point(263, 262);
+         this._CloseButton.Location = new System.Drawing.Point(263, 276);
          this._CloseButton.Name = "_CloseButton";
          this._CloseButton.Size = new System.Drawing.Size(88, 26);
          this._CloseButton.TabIndex = 0;
@@ -178,7 +180,7 @@
          // _FarmFreshLinkLabel
          // 
          this._FarmFreshLinkLabel.AutoSize = true;
-         this._FarmFreshLinkLabel.Location = new System.Drawing.Point(82, 139);
+         this._FarmFreshLinkLabel.Location = new System.Drawing.Point(82, 134);
          this._FarmFreshLinkLabel.Name = "_FarmFreshLinkLabel";
          this._FarmFreshLinkLabel.Size = new System.Drawing.Size(135, 15);
          this._FarmFreshLinkLabel.TabIndex = 9;
@@ -188,7 +190,7 @@
          // label1
          // 
          this.label1.AutoSize = true;
-         this.label1.Location = new System.Drawing.Point(215, 139);
+         this.label1.Location = new System.Drawing.Point(215, 134);
          this.label1.Name = "label1";
          this.label1.Size = new System.Drawing.Size(20, 15);
          this.label1.TabIndex = 10;
@@ -197,7 +199,7 @@
          // _FatCowLinkLabel
          // 
          this._FatCowLinkLabel.AutoSize = true;
-         this._FatCowLinkLabel.Location = new System.Drawing.Point(232, 139);
+         this._FatCowLinkLabel.Location = new System.Drawing.Point(232, 134);
          this._FatCowLinkLabel.Name = "_FatCowLinkLabel";
          this._FatCowLinkLabel.Size = new System.Drawing.Size(119, 15);
          this._FatCowLinkLabel.TabIndex = 11;
@@ -207,7 +209,7 @@
          // label2
          // 
          this.label2.AutoSize = true;
-         this.label2.Location = new System.Drawing.Point(82, 154);
+         this.label2.Location = new System.Drawing.Point(82, 149);
          this.label2.Name = "label2";
          this.label2.Size = new System.Drawing.Size(95, 15);
          this.label2.TabIndex = 12;
@@ -216,7 +218,7 @@
          // _CreativeCommonsLinkLabel
          // 
          this._CreativeCommonsLinkLabel.AutoSize = true;
-         this._CreativeCommonsLinkLabel.Location = new System.Drawing.Point(174, 154);
+         this._CreativeCommonsLinkLabel.Location = new System.Drawing.Point(174, 149);
          this._CreativeCommonsLinkLabel.Name = "_CreativeCommonsLinkLabel";
          this._CreativeCommonsLinkLabel.Size = new System.Drawing.Size(58, 15);
          this._CreativeCommonsLinkLabel.TabIndex = 13;
@@ -226,7 +228,7 @@
          // _DockPanelLinkLabel
          // 
          this._DockPanelLinkLabel.AutoSize = true;
-         this._DockPanelLinkLabel.Location = new System.Drawing.Point(82, 178);
+         this._DockPanelLinkLabel.Location = new System.Drawing.Point(82, 173);
          this._DockPanelLinkLabel.Name = "_DockPanelLinkLabel";
          this._DockPanelLinkLabel.Size = new System.Drawing.Size(92, 15);
          this._DockPanelLinkLabel.TabIndex = 17;
@@ -236,7 +238,7 @@
          // label6
          // 
          this.label6.AutoSize = true;
-         this.label6.Location = new System.Drawing.Point(171, 178);
+         this.label6.Location = new System.Drawing.Point(171, 173);
          this.label6.Name = "label6";
          this.label6.Size = new System.Drawing.Size(108, 15);
          this.label6.TabIndex = 19;
@@ -245,7 +247,7 @@
          // label7
          // 
          this.label7.AutoSize = true;
-         this.label7.Location = new System.Drawing.Point(131, 202);
+         this.label7.Location = new System.Drawing.Point(131, 197);
          this.label7.Name = "label7";
          this.label7.Size = new System.Drawing.Size(206, 15);
          this.label7.TabIndex = 22;
@@ -254,7 +256,7 @@
          // _AntlrLinkLabel
          // 
          this._AntlrLinkLabel.AutoSize = true;
-         this._AntlrLinkLabel.Location = new System.Drawing.Point(82, 202);
+         this._AntlrLinkLabel.Location = new System.Drawing.Point(82, 197);
          this._AntlrLinkLabel.Name = "_AntlrLinkLabel";
          this._AntlrLinkLabel.Size = new System.Drawing.Size(53, 15);
          this._AntlrLinkLabel.TabIndex = 20;
@@ -264,30 +266,49 @@
          // label9
          // 
          this.label9.AutoSize = true;
-         this.label9.Location = new System.Drawing.Point(130, 226);
+         this.label9.Location = new System.Drawing.Point(130, 221);
          this.label9.Name = "label9";
          this.label9.Size = new System.Drawing.Size(127, 15);
          this.label9.TabIndex = 25;
          this.label9.Text = "© 2014 Jeffrey Stedfast";
          // 
-         // label10
-         // 
-         label10.AutoSize = true;
-         label10.Location = new System.Drawing.Point(68, 226);
-         label10.Name = "label10";
-         label10.Size = new System.Drawing.Size(15, 15);
-         label10.TabIndex = 24;
-         label10.Text = "♦";
-         // 
          // _MimeKitLinkLabel
          // 
          this._MimeKitLinkLabel.AutoSize = true;
-         this._MimeKitLinkLabel.Location = new System.Drawing.Point(82, 226);
+         this._MimeKitLinkLabel.Location = new System.Drawing.Point(82, 221);
          this._MimeKitLinkLabel.Name = "_MimeKitLinkLabel";
          this._MimeKitLinkLabel.Size = new System.Drawing.Size(52, 15);
          this._MimeKitLinkLabel.TabIndex = 23;
          this._MimeKitLinkLabel.TabStop = true;
          this._MimeKitLinkLabel.Text = "MimeKit";
+         // 
+         // label11
+         // 
+         this.label11.AutoSize = true;
+         this.label11.Location = new System.Drawing.Point(212, 245);
+         this.label11.Name = "label11";
+         this.label11.Size = new System.Drawing.Size(112, 15);
+         this.label11.TabIndex = 28;
+         this.label11.Text = "© 2012 Mike Krüger";
+         // 
+         // label12
+         // 
+         label12.AutoSize = true;
+         label12.Location = new System.Drawing.Point(68, 245);
+         label12.Name = "label12";
+         label12.Size = new System.Drawing.Size(15, 15);
+         label12.TabIndex = 27;
+         label12.Text = "♦";
+         // 
+         // _TextEditorLinkLabel
+         // 
+         this._TextEditorLinkLabel.AutoSize = true;
+         this._TextEditorLinkLabel.Location = new System.Drawing.Point(82, 245);
+         this._TextEditorLinkLabel.Name = "_TextEditorLinkLabel";
+         this._TextEditorLinkLabel.Size = new System.Drawing.Size(132, 15);
+         this._TextEditorLinkLabel.TabIndex = 26;
+         this._TextEditorLinkLabel.TabStop = true;
+         this._TextEditorLinkLabel.Text = "ICSharpCode.TextEditor";
          // 
          // AboutForm
          // 
@@ -295,7 +316,10 @@
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.CancelButton = this._CloseButton;
-         this.ClientSize = new System.Drawing.Size(363, 300);
+         this.ClientSize = new System.Drawing.Size(363, 314);
+         this.Controls.Add(this.label11);
+         this.Controls.Add(label12);
+         this.Controls.Add(this._TextEditorLinkLabel);
          this.Controls.Add(this.label9);
          this.Controls.Add(label10);
          this.Controls.Add(this._MimeKitLinkLabel);
@@ -306,7 +330,6 @@
          this.Controls.Add(label3);
          this.Controls.Add(this._DockPanelLinkLabel);
          this.Controls.Add(label5);
-         this.Controls.Add(label4);
          this.Controls.Add(this._CreativeCommonsLinkLabel);
          this.Controls.Add(this.label2);
          this.Controls.Add(this._FatCowLinkLabel);
@@ -356,5 +379,7 @@
       private System.Windows.Forms.LinkLabel _AntlrLinkLabel;
       private System.Windows.Forms.Label label9;
       private System.Windows.Forms.LinkLabel _MimeKitLinkLabel;
+      private System.Windows.Forms.Label label11;
+      private System.Windows.Forms.LinkLabel _TextEditorLinkLabel;
    }
 }

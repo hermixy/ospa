@@ -32,6 +32,7 @@ namespace ProgDev.FrontEnd.Forms
          _DockPanelLinkLabel.BindClick(viewModel.DockPanelClick);
          _AntlrLinkLabel.BindClick(viewModel.AntlrClick);
          _MimeKitLinkLabel.BindClick(viewModel.MimeKitClick);
+         _TextEditorLinkLabel.BindClick(viewModel.TextEditorClick);
          viewModel.Start(this);
       }
    }

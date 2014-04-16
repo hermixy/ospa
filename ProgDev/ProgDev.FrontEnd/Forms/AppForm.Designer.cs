@@ -82,6 +82,7 @@
          this._BuildButton = new System.Windows.Forms.ToolStripButton();
          this._DeployButton = new System.Windows.Forms.ToolStripButton();
          this._DebugButton = new System.Windows.Forms.ToolStripButton();
+         this.toolStrip1 = new System.Windows.Forms.ToolStrip();
          this._ToolStripContainer.BottomToolStripPanel.SuspendLayout();
          this._ToolStripContainer.ContentPanel.SuspendLayout();
          this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -92,6 +93,7 @@
          // 
          // _DockPanel
          // 
+         this._DockPanel.AllowEndUserNestedDocking = false;
          this._DockPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
          this._DockPanel.DefaultFloatWindowSize = new System.Drawing.Size(300, 400);
          this._DockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -99,10 +101,10 @@
          this._DockPanel.DockLeftPortion = 300D;
          this._DockPanel.DockRightPortion = 300D;
          this._DockPanel.DockTopPortion = 200D;
+         this._DockPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow;
          this._DockPanel.Location = new System.Drawing.Point(0, 0);
          this._DockPanel.Name = "_DockPanel";
-         this._DockPanel.ShowDocumentIcon = true;
-         this._DockPanel.Size = new System.Drawing.Size(830, 663);
+         this._DockPanel.Size = new System.Drawing.Size(830, 661);
          dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
          dockPanelGradient1.StartColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
          autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
@@ -162,7 +164,7 @@
          // _ToolStripContainer.ContentPanel
          // 
          this._ToolStripContainer.ContentPanel.Controls.Add(this._DockPanel);
-         this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(830, 663);
+         this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(830, 661);
          this._ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
          this._ToolStripContainer.Location = new System.Drawing.Point(0, 0);
          this._ToolStripContainer.Name = "_ToolStripContainer";
@@ -175,6 +177,8 @@
          this._ToolStripContainer.TopToolStripPanel.BackColor = System.Drawing.SystemColors.Control;
          this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._MenuStrip);
          this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._ToolStrip);
+         this._ToolStripContainer.TopToolStripPanel.Controls.Add(this.toolStrip1);
+         this._ToolStripContainer.TopToolStripPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._ToolStripContainer_TopToolStripPanel_Paint);
          // 
          // _StatusStrip
          // 
@@ -184,6 +188,7 @@
          this._StatusStrip.Name = "_StatusStrip";
          this._StatusStrip.Size = new System.Drawing.Size(830, 22);
          this._StatusStrip.TabIndex = 0;
+         this._StatusStrip.Paint += new System.Windows.Forms.PaintEventHandler(this._StatusStrip_Paint);
          // 
          // _MenuStrip
          // 
@@ -264,7 +269,7 @@
          this._UndoMnu.Image = ((System.Drawing.Image)(resources.GetObject("_UndoMnu.Image")));
          this._UndoMnu.Name = "_UndoMnu";
          this._UndoMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-         this._UndoMnu.Size = new System.Drawing.Size(152, 22);
+         this._UndoMnu.Size = new System.Drawing.Size(144, 22);
          this._UndoMnu.Text = "&Undo";
          // 
          // _RedoMnu
@@ -272,7 +277,7 @@
          this._RedoMnu.Image = ((System.Drawing.Image)(resources.GetObject("_RedoMnu.Image")));
          this._RedoMnu.Name = "_RedoMnu";
          this._RedoMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-         this._RedoMnu.Size = new System.Drawing.Size(152, 22);
+         this._RedoMnu.Size = new System.Drawing.Size(144, 22);
          this._RedoMnu.Text = "&Redo";
          // 
          // _ProgramMenu
@@ -347,7 +352,7 @@
          // _OptionsMnu
          // 
          this._OptionsMnu.Name = "_OptionsMnu";
-         this._OptionsMnu.Size = new System.Drawing.Size(152, 22);
+         this._OptionsMnu.Size = new System.Drawing.Size(125, 22);
          this._OptionsMnu.Text = "&Options…";
          // 
          // _HelpMenu
@@ -367,6 +372,7 @@
          // 
          // _ToolStrip
          // 
+         this._ToolStrip.BackColor = System.Drawing.SystemColors.Control;
          this._ToolStrip.Dock = System.Windows.Forms.DockStyle.None;
          this._ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
          this._ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -381,9 +387,11 @@
             this._BuildButton,
             this._DeployButton,
             this._DebugButton});
-         this._ToolStrip.Location = new System.Drawing.Point(3, 24);
+         this._ToolStrip.Location = new System.Drawing.Point(0, 24);
          this._ToolStrip.Name = "_ToolStrip";
-         this._ToolStrip.Size = new System.Drawing.Size(655, 25);
+         this._ToolStrip.Padding = new System.Windows.Forms.Padding(3, 0, 1, 0);
+         this._ToolStrip.Size = new System.Drawing.Size(830, 25);
+         this._ToolStrip.Stretch = true;
          this._ToolStrip.TabIndex = 1;
          // 
          // _NewButton
@@ -477,6 +485,15 @@
          this._DebugButton.Size = new System.Drawing.Size(76, 22);
          this._DebugButton.Text = "Debug…";
          // 
+         // toolStrip1
+         // 
+         this.toolStrip1.AutoSize = false;
+         this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+         this.toolStrip1.Location = new System.Drawing.Point(3, 49);
+         this.toolStrip1.Name = "toolStrip1";
+         this.toolStrip1.Size = new System.Drawing.Size(0, 2);
+         this.toolStrip1.TabIndex = 2;
+         // 
          // AppForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -485,7 +502,7 @@
          this.Controls.Add(this._ToolStripContainer);
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-         this.IsMdiContainer = true;
+         this.MainMenuStrip = this._MenuStrip;
          this.MinimumSize = new System.Drawing.Size(443, 383);
          this.Name = "AppForm";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -545,5 +562,6 @@
       private System.Windows.Forms.ToolStripMenuItem _FindMnu;
       private System.Windows.Forms.ToolStripSeparator _Separator4;
       private System.Windows.Forms.ToolStripMenuItem _OptionsMnu;
+      private System.Windows.Forms.ToolStrip toolStrip1;
    }
 }

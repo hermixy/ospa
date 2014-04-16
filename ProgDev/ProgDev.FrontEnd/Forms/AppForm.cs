@@ -14,6 +14,7 @@
 
 using ProgDev.FrontEnd.Common.FlexForms;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -26,9 +27,16 @@ namespace ProgDev.FrontEnd.Forms
       public AppForm(AppFormViewModel viewModel)
       {
          InitializeComponent();
-
+            
          _ProgramExplorer = FormsFactory.NewProjectContentForm();
-         _ProgramExplorer.Show(_DockPanel, DockState.DockRight);
+         _ProgramExplorer.Show(_DockPanel, DockState.DockLeft);
+
+         var asdf = new EditorForm();
+         asdf.Show(_DockPanel, DockState.Document);
+         asdf = new EditorForm();
+         asdf.Show(_DockPanel, DockState.Document);
+         asdf = new EditorForm();
+         asdf.Show(_DockPanel, DockState.Document);
 
          this.BindLocation(viewModel.Location);
          this.BindSize(viewModel.Size);
@@ -58,6 +66,20 @@ namespace ProgDev.FrontEnd.Forms
       private void OnAboutClick(object sender, EventArgs e)
       {
          FormsFactory.NewAboutForm().ShowDialog();
+      }
+
+      private void _ToolStripContainer_TopToolStripPanel_Paint(object sender, PaintEventArgs e)
+      {
+         Control c = (Control)sender;
+         e.Graphics.DrawLine(SystemPens.ControlLight, 0, c.Height - 2, c.Width - 1, c.Height - 2);
+         e.Graphics.DrawLine(SystemPens.ControlDark, 0, c.Height - 1, c.Width - 1, c.Height - 1);
+      }
+
+      private void _StatusStrip_Paint(object sender, PaintEventArgs e)
+      {
+         Control c = (Control)sender;
+         e.Graphics.DrawLine(SystemPens.ControlDark, 0, 0, c.Width - 1, 0);
+         e.Graphics.DrawLine(SystemPens.ControlLight, 0, 1, c.Width - 1, 1);
       }
    }
 }
