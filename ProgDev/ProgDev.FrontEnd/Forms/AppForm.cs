@@ -15,6 +15,7 @@
 using ProgDev.FrontEnd.Common.FlexForms;
 using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -27,7 +28,7 @@ namespace ProgDev.FrontEnd.Forms
       public AppForm(AppFormViewModel viewModel)
       {
          InitializeComponent();
-            
+
          _ProgramExplorer = FormsFactory.NewProjectContentForm();
          _ProgramExplorer.Show(_DockPanel, DockState.DockLeft);
 

@@ -525,7 +525,6 @@
       #endregion
 
       private WeifenLuo.WinFormsUI.Docking.DockPanel _DockPanel;
-      private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme _Theme;
       private System.Windows.Forms.ToolStripContainer _ToolStripContainer;
       private System.Windows.Forms.StatusStrip _StatusStrip;
       private System.Windows.Forms.MenuStrip _MenuStrip;
@@ -563,5 +562,6 @@
       private System.Windows.Forms.ToolStripSeparator _Separator4;
       private System.Windows.Forms.ToolStripMenuItem _OptionsMnu;
       private System.Windows.Forms.ToolStrip toolStrip1;
+      private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme _Theme;
    }
 }
