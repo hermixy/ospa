@@ -16,6 +16,18 @@ namespace ProgDev.FrontEnd.Forms
       public EditorForm()
       {
          InitializeComponent();
+
+         _SplitContainer.Paint += OnSplitContainerPaint;
+      }
+
+      void OnSplitContainerPaint(object sender, PaintEventArgs e)
+      {
+         var r = _SplitContainer.SplitterRectangle;
+         e.Graphics.FillRectangle(SystemBrushes.Control, r);
+         r.X -= 1;
+         r.Width += 2;
+         r.Height -= 1;
+         e.Graphics.DrawRectangle(SystemPens.ControlDark, r);
       }
    }
 }

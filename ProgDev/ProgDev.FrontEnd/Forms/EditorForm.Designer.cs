@@ -28,26 +28,27 @@
       /// </summary>
       private void InitializeComponent()
       {
-         this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+         this._SplitContainer = new System.Windows.Forms.SplitContainer();
          this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
-         ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-         this.splitContainer1.Panel1.SuspendLayout();
-         this.splitContainer1.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
+         this._SplitContainer.Panel1.SuspendLayout();
+         this._SplitContainer.SuspendLayout();
          this.SuspendLayout();
          // 
-         // splitContainer1
+         // _SplitContainer
          // 
-         this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-         this.splitContainer1.Name = "splitContainer1";
-         this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+         this._SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+         this._SplitContainer.Location = new System.Drawing.Point(0, 0);
+         this._SplitContainer.Name = "_SplitContainer";
+         this._SplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
          // 
-         // splitContainer1.Panel1
+         // _SplitContainer.Panel1
          // 
-         this.splitContainer1.Panel1.Controls.Add(this.textEditorControl1);
-         this.splitContainer1.Size = new System.Drawing.Size(629, 512);
-         this.splitContainer1.SplitterDistance = 209;
-         this.splitContainer1.TabIndex = 0;
+         this._SplitContainer.Panel1.Controls.Add(this.textEditorControl1);
+         this._SplitContainer.Size = new System.Drawing.Size(629, 512);
+         this._SplitContainer.SplitterDistance = 209;
+         this._SplitContainer.SplitterWidth = 6;
+         this._SplitContainer.TabIndex = 0;
          // 
          // textEditorControl1
          // 
@@ -63,9 +64,8 @@
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.BackColor = System.Drawing.SystemColors.Window;
          this.ClientSize = new System.Drawing.Size(629, 512);
-         this.Controls.Add(this.splitContainer1);
+         this.Controls.Add(this._SplitContainer);
          this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this.Name = "EditorForm";
@@ -73,16 +73,16 @@
          this.ShowIcon = false;
          this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
          this.Text = "Editor";
-         this.splitContainer1.Panel1.ResumeLayout(false);
-         ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-         this.splitContainer1.ResumeLayout(false);
+         this._SplitContainer.Panel1.ResumeLayout(false);
+         ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).EndInit();
+         this._SplitContainer.ResumeLayout(false);
          this.ResumeLayout(false);
 
       }
 
       #endregion
 
-      private System.Windows.Forms.SplitContainer splitContainer1;
+      private System.Windows.Forms.SplitContainer _SplitContainer;
       private ICSharpCode.TextEditor.TextEditorControl textEditorControl1;
 
    }
