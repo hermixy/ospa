@@ -22,7 +22,7 @@ open MimeKit
 
 let private ToTextPart (file : BundleFile) =
    let textPart = new TextPart()
-   textPart.FileName <- file.Folder + "/" + file.Name
+   textPart.FileName <- file.Folder + "/" + file.Filename
    textPart.Text <- file.Content
    textPart
 
@@ -30,7 +30,7 @@ let private ToBundleFile (file : TextPart) =
    if not (file.FileName.Contains("/")) then failwith Strings.ErrorFileAtRoot
    else
       let filenameParts = file.FileName.Split '/'
-      { Folder = filenameParts.[0]; Name = filenameParts.[1]; Content = file.Text } : BundleFile
+      { Folder = filenameParts.[0]; Filename = filenameParts.[1]; Content = file.Text } : BundleFile
 
 let Save (bundle : Bundle) (filePath : string) =
    let textParts = bundle.Files |> List.map ToTextPart |> List.toArray
@@ -58,7 +58,7 @@ let Bundle (sourcePath : string) (targetFilePath : string) =
    let CreateBundleFile (filePath : string) : BundleFile =
       {
          Folder = Path.GetFileName(Path.GetDirectoryName(filePath))
-         Name = Path.GetFileName(filePath)
+         Filename = Path.GetFileName(filePath)
          Content = File.ReadAllText(filePath)
       }
    let CreateBundle (sourcePath : string) : Bundle =
@@ -73,7 +73,7 @@ let Bundle (sourcePath : string) (targetFilePath : string) =
 
 let Unbundle (sourceFilePath : string) (targetPath : string) =
    let CreateFile (absoluteRoot : string) (file : BundleFile) =
-      let absolutePath = Path.Combine(absoluteRoot, file.Folder, file.Name)
+      let absolutePath = Path.Combine(absoluteRoot, file.Folder, file.Filename)
       let folderPath = Path.Combine(absoluteRoot, file.Folder)
       if not (Directory.Exists folderPath) then ignore (Directory.CreateDirectory folderPath)
       File.WriteAllText(absolutePath, file.Content)

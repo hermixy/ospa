@@ -16,7 +16,7 @@ namespace ProgDev.Domain
 
 type BundleFile = {
    Folder : string
-   Name : string
+   Filename : string
    Content : string
 }
 

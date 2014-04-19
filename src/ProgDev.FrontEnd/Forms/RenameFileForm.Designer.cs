@@ -33,11 +33,11 @@
          this._IconBox = new System.Windows.Forms.PictureBox();
          this._CancelBtn = new System.Windows.Forms.Button();
          this._OkBtn = new System.Windows.Forms.Button();
-         this._NameTxt = new System.Windows.Forms.TextBox();
-         this._NameLbl = new System.Windows.Forms.Label();
+         this._OldNameTxt = new System.Windows.Forms.TextBox();
+         this._OldNameLbl = new System.Windows.Forms.Label();
          this._ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-         this.textBox1 = new System.Windows.Forms.TextBox();
-         this.label1 = new System.Windows.Forms.Label();
+         this._NewNameTxt = new System.Windows.Forms.TextBox();
+         this._NewNameLbl = new System.Windows.Forms.Label();
          ((System.ComponentModel.ISupportInitialize)(this._IconBox)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this._ErrorProvider)).BeginInit();
          this.SuspendLayout();
@@ -72,22 +72,22 @@
          this._OkBtn.Text = "Rename";
          this._OkBtn.UseVisualStyleBackColor = true;
          // 
-         // _NameTxt
+         // _OldNameTxt
          // 
-         this._NameTxt.Location = new System.Drawing.Point(123, 13);
-         this._NameTxt.Name = "_NameTxt";
-         this._NameTxt.ReadOnly = true;
-         this._NameTxt.Size = new System.Drawing.Size(211, 23);
-         this._NameTxt.TabIndex = 6;
+         this._OldNameTxt.Location = new System.Drawing.Point(123, 13);
+         this._OldNameTxt.Name = "_OldNameTxt";
+         this._OldNameTxt.ReadOnly = true;
+         this._OldNameTxt.Size = new System.Drawing.Size(211, 23);
+         this._OldNameTxt.TabIndex = 6;
          // 
-         // _NameLbl
+         // _OldNameLbl
          // 
-         this._NameLbl.AutoSize = true;
-         this._NameLbl.Location = new System.Drawing.Point(50, 16);
-         this._NameLbl.Name = "_NameLbl";
-         this._NameLbl.Size = new System.Drawing.Size(62, 15);
-         this._NameLbl.TabIndex = 5;
-         this._NameLbl.Text = "Old name:";
+         this._OldNameLbl.AutoSize = true;
+         this._OldNameLbl.Location = new System.Drawing.Point(50, 16);
+         this._OldNameLbl.Name = "_OldNameLbl";
+         this._OldNameLbl.Size = new System.Drawing.Size(62, 15);
+         this._OldNameLbl.TabIndex = 5;
+         this._OldNameLbl.Text = "Old name:";
          // 
          // _ErrorProvider
          // 
@@ -95,21 +95,21 @@
          this._ErrorProvider.ContainerControl = this;
          this._ErrorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("_ErrorProvider.Icon")));
          // 
-         // textBox1
+         // _NewNameTxt
          // 
-         this.textBox1.Location = new System.Drawing.Point(123, 42);
-         this.textBox1.Name = "textBox1";
-         this.textBox1.Size = new System.Drawing.Size(211, 23);
-         this.textBox1.TabIndex = 2;
+         this._NewNameTxt.Location = new System.Drawing.Point(123, 42);
+         this._NewNameTxt.Name = "_NewNameTxt";
+         this._NewNameTxt.Size = new System.Drawing.Size(211, 23);
+         this._NewNameTxt.TabIndex = 2;
          // 
-         // label1
+         // _NewNameLbl
          // 
-         this.label1.AutoSize = true;
-         this.label1.Location = new System.Drawing.Point(50, 45);
-         this.label1.Name = "label1";
-         this.label1.Size = new System.Drawing.Size(67, 15);
-         this.label1.TabIndex = 1;
-         this.label1.Text = "&New name:";
+         this._NewNameLbl.AutoSize = true;
+         this._NewNameLbl.Location = new System.Drawing.Point(50, 45);
+         this._NewNameLbl.Name = "_NewNameLbl";
+         this._NewNameLbl.Size = new System.Drawing.Size(67, 15);
+         this._NewNameLbl.TabIndex = 1;
+         this._NewNameLbl.Text = "&New name:";
          // 
          // RenameFileForm
          // 
@@ -118,13 +118,13 @@
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.CancelButton = this._CancelBtn;
          this.ClientSize = new System.Drawing.Size(346, 122);
-         this.Controls.Add(this.textBox1);
-         this.Controls.Add(this.label1);
+         this.Controls.Add(this._NewNameTxt);
+         this.Controls.Add(this._NewNameLbl);
          this.Controls.Add(this._IconBox);
          this.Controls.Add(this._CancelBtn);
          this.Controls.Add(this._OkBtn);
-         this.Controls.Add(this._NameTxt);
-         this.Controls.Add(this._NameLbl);
+         this.Controls.Add(this._OldNameTxt);
+         this.Controls.Add(this._OldNameLbl);
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
          this.MaximizeBox = false;
@@ -145,10 +145,10 @@
       private System.Windows.Forms.PictureBox _IconBox;
       private System.Windows.Forms.Button _CancelBtn;
       private System.Windows.Forms.Button _OkBtn;
-      private System.Windows.Forms.TextBox _NameTxt;
-      private System.Windows.Forms.Label _NameLbl;
+      private System.Windows.Forms.TextBox _OldNameTxt;
+      private System.Windows.Forms.Label _OldNameLbl;
       private System.Windows.Forms.ErrorProvider _ErrorProvider;
-      private System.Windows.Forms.TextBox textBox1;
-      private System.Windows.Forms.Label label1;
+      private System.Windows.Forms.TextBox _NewNameTxt;
+      private System.Windows.Forms.Label _NewNameLbl;
    }
 }

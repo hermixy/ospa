@@ -124,6 +124,15 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to rename file.
+        /// </summary>
+        public static string CommandRenameFile {
+            get {
+                return ResourceManager.GetString("CommandRenameFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coding error: cannot find a field named &quot;{0}&quot;.
         /// </summary>
         public static string ErrorCannotFindFieldByName {

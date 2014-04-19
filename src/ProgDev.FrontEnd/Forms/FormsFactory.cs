@@ -13,6 +13,7 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using ProgDev.BusinessLogic;
+using ProgDev.Resources;
 
 namespace ProgDev.FrontEnd.Forms
 {
@@ -32,6 +33,16 @@ namespace ProgDev.FrontEnd.Forms
       public static NewFileForm NewNewFileForm(string name)
       {
          return new NewFileForm(new NewFileFormViewModel(name));
+      }
+
+      public static RenameFileForm NewRenameFileForm(Project.File file)
+      {
+         return new RenameFileForm(new RenameFileFormViewModel(file));
+      }
+
+      public static MessageForm NewErrorForm(string message)
+      {
+         return new MessageForm(message, Strings.ErrorTitle, icon: Images.Error32);
       }
    }
 }

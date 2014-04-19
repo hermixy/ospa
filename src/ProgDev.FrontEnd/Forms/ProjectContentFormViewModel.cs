@@ -41,7 +41,8 @@ namespace ProgDev.FrontEnd.Forms
          {
             Icon = Images.Pou16,
             GroupName = x.Folder,
-            Cells = new List<string> { x.Name, x.Type.ToShortString(), x.Language.ToShortString() }
+            Cells = new List<string> { x.Name, x.Type.ToShortString(), x.Language.ToShortString() },
+            Tag = x
          }));
       }
 
@@ -60,7 +61,8 @@ namespace ProgDev.FrontEnd.Forms
       [OnSignal("RenameClick")]
       private void OnRenameClick()
       {
-         ShowChildDialog(new RenameFileForm());
+         var file = (Project.File)SelectedList.Single().Tag;
+         ShowChildDialog(FormsFactory.NewRenameFileForm(file));
       }
    }
 }

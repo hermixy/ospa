@@ -140,6 +140,9 @@
   <data name="CommandAddFile" xml:space="preserve">
     <value>add file</value>
   </data>
+  <data name="CommandRenameFile" xml:space="preserve">
+    <value>rename file</value>
+  </data>
   <data name="ErrorCannotFindFieldByName" xml:space="preserve">
     <value>Coding error: cannot find a field named "{0}"</value>
     <comment>0 = name</comment>

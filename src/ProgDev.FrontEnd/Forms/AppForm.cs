@@ -32,12 +32,15 @@ namespace ProgDev.FrontEnd.Forms
          _ProjectContentForm = projectContentForm;
          _ProjectContentForm.Show(_DockPanel, DockState.DockLeft);
 
+         // Window frame
          this.BindLocation(viewModel.Location);
          this.BindSize(viewModel.Size);
          this.BindMinimumSize(viewModel.MinimumSize);
          this.BindWindowState(viewModel.WindowState);
+         // Titlebar
          this.BindText(viewModel.Title);
          this.BindClosing(viewModel.PromptClose, viewModel.CanClose);
+         // File menu
          _NewButton.BindClick(viewModel.NewClick);
          _NewProjectMnu.BindClick(viewModel.NewClick);
          _OpenButton.BindClick(viewModel.OpenClick);
@@ -46,6 +49,12 @@ namespace ProgDev.FrontEnd.Forms
          _SaveButton.BindEnabled(viewModel.SaveEnabled);
          _SaveProjectMnu.BindClick(viewModel.SaveClick);
          _SaveProjectMnu.BindEnabled(viewModel.SaveEnabled);
+         // Edit menu
+         _UndoMnu.BindEnabled(viewModel.UndoEnabled);
+         _UndoMnu.BindClick(viewModel.UndoClick);
+         _RedoMnu.BindEnabled(viewModel.RedoEnabled);
+         _RedoMnu.BindClick(viewModel.RedoClick);
+         // Program menu
          _NewFileBtn.BindClick(viewModel.NewFileClick);
          _NewFileMnu.BindClick(viewModel.NewFileClick);
          _BuildButton.BindClick(viewModel.BuildClick);
@@ -54,6 +63,7 @@ namespace ProgDev.FrontEnd.Forms
          _DeployMnu.BindClick(viewModel.DeployClick);
          _DebugButton.BindClick(viewModel.DebugClick);
          _DebugMnu.BindClick(viewModel.DebugClick);
+         // Help menu
          _AboutMenuItem.BindClick(viewModel.AboutClick);
          viewModel.Start(this);
       }

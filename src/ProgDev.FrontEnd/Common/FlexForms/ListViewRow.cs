@@ -22,5 +22,6 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       public string GroupName;
       public Image Icon;
       public List<string> Cells = new List<string>();
+      public object Tag;
    }
 }

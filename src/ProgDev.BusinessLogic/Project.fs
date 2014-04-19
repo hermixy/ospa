@@ -19,21 +19,27 @@ open ProgDev.Services.Utility
 open ProgDev.Resources
 open System
 
-type File = {
-   Folder : string
-   Filename : string // Includes file extensions
-   Name : string // No file extension, just the name portion
-   Type : PouType
-   Language : PouLanguage
-}
+type File (folder, name, pouType, pouLanguage) =
+   member this.Folder : string = folder
+   member this.Name : string = name // No file extension, just the name portion
+   member this.Type : PouType = pouType
+   member this.Language : PouLanguage = pouLanguage
 
-let private ToFile (x : BundleFile) : File =
-   let dottedParts = x.Name.Split('.')
+   member this.ToNewFilename (name : string) : string =
+      let languageExt = FileExtensions.GetLanguageExtension this.Language
+      let typeExt = FileExtensions.GetTypeExtension this.Type
+      name + "." + languageExt + "." + typeExt
+
+   member this.ToFilename () : string =
+      this.ToNewFilename this.Name
+
+let ToFile (x : BundleFile) : File =
+   let dottedParts = x.Filename.Split('.')
    if dottedParts.Length <> 3 then failwith Strings.ErrorMalformedFilename
    let name = dottedParts.[0]
-   let pouLanguage = dottedParts.[1] |> FileExtensions.ParseLanguageExtension
-   let pouType = dottedParts.[2] |> FileExtensions.ParseTypeExtension
-   { Folder = x.Folder; Filename = x.Name; Name = name; Type = pouType; Language = pouLanguage }
+   let pouLanguage = FileExtensions.ParseLanguageExtension dottedParts.[1]
+   let pouType = FileExtensions.ParseTypeExtension dottedParts.[2]
+   new File(x.Folder, name, pouType, pouLanguage)
 
 (*********************************************************************************************************************)
 let mutable private _FilePath : string option = None
@@ -42,16 +48,10 @@ let private Notify () = _ChangedEvent.Trigger([| |])
 
 (*********************************************************************************************************************)
 module private BundleManager =
-   type Command = {
-      Do : Bundle -> Bundle
-      Undo : Bundle -> Bundle
-      Name : string
-   }
-
    let mutable private _Bundle : Bundle = { Files = [] }
    let mutable private _Dirty : bool = false
-   let mutable private _UndoStack = [] : Command list
-   let mutable private _RedoStack = [] : Command list
+   let mutable private _UndoStack = [] : Bundle list
+   let mutable private _RedoStack = [] : Bundle list
   
    // Read-only access
    let Bundle () = _Bundle
@@ -59,33 +59,31 @@ module private BundleManager =
 
    let CanUndo () = not _UndoStack.IsEmpty
    let CanRedo () = not _RedoStack.IsEmpty
-   let UndoName () = if _UndoStack.IsEmpty then null else _UndoStack.Head.Name
-   let RedoName () = if _RedoStack.IsEmpty then null else _RedoStack.Head.Name
 
-   let Do (command : Command) =
-      _Bundle <- _Bundle |> command.Do
-      _UndoStack <- List.Cons(command, _UndoStack)
+   let Do (action : Bundle -> Bundle) =
+      _UndoStack <- List.Cons(_Bundle, _UndoStack)
+      if _UndoStack.Length > 100 then
+         _UndoStack <- _UndoStack |> List.toSeq |> Seq.take 100 |> Seq.toList
       _RedoStack <- []
+      _Bundle <- action _Bundle
       _Dirty <- true
       Notify()
-      
+
    let Undo () =
       if _UndoStack.IsEmpty then ()
       else
-         let command = _UndoStack.Head
-         _Bundle <- _Bundle |> command.Undo
+         _RedoStack <- List.Cons(_Bundle, _RedoStack)
+         _Bundle <- _UndoStack.Head
          _UndoStack <- _UndoStack.Tail
-         _RedoStack <- List.Cons(command, _RedoStack)
          _Dirty <- true
          Notify()
    
    let Redo () =
       if _RedoStack.IsEmpty then ()
       else
-         let command = _RedoStack.Head
-         _Bundle <- _Bundle |> command.Do
+         _UndoStack <- List.Cons(_Bundle, _UndoStack)
+         _Bundle <- _RedoStack.Head
          _RedoStack <- _RedoStack.Tail
-         _UndoStack <- List.Cons(command, _UndoStack)
          _Dirty <- true
          Notify()
 
@@ -154,11 +152,17 @@ let Save (filePath : string) = BundleManager.Save filePath
 
 (*********************************************************************************************************************)
 module private FileOperations =
-   let private GetFile (folder : string) (name : string) (bundle : Bundle) =
+   let private ToNamePart (filename : string) : string = filename.Split('.').[0]
+
+   let private GetBundleFile (folder : string) (name : string) (bundle : Bundle) =
       bundle.Files 
       |> List.toSeq 
-      |> Seq.filter (fun x -> x.Name =? name && x.Folder =? folder) 
+      |> Seq.filter (fun x -> (ToNamePart x.Filename) =? name && x.Folder =? folder) 
       |> Seq.exactlyOne
+
+   let private CheckFileDoesNotExist folder name bundle =
+      if bundle.Files |> List.exists (fun x -> (ToNamePart x.Filename) =? name && x.Folder =? folder) 
+         then failwith (String.Format(Strings.ErrorFileExists, name, folder))
 
    let private GetTemplate (pouType : PouType, pouLanguage : PouLanguage) =
       match (pouLanguage, pouType) with
@@ -188,26 +192,25 @@ module private FileOperations =
    let private GetTemplateString (pouType : PouType, pouLanguage : PouLanguage) =
       GetTemplate(pouType, pouLanguage) |> System.Text.Encoding.UTF8.GetString
 
-   let private NamePart (filename : string) : string = filename.Split('.').[0]
-
    let NewFile (folder : string) (name : string) (pouType : PouType) (pouLanguage : PouLanguage) (bundle : Bundle) =
-      if bundle.Files |> List.exists (fun x -> (NamePart x.Name) =? name && x.Folder =? folder) 
-         then failwith (String.Format(Strings.ErrorFileExists, name, folder))
+      CheckFileDoesNotExist folder name bundle
       let parts = [name; FileExtensions.GetLanguageExtension pouLanguage; FileExtensions.GetTypeExtension pouType]
       let filename = String.Join(".", parts)
       let content = GetTemplateString(pouType, pouLanguage)
-      let newFile : BundleFile = { Folder = folder; Name = filename; Content = content; }
-      let files = List.append bundle.Files [ newFile ]
+      let newFile : BundleFile = { Folder = folder; Filename = filename; Content = content; }
+      let files = List.Cons(newFile, bundle.Files)
       { Files = files }
 
-   let RenameFile (folder : string) (oldName : string) (newName : string) (bundle : Bundle) =
-      let oldFile = bundle |> GetFile folder oldName
-      let newFile = { Folder = oldFile.Folder; Name = newName; Content = oldFile.Content } : BundleFile
+   let RenameFile (file : File) (newName : string) (bundle : Bundle) =
+      CheckFileDoesNotExist file.Folder newName bundle
+      let oldFile = GetBundleFile file.Folder file.Name bundle
+      let newFilename = file.ToNewFilename newName
+      let newFile = { Folder = oldFile.Folder; Filename = newFilename; Content = oldFile.Content } : BundleFile
       let files = bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x) 
       { Files = files }
 
-   let DeleteFile (folder : string) (name : string) (bundle : Bundle) =
-      let file = bundle |> GetFile folder name
+   let DeleteFile (file : File) (bundle : Bundle) =
+      let file = bundle |> GetBundleFile file.Folder file.Name
       let files = bundle.Files |> List.filter (fun x -> x <> file)
       { Files = files }
 
@@ -215,29 +218,13 @@ module private FileOperations =
 type ProjectCommands () =
    member this.CanUndo with get () = BundleManager.CanUndo()
    member this.CanRedo with get () = BundleManager.CanRedo()
-   member this.UndoName with get () = BundleManager.UndoName()
-   member this.RedoName with get () = BundleManager.RedoName()
    member this.Undo () = BundleManager.Undo()
    member this.Redo () = BundleManager.Redo()
    
    member this.NewFile folder name pouType pouLanguage =
-      BundleManager.Do {
-         Do = (fun b -> b |> FileOperations.NewFile folder name pouType pouLanguage)
-         Undo = (fun b -> b |> FileOperations.DeleteFile folder name)
-         Name = Strings.CommandAddFile
-      }
-      (*
-   let RenameFile (folder : string) (oldName : string) (newName : string) =
-      Do {
-         Do = (fun b -> b |> FileOperations.RenameFile namespaceName oldName newName)
-         Undo = (fun b -> b |> FileOperations.RenameFile namespaceName newName oldName)
-      }
+      BundleManager.Do (FileOperations.NewFile folder name pouType pouLanguage)
+      
+   member this.RenameFile file newName =
+      BundleManager.Do (FileOperations.RenameFile file newName)
 
-   let MoveFile (folder : string) (name : string) (newnamespaceName : string) =
-      Do {
-         Do = (fun b -> b |> FileOperations.MoveFile oldnamespaceName name newnamespaceName)
-         Undo = (fun b -> b |> FileOperations.MoveFile newnamespaceName name oldnamespaceName)
-      }
-   *)
-
-let Commands  = new ProjectCommands()
+let Commands = new ProjectCommands()

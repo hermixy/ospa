@@ -28,25 +28,37 @@ namespace ProgDev.FrontEnd.Forms
 {
    public sealed class AppFormViewModel : FormViewModel
    {
+      // Window frame
       public Field<Point> Location;
       public Field<Size> Size;
       public Field<Size> MinimumSize;
       public Field<FormWindowState> WindowState;
+      // Titlebar
       public ComputedField<string> Title;
-      public ComputedField<bool> SaveEnabled;
+      public Signal PromptClose;
+      public Field<bool> CanClose;
+      // File menu
       public Signal NewClick;
       public Signal OpenClick;
+      public ComputedField<bool> SaveEnabled;
       public Signal SaveClick;
+      // Edit menu
+      public ComputedField<bool> UndoEnabled;
+      public Signal UndoClick;
+      public ComputedField<bool> RedoEnabled;
+      public Signal RedoClick;
+      // Program menu
       public Signal NewFileClick;
       public Signal BuildClick;
       public Signal DeployClick;
       public Signal DebugClick;
+      // Help menu
       public Signal AboutClick;
-      public Signal PromptClose;
-      public Field<bool> CanClose;
-      // Set from the project in code rather than bound to the window:
+      // Internals, set from the project in code rather than bound to the window
       public Field<string> Project_Name;
       public Field<bool> Project_IsDirty;
+      public Field<bool> Project_CanUndo;
+      public Field<bool> Project_CanRedo;
 
       protected override void Initialize()
       {
@@ -71,6 +83,8 @@ namespace ProgDev.FrontEnd.Forms
       {
          Project_Name.Value = Project.Contents.ProjectName;
          Project_IsDirty.Value = Project.Contents.IsDirty;
+         Project_CanUndo.Value = Project.Commands.CanUndo;
+         Project_CanRedo.Value = Project.Commands.CanRedo;
       }
 
       private bool DoSave()
@@ -183,6 +197,30 @@ namespace ProgDev.FrontEnd.Forms
       private void OnSaveClick()
       {
          DoSave();
+      }
+
+      [Compute("UndoEnabled"), Depends("Project_CanUndo")]
+      private bool ComputeUndoEnabled()
+      {
+         return Project_CanUndo.Value;
+      }
+
+      [OnSignal("UndoClick")]
+      private void OnUndoClick()
+      {
+         Project.Commands.Undo();
+      }
+
+      [Compute("RedoEnabled"), Depends("Project_CanRedo")]
+      private bool ComputeRedoEnabled()
+      {
+         return Project_CanRedo.Value;
+      }
+
+      [OnSignal("RedoClick")]
+      private void OnRedoClick()
+      {
+         Project.Commands.Redo();
       }
 
       [OnSignal("NewFileClick")]
