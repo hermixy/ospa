@@ -165,6 +165,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\external\ospa-dockpanelsuite\WinFormsUI\WeifenLuo.WinFormsUI.csproj">
+      <Project>{c75532c4-765b-418e-b09b-46d36b2abdb1}</Project>
+      <Name>WeifenLuo.WinFormsUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProgDev.BusinessLogic\ProgDev.BusinessLogic.fsproj">
       <Project>{606ab4d0-88e2-4c3b-938f-2d1912015298}</Project>
       <Name>ProgDev.BusinessLogic</Name>

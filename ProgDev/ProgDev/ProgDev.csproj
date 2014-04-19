@@ -89,6 +89,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\external\ospa-dockpanelsuite\WinFormsUI\WeifenLuo.WinFormsUI.csproj">
+      <Project>{c75532c4-765b-418e-b09b-46d36b2abdb1}</Project>
+      <Name>WeifenLuo.WinFormsUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PDC\PDC.fsproj">
       <Project>{5935c6f0-d88b-4ca9-8761-c61e91fa29c2}</Project>
       <Name>PDC</Name>
