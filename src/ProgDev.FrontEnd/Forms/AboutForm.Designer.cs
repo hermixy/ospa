@@ -32,8 +32,8 @@
          System.Windows.Forms.Label label3;
          System.Windows.Forms.Label label8;
          System.Windows.Forms.Label label10;
-         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
          System.Windows.Forms.Label label12;
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
          this._TitleLabel = new System.Windows.Forms.Label();
          this._CopyrightLabel = new System.Windows.Forms.Label();
          this._GitHubLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -98,6 +98,15 @@
          label10.Size = new System.Drawing.Size(15, 15);
          label10.TabIndex = 24;
          label10.Text = "♦";
+         // 
+         // label12
+         // 
+         label12.AutoSize = true;
+         label12.Location = new System.Drawing.Point(68, 245);
+         label12.Name = "label12";
+         label12.Size = new System.Drawing.Size(15, 15);
+         label12.TabIndex = 27;
+         label12.Text = "♦";
          // 
          // _TitleLabel
          // 
@@ -285,20 +294,11 @@
          // label11
          // 
          this.label11.AutoSize = true;
-         this.label11.Location = new System.Drawing.Point(212, 245);
+         this.label11.Location = new System.Drawing.Point(210, 245);
          this.label11.Name = "label11";
          this.label11.Size = new System.Drawing.Size(112, 15);
          this.label11.TabIndex = 28;
          this.label11.Text = "© 2012 Mike Krüger";
-         // 
-         // label12
-         // 
-         label12.AutoSize = true;
-         label12.Location = new System.Drawing.Point(68, 245);
-         label12.Name = "label12";
-         label12.Size = new System.Drawing.Size(15, 15);
-         label12.TabIndex = 27;
-         label12.Text = "♦";
          // 
          // _TextEditorLinkLabel
          // 

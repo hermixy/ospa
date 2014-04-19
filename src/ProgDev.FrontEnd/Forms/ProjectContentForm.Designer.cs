@@ -31,28 +31,68 @@
          this.components = new System.ComponentModel.Container();
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectContentForm));
          this._ContextMnu = new System.Windows.Forms.ContextMenuStrip(this.components);
+         this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+         this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.moveToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
          this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this._ListView = new ProgDev.FrontEnd.Common.BufferedListView();
          this._NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._TypeCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._LanguageCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-         this.moveToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
          this._ContextMnu.SuspendLayout();
          this.SuspendLayout();
          // 
          // _ContextMnu
          // 
          this._ContextMnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.toolStripSeparator2,
             this.renameToolStripMenuItem,
             this.moveToFolderToolStripMenuItem,
             this.duplicateToolStripMenuItem,
             this.toolStripSeparator1,
             this.deleteToolStripMenuItem});
          this._ContextMnu.Name = "_ContextMnu";
-         this._ContextMnu.Size = new System.Drawing.Size(162, 120);
+         this._ContextMnu.Size = new System.Drawing.Size(162, 126);
+         // 
+         // openToolStripMenuItem
+         // 
+         this.openToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+         this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+         this.openToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+         this.openToolStripMenuItem.Text = "&Open";
+         // 
+         // toolStripSeparator2
+         // 
+         this.toolStripSeparator2.Name = "toolStripSeparator2";
+         this.toolStripSeparator2.Size = new System.Drawing.Size(158, 6);
+         // 
+         // renameToolStripMenuItem
+         // 
+         this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+         this.renameToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+         this.renameToolStripMenuItem.Text = "&Rename";
+         // 
+         // moveToFolderToolStripMenuItem
+         // 
+         this.moveToFolderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("moveToFolderToolStripMenuItem.Image")));
+         this.moveToFolderToolStripMenuItem.Name = "moveToFolderToolStripMenuItem";
+         this.moveToFolderToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+         this.moveToFolderToolStripMenuItem.Text = "&Move to folder…";
+         // 
+         // duplicateToolStripMenuItem
+         // 
+         this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
+         this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+         this.duplicateToolStripMenuItem.Text = "Du&plicate";
+         // 
+         // toolStripSeparator1
+         // 
+         this.toolStripSeparator1.Name = "toolStripSeparator1";
+         this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
          // 
          // deleteToolStripMenuItem
          // 
@@ -99,29 +139,6 @@
          this._LanguageCol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
          this._LanguageCol.Width = 50;
          // 
-         // moveToFolderToolStripMenuItem
-         // 
-         this.moveToFolderToolStripMenuItem.Name = "moveToFolderToolStripMenuItem";
-         this.moveToFolderToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-         this.moveToFolderToolStripMenuItem.Text = "&Move to folder…";
-         // 
-         // renameToolStripMenuItem
-         // 
-         this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-         this.renameToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-         this.renameToolStripMenuItem.Text = "&Rename";
-         // 
-         // duplicateToolStripMenuItem
-         // 
-         this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
-         this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-         this.duplicateToolStripMenuItem.Text = "Du&plicate";
-         // 
-         // toolStripSeparator1
-         // 
-         this.toolStripSeparator1.Name = "toolStripSeparator1";
-         this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
-         // 
          // ProjectContentForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -152,6 +169,8 @@
       private System.Windows.Forms.ToolStripMenuItem moveToFolderToolStripMenuItem;
       private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
       private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+      private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+      private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 
 
 

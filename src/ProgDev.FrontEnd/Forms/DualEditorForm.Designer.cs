@@ -28,9 +28,10 @@
       /// </summary>
       private void InitializeComponent()
       {
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DualEditorForm));
          this._SplitContainer = new ProgDev.FrontEnd.Common.FlexSplitContainer();
-         this._DesignerPanel = new System.Windows.Forms.Panel();
          this._CodePanel = new System.Windows.Forms.Panel();
+         this._DesignerPanel = new System.Windows.Forms.Panel();
          ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
          this._SplitContainer.Panel1.SuspendLayout();
          this._SplitContainer.Panel2.SuspendLayout();
@@ -56,15 +57,6 @@
          this._SplitContainer.SplitterWidth = 6;
          this._SplitContainer.TabIndex = 0;
          // 
-         // _DesignerPanel
-         // 
-         this._DesignerPanel.BackColor = System.Drawing.Color.White;
-         this._DesignerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-         this._DesignerPanel.Location = new System.Drawing.Point(0, 0);
-         this._DesignerPanel.Name = "_DesignerPanel";
-         this._DesignerPanel.Size = new System.Drawing.Size(629, 297);
-         this._DesignerPanel.TabIndex = 0;
-         // 
          // _CodePanel
          // 
          this._CodePanel.BackColor = System.Drawing.Color.White;
@@ -74,7 +66,16 @@
          this._CodePanel.Size = new System.Drawing.Size(629, 209);
          this._CodePanel.TabIndex = 0;
          // 
-         // EditorForm
+         // _DesignerPanel
+         // 
+         this._DesignerPanel.BackColor = System.Drawing.Color.White;
+         this._DesignerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+         this._DesignerPanel.Location = new System.Drawing.Point(0, 0);
+         this._DesignerPanel.Name = "_DesignerPanel";
+         this._DesignerPanel.Size = new System.Drawing.Size(629, 297);
+         this._DesignerPanel.TabIndex = 0;
+         // 
+         // DualEditorForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -82,7 +83,8 @@
          this.Controls.Add(this._SplitContainer);
          this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-         this.Name = "EditorForm";
+         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+         this.Name = "DualEditorForm";
          this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document;
          this.ShowIcon = false;
          this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
