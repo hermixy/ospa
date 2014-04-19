@@ -1,6 +1,6 @@
 ﻿namespace ProgDev.FrontEnd.Forms
 {
-   partial class EditorForm
+   partial class DualEditorForm
    {
       /// <summary>
       /// Required designer variable.
@@ -29,8 +29,8 @@
       private void InitializeComponent()
       {
          this._SplitContainer = new ProgDev.FrontEnd.Common.FlexSplitContainer();
-         this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
          this._DesignerPanel = new System.Windows.Forms.Panel();
+         this._CodePanel = new System.Windows.Forms.Panel();
          ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
          this._SplitContainer.Panel1.SuspendLayout();
          this._SplitContainer.Panel2.SuspendLayout();
@@ -46,7 +46,7 @@
          // 
          // _SplitContainer.Panel1
          // 
-         this._SplitContainer.Panel1.Controls.Add(this.textEditorControl1);
+         this._SplitContainer.Panel1.Controls.Add(this._CodePanel);
          // 
          // _SplitContainer.Panel2
          // 
@@ -56,21 +56,6 @@
          this._SplitContainer.SplitterWidth = 6;
          this._SplitContainer.TabIndex = 0;
          // 
-         // textEditorControl1
-         // 
-         this.textEditorControl1.ConvertTabsToSpaces = true;
-         this.textEditorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.textEditorControl1.EnableFolding = false;
-         this.textEditorControl1.IsReadOnly = false;
-         this.textEditorControl1.Location = new System.Drawing.Point(0, 0);
-         this.textEditorControl1.Name = "textEditorControl1";
-         this.textEditorControl1.ShowLineNumbers = false;
-         this.textEditorControl1.ShowVRuler = false;
-         this.textEditorControl1.Size = new System.Drawing.Size(629, 209);
-         this.textEditorControl1.TabIndent = 3;
-         this.textEditorControl1.TabIndex = 0;
-         this.textEditorControl1.Text = "textEditorControl1";
-         // 
          // _DesignerPanel
          // 
          this._DesignerPanel.BackColor = System.Drawing.Color.White;
@@ -79,6 +64,15 @@
          this._DesignerPanel.Name = "_DesignerPanel";
          this._DesignerPanel.Size = new System.Drawing.Size(629, 297);
          this._DesignerPanel.TabIndex = 0;
+         // 
+         // _CodePanel
+         // 
+         this._CodePanel.BackColor = System.Drawing.Color.White;
+         this._CodePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+         this._CodePanel.Location = new System.Drawing.Point(0, 0);
+         this._CodePanel.Name = "_CodePanel";
+         this._CodePanel.Size = new System.Drawing.Size(629, 209);
+         this._CodePanel.TabIndex = 0;
          // 
          // EditorForm
          // 
@@ -104,8 +98,8 @@
       #endregion
 
       private ProgDev.FrontEnd.Common.FlexSplitContainer _SplitContainer;
-      private ICSharpCode.TextEditor.TextEditorControl textEditorControl1;
       private System.Windows.Forms.Panel _DesignerPanel;
+      private System.Windows.Forms.Panel _CodePanel;
 
    }
 }

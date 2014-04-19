@@ -124,6 +124,15 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coding error: cannot find a field named &quot;{0}&quot;.
+        /// </summary>
+        public static string ErrorCannotFindFieldByName {
+            get {
+                return ResourceManager.GetString("ErrorCannotFindFieldByName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must be a valid folder name: A-Z 0-9 _ , . - ( ).
         /// </summary>
         public static string ErrorExpectedFolder {
@@ -237,6 +246,51 @@ namespace ProgDev.Resources {
         public static string ErrorTitle {
             get {
                 return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coding error: method &quot;{0}&quot; must have {1} parameter(s)..
+        /// </summary>
+        public static string ErrorUnexpectedParameterCount {
+            get {
+                return ResourceManager.GetString("ErrorUnexpectedParameterCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coding error: parameter index {0} of method &quot;{1}&quot; must be of type &quot;{2}&quot;..
+        /// </summary>
+        public static string ErrorUnexpectedParameterType {
+            get {
+                return ResourceManager.GetString("ErrorUnexpectedParameterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coding error: method &quot;{0}&quot; must have return type &quot;{1}&quot;..
+        /// </summary>
+        public static string ErrorUnexpectedReturnType {
+            get {
+                return ResourceManager.GetString("ErrorUnexpectedReturnType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coding error: actual type &quot;{0}&quot; does not match expected type &quot;{1}&quot;..
+        /// </summary>
+        public static string ErrorUnexpectedType {
+            get {
+                return ResourceManager.GetString("ErrorUnexpectedType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coding error: view model already started..
+        /// </summary>
+        public static string ErrorViewModelAlreadyStarted {
+            get {
+                return ResourceManager.GetString("ErrorViewModelAlreadyStarted", resourceCulture);
             }
         }
         

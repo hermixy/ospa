@@ -41,6 +41,7 @@ namespace ProgDev.FrontEnd.Forms
       public Signal BuildClick;
       public Signal DeployClick;
       public Signal DebugClick;
+      public Signal AboutClick;
       public Signal PromptClose;
       public Field<bool> CanClose;
       // Set from the project in code rather than bound to the window:
@@ -192,7 +193,7 @@ namespace ProgDev.FrontEnd.Forms
       }
 
       [OnSignal("PromptClose")]
-      private void OnPromptClose(CancelEventArgs e)
+      private void OnPromptClose()
       {
          CanClose.Value = PromptAndSave();
          SaveWindowPosition();
@@ -209,6 +210,12 @@ namespace ProgDev.FrontEnd.Forms
             s.AppForm_Size = Size.Value;
          }
          s.Save();
+      }
+
+      [OnSignal("AboutClick")]
+      private void OnAboutClick()
+      {
+         ShowChildDialog(FormsFactory.NewAboutForm());
       }
    }
 }

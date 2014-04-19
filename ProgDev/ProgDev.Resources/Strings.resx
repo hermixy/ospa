@@ -140,6 +140,10 @@
   <data name="CommandAddFile" xml:space="preserve">
     <value>add file</value>
   </data>
+  <data name="ErrorCannotFindFieldByName" xml:space="preserve">
+    <value>Coding error: cannot find a field named "{0}"</value>
+    <comment>0 = name</comment>
+  </data>
   <data name="ErrorExpectedFolder" xml:space="preserve">
     <value>Must be a valid folder name: A-Z 0-9 _ , . - ( )</value>
   </data>
@@ -179,6 +183,25 @@
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="ErrorUnexpectedParameterCount" xml:space="preserve">
+    <value>Coding error: method "{0}" must have {1} parameter(s).</value>
+    <comment>0 = method name, 1 = expected parameter count</comment>
+  </data>
+  <data name="ErrorUnexpectedParameterType" xml:space="preserve">
+    <value>Coding error: parameter index {0} of method "{1}" must be of type "{2}".</value>
+    <comment>0 = parameter index, 1 = method name, 2 = expected parameter type</comment>
+  </data>
+  <data name="ErrorUnexpectedReturnType" xml:space="preserve">
+    <value>Coding error: method "{0}" must have return type "{1}".</value>
+    <comment>0 = method name, 1 = expected return type</comment>
+  </data>
+  <data name="ErrorUnexpectedType" xml:space="preserve">
+    <value>Coding error: actual type "{0}" does not match expected type "{1}".</value>
+    <comment>0 = actual type, 1 = expected type</comment>
+  </data>
+  <data name="ErrorViewModelAlreadyStarted" xml:space="preserve">
+    <value>Coding error: view model already started.</value>
   </data>
   <data name="FileTypeClass" xml:space="preserve">
     <value>Class</value>

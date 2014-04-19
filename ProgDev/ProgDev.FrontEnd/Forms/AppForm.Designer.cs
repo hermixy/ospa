@@ -178,7 +178,7 @@
          this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._MenuStrip);
          this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._ToolStrip);
          this._ToolStripContainer.TopToolStripPanel.Controls.Add(this.toolStrip1);
-         this._ToolStripContainer.TopToolStripPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._ToolStripContainer_TopToolStripPanel_Paint);
+         this._ToolStripContainer.TopToolStripPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.OnTopToolStripPanelPaint);
          // 
          // _StatusStrip
          // 
@@ -188,7 +188,7 @@
          this._StatusStrip.Name = "_StatusStrip";
          this._StatusStrip.Size = new System.Drawing.Size(830, 22);
          this._StatusStrip.TabIndex = 0;
-         this._StatusStrip.Paint += new System.Windows.Forms.PaintEventHandler(this._StatusStrip_Paint);
+         this._StatusStrip.Paint += new System.Windows.Forms.PaintEventHandler(this.OnStatusStripPaint);
          // 
          // _MenuStrip
          // 
@@ -368,7 +368,6 @@
          this._AboutMenuItem.Name = "_AboutMenuItem";
          this._AboutMenuItem.Size = new System.Drawing.Size(188, 22);
          this._AboutMenuItem.Text = "&About OSPA ProgDev";
-         this._AboutMenuItem.Click += new System.EventHandler(this.OnAboutClick);
          // 
          // _ToolStrip
          // 

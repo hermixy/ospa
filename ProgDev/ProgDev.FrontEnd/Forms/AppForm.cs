@@ -23,27 +23,30 @@ namespace ProgDev.FrontEnd.Forms
 {
    public partial class AppForm : Form
    {
-      private ProjectContentForm _ProgramExplorer;
+      private readonly ProjectContentForm _ProjectContentForm;
 
-      public AppForm(AppFormViewModel viewModel)
+      public AppForm(AppFormViewModel viewModel, ProjectContentForm projectContentForm)
       {
          InitializeComponent();
 
-         _ProgramExplorer = FormsFactory.NewProjectContentForm();
-         _ProgramExplorer.Show(_DockPanel, DockState.DockLeft);
+         _ProjectContentForm = projectContentForm;
+         _ProjectContentForm.Show(_DockPanel, DockState.DockLeft);
 
-         var asdf = new EditorForm();
+         // dummy
+         var asdf = new DualEditorForm();
          asdf.Show(_DockPanel, DockState.Document);
-         asdf = new EditorForm();
+         asdf = new DualEditorForm();
          asdf.Show(_DockPanel, DockState.Document);
-         asdf = new EditorForm();
+         asdf = new DualEditorForm();
          asdf.Show(_DockPanel, DockState.Document);
+         // end
 
          this.BindLocation(viewModel.Location);
          this.BindSize(viewModel.Size);
          this.BindMinimumSize(viewModel.MinimumSize);
          this.BindWindowState(viewModel.WindowState);
          this.BindText(viewModel.Title);
+         this.BindClosing(viewModel.PromptClose, viewModel.CanClose);
          _NewButton.BindClick(viewModel.NewClick);
          _NewProjectMnu.BindClick(viewModel.NewClick);
          _OpenButton.BindClick(viewModel.OpenClick);
@@ -60,23 +63,18 @@ namespace ProgDev.FrontEnd.Forms
          _DeployMnu.BindClick(viewModel.DeployClick);
          _DebugButton.BindClick(viewModel.DebugClick);
          _DebugMnu.BindClick(viewModel.DebugClick);
-         this.BindClosing(viewModel.PromptClose, viewModel.CanClose);
+         _AboutMenuItem.BindClick(viewModel.AboutClick);
          viewModel.Start(this);
       }
 
-      private void OnAboutClick(object sender, EventArgs e)
-      {
-         FormsFactory.NewAboutForm().ShowDialog();
-      }
-
-      private void _ToolStripContainer_TopToolStripPanel_Paint(object sender, PaintEventArgs e)
+      private void OnTopToolStripPanelPaint(object sender, PaintEventArgs e)
       {
          Control c = (Control)sender;
          e.Graphics.DrawLine(SystemPens.ControlLight, 0, c.Height - 2, c.Width - 1, c.Height - 2);
          e.Graphics.DrawLine(SystemPens.ControlDark, 0, c.Height - 1, c.Width - 1, c.Height - 1);
       }
 
-      private void _StatusStrip_Paint(object sender, PaintEventArgs e)
+      private void OnStatusStripPaint(object sender, PaintEventArgs e)
       {
          Control c = (Control)sender;
          e.Graphics.DrawLine(SystemPens.ControlDark, 0, 0, c.Width - 1, 0);

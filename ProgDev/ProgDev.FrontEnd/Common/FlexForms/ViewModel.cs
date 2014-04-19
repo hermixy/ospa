@@ -12,6 +12,7 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       public void Start(ControlType form)
       {
          if (_Started)
-            throw new FlexException("View model already started.");
+            throw new FlexException(Strings.ErrorViewModelAlreadyStarted);
 
          _Started = true;
 

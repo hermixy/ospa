@@ -12,26 +12,28 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.BusinessLogic;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace ProgDev.FrontEnd.Forms
+namespace ProgDev.FrontEnd.Controls
 {
-   public static class FormsFactory
+   public partial class CodeEditorControl : EditorControl
    {
-      public static AppForm NewAppForm()
+      public CodeEditorControl()
       {
-         var projectContentForm = new ProjectContentForm(new ProjectContentFormViewModel());
-         return new AppForm(new AppFormViewModel(), projectContentForm);
+         InitializeComponent();
       }
 
-      public static AboutForm NewAboutForm()
+      protected override void OnExternalTextChange()
       {
-         return new AboutForm(new AboutFormViewModel());
-      }
-
-      public static NewFileForm NewNewFileForm(string name)
-      {
-         return new NewFileForm(new NewFileFormViewModel(name));
+         throw new NotImplementedException();
       }
    }
 }

@@ -12,6 +12,7 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.Resources;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -35,30 +36,29 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       {
          var fieldInfo = viewModel.GetType().GetFields().SingleOrDefault(x => x.Name == fieldName);
          if (fieldInfo == null)
-            throw new FlexException("Cannot find a field named: " + fieldName);
+            throw new FlexException(string.Format(Strings.ErrorCannotFindFieldByName, fieldName));
          return (T)fieldInfo.GetValue(viewModel);
       }
 
       public static void AssertReturnType(MethodInfo methodInfo, Type returnType)
       {
          if (methodInfo.ReturnType != returnType)
-            throw new FlexException("Method must return: " + returnType.Name);
+            throw new FlexException(string.Format(
+               Strings.ErrorUnexpectedReturnType, methodInfo.Name, returnType.Name));
       }
 
       public static void AssertParameterCount(MethodInfo methodInfo, int count)
       {
          if (methodInfo.GetParameters().Length != count)
-            throw new FlexException("Method must have " + count + " parameter(s).");
+            throw new FlexException(string.Format(Strings.ErrorUnexpectedParameterCount, methodInfo.Name, count));
       }
 
       public static void AssertParameterType(MethodInfo methodInfo, int parameterIndex, Type expectedType)
       {
          var paramType = methodInfo.GetParameters()[parameterIndex].ParameterType;
          if (paramType != expectedType && !paramType.IsSubclassOf(expectedType))
-         {
-            throw new FlexException("Method must have one parameter of type " + expectedType.Name
-               + " (or a derived class).");
-         }
+            throw new FlexException(string.Format(
+               Strings.ErrorUnexpectedParameterType, parameterIndex, methodInfo.Name, expectedType.Name));
       }
 
       public static void AssertType<ActualType, ExpectedType>()
@@ -66,7 +66,8 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          Type actualType = typeof(ActualType);
          Type expectedType = typeof(ExpectedType);
          if (actualType != expectedType && !actualType.IsSubclassOf(expectedType))
-            throw new InvalidOperationException("Unexpected type.  Expected: " + expectedType.Name);
+            throw new InvalidOperationException(string.Format(
+               Strings.ErrorUnexpectedType, actualType.Name, expectedType.Name));
       }
    }
 }

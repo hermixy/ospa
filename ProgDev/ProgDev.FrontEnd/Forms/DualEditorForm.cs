@@ -25,9 +25,9 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.FrontEnd.Forms
 {
-   public partial class EditorForm : DockContent
+   public partial class DualEditorForm : DockContent
    {
-      public EditorForm()
+      public DualEditorForm()
       {
          InitializeComponent();
       }

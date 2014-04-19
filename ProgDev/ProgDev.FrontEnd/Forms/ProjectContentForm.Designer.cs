@@ -30,14 +30,36 @@
       {
          this.components = new System.ComponentModel.Container();
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectContentForm));
+         this._ContextMnu = new System.Windows.Forms.ContextMenuStrip(this.components);
+         this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this._ListView = new ProgDev.FrontEnd.Common.BufferedListView();
          this._NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._TypeCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._LanguageCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-         this._ContextMnu = new System.Windows.Forms.ContextMenuStrip(this.components);
-         this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.moveToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
          this._ContextMnu.SuspendLayout();
          this.SuspendLayout();
+         // 
+         // _ContextMnu
+         // 
+         this._ContextMnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameToolStripMenuItem,
+            this.moveToFolderToolStripMenuItem,
+            this.duplicateToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.deleteToolStripMenuItem});
+         this._ContextMnu.Name = "_ContextMnu";
+         this._ContextMnu.Size = new System.Drawing.Size(162, 120);
+         // 
+         // deleteToolStripMenuItem
+         // 
+         this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
+         this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+         this.deleteToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+         this.deleteToolStripMenuItem.Text = "&Delete";
          // 
          // _ListView
          // 
@@ -46,6 +68,7 @@
             this._NameCol,
             this._TypeCol,
             this._LanguageCol});
+         this._ListView.ContextMenuStrip = this._ContextMnu;
          this._ListView.Dock = System.Windows.Forms.DockStyle.Fill;
          this._ListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this._ListView.FullRowSelect = true;
@@ -76,19 +99,28 @@
          this._LanguageCol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
          this._LanguageCol.Width = 50;
          // 
-         // _ContextMnu
+         // moveToFolderToolStripMenuItem
          // 
-         this._ContextMnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
-         this._ContextMnu.Name = "_ContextMnu";
-         this._ContextMnu.Size = new System.Drawing.Size(153, 48);
+         this.moveToFolderToolStripMenuItem.Name = "moveToFolderToolStripMenuItem";
+         this.moveToFolderToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+         this.moveToFolderToolStripMenuItem.Text = "&Move to folder…";
          // 
-         // deleteToolStripMenuItem
+         // renameToolStripMenuItem
          // 
-         this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
-         this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-         this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-         this.deleteToolStripMenuItem.Text = "&Delete";
+         this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+         this.renameToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+         this.renameToolStripMenuItem.Text = "&Rename";
+         // 
+         // duplicateToolStripMenuItem
+         // 
+         this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
+         this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+         this.duplicateToolStripMenuItem.Text = "Du&plicate";
+         // 
+         // toolStripSeparator1
+         // 
+         this.toolStripSeparator1.Name = "toolStripSeparator1";
+         this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
          // 
          // ProjectContentForm
          // 
@@ -116,6 +148,10 @@
       private System.Windows.Forms.ColumnHeader _LanguageCol;
       private System.Windows.Forms.ContextMenuStrip _ContextMnu;
       private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem moveToFolderToolStripMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
+      private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 
 
 

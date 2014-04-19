@@ -12,26 +12,42 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.BusinessLogic;
+using System;
+using System.Windows.Forms;
 
-namespace ProgDev.FrontEnd.Forms
+namespace ProgDev.FrontEnd.Controls
 {
-   public static class FormsFactory
+   public class EditorControl : UserControl
    {
-      public static AppForm NewAppForm()
+      private string _SourceText = "";
+
+      public string SourceText
       {
-         var projectContentForm = new ProjectContentForm(new ProjectContentFormViewModel());
-         return new AppForm(new AppFormViewModel(), projectContentForm);
+         get
+         {
+            return _SourceText;
+         }
+         set
+         {
+            if (_SourceText != value)
+            {
+               _SourceText = value;
+               if (SourceTextChange != null)
+                  SourceTextChange(this, EventArgs.Empty);
+            }
+         }
       }
 
-      public static AboutForm NewAboutForm()
+      public event EventHandler SourceTextChange;
+      
+      public void SetSourceText(string text)
       {
-         return new AboutForm(new AboutFormViewModel());
+         _SourceText = text;
+         OnExternalTextChange();
       }
 
-      public static NewFileForm NewNewFileForm(string name)
+      protected virtual void OnExternalTextChange()
       {
-         return new NewFileForm(new NewFileFormViewModel(name));
       }
    }
 }
