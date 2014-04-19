@@ -140,6 +140,9 @@
   <data name="CommandAddFile" xml:space="preserve">
     <value>add file</value>
   </data>
+  <data name="ErrorExpectedFolder" xml:space="preserve">
+    <value>Must be a valid folder name: A-Z 0-9 _ , . - ( )</value>
+  </data>
   <data name="ErrorExpectedIdentifier" xml:space="preserve">
     <value>Must be a valid identifier (alphanumeric and underscore, starting with a letter).</value>
   </data>

@@ -19,6 +19,7 @@ using ProgDev.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace ProgDev.FrontEnd.Forms
 {
@@ -97,8 +98,7 @@ namespace ProgDev.FrontEnd.Forms
       [Compute("FolderError"), Depends("FolderText")]
       private string ComputeFolderError()
       {
-         return (FolderText.Value == "" || InputValidator.IsNamespace(FolderText.Value))
-            ? "" : Strings.ErrorExpectedNamespaceOrEmpty;
+         return InputValidator.IsFolder(FolderText.Value) ? "" : Strings.ErrorExpectedFolder;
       }
 
       [Compute("OkEnabled"), Depends("NameError", "FolderError")]
@@ -137,7 +137,7 @@ namespace ProgDev.FrontEnd.Forms
                name: NameText.Value, 
                pouType: _TypeMap[TypeList[TypeSelectedIndex.Value]],
                pouLanguage: _LangMap[LanguageList[LanguageSelectedIndex.Value]]);
-            Close();
+            Close(DialogResult.OK);
          }
          catch (Exception ex)
          {

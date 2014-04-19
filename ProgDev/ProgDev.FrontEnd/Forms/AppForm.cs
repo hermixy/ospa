@@ -60,7 +60,7 @@ namespace ProgDev.FrontEnd.Forms
          _DeployMnu.BindClick(viewModel.DeployClick);
          _DebugButton.BindClick(viewModel.DebugClick);
          _DebugMnu.BindClick(viewModel.DebugClick);
-         this.BindClosing(viewModel.Closing);
+         this.BindClosing(viewModel.PromptClose, viewModel.CanClose);
          viewModel.Start(this);
       }
 

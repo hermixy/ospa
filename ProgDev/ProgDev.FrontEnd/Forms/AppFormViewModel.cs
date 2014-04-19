@@ -41,7 +41,8 @@ namespace ProgDev.FrontEnd.Forms
       public Signal BuildClick;
       public Signal DeployClick;
       public Signal DebugClick;
-      public Signal Closing;
+      public Signal PromptClose;
+      public Field<bool> CanClose;
       // Set from the project in code rather than bound to the window:
       public Field<string> Project_Name;
       public Field<bool> Project_IsDirty;
@@ -124,24 +125,32 @@ namespace ProgDev.FrontEnd.Forms
          Process.Start(Application.ExecutablePath);
       }
 
-      [OnSignal("OpenClick")]
-      private void OnOpenClick()
+      private bool PromptAndSave() // true = ok, false = cancel
       {
          if (Project.Contents.IsDirty)
          {
-            string projectName = 
-               Project.Contents.FilePath == null 
+            string projectName =
+               Project.Contents.FilePath == null
                ? Strings.Untitled
                : Path.GetFileNameWithoutExtension(Project.Contents.FilePath);
             string message = string.Format(Strings.SaveChangedPrompt, projectName);
 
-            var dlg = new MessageForm(message, Strings.OpenProjectTitle, 
+            var dlg = new MessageForm(message, Strings.OpenProjectTitle,
                new[] { Strings.ButtonSave, Strings.ButtonDontSave, Strings.ButtonCancel }, Images.Page32);
             if (ShowChildDialog(dlg) == DialogResult.Cancel)
-               return;
+               return false;
             else if (dlg.Result == Strings.ButtonSave)
-               DoSave();
+               return DoSave();
          }
+
+         return true;
+      }
+
+      [OnSignal("OpenClick")]
+      private void OnOpenClick()
+      {
+         if (!PromptAndSave())
+            return;
 
          var openDlg = new OpenFileDialog
          {
@@ -182,17 +191,24 @@ namespace ProgDev.FrontEnd.Forms
          ShowChildDialog(form);
       }
 
-      [OnSignal("Closing")]
-      private void OnClosing(CancelEventArgs e)
+      [OnSignal("PromptClose")]
+      private void OnPromptClose(CancelEventArgs e)
       {
-         Settings.Default.AppForm_SavedPositionExists = true;
-         Settings.Default.AppForm_WindowState = WindowState.Value;
+         CanClose.Value = PromptAndSave();
+         SaveWindowPosition();
+      }
+
+      private void SaveWindowPosition()
+      {
+         var s = Settings.Default;
+         s.AppForm_SavedPositionExists = true;
+         s.AppForm_WindowState = WindowState.Value;
          if (WindowState.Value == FormWindowState.Normal)
          {
-            Settings.Default.AppForm_Location = Location.Value;
-            Settings.Default.AppForm_Size = Size.Value;
+            s.AppForm_Location = Location.Value;
+            s.AppForm_Size = Size.Value;
          }
-         Settings.Default.Save();
+         s.Save();
       }
    }
 }

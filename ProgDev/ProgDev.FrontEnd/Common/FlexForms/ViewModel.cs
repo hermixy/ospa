@@ -104,10 +104,15 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       {
       }
 
-      protected void Close()
+      protected void Close(DialogResult result = DialogResult.None)
       {
          ViewModelUtilities.AssertType<ControlType, Form>();
-         _Invoke(x => (x as Form).Close());
+         _Invoke(x =>
+         {
+            var frm = x as Form;
+            frm.DialogResult = result;
+            frm.Close();
+         });
       }
 
       protected DialogResult ShowChildDialog(Form child)

@@ -124,6 +124,15 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must be a valid folder name: A-Z 0-9 _ , . - ( ).
+        /// </summary>
+        public static string ErrorExpectedFolder {
+            get {
+                return ResourceManager.GetString("ErrorExpectedFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must be a valid identifier (alphanumeric and underscore, starting with a letter)..
         /// </summary>
         public static string ErrorExpectedIdentifier {

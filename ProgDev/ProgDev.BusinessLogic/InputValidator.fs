@@ -17,6 +17,7 @@ open System.Text.RegularExpressions
 
 let private IdentifierRegex = Regex @"^[A-Za-z_][A-Za-z_0-9]*$"
 let private DottedIdentifierListRegex = Regex @"^[A-Za-z_][A-Za-z_0-9]*(\.[A-Za-z_][A-Za-z_0-9]*)*$"
+let private FolderRegex = Regex @"^[A-Za-z_0-9,\.\-()][A-Za-z_0-9,\.\-() ]*$"
 
 let (| Identifier | _ |) (x : string) : string option =
    if x = null then None
@@ -30,6 +31,12 @@ let (| DottedIdentifierList | _ |) (x : string) : string option =
       let m = DottedIdentifierListRegex.Match x
       if m.Success then Some x else None
 
+let (| Folder | _ |) (x : string) : string option =
+   if x = null then None
+   else
+      let m = FolderRegex.Match x
+      if m.Success then Some x else None
+
 let IsIdentifier (x : string) : bool =
    match x with
    | Identifier y -> true
@@ -38,4 +45,9 @@ let IsIdentifier (x : string) : bool =
 let IsNamespace (x : string) : bool =
    match x with
    | DottedIdentifierList y -> true
+   | _ -> false
+
+let IsFolder (x: string) : bool =
+   match x with
+   | Folder y -> true
    | _ -> false

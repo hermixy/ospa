@@ -133,6 +133,16 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          control.FormClosing += (sender, e) => command.Handler(sender, e);
       }
 
+      public static void BindClosing(this Form control, Signal promptClose, Field<bool> canClose)
+      {
+         control.FormClosing += (sender, e) =>
+         {
+            promptClose.Handler(sender, e);
+            if (!canClose.Value)
+               e.Cancel = true;
+         };
+      }
+
       public static void BindWindowState(this Form control, Field<FormWindowState> field)
       {
          var eventHandler = Bind(field, () => control.WindowState, x => control.WindowState = x);
