@@ -31,13 +31,13 @@
          this.components = new System.ComponentModel.Container();
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectContentForm));
          this._ContextMnu = new System.Windows.Forms.ContextMenuStrip(this.components);
-         this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-         this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.moveToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-         this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this._OpenMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._Separator1 = new System.Windows.Forms.ToolStripSeparator();
+         this._MoveMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._DuplicateMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._RenameMnu = new System.Windows.Forms.ToolStripMenuItem();
+         this._Separator2 = new System.Windows.Forms.ToolStripSeparator();
+         this._DeleteMnu = new System.Windows.Forms.ToolStripMenuItem();
          this._ListView = new ProgDev.FrontEnd.Common.BufferedListView();
          this._NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._TypeCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,58 +48,61 @@
          // _ContextMnu
          // 
          this._ContextMnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.renameToolStripMenuItem,
-            this.moveToFolderToolStripMenuItem,
-            this.duplicateToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.deleteToolStripMenuItem});
+            this._OpenMnu,
+            this._Separator1,
+            this._MoveMnu,
+            this._DuplicateMnu,
+            this._RenameMnu,
+            this._Separator2,
+            this._DeleteMnu});
          this._ContextMnu.Name = "_ContextMnu";
-         this._ContextMnu.Size = new System.Drawing.Size(162, 126);
+         this._ContextMnu.Size = new System.Drawing.Size(162, 148);
          // 
-         // openToolStripMenuItem
+         // _OpenMnu
          // 
-         this.openToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-         this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-         this.openToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-         this.openToolStripMenuItem.Text = "&Open";
+         this._OpenMnu.Name = "_OpenMnu";
+         this._OpenMnu.ShortcutKeyDisplayString = "Enter";
+         this._OpenMnu.Size = new System.Drawing.Size(161, 22);
+         this._OpenMnu.Text = "&Open";
          // 
-         // toolStripSeparator2
+         // _Separator1
          // 
-         this.toolStripSeparator2.Name = "toolStripSeparator2";
-         this.toolStripSeparator2.Size = new System.Drawing.Size(158, 6);
+         this._Separator1.Name = "_Separator1";
+         this._Separator1.Size = new System.Drawing.Size(158, 6);
          // 
-         // renameToolStripMenuItem
+         // _MoveMnu
          // 
-         this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-         this.renameToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-         this.renameToolStripMenuItem.Text = "&Rename";
+         this._MoveMnu.Image = ((System.Drawing.Image)(resources.GetObject("_MoveMnu.Image")));
+         this._MoveMnu.Name = "_MoveMnu";
+         this._MoveMnu.Size = new System.Drawing.Size(161, 22);
+         this._MoveMnu.Text = "&Move to folder…";
          // 
-         // moveToFolderToolStripMenuItem
+         // _DuplicateMnu
          // 
-         this.moveToFolderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("moveToFolderToolStripMenuItem.Image")));
-         this.moveToFolderToolStripMenuItem.Name = "moveToFolderToolStripMenuItem";
-         this.moveToFolderToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-         this.moveToFolderToolStripMenuItem.Text = "&Move to folder…";
+         this._DuplicateMnu.Name = "_DuplicateMnu";
+         this._DuplicateMnu.Size = new System.Drawing.Size(161, 22);
+         this._DuplicateMnu.Text = "Du&plicate";
          // 
-         // duplicateToolStripMenuItem
+         // _RenameMnu
          // 
-         this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
-         this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-         this.duplicateToolStripMenuItem.Text = "Du&plicate";
+         this._RenameMnu.Image = ((System.Drawing.Image)(resources.GetObject("_RenameMnu.Image")));
+         this._RenameMnu.Name = "_RenameMnu";
+         this._RenameMnu.ShortcutKeys = System.Windows.Forms.Keys.F2;
+         this._RenameMnu.Size = new System.Drawing.Size(161, 22);
+         this._RenameMnu.Text = "&Rename…";
          // 
-         // toolStripSeparator1
+         // _Separator2
          // 
-         this.toolStripSeparator1.Name = "toolStripSeparator1";
-         this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
+         this._Separator2.Name = "_Separator2";
+         this._Separator2.Size = new System.Drawing.Size(158, 6);
          // 
-         // deleteToolStripMenuItem
+         // _DeleteMnu
          // 
-         this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
-         this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-         this.deleteToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-         this.deleteToolStripMenuItem.Text = "&Delete";
+         this._DeleteMnu.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteMnu.Image")));
+         this._DeleteMnu.Name = "_DeleteMnu";
+         this._DeleteMnu.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+         this._DeleteMnu.Size = new System.Drawing.Size(161, 22);
+         this._DeleteMnu.Text = "&Delete";
          // 
          // _ListView
          // 
@@ -113,7 +116,6 @@
          this._ListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this._ListView.FullRowSelect = true;
          this._ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-         this._ListView.LabelEdit = true;
          this._ListView.LabelWrap = false;
          this._ListView.Location = new System.Drawing.Point(0, 0);
          this._ListView.Name = "_ListView";
@@ -164,13 +166,13 @@
       private System.Windows.Forms.ColumnHeader _TypeCol;
       private System.Windows.Forms.ColumnHeader _LanguageCol;
       private System.Windows.Forms.ContextMenuStrip _ContextMnu;
-      private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-      private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
-      private System.Windows.Forms.ToolStripMenuItem moveToFolderToolStripMenuItem;
-      private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
-      private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-      private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-      private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+      private System.Windows.Forms.ToolStripMenuItem _DeleteMnu;
+      private System.Windows.Forms.ToolStripMenuItem _RenameMnu;
+      private System.Windows.Forms.ToolStripMenuItem _MoveMnu;
+      private System.Windows.Forms.ToolStripMenuItem _DuplicateMnu;
+      private System.Windows.Forms.ToolStripSeparator _Separator2;
+      private System.Windows.Forms.ToolStripMenuItem _OpenMnu;
+      private System.Windows.Forms.ToolStripSeparator _Separator1;
 
 
 

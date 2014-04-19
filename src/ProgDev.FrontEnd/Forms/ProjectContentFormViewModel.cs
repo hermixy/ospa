@@ -24,6 +24,10 @@ namespace ProgDev.FrontEnd.Forms
    public sealed class ProjectContentFormViewModel : FormViewModel
    {
       public ListField<ListViewRow> List;
+      public ListField<ListViewRow> SelectedList;
+      public ComputedField<bool> ContextMenuEnabled;
+      public ComputedField<bool> RenameEnabled;
+      public Signal RenameClick;
 
       protected override void Initialize()
       {
@@ -39,6 +43,24 @@ namespace ProgDev.FrontEnd.Forms
             GroupName = x.Folder,
             Cells = new List<string> { x.Name, x.Type.ToShortString(), x.Language.ToShortString() }
          }));
+      }
+
+      [Compute("ContextMenuEnabled"), Depends("SelectedList")]
+      private bool ComputeContextMenuEnabled()
+      {
+         return SelectedList.Any();
+      }
+
+      [Compute("RenameEnabled"), Depends("SelectedList")]
+      private bool ComputeRenameEnabled()
+      {
+         return SelectedList.Count == 1;
+      }
+
+      [OnSignal("RenameClick")]
+      private void OnRenameClick()
+      {
+         ShowChildDialog(new RenameFileForm());
       }
    }
 }

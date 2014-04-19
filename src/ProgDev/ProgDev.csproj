@@ -154,6 +154,14 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup>
+    <FileAssociation Include=".osp">
+      <Visible>False</Visible>
+      <Description>OSPA ProgDev project</Description>
+      <Progid>ProgDev</Progid>
+      <DefaultIcon>ProgDev App Icon 32.ico</DefaultIcon>
+    </FileAssociation>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

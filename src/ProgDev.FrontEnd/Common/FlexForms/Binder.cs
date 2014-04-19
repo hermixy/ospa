@@ -13,6 +13,7 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -192,6 +193,53 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          field.Changed += (sender, e) => PopulateListView(control, field);
       }
 
+      public static void BindSelectedItems(this ListView control, ListField<ListViewRow> field)
+      {
+         bool ignore = false;
+
+         control.SelectedIndexChanged += (sender, e) =>
+         {
+            ignore = true;
+            try
+            {
+               field.Set(control.SelectedItems.Cast<ListViewItem>().Select(x => x.Tag).Cast<ListViewRow>());
+            }
+            finally
+            {
+               ignore = false;
+            }
+         };
+
+         field.Changed += (sender, e) =>
+         {
+            // ignore is true when the ListField has changed as the result of the user selecting an item.  Therefore,
+            // we don't want to redo that same change on the control.
+            if (ignore)
+               return;
+
+            control.BeginUpdate();
+            try
+            {
+               control.SelectedItems.Clear();
+               foreach (var row in field)
+               {
+                  foreach (var item in control.Items.Cast<ListViewItem>())
+                  {
+                     if (item.Tag == row)
+                     {
+                        item.Selected = true;
+                        break;
+                     }
+                  }
+               }
+            }
+            finally
+            {
+               control.EndUpdate();
+            }
+         };
+      }
+
       private static void PopulateListView(ListView control, ListField<ListViewRow> field)
       {
          var groups =
@@ -238,7 +286,8 @@ namespace ProgDev.FrontEnd.Common.FlexForms
                   row.GroupName == null
                   ? new ListViewItem()
                   : new ListViewItem(groups[row.GroupName]);
-
+               
+               lvi.Tag = row;
                lvi.Font = boldFont;
                lvi.UseItemStyleForSubItems = false;
 

@@ -12,17 +12,10 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.FrontEnd.Common.FlexForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
-using ProgDev.FrontEnd.Common.FlexForms;
 
 namespace ProgDev.FrontEnd.Forms
 {
@@ -33,16 +26,13 @@ namespace ProgDev.FrontEnd.Forms
          InitializeComponent();
 
          SizeChanged += OnSizeChanged;
-         _ContextMnu.Opening += OnContextMenuOpening;
 
          _ListView.BindItems(viewModel.List);
+         _ListView.BindSelectedItems(viewModel.SelectedList);
+         _ContextMnu.BindEnabled(viewModel.ContextMenuEnabled);
+         _RenameMnu.BindEnabled(viewModel.RenameEnabled);
+         _RenameMnu.BindClick(viewModel.RenameClick);
          viewModel.Start(this);
-      }
-
-      private void OnContextMenuOpening(object sender, CancelEventArgs e)
-      {
-         bool selection = _ListView.SelectedItems.Count > 0;
-         _ContextMnu.Enabled = selection;
       }
 
       private void OnSizeChanged(object sender, EventArgs e)

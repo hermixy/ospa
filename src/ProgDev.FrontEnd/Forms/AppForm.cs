@@ -32,15 +32,6 @@ namespace ProgDev.FrontEnd.Forms
          _ProjectContentForm = projectContentForm;
          _ProjectContentForm.Show(_DockPanel, DockState.DockLeft);
 
-         // dummy
-         var asdf = new DualEditorForm();
-         asdf.Show(_DockPanel, DockState.Document);
-         asdf = new DualEditorForm();
-         asdf.Show(_DockPanel, DockState.Document);
-         asdf = new DualEditorForm();
-         asdf.Show(_DockPanel, DockState.Document);
-         // end
-
          this.BindLocation(viewModel.Location);
          this.BindSize(viewModel.Size);
          this.BindMinimumSize(viewModel.MinimumSize);
