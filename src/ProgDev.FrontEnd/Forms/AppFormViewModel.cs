@@ -137,7 +137,10 @@ namespace ProgDev.FrontEnd.Forms
       [OnSignal("NewClick")]
       private void OnNewClick()
       {
-         Process.Start(Application.ExecutablePath);
+         if (!PromptAndSave())
+            return;
+
+         Project.New();
       }
 
       private bool PromptAndSave() // true = ok, false = cancel

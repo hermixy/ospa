@@ -83,6 +83,7 @@
          this._DeployButton = new System.Windows.Forms.ToolStripButton();
          this._DebugButton = new System.Windows.Forms.ToolStripButton();
          this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+         this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
          this._ToolStripContainer.BottomToolStripPanel.SuspendLayout();
          this._ToolStripContainer.ContentPanel.SuspendLayout();
          this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -211,6 +212,7 @@
          this._FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._NewProjectMnu,
             this._OpenProjectMnu,
+            this.toolStripMenuItem1,
             this._SaveProjectMnu,
             this._Separator3,
             this._ExitMnu});
@@ -223,35 +225,35 @@
          this._NewProjectMnu.Image = ((System.Drawing.Image)(resources.GetObject("_NewProjectMnu.Image")));
          this._NewProjectMnu.Name = "_NewProjectMnu";
          this._NewProjectMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-         this._NewProjectMnu.Size = new System.Drawing.Size(186, 22);
-         this._NewProjectMnu.Text = "&New project";
+         this._NewProjectMnu.Size = new System.Drawing.Size(193, 22);
+         this._NewProjectMnu.Text = "&New";
          // 
          // _OpenProjectMnu
          // 
          this._OpenProjectMnu.Image = ((System.Drawing.Image)(resources.GetObject("_OpenProjectMnu.Image")));
          this._OpenProjectMnu.Name = "_OpenProjectMnu";
          this._OpenProjectMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-         this._OpenProjectMnu.Size = new System.Drawing.Size(186, 22);
-         this._OpenProjectMnu.Text = "&Open project";
+         this._OpenProjectMnu.Size = new System.Drawing.Size(193, 22);
+         this._OpenProjectMnu.Text = "&Open…";
          // 
          // _SaveProjectMnu
          // 
-         this._SaveProjectMnu.Image = ((System.Drawing.Image)(resources.GetObject("_SaveProjectMnu.Image")));
          this._SaveProjectMnu.Name = "_SaveProjectMnu";
-         this._SaveProjectMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-         this._SaveProjectMnu.Size = new System.Drawing.Size(186, 22);
-         this._SaveProjectMnu.Text = "&Save project";
+         this._SaveProjectMnu.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+         this._SaveProjectMnu.Size = new System.Drawing.Size(193, 22);
+         this._SaveProjectMnu.Text = "Save &as…";
          // 
          // _Separator3
          // 
          this._Separator3.Name = "_Separator3";
-         this._Separator3.Size = new System.Drawing.Size(183, 6);
+         this._Separator3.Size = new System.Drawing.Size(190, 6);
          // 
          // _ExitMnu
          // 
          this._ExitMnu.Name = "_ExitMnu";
          this._ExitMnu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-         this._ExitMnu.Size = new System.Drawing.Size(186, 22);
+         this._ExitMnu.Size = new System.Drawing.Size(193, 22);
          this._ExitMnu.Text = "E&xit";
          // 
          // _EditMenu
@@ -492,6 +494,14 @@
          this.toolStrip1.Size = new System.Drawing.Size(0, 2);
          this.toolStrip1.TabIndex = 2;
          // 
+         // toolStripMenuItem1
+         // 
+         this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
+         this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+         this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+         this.toolStripMenuItem1.Size = new System.Drawing.Size(193, 22);
+         this.toolStripMenuItem1.Text = "&Save";
+         // 
          // AppForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -561,5 +571,6 @@
       private System.Windows.Forms.ToolStripMenuItem _OptionsMnu;
       private System.Windows.Forms.ToolStrip toolStrip1;
       private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme _Theme;
+      private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
    }
 }

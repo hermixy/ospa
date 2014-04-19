@@ -90,12 +90,16 @@ module private BundleManager =
    let New () =
       _FilePath <- None
       _Bundle <- { Files = [] }
+      _UndoStack <- []
+      _RedoStack <- []
       _Dirty <- false
       Notify()
 
    let Load (filePath : string) =
       _Bundle <- Bundler.Load filePath
       _FilePath <- Some filePath
+      _UndoStack <- []
+      _RedoStack <- []
       _Dirty <- false
       Notify()
 
@@ -224,7 +228,8 @@ type ProjectCommands () =
    member this.NewFile folder name pouType pouLanguage =
       BundleManager.Do (FileOperations.NewFile folder name pouType pouLanguage)
       
-   member this.RenameFile file newName =
-      BundleManager.Do (FileOperations.RenameFile file newName)
+   member this.RenameFile (file : File) newName =
+      if file.Name <> newName then
+         BundleManager.Do (FileOperations.RenameFile file newName)
 
 let Commands = new ProjectCommands()
