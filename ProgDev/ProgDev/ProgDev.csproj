@@ -117,10 +117,6 @@
       <Project>{38392c8e-7bba-4269-a416-07967079b04a}</Project>
       <Name>ProgDev.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WeifenLuo.WinFormsUI\WeifenLuo.WinFormsUI.csproj">
-      <Project>{c75532c4-765b-418e-b09b-46d36b2abdb1}</Project>
-      <Name>WeifenLuo.WinFormsUI</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProgDev App Icon 32.ico" />

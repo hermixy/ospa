@@ -1,0 +1,4 @@
+[submodule "external/ospa-dockpanelsuite"]
+	path = external/ospa-dockpanelsuite
+	url = git://github.com/electroly/ospa-dockpanelsuite.git
+	branch = development_3.0
