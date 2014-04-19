@@ -21,7 +21,7 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
+    <MapFileExtensions>false</MapFileExtensions>
     <SupportUrl>https://github.com/electroly/ospa</SupportUrl>
     <ProductName>OSPA ProgDev</ProductName>
     <PublisherName>Open Source PLC Architecture</PublisherName>
