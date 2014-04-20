@@ -42,6 +42,7 @@ namespace ProgDev.FrontEnd.Forms
       public Signal OpenClick;
       public ComputedField<bool> SaveEnabled;
       public Signal SaveClick;
+      public Signal SaveAsClick;
       // Edit menu
       public ComputedField<bool> UndoEnabled;
       public Signal UndoClick;
@@ -91,31 +92,36 @@ namespace ProgDev.FrontEnd.Forms
       {
          if (Project.Contents.FilePath == null)
          {
-            var dlg = new SaveFileDialog
-            {
-               AddExtension = true,
-               AutoUpgradeEnabled = true,
-               CheckPathExists = true,
-               DefaultExt = "." + FileExtensions.ProjectExtension,
-               Filter = string.Format(Strings.OpenProjectFilter, FileExtensions.ProjectExtension),
-               OverwritePrompt = true,
-               Title = Strings.SaveProjectTitle
-            };
-            var result = ShowChildDialog(dlg);
-            if (result == DialogResult.OK)
-            {
-               Project.Save(dlg.FileName);
-               return true;
-            }
-            else
-            {
-               return false;
-            }
+            return DoSaveAs();
          }
          else
          {
             Project.Save(Project.Contents.FilePath);
             return true;
+         }
+      }
+
+      private bool DoSaveAs()
+      {
+         var dlg = new SaveFileDialog
+         {
+            AddExtension = true,
+            AutoUpgradeEnabled = true,
+            CheckPathExists = true,
+            DefaultExt = "." + FileExtensions.ProjectExtension,
+            Filter = string.Format(Strings.OpenProjectFilter, FileExtensions.ProjectExtension),
+            OverwritePrompt = true,
+            Title = Strings.SaveProjectTitle
+         };
+         var result = ShowChildDialog(dlg);
+         if (result == DialogResult.OK)
+         {
+            Project.Save(dlg.FileName);
+            return true;
+         }
+         else
+         {
+            return false;
          }
       }
 
@@ -200,6 +206,12 @@ namespace ProgDev.FrontEnd.Forms
       private void OnSaveClick()
       {
          DoSave();
+      }
+
+      [OnSignal("SaveAsClick")]
+      private void OnSaveAsClick()
+      {
+         DoSaveAs();
       }
 
       [Compute("UndoEnabled"), Depends("Project_CanUndo")]

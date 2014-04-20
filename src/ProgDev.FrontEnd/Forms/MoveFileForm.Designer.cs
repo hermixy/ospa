@@ -117,8 +117,10 @@
             this._NameCol});
          this._PouLst.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
          this._PouLst.Location = new System.Drawing.Point(124, 12);
+         this._PouLst.MultiSelect = false;
          this._PouLst.Name = "_PouLst";
          this._PouLst.Size = new System.Drawing.Size(212, 120);
+         this._PouLst.Sorting = System.Windows.Forms.SortOrder.Ascending;
          this._PouLst.TabIndex = 15;
          this._PouLst.UseCompatibleStateImageBehavior = false;
          this._PouLst.View = System.Windows.Forms.View.Details;

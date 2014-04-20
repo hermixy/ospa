@@ -247,6 +247,7 @@ namespace ProgDev.FrontEnd.Common.FlexForms
             .Select(x => x.GroupName)
             .Where(x => x != null)
             .Distinct()
+            .OrderBy(x => x)
             .ToDictionary(
                x => x,
                x => new ListViewGroup(x, x));

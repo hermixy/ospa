@@ -35,6 +35,8 @@ let private ToBundleFile (file : TextPart) =
 let Save (bundle : Bundle) (filePath : string) =
    let textParts = bundle.Files |> List.map ToTextPart |> List.toArray
    let multipart = new Multipart()
+   multipart.Boundary <- "=-9t4JuySFJzSo9CdzTIgoQA=="
+      // Use a fixed boundary to ensure stability from one save to the next.
    for textPart in textParts do
       multipart.Add textPart
    use stream = File.Create(filePath)

@@ -49,6 +49,7 @@ namespace ProgDev.FrontEnd.Forms
          _SaveButton.BindEnabled(viewModel.SaveEnabled);
          _SaveProjectMnu.BindClick(viewModel.SaveClick);
          _SaveProjectMnu.BindEnabled(viewModel.SaveEnabled);
+         _SaveProjectAsMnu.BindClick(viewModel.SaveAsClick);
          // Edit menu
          _UndoMnu.BindEnabled(viewModel.UndoEnabled);
          _UndoMnu.BindClick(viewModel.UndoClick);

@@ -142,6 +142,15 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot move multiple POUs named &quot;{0}&quot; to the same folder..
+        /// </summary>
+        public static string ErrorDuplicateNameInMove {
+            get {
+                return ResourceManager.GetString("ErrorDuplicateNameInMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must be a valid folder name: A-Z 0-9 _ , . - ( ).
         /// </summary>
         public static string ErrorExpectedFolder {

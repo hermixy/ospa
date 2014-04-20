@@ -213,8 +213,22 @@ module private FileOperations =
       let files = bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x) 
       { Files = files }
 
+   // namePaths = list of (folder, name without extension)
    let MoveFiles (namePaths : (string * string) list) (newFolder : string) (bundle : Bundle) =
-      // namePaths = list of (folder, name without extension)
+      // Make sure there aren't two files with the same name in the group being moved.
+      let names =
+         namePaths 
+         |> List.map (fun (folder, name) -> name)
+         |> List.sort
+         |> List.toSeq
+      let firstDuplicate =
+         names 
+         |> Seq.zip (names |> Seq.skip 1)
+         |> Seq.tryFind (fun (a, b) -> a = b)
+      match firstDuplicate with
+      | Some (a, b) -> failwith (String.Format(Strings.ErrorDuplicateNameInMove, a))
+      | _ -> ()
+      // Perform the move.
       let files = bundle.Files |> List.map (fun x ->
          CheckFileDoesNotExist newFolder (ToNamePart x.Filename) bundle
          let namePath = (x.Folder, ToNamePart x.Filename)

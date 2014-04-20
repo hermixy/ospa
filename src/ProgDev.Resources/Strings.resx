@@ -147,6 +147,10 @@
     <value>Coding error: cannot find a field named "{0}"</value>
     <comment>0 = name</comment>
   </data>
+  <data name="ErrorDuplicateNameInMove" xml:space="preserve">
+    <value>Cannot move multiple POUs named "{0}" to the same folder.</value>
+    <comment>0 = duplicate name</comment>
+  </data>
   <data name="ErrorExpectedFolder" xml:space="preserve">
     <value>Must be a valid folder name: A-Z 0-9 _ , . - ( )</value>
   </data>
