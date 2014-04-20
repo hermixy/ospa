@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.FrontEnd.Common.FlexForms
 {
@@ -321,6 +322,35 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          {
             control.EndUpdate();
          }
+      }
+
+      public static void BindDockState(this DockContent control, Field<DockState> field)
+      {
+         control.DockStateChanged += Bind(field, () => control.DockState, x => control.DockState = x);
+      }
+
+      public static void BindDockLeftPortion(this DockPanel control, Field<double> field)
+      {
+         control.DockLeftPortionChanged += 
+            Bind(field, () => control.DockLeftPortion, x => control.DockLeftPortion = x);
+      }
+
+      public static void BindDockRightPortion(this DockPanel control, Field<double> field)
+      {
+         control.DockRightPortionChanged +=
+            Bind(field, () => control.DockRightPortion, x => control.DockRightPortion = x);
+      }
+
+      public static void BindDockTopPortion(this DockPanel control, Field<double> field)
+      {
+         control.DockTopPortionChanged +=
+            Bind(field, () => control.DockTopPortion, x => control.DockTopPortion = x);
+      }
+
+      public static void BindDockBottomPortion(this DockPanel control, Field<double> field)
+      {
+         control.DockBottomPortionChanged +=
+            Bind(field, () => control.DockBottomPortion, x => control.DockBottomPortion = x);
       }
    }
 }

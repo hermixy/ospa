@@ -18,6 +18,7 @@ using ProgDev.FrontEnd.Common.FlexForms;
 using ProgDev.Resources;
 using System.Collections.Generic;
 using System.Linq;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.FrontEnd.Forms
 {
@@ -33,7 +34,7 @@ namespace ProgDev.FrontEnd.Forms
       public Signal MoveClick;
       public Signal DeleteClick;
       public Signal DuplicateClick;
-
+      
       protected override void Initialize()
       {
          Populate();

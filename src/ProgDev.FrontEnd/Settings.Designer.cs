@@ -70,5 +70,65 @@ namespace ProgDev.FrontEnd {
                 this["AppForm_WindowState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DockLeft")]
+        public global::WeifenLuo.WinFormsUI.Docking.DockState ProjectContentForm_DockState {
+            get {
+                return ((global::WeifenLuo.WinFormsUI.Docking.DockState)(this["ProjectContentForm_DockState"]));
+            }
+            set {
+                this["ProjectContentForm_DockState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double DockPanel_DockLeftPortion {
+            get {
+                return ((double)(this["DockPanel_DockLeftPortion"]));
+            }
+            set {
+                this["DockPanel_DockLeftPortion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double DockPanel_DockRightPortion {
+            get {
+                return ((double)(this["DockPanel_DockRightPortion"]));
+            }
+            set {
+                this["DockPanel_DockRightPortion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double DockPanel_DockTopPortion {
+            get {
+                return ((double)(this["DockPanel_DockTopPortion"]));
+            }
+            set {
+                this["DockPanel_DockTopPortion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double DockPanel_DockBottomPortion {
+            get {
+                return ((double)(this["DockPanel_DockBottomPortion"]));
+            }
+            set {
+                this["DockPanel_DockBottomPortion"] = value;
+            }
+        }
     }
 }

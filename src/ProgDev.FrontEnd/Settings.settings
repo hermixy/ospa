@@ -14,5 +14,20 @@
     <Setting Name="AppForm_WindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
+    <Setting Name="ProjectContentForm_DockState" Type="WeifenLuo.WinFormsUI.Docking.DockState" Scope="User">
+      <Value Profile="(Default)">DockLeft</Value>
+    </Setting>
+    <Setting Name="DockPanel_DockLeftPortion" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DockPanel_DockRightPortion" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DockPanel_DockTopPortion" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DockPanel_DockBottomPortion" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

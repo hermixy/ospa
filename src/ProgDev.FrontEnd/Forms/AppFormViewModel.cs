@@ -18,11 +18,10 @@ using ProgDev.FrontEnd.Common;
 using ProgDev.FrontEnd.Common.FlexForms;
 using ProgDev.Resources;
 using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.FrontEnd.Forms
 {
@@ -33,6 +32,11 @@ namespace ProgDev.FrontEnd.Forms
       public Field<Size> Size;
       public Field<Size> MinimumSize;
       public Field<FormWindowState> WindowState;
+      public Field<DockState> ProjectContentFormDockState;
+      public Field<double> DockLeftPortion;
+      public Field<double> DockRightPortion;
+      public Field<double> DockTopPortion;
+      public Field<double> DockBottomPortion;
       // Titlebar
       public ComputedField<string> Title;
       public Signal PromptClose;
@@ -63,24 +67,60 @@ namespace ProgDev.FrontEnd.Forms
 
       protected override void Initialize()
       {
-         if (Settings.Default.AppForm_SavedPositionExists)
+         try
          {
-            var screenArea = Screen.PrimaryScreen.WorkingArea;
-
-            int width = Math.Max(MinimumSize.Value.Width, Settings.Default.AppForm_Size.Width);
-            int height = Math.Max(MinimumSize.Value.Height, Settings.Default.AppForm_Size.Height);
-            int left = Math.Min(screenArea.Width - width, Math.Max(0, Settings.Default.AppForm_Location.X));
-            int top = Math.Min(screenArea.Height - height, Math.Max(0, Settings.Default.AppForm_Location.Y));
-            Location.Value = new Point(left, top);
-            Size.Value = new Size(width, height);
-            WindowState.Value = Settings.Default.AppForm_WindowState;
+            LoadWindowPosition();
+         }
+         catch (Exception)
+         {
+            // Ignore.  This protects us against bogus setting values.
          }
 
          OnProjectChanged();
          Project.Events.Changed += OnProjectChanged;
       }
 
-      void OnProjectChanged()
+      private void LoadWindowPosition()
+      {
+         var s = Settings.Default;
+         if (s.AppForm_SavedPositionExists)
+         {
+            var screenArea = Screen.PrimaryScreen.WorkingArea;
+
+            int width = Math.Max(MinimumSize.Value.Width, s.AppForm_Size.Width);
+            int height = Math.Max(MinimumSize.Value.Height, s.AppForm_Size.Height);
+            int left = Math.Min(screenArea.Width - width, Math.Max(0, s.AppForm_Location.X));
+            int top = Math.Min(screenArea.Height - height, Math.Max(0, s.AppForm_Location.Y));
+            Location.Value = new Point(left, top);
+            Size.Value = new Size(width, height);
+            WindowState.Value = s.AppForm_WindowState;
+            ProjectContentFormDockState.Value = s.ProjectContentForm_DockState;
+            DockLeftPortion.Value = s.DockPanel_DockLeftPortion;
+            DockRightPortion.Value = s.DockPanel_DockRightPortion;
+            DockTopPortion.Value = s.DockPanel_DockTopPortion;
+            DockBottomPortion.Value = s.DockPanel_DockBottomPortion;
+         }
+      }
+
+      private void SaveWindowPosition()
+      {
+         var s = Settings.Default;
+         s.AppForm_SavedPositionExists = true;
+         s.AppForm_WindowState = WindowState.Value;
+         if (WindowState.Value == FormWindowState.Normal)
+         {
+            s.AppForm_Location = Location.Value;
+            s.AppForm_Size = Size.Value;
+         }
+         s.ProjectContentForm_DockState = ProjectContentFormDockState.Value;
+         s.DockPanel_DockLeftPortion = DockLeftPortion.Value;
+         s.DockPanel_DockRightPortion = DockRightPortion.Value;
+         s.DockPanel_DockTopPortion = DockTopPortion.Value;
+         s.DockPanel_DockBottomPortion = DockBottomPortion.Value;
+         s.Save();
+      }
+
+      private void OnProjectChanged()
       {
          Project_Name.Value = Project.Contents.ProjectName;
          Project_IsDirty.Value = Project.Contents.IsDirty;
@@ -250,19 +290,6 @@ namespace ProgDev.FrontEnd.Forms
       {
          CanClose.Value = PromptAndSave();
          SaveWindowPosition();
-      }
-
-      private void SaveWindowPosition()
-      {
-         var s = Settings.Default;
-         s.AppForm_SavedPositionExists = true;
-         s.AppForm_WindowState = WindowState.Value;
-         if (WindowState.Value == FormWindowState.Normal)
-         {
-            s.AppForm_Location = Location.Value;
-            s.AppForm_Size = Size.Value;
-         }
-         s.Save();
       }
 
       [OnSignal("AboutClick")]

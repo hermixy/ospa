@@ -14,8 +14,11 @@
 
 using ProgDev.FrontEnd.Common.FlexForms;
 using System;
+using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -25,13 +28,27 @@ namespace ProgDev.FrontEnd.Forms
    {
       private readonly ProjectContentForm _ProjectContentForm;
 
+      public IDockContent GetContentFromPersistString(string perStr)
+      {
+         if (perStr == typeof(ProjectContentForm).ToString())
+            return _ProjectContentForm;
+         else
+            throw new Exception("Unknown window!");
+      }
+
       public AppForm(AppFormViewModel viewModel, ProjectContentForm projectContentForm)
       {
          InitializeComponent();
 
+         // Project content form
          _ProjectContentForm = projectContentForm;
          _ProjectContentForm.Show(_DockPanel, DockState.DockLeft);
-
+         // Dock panel
+         _DockPanel.BindDockLeftPortion(viewModel.DockLeftPortion);
+         _DockPanel.BindDockRightPortion(viewModel.DockRightPortion);
+         _DockPanel.BindDockTopPortion(viewModel.DockTopPortion);
+         _DockPanel.BindDockBottomPortion(viewModel.DockBottomPortion);
+         _ProjectContentForm.BindDockState(viewModel.ProjectContentFormDockState);
          // Window frame
          this.BindLocation(viewModel.Location);
          this.BindSize(viewModel.Size);
@@ -67,6 +84,8 @@ namespace ProgDev.FrontEnd.Forms
          // Help menu
          _AboutMenuItem.BindClick(viewModel.AboutClick);
          viewModel.Start(this);
+
+         _ProjectContentForm.Width = 500;
       }
 
       private void OnTopToolStripPanelPaint(object sender, PaintEventArgs e)
@@ -81,6 +100,11 @@ namespace ProgDev.FrontEnd.Forms
          Control c = (Control)sender;
          e.Graphics.DrawLine(SystemPens.ControlDark, 0, 0, c.Width - 1, 0);
          e.Graphics.DrawLine(SystemPens.ControlLight, 0, 1, c.Width - 1, 1);
+      }
+
+      protected override void OnClosing(CancelEventArgs e)
+      {
+         base.OnClosing(e);
       }
    }
 }
