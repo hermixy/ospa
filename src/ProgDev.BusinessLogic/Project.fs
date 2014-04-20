@@ -230,10 +230,10 @@ module private FileOperations =
       | _ -> ()
       // Perform the move.
       let files = bundle.Files |> List.map (fun x ->
-         CheckFileDoesNotExist newFolder (ToNamePart x.Filename) bundle
          let namePath = (x.Folder, ToNamePart x.Filename)
          if namePaths |> List.exists (fun y -> y = namePath) then
             // This is one of the files being moved.
+            CheckFileDoesNotExist newFolder (ToNamePart x.Filename) bundle
             { Folder = newFolder; Filename = x.Filename; Content = x.Filename } : BundleFile
          else x)
       { Files = files }
