@@ -249,6 +249,25 @@ module private FileOperations =
             not (namePathsToDelete |> List.exists ((=) namePath)))
       { Files = bundleFiles }
 
+   let DuplicateFile (fileToClone : File) (bundle : Bundle) =
+      let HasFile folder name = 
+         bundle.Files 
+         |> List.exists (fun x -> x.Folder =? folder && (ToNamePart x.Filename) =? name)
+      let bundleFile = GetBundleFile fileToClone.Folder fileToClone.Name bundle
+      // Find a unique filename by appending a number starting at 2.
+      let cloneFilename = 
+         Seq.initInfinite (fun x -> x + 2)
+         |> Seq.map (fun number -> String.Format("{0}{1}", fileToClone.Name, number))
+         |> Seq.find (fun name -> not (HasFile fileToClone.Folder name))
+         |> fileToClone.ToNewFilename
+      let newFile = { Folder = fileToClone.Folder; Filename = cloneFilename; Content = bundleFile.Content  }
+      { Files = List.Cons(newFile, bundle.Files) }
+
+   let rec DuplicateFiles (filesToClone : File list) (bundle : Bundle) =
+      match filesToClone with
+      | x :: xs -> (DuplicateFile x bundle) |> (DuplicateFiles xs)
+      | [] -> bundle
+
 (*********************************************************************************************************************)
 type ProjectCommands () =
    member this.CanUndo with get () = BundleManager.CanUndo()
@@ -268,5 +287,8 @@ type ProjectCommands () =
 
    member this.DeleteFiles (files : File seq) =
       BundleManager.Do (FileOperations.DeleteFiles (files |> Seq.toList))
+
+   member this.DuplicateFiles (files : File seq) =
+      BundleManager.Do (FileOperations.DuplicateFiles (files |> Seq.toList))
 
 let Commands = new ProjectCommands()

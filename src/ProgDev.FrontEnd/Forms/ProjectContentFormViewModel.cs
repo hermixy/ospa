@@ -32,6 +32,7 @@ namespace ProgDev.FrontEnd.Forms
       public Signal RenameClick;
       public Signal MoveClick;
       public Signal DeleteClick;
+      public Signal DuplicateClick;
 
       protected override void Initialize()
       {
@@ -81,6 +82,13 @@ namespace ProgDev.FrontEnd.Forms
       {
          var files = SelectedList.Select(x => x.Tag).Cast<Project.File>();
          Project.Commands.DeleteFiles(files);
+      }
+
+      [OnSignal("DuplicateClick")]
+      private void OnDuplicateClick()
+      {
+         var files = SelectedList.Select(x => x.Tag).Cast<Project.File>();
+         Project.Commands.DuplicateFiles(files);
       }
    }
 }
