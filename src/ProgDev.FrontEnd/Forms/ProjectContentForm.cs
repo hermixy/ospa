@@ -32,6 +32,7 @@ namespace ProgDev.FrontEnd.Forms
          _ContextMnu.BindEnabled(viewModel.ContextMenuEnabled);
          _RenameMnu.BindEnabled(viewModel.RenameEnabled);
          _RenameMnu.BindClick(viewModel.RenameClick);
+         _MoveMnu.BindClick(viewModel.MoveClick);
          viewModel.Start(this);
       }
 

@@ -14,6 +14,8 @@
 
 using ProgDev.BusinessLogic;
 using ProgDev.Resources;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProgDev.FrontEnd.Forms
 {
@@ -25,6 +27,11 @@ namespace ProgDev.FrontEnd.Forms
          return new AppForm(new AppFormViewModel(), projectContentForm);
       }
 
+      public static MessageForm NewErrorForm(string message)
+      {
+         return new MessageForm(message, Strings.ErrorTitle, icon: Images.Error32);
+      }
+      
       public static AboutForm NewAboutForm()
       {
          return new AboutForm(new AboutFormViewModel());
@@ -40,9 +47,9 @@ namespace ProgDev.FrontEnd.Forms
          return new RenameFileForm(new RenameFileFormViewModel(file));
       }
 
-      public static MessageForm NewErrorForm(string message)
+      public static MoveFileForm NewMoveFileForm(IEnumerable<Project.File> files)
       {
-         return new MessageForm(message, Strings.ErrorTitle, icon: Images.Error32);
+         return new MoveFileForm(new MoveFileFormViewModel(files.ToList()));
       }
    }
 }

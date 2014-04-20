@@ -100,6 +100,7 @@
     <Compile Include="Forms\MoveFileForm.Designer.cs">
       <DependentUpon>MoveFileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MoveFileFormViewModel.cs" />
     <Compile Include="Forms\NewFileFormViewModel.cs" />
     <Compile Include="Forms\AboutFormViewModel.cs" />
     <Compile Include="Forms\AppForm.cs">

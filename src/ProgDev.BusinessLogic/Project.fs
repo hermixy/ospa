@@ -213,6 +213,17 @@ module private FileOperations =
       let files = bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x) 
       { Files = files }
 
+   let MoveFiles (namePaths : (string * string) list) (newFolder : string) (bundle : Bundle) =
+      // namePaths = list of (folder, name without extension)
+      let files = bundle.Files |> List.map (fun x ->
+         CheckFileDoesNotExist newFolder (ToNamePart x.Filename) bundle
+         let namePath = (x.Folder, ToNamePart x.Filename)
+         if namePaths |> List.exists (fun y -> y = namePath) then
+            // This is one of the files being moved.
+            { Folder = newFolder; Filename = x.Filename; Content = x.Filename } : BundleFile
+         else x)
+      { Files = files }
+
    let DeleteFile (file : File) (bundle : Bundle) =
       let file = bundle |> GetBundleFile file.Folder file.Name
       let files = bundle.Files |> List.filter (fun x -> x <> file)
@@ -231,5 +242,9 @@ type ProjectCommands () =
    member this.RenameFile (file : File) newName =
       if file.Name <> newName then
          BundleManager.Do (FileOperations.RenameFile file newName)
+
+   member this.MoveFiles (files : File seq) newFolder =
+      let namePaths = files |> Seq.map (fun x -> (x.Folder, x.Name)) |> Seq.toList
+      BundleManager.Do (FileOperations.MoveFiles namePaths newFolder)
 
 let Commands = new ProjectCommands()

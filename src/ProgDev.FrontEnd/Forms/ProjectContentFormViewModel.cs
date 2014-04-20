@@ -28,6 +28,7 @@ namespace ProgDev.FrontEnd.Forms
       public ComputedField<bool> ContextMenuEnabled;
       public ComputedField<bool> RenameEnabled;
       public Signal RenameClick;
+      public Signal MoveClick;
 
       protected override void Initialize()
       {
@@ -63,6 +64,13 @@ namespace ProgDev.FrontEnd.Forms
       {
          var file = (Project.File)SelectedList.Single().Tag;
          ShowChildDialog(FormsFactory.NewRenameFileForm(file));
+      }
+
+      [OnSignal("MoveClick")]
+      private void OnMoveClick()
+      {
+         var files = SelectedList.Select(x => x.Tag).Cast<Project.File>();
+         ShowChildDialog(FormsFactory.NewMoveFileForm(files));
       }
    }
 }

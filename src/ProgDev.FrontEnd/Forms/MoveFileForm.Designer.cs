@@ -35,10 +35,10 @@
          this._OkBtn = new System.Windows.Forms.Button();
          this._NameLbl = new System.Windows.Forms.Label();
          this._ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-         this.comboBox1 = new System.Windows.Forms.ComboBox();
-         this.label1 = new System.Windows.Forms.Label();
-         this.listView1 = new System.Windows.Forms.ListView();
-         this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+         this._NewFolderCmb = new System.Windows.Forms.ComboBox();
+         this._NewFolderLbl = new System.Windows.Forms.Label();
+         this._PouLst = new System.Windows.Forms.ListView();
+         this._NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          ((System.ComponentModel.ISupportInitialize)(this._IconBox)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this._ErrorProvider)).BeginInit();
          this.SuspendLayout();
@@ -88,45 +88,45 @@
          this._ErrorProvider.ContainerControl = this;
          this._ErrorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("_ErrorProvider.Icon")));
          // 
-         // comboBox1
+         // _NewFolderCmb
          // 
-         this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+         this._NewFolderCmb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-         this.comboBox1.FormattingEnabled = true;
-         this.comboBox1.Location = new System.Drawing.Point(124, 147);
-         this.comboBox1.Name = "comboBox1";
-         this.comboBox1.Size = new System.Drawing.Size(212, 23);
-         this.comboBox1.TabIndex = 2;
+         this._NewFolderCmb.FormattingEnabled = true;
+         this._NewFolderCmb.Location = new System.Drawing.Point(124, 147);
+         this._NewFolderCmb.Name = "_NewFolderCmb";
+         this._NewFolderCmb.Size = new System.Drawing.Size(212, 23);
+         this._NewFolderCmb.TabIndex = 2;
          // 
-         // label1
+         // _NewFolderLbl
          // 
-         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-         this.label1.AutoSize = true;
-         this.label1.Location = new System.Drawing.Point(50, 150);
-         this.label1.Name = "label1";
-         this.label1.Size = new System.Drawing.Size(68, 15);
-         this.label1.TabIndex = 1;
-         this.label1.Text = "New &folder:";
+         this._NewFolderLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+         this._NewFolderLbl.AutoSize = true;
+         this._NewFolderLbl.Location = new System.Drawing.Point(50, 150);
+         this._NewFolderLbl.Name = "_NewFolderLbl";
+         this._NewFolderLbl.Size = new System.Drawing.Size(68, 15);
+         this._NewFolderLbl.TabIndex = 1;
+         this._NewFolderLbl.Text = "New &folder:";
          // 
-         // listView1
+         // _PouLst
          // 
-         this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+         this._PouLst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-         this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-         this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-         this.listView1.Location = new System.Drawing.Point(124, 12);
-         this.listView1.Name = "listView1";
-         this.listView1.Size = new System.Drawing.Size(212, 120);
-         this.listView1.TabIndex = 15;
-         this.listView1.UseCompatibleStateImageBehavior = false;
-         this.listView1.View = System.Windows.Forms.View.Details;
+         this._PouLst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._NameCol});
+         this._PouLst.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+         this._PouLst.Location = new System.Drawing.Point(124, 12);
+         this._PouLst.Name = "_PouLst";
+         this._PouLst.Size = new System.Drawing.Size(212, 120);
+         this._PouLst.TabIndex = 15;
+         this._PouLst.UseCompatibleStateImageBehavior = false;
+         this._PouLst.View = System.Windows.Forms.View.Details;
          // 
-         // columnHeader1
+         // _NameCol
          // 
-         this.columnHeader1.Text = "Name";
-         this.columnHeader1.Width = 146;
+         this._NameCol.Text = "Name";
+         this._NameCol.Width = 146;
          // 
          // MoveFileForm
          // 
@@ -135,9 +135,9 @@
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.CancelButton = this._CancelBtn;
          this.ClientSize = new System.Drawing.Size(348, 227);
-         this.Controls.Add(this.listView1);
-         this.Controls.Add(this.comboBox1);
-         this.Controls.Add(this.label1);
+         this.Controls.Add(this._PouLst);
+         this.Controls.Add(this._NewFolderCmb);
+         this.Controls.Add(this._NewFolderLbl);
          this.Controls.Add(this._IconBox);
          this.Controls.Add(this._CancelBtn);
          this.Controls.Add(this._OkBtn);
@@ -164,9 +164,9 @@
       private System.Windows.Forms.Button _OkBtn;
       private System.Windows.Forms.Label _NameLbl;
       private System.Windows.Forms.ErrorProvider _ErrorProvider;
-      private System.Windows.Forms.ComboBox comboBox1;
-      private System.Windows.Forms.Label label1;
-      private System.Windows.Forms.ListView listView1;
-      private System.Windows.Forms.ColumnHeader columnHeader1;
+      private System.Windows.Forms.ComboBox _NewFolderCmb;
+      private System.Windows.Forms.Label _NewFolderLbl;
+      private System.Windows.Forms.ListView _PouLst;
+      private System.Windows.Forms.ColumnHeader _NameCol;
    }
 }
