@@ -23,12 +23,15 @@ namespace ProgDev.FrontEnd.Forms
 {
    public sealed class ProjectContentFormViewModel : FormViewModel
    {
+      // List view
       public ListField<ListViewRow> List;
       public ListField<ListViewRow> SelectedList;
+      // Context menu
       public ComputedField<bool> ContextMenuEnabled;
       public ComputedField<bool> RenameEnabled;
       public Signal RenameClick;
       public Signal MoveClick;
+      public Signal DeleteClick;
 
       protected override void Initialize()
       {
@@ -71,6 +74,13 @@ namespace ProgDev.FrontEnd.Forms
       {
          var files = SelectedList.Select(x => x.Tag).Cast<Project.File>();
          ShowChildDialog(FormsFactory.NewMoveFileForm(files));
+      }
+
+      [OnSignal("DeleteClick")]
+      private void OnDeleteClick()
+      {
+         var files = SelectedList.Select(x => x.Tag).Cast<Project.File>();
+         Project.Commands.DeleteFiles(files);
       }
    }
 }

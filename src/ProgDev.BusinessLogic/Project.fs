@@ -214,34 +214,40 @@ module private FileOperations =
       { Files = files }
 
    // namePaths = list of (folder, name without extension)
-   let MoveFiles (namePaths : (string * string) list) (newFolder : string) (bundle : Bundle) =
+   let MoveFiles (filesToMove : File list) (newFolder : string) (bundle : Bundle) =
       // Make sure there aren't two files with the same name in the group being moved.
       let names =
-         namePaths 
-         |> List.map (fun (folder, name) -> name)
+         filesToMove
+         |> List.map (fun x -> x.Name)
          |> List.sort
          |> List.toSeq
       let firstDuplicate =
          names 
          |> Seq.zip (names |> Seq.skip 1)
-         |> Seq.tryFind (fun (a, b) -> a = b)
+         |> Seq.tryFind (fun (a, b) -> a =? b)
       match firstDuplicate with
       | Some (a, b) -> failwith (String.Format(Strings.ErrorDuplicateNameInMove, a))
       | _ -> ()
       // Perform the move.
-      let files = bundle.Files |> List.map (fun x ->
-         let namePath = (x.Folder, ToNamePart x.Filename)
-         if namePaths |> List.exists (fun y -> y = namePath) then
+      let bundleFiles = bundle.Files |> List.map (fun bundleFile ->
+         if filesToMove |> List.exists (fun projectFile -> projectFile.Folder =? bundleFile.Folder && 
+                                                           projectFile.Name =? (ToNamePart bundleFile.Filename)) then
             // This is one of the files being moved.
-            CheckFileDoesNotExist newFolder (ToNamePart x.Filename) bundle
-            { Folder = newFolder; Filename = x.Filename; Content = x.Filename } : BundleFile
-         else x)
-      { Files = files }
+            CheckFileDoesNotExist newFolder (ToNamePart bundleFile.Filename) bundle
+            { Folder = newFolder; Filename = bundleFile.Filename; Content = bundleFile.Filename } : BundleFile
+         else bundleFile)
+      { Files = bundleFiles }
 
-   let DeleteFile (file : File) (bundle : Bundle) =
-      let file = bundle |> GetBundleFile file.Folder file.Name
-      let files = bundle.Files |> List.filter (fun x -> x <> file)
-      { Files = files }
+   let DeleteFiles (filesToDelete : File list) (bundle : Bundle) =
+      let namePathsToDelete = 
+         filesToDelete
+         |> List.map (fun x -> (x.Folder, x.Name))
+      let bundleFiles = 
+         bundle.Files
+         |> List.filter (fun bundleFile -> 
+            let namePath = (bundleFile.Folder, ToNamePart bundleFile.Filename)
+            not (namePathsToDelete |> List.exists ((=) namePath)))
+      { Files = bundleFiles }
 
 (*********************************************************************************************************************)
 type ProjectCommands () =
@@ -258,7 +264,9 @@ type ProjectCommands () =
          BundleManager.Do (FileOperations.RenameFile file newName)
 
    member this.MoveFiles (files : File seq) newFolder =
-      let namePaths = files |> Seq.map (fun x -> (x.Folder, x.Name)) |> Seq.toList
-      BundleManager.Do (FileOperations.MoveFiles namePaths newFolder)
+      BundleManager.Do (FileOperations.MoveFiles (files |> Seq.toList) newFolder)
+
+   member this.DeleteFiles (files : File seq) =
+      BundleManager.Do (FileOperations.DeleteFiles (files |> Seq.toList))
 
 let Commands = new ProjectCommands()
