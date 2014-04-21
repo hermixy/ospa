@@ -2,7 +2,7 @@
 
 * [OSPA Architecture](doc/OSPA Architecture.md)
 * [OSPA Chipset](doc/OSPA Chipset.md)
-* [ProgDev - Programming software](ProgDev/)
+* [ProgDev - Programming software](src/)
 
 (2014-04-13) Development screenshot:
 
