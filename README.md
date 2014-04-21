@@ -4,8 +4,6 @@
 * [OSPA Chipset](doc/OSPA Chipset.md)
 * [ProgDev - Programming software](src/)
 
-(2014-04-13) Development screenshot:
+(2014-04-21) Development screenshot: Project management and undo/redo is in place.
 
 ![Screenshot](Screenshot.png)
-
-Basic shell with the ability to create POUs and folders.
