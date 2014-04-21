@@ -27,23 +27,27 @@ namespace ProgDev.FrontEnd.Controls
          {
             return _SourceText;
          }
-         set
-         {
-            if (_SourceText != value)
-            {
-               _SourceText = value;
-               if (SourceTextChange != null)
-                  SourceTextChange(this, EventArgs.Empty);
-            }
-         }
       }
 
       public event EventHandler SourceTextChange;
       
-      public void SetSourceText(string text)
+      public void ExternalSetSourceText(string text)
       {
-         _SourceText = text;
-         OnExternalTextChange();
+         if (_SourceText != text)
+         {
+            _SourceText = text;
+            OnExternalTextChange();
+         }
+      }
+
+      protected void InternalSetSourceText(string text)
+      {
+         if (_SourceText != text)
+         {
+            _SourceText = text;
+            if (SourceTextChange != null)
+               SourceTextChange(this, EventArgs.Empty);
+         }
       }
 
       protected virtual void OnExternalTextChange()

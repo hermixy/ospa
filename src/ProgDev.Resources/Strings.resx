@@ -167,6 +167,9 @@
     <value>A POU named "{0}" already exists in the folder "{1}".</value>
     <comment>0 = filename, 1 = folder name</comment>
   </data>
+  <data name="ErrorFileNotFound" xml:space="preserve">
+    <value>File not found.</value>
+  </data>
   <data name="ErrorInvalidLanguageExtension" xml:space="preserve">
     <value>Invalid POU language file extension.</value>
   </data>

@@ -13,7 +13,10 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using ProgDev.BusinessLogic;
+using ProgDev.Domain;
+using ProgDev.FrontEnd.Controls;
 using ProgDev.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -50,6 +53,28 @@ namespace ProgDev.FrontEnd.Forms
       public static MoveFileForm NewMoveFileForm(IEnumerable<Project.File> files)
       {
          return new MoveFileForm(new MoveFileFormViewModel(files.ToList()));
+      }
+
+      public static EditorForm NewEditorForm(Project.File file)
+      {
+         switch (file.Language)
+         {
+            // Graphical languages
+            case PouLanguage.FunctionBlockDiagram:
+               throw new NotImplementedException();
+            case PouLanguage.LadderDiagram:
+               throw new NotImplementedException();
+            case PouLanguage.SequentialFunctionChart:
+               throw new NotImplementedException();
+            // Textual languages
+            case PouLanguage.InstructionList:
+               return new EditorForm(new CodeEditorControl(), file);
+            case PouLanguage.StructuredText:
+               return new EditorForm(new CodeEditorControl(), file);
+            // Invalid value
+            default:
+               throw new ArgumentOutOfRangeException("file");
+         }
       }
    }
 }

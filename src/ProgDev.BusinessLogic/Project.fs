@@ -19,32 +19,12 @@ open ProgDev.Services.Utility
 open ProgDev.Resources
 open System
 
-type File (folder, name, pouType, pouLanguage) =
-   member this.Folder : string = folder
-   member this.Name : string = name // No file extension, just the name portion
-   member this.Type : PouType = pouType
-   member this.Language : PouLanguage = pouLanguage
-
-   member this.ToNewFilename (name : string) : string =
-      let languageExt = FileExtensions.GetLanguageExtension this.Language
-      let typeExt = FileExtensions.GetTypeExtension this.Type
-      name + "." + languageExt + "." + typeExt
-
-   member this.ToFilename () : string =
-      this.ToNewFilename this.Name
-
-let ToFile (x : BundleFile) : File =
-   let dottedParts = x.Filename.Split('.')
-   if dottedParts.Length <> 3 then failwith Strings.ErrorMalformedFilename
-   let name = dottedParts.[0]
-   let pouLanguage = FileExtensions.ParseLanguageExtension dottedParts.[1]
-   let pouType = FileExtensions.ParseTypeExtension dottedParts.[2]
-   new File(x.Folder, name, pouType, pouLanguage)
-
 (*********************************************************************************************************************)
 let mutable private _FilePath : string option = None
 let private _ChangedEvent = new DelegateEvent<System.Action>()
 let private Notify () = _ChangedEvent.Trigger([| |])
+
+let private ToNamePart (filename : string) : string = filename.Split('.').[0]
 
 (*********************************************************************************************************************)
 module private BundleManager =
@@ -59,6 +39,9 @@ module private BundleManager =
 
    let CanUndo () = not _UndoStack.IsEmpty
    let CanRedo () = not _RedoStack.IsEmpty
+
+   let GetContent (folder : string) (name : string) =
+      (_Bundle.Files |> List.find (fun x -> x.Folder =? folder && (ToNamePart x.Filename) =? name)).Content
 
    let Do (action : Bundle -> Bundle) =
       _UndoStack <- List.Cons(_Bundle, _UndoStack)
@@ -109,6 +92,41 @@ module private BundleManager =
       _Dirty <- false
       Notify()
 
+let private MaybeGetBundleFile (folder : string) (name : string) (bundle : Bundle) =
+   bundle.Files 
+   |> List.toSeq 
+   |> Seq.tryFind (fun x -> (ToNamePart x.Filename) =? name && x.Folder =? folder) 
+
+let private GetBundleFile (folder : string) (name : string) (bundle : Bundle) =
+   match (MaybeGetBundleFile folder name bundle) with
+   | Some x -> x
+   | None -> failwith Strings.ErrorFileNotFound
+
+(*********************************************************************************************************************)
+type File (folder, name, pouType, pouLanguage) =
+   member this.Folder : string = folder
+   member this.Name : string = name // No file extension, just the name portion
+   member this.Type : PouType = pouType
+   member this.Language : PouLanguage = pouLanguage
+   member this.Content with get () = BundleManager.GetContent this.Folder this.Name
+   member this.Exists with get () = (MaybeGetBundleFile this.Folder this.Name (BundleManager.Bundle())) <> None
+
+let private ToNewFilename (file : File) (name : string) : string =
+   let languageExt = FileExtensions.GetLanguageExtension file.Language
+   let typeExt = FileExtensions.GetTypeExtension file.Type
+   name + "." + languageExt + "." + typeExt
+
+let private ToFilename (file : File) : string =
+   ToNewFilename file file.Name
+
+let private ToFile (x : BundleFile) : File =
+   let dottedParts = x.Filename.Split('.')
+   if dottedParts.Length <> 3 then failwith Strings.ErrorMalformedFilename
+   let name = dottedParts.[0]
+   let pouLanguage = FileExtensions.ParseLanguageExtension dottedParts.[1]
+   let pouType = FileExtensions.ParseTypeExtension dottedParts.[2]
+   new File(x.Folder, name, pouType, pouLanguage)
+
 (*********************************************************************************************************************)
 type ProjectEvents () =
    [<CLIEvent>]
@@ -156,14 +174,6 @@ let Save (filePath : string) = BundleManager.Save filePath
 
 (*********************************************************************************************************************)
 module private FileOperations =
-   let private ToNamePart (filename : string) : string = filename.Split('.').[0]
-
-   let private GetBundleFile (folder : string) (name : string) (bundle : Bundle) =
-      bundle.Files 
-      |> List.toSeq 
-      |> Seq.filter (fun x -> (ToNamePart x.Filename) =? name && x.Folder =? folder) 
-      |> Seq.exactlyOne
-
    let private CheckFileDoesNotExist folder name bundle =
       if bundle.Files |> List.exists (fun x -> (ToNamePart x.Filename) =? name && x.Folder =? folder) 
          then failwith (String.Format(Strings.ErrorFileExists, name, folder))
@@ -208,7 +218,7 @@ module private FileOperations =
    let RenameFile (file : File) (newName : string) (bundle : Bundle) =
       CheckFileDoesNotExist file.Folder newName bundle
       let oldFile = GetBundleFile file.Folder file.Name bundle
-      let newFilename = file.ToNewFilename newName
+      let newFilename = ToNewFilename file newName
       let newFile = { Folder = oldFile.Folder; Filename = newFilename; Content = oldFile.Content } : BundleFile
       let files = bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x) 
       { Files = files }
@@ -259,14 +269,19 @@ module private FileOperations =
          Seq.initInfinite (fun x -> x + 2)
          |> Seq.map (fun number -> String.Format("{0}{1}", fileToClone.Name, number))
          |> Seq.find (fun name -> not (HasFile fileToClone.Folder name))
-         |> fileToClone.ToNewFilename
-      let newFile = { Folder = fileToClone.Folder; Filename = cloneFilename; Content = bundleFile.Content  }
+         |> ToNewFilename fileToClone
+      let newFile = { Folder = fileToClone.Folder; Filename = cloneFilename; Content = bundleFile.Content }
       { Files = List.Cons(newFile, bundle.Files) }
 
    let rec DuplicateFiles (filesToClone : File list) (bundle : Bundle) =
       match filesToClone with
       | x :: xs -> (DuplicateFile x bundle) |> (DuplicateFiles xs)
       | [] -> bundle
+
+   let ModifyFile (file : File) (newContent : string) (bundle : Bundle) =
+      let oldFile = GetBundleFile file.Folder file.Name bundle
+      let newFile = { Folder = file.Folder; Filename = oldFile.Filename; Content = newContent }
+      { Files = bundle.Files |> List.map (fun x -> if x = oldFile then newFile else x) }
 
 (*********************************************************************************************************************)
 type ProjectCommands () =
@@ -290,5 +305,8 @@ type ProjectCommands () =
 
    member this.DuplicateFiles (files : File seq) =
       BundleManager.Do (FileOperations.DuplicateFiles (files |> Seq.toList))
+
+   member this.ModifyFile (file : File) newContent =
+      BundleManager.Do (FileOperations.ModifyFile file newContent)
 
 let Commands = new ProjectCommands()

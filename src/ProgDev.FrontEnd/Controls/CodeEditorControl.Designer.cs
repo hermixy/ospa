@@ -28,27 +28,27 @@
       /// </summary>
       private void InitializeComponent()
       {
-         this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
+         this._TextEditor = new ICSharpCode.TextEditor.TextEditorControl();
          this.SuspendLayout();
          // 
-         // textEditorControl1
+         // _TextEditor
          // 
-         this.textEditorControl1.AutoScroll = true;
-         this.textEditorControl1.ConvertTabsToSpaces = true;
-         this.textEditorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.textEditorControl1.IsReadOnly = false;
-         this.textEditorControl1.Location = new System.Drawing.Point(0, 0);
-         this.textEditorControl1.Name = "textEditorControl1";
-         this.textEditorControl1.ShowVRuler = false;
-         this.textEditorControl1.Size = new System.Drawing.Size(556, 424);
-         this.textEditorControl1.TabIndent = 3;
-         this.textEditorControl1.TabIndex = 0;
+         this._TextEditor.AutoScroll = true;
+         this._TextEditor.ConvertTabsToSpaces = true;
+         this._TextEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+         this._TextEditor.IsReadOnly = false;
+         this._TextEditor.Location = new System.Drawing.Point(0, 0);
+         this._TextEditor.Name = "_TextEditor";
+         this._TextEditor.ShowVRuler = false;
+         this._TextEditor.Size = new System.Drawing.Size(556, 424);
+         this._TextEditor.TabIndent = 3;
+         this._TextEditor.TabIndex = 0;
          // 
          // CodeEditorControl
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.Controls.Add(this.textEditorControl1);
+         this.Controls.Add(this._TextEditor);
          this.Name = "CodeEditorControl";
          this.Size = new System.Drawing.Size(556, 424);
          this.ResumeLayout(false);
@@ -57,6 +57,6 @@
 
       #endregion
 
-      private ICSharpCode.TextEditor.TextEditorControl textEditorControl1;
+      private ICSharpCode.TextEditor.TextEditorControl _TextEditor;
    }
 }

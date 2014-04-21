@@ -196,6 +196,15 @@ namespace ProgDev.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File not found..
+        /// </summary>
+        public static string ErrorFileNotFound {
+            get {
+                return ResourceManager.GetString("ErrorFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid POU language file extension..
         /// </summary>
         public static string ErrorInvalidLanguageExtension {

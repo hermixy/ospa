@@ -12,15 +12,6 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ProgDev.FrontEnd.Controls
 {
@@ -29,11 +20,12 @@ namespace ProgDev.FrontEnd.Controls
       public CodeEditorControl()
       {
          InitializeComponent();
+         _TextEditor.Text = SourceText;
       }
 
       protected override void OnExternalTextChange()
       {
-         throw new NotImplementedException();
+         _TextEditor.Text = SourceText;
       }
    }
 }
