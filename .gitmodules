@@ -2,3 +2,6 @@
 	path = external/ospa-dockpanelsuite
 	url = git://github.com/electroly/ospa-dockpanelsuite.git
 	branch = development_3.0
+[submodule "external/ospa-texteditor"]
+	path = external/ospa-texteditor
+	url = https://github.com/electroly/ospa-texteditor.git
