@@ -8,4 +8,3 @@ pushd ProgDev
 msbuild /target:publish /p:Configuration=Release /verbosity:q /nologo
 popd
 "C:\Program Files (x86)\NSIS\makensis.exe" /V3 Installer.nsi
-pause

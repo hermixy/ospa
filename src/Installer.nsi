@@ -13,7 +13,7 @@
 ; Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 Name "OSPA ProgDev"
-OutFile "ProgDev-1.0.0.exe"
+OutFile "ProgDev-X.X.X.exe"
 InstallDir $PROGRAMFILES\OSPA
 
 InstallDirRegKey HKLM "Software\OSPA" "Install_Dir"

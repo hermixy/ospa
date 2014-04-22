@@ -1,3 +1,4 @@
 packages/
 TestResults/
 ProgDev-*.exe
+AuthenticateToS3.bat
