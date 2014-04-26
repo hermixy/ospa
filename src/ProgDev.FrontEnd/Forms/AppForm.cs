@@ -28,14 +28,6 @@ namespace ProgDev.FrontEnd.Forms
    {
       private readonly ProjectContentForm _ProjectContentForm;
 
-      public IDockContent GetContentFromPersistString(string perStr)
-      {
-         if (perStr == typeof(ProjectContentForm).ToString())
-            return _ProjectContentForm;
-         else
-            throw new Exception("Unknown window!");
-      }
-
       public AppForm(AppFormViewModel viewModel, ProjectContentForm projectContentForm)
       {
          InitializeComponent();

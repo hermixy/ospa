@@ -16,6 +16,7 @@ using ProgDev.FrontEnd.Common.FlexForms;
 using System;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using ProgDev.FrontEnd.Common;
 
 namespace ProgDev.FrontEnd.Forms
 {
@@ -25,7 +26,7 @@ namespace ProgDev.FrontEnd.Forms
       {
          InitializeComponent();
 
-         SizeChanged += OnSizeChanged;
+         _ListView.AutoSizeColumnWidths(_NameCol);
 
          _ListView.BindItems(viewModel.List);
          _ListView.BindSelectedItems(viewModel.SelectedList);
@@ -36,11 +37,6 @@ namespace ProgDev.FrontEnd.Forms
          _DeleteMnu.BindClick(viewModel.DeleteClick);
          _DuplicateMnu.BindClick(viewModel.DuplicateClick);
          viewModel.Start(this);
-      }
-
-      private void OnSizeChanged(object sender, EventArgs e)
-      {
-         _NameCol.Width = Width - _TypeCol.Width - _LanguageCol.Width - SystemInformation.VerticalScrollBarWidth - 5;
       }
    }
 }

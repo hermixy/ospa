@@ -64,6 +64,7 @@
     <Compile Include="Common\FlexSplitContainer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Common\WinFormsExtensions.cs" />
     <Compile Include="Controls\CodeEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
