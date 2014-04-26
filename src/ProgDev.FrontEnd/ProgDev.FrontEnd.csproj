@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\BufferedListView.cs">
+    <Compile Include="Common\Toolkit\BufferedListView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\DomainExtensions.cs" />
@@ -61,10 +61,10 @@
     <Compile Include="Common\FlexForms\OnSignalAttribute.cs" />
     <Compile Include="Common\FlexForms\Signal.cs" />
     <Compile Include="Common\FlexForms\ViewModel.cs" />
-    <Compile Include="Common\FlexSplitContainer.cs">
+    <Compile Include="Common\Toolkit\FlexSplitContainer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\WinFormsExtensions.cs" />
+    <Compile Include="Common\Toolkit\WinFormsExtensions.cs" />
     <Compile Include="Controls\CodeEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

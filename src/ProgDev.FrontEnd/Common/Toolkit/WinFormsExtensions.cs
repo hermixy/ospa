@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace ProgDev.FrontEnd.Common
+namespace ProgDev.FrontEnd.Common.Toolkit
 {
    public static class WinFormsExtensions
    {

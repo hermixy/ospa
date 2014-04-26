@@ -38,7 +38,7 @@
          this._RenameMnu = new System.Windows.Forms.ToolStripMenuItem();
          this._Separator2 = new System.Windows.Forms.ToolStripSeparator();
          this._DeleteMnu = new System.Windows.Forms.ToolStripMenuItem();
-         this._ListView = new ProgDev.FrontEnd.Common.BufferedListView();
+         this._ListView = new ProgDev.FrontEnd.Common.Toolkit.BufferedListView();
          this._NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._TypeCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._LanguageCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -161,7 +161,7 @@
 
       #endregion
 
-      private ProgDev.FrontEnd.Common.BufferedListView _ListView;
+      private ProgDev.FrontEnd.Common.Toolkit.BufferedListView _ListView;
       private System.Windows.Forms.ColumnHeader _NameCol;
       private System.Windows.Forms.ColumnHeader _TypeCol;
       private System.Windows.Forms.ColumnHeader _LanguageCol;

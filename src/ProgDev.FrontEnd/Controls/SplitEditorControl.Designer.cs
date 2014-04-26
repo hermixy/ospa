@@ -28,7 +28,7 @@
       /// </summary>
       private void InitializeComponent()
       {
-         this._SplitContainer = new ProgDev.FrontEnd.Common.FlexSplitContainer();
+         this._SplitContainer = new ProgDev.FrontEnd.Common.Toolkit.FlexSplitContainer();
          ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
          this._SplitContainer.SuspendLayout();
          this.SuspendLayout();
@@ -59,6 +59,6 @@
 
       #endregion
 
-      private Common.FlexSplitContainer _SplitContainer;
+      private Common.Toolkit.FlexSplitContainer _SplitContainer;
    }
 }

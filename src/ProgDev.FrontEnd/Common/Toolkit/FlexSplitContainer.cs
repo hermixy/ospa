@@ -15,7 +15,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ProgDev.FrontEnd.Common
+namespace ProgDev.FrontEnd.Common.Toolkit
 {
    public sealed class FlexSplitContainer : SplitContainer
    {

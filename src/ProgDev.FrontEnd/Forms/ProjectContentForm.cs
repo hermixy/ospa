@@ -16,7 +16,7 @@ using ProgDev.FrontEnd.Common.FlexForms;
 using System;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
-using ProgDev.FrontEnd.Common;
+using ProgDev.FrontEnd.Common.Toolkit;
 
 namespace ProgDev.FrontEnd.Forms
 {
