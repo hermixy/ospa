@@ -34,11 +34,12 @@
          // _TextEditor
          // 
          this._TextEditor.AutoScroll = true;
-         this._TextEditor.ConvertTabsToSpaces = true;
          this._TextEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+         this._TextEditor.EnableFolding = false;
          this._TextEditor.IsReadOnly = false;
          this._TextEditor.Location = new System.Drawing.Point(0, 0);
          this._TextEditor.Name = "_TextEditor";
+         this._TextEditor.ShowLineNumbers = false;
          this._TextEditor.ShowVRuler = false;
          this._TextEditor.Size = new System.Drawing.Size(556, 424);
          this._TextEditor.TabIndent = 3;

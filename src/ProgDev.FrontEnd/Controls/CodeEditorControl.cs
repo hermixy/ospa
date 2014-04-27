@@ -20,7 +20,10 @@ namespace ProgDev.FrontEnd.Controls
       public CodeEditorControl()
       {
          InitializeComponent();
+
          _TextEditor.Text = SourceText;
+         _TextEditor.TabIndent = 3;
+
       }
 
       protected override void OnExternalTextChange()
