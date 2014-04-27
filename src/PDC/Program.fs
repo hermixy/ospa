@@ -30,14 +30,15 @@ let Handle (verb : string) (args : string list) : int =
 
 [<EntryPoint>]
 let main argv = 
+   let args = Array.toList argv
    try
       if argv.Length = 0 then 
-         printfn "OSPA ProgDev Command Line Interface"
+         printfn "OSPA ProgDev Compiler"
          printfn "(C) 2014 Brian Luft"
-         printfn "---"
+         printfn ""
          printfn "Usage: pdc <command> <argument list>"
          printfn "Commands: bundle unbundle"
          -1
-      else Handle argv.[0] (argv |> Array.toSeq |> Seq.skip(1) |> Seq.toList)
+      else Handle args.Head args.Tail
    with
    | ex -> printfn "Fatal error!\n%s\n%s" ex.Message (ex.StackTrace.ToString()); -1

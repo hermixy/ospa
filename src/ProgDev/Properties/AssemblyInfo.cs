@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("OSPA ProgDev")]
 [assembly: AssemblyDescription("Programming and debugging tool for the Open Source PLC Architecture")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("OSPA")]
+[assembly: AssemblyCompany("Open Source PLC Architecture")]
 [assembly: AssemblyProduct("OSPA ProgDev")]
 [assembly: AssemblyCopyright("© 2014 Brian Luft")]
 [assembly: AssemblyTrademark("")]
