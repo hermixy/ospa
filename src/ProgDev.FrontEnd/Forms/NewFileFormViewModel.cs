@@ -53,7 +53,7 @@ namespace ProgDev.FrontEnd.Forms
          NameText.Value = _InitialName;
          FolderList.Set(Project.Contents.Folders);
          FolderText.Value = Project.Contents.Folders.DefaultIfEmpty("").FirstOrDefault();
-         TypeList.AddRange(new[] 
+         TypeList.Set(new[] 
          { 
             Strings.FileTypeProgram, 
             Strings.FileTypeFunctionBlock, 
@@ -63,7 +63,7 @@ namespace ProgDev.FrontEnd.Forms
             Strings.FileTypeClass, 
             Strings.FileTypeInterface 
          });
-         LanguageList.AddRange(new[] 
+         LanguageList.Set(new[] 
          { 
             Strings.LanguageIL, 
             Strings.LanguageLD, 
@@ -126,6 +126,48 @@ namespace ProgDev.FrontEnd.Forms
          { Strings.LanguageSFC, PouLanguage.SequentialFunctionChart },
          { Strings.LanguageST, PouLanguage.StructuredText }
       };
+
+      [OnChange("TypeSelectedIndex")]
+      private void OnTypeSelectedIndexChange()
+      {
+         if (TypeSelectedIndex.Value < 0)
+            return;
+
+         switch (_TypeMap[TypeList[TypeSelectedIndex.Value]])
+         {
+            case PouType.Program:
+            case PouType.FunctionBlock:
+               LanguageList.Set(new[] 
+               { 
+                  Strings.LanguageIL, 
+                  Strings.LanguageLD, 
+                  Strings.LanguageFBD, 
+                  Strings.LanguageSFC, 
+                  Strings.LanguageST 
+               });
+               break;
+
+            case PouType.Function:
+            case PouType.Class:
+            case PouType.Interface:
+               LanguageList.Set(new[] 
+               { 
+                  Strings.LanguageIL, 
+                  Strings.LanguageLD, 
+                  Strings.LanguageFBD, 
+                  Strings.LanguageST 
+               });
+               break;
+
+            case PouType.GlobalVars:
+            case PouType.DataType:
+               LanguageList.Set(new[] 
+               { 
+                  Strings.LanguageST 
+               });
+               break;
+         }
+      }
 
       [OnSignal("OkClick")]
       private void OnOkClick()
