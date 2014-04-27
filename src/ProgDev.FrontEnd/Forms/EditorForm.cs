@@ -29,6 +29,8 @@ namespace ProgDev.FrontEnd.Forms
       {
          InitializeComponent();
 
+         Text = file.Name;
+
          _Editor = editorControl;
          _Editor.Dock = DockStyle.Fill;
          _Editor.SourceTextChange += OnSourceTextChange;
