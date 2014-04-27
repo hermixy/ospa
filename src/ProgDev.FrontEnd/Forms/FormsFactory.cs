@@ -26,8 +26,12 @@ namespace ProgDev.FrontEnd.Forms
    {
       public static AppForm NewAppForm()
       {
-         var projectContentForm = new ProjectContentForm(new ProjectContentFormViewModel());
-         return new AppForm(new AppFormViewModel(), projectContentForm);
+         AppForm appForm = null; // will assign below
+         Action<IReadOnlyList<PouReference>> onOpenFiles = x => appForm.OnOpenFiles(x);
+         var projectContentFormViewModel = new ProjectContentFormViewModel(onOpenFiles);
+         var projectContentForm = new ProjectContentForm(projectContentFormViewModel);
+         appForm = new AppForm(new AppFormViewModel(), projectContentForm);
+         return appForm;
       }
 
       public static MessageForm NewErrorForm(string message)

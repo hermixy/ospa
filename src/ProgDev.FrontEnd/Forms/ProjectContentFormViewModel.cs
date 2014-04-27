@@ -13,20 +13,24 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using ProgDev.BusinessLogic;
+using ProgDev.Domain;
 using ProgDev.FrontEnd.Common;
 using ProgDev.FrontEnd.Common.FlexForms;
 using ProgDev.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.FrontEnd.Forms
 {
    public sealed class ProjectContentFormViewModel : FormViewModel
    {
+      private readonly Action<IReadOnlyList<PouReference>> _OnOpenFiles;
+
       // List view
       public ListField<ListViewRow> List;
       public ListField<ListViewRow> SelectedList;
+      public Signal ItemActivate;
       // Context menu
       public ComputedField<bool> ContextMenuEnabled;
       public ComputedField<bool> RenameEnabled;
@@ -35,6 +39,11 @@ namespace ProgDev.FrontEnd.Forms
       public Signal DeleteClick;
       public Signal DuplicateClick;
       
+      public ProjectContentFormViewModel(Action<IReadOnlyList<PouReference>> onOpenFiles)
+      {
+         _OnOpenFiles = onOpenFiles;
+      }
+
       protected override void Initialize()
       {
          Populate();
@@ -90,6 +99,20 @@ namespace ProgDev.FrontEnd.Forms
       {
          var files = SelectedList.Select(x => x.Tag).Cast<Project.File>();
          Project.Commands.DuplicateFiles(files);
+      }
+
+      [OnSignal("ItemActivate")]
+      private void OnItemActivate()
+      {
+         if (SelectedList.Any())
+         {
+            _OnOpenFiles(
+               SelectedList
+               .Select(x => x.Tag)
+               .Cast<Project.File>()
+               .Select(x => new PouReference(x.Folder, x.Name))
+               .ToList());
+         }
       }
    }
 }

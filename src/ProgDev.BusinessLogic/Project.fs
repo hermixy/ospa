@@ -163,6 +163,11 @@ type ProjectContents () =
    member this.IsDirty
       with get () = BundleManager.IsDirty()
 
+   member this.GetFile folder name = 
+      BundleManager.Bundle().Files 
+      |> List.find (fun x -> x.Folder =? folder && (ToNamePart x.Filename) =? name) 
+      |> ToFile
+
 let Events = new ProjectEvents()
 
 let Contents = new ProjectContents()

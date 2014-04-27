@@ -115,24 +115,24 @@ namespace ProgDev.FrontEnd.Common.FlexForms
          Bind(field, () => control.MaximumSize, x => control.MaximumSize = x);
       }
 
-      public static void BindClick(this Control control, Signal command)
+      public static void BindClick(this Control control, Signal signal)
       {
-         control.Click += command;
+         control.Click += signal;
       }
 
-      public static void BindClick(this ToolStripButton control, Signal command)
+      public static void BindClick(this ToolStripButton control, Signal signal)
       {
-         control.Click += command;
+         control.Click += signal;
       }
 
-      public static void BindClick(this ToolStripMenuItem control, Signal command)
+      public static void BindClick(this ToolStripMenuItem control, Signal signal)
       {
-         control.Click += command;
+         control.Click += signal;
       }
 
-      public static void BindClosing(this Form control, Signal command)
+      public static void BindClosing(this Form control, Signal signal)
       {
-         control.FormClosing += (sender, e) => command.Handler(sender, e);
+         control.FormClosing += (sender, e) => signal.Handler(sender, e);
       }
 
       public static void BindClosing(this Form control, Signal promptClose, Field<bool> canClose)
@@ -351,6 +351,11 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       {
          control.DockBottomPortionChanged +=
             Bind(field, () => control.DockBottomPortion, x => control.DockBottomPortion = x);
+      }
+
+      public static void BindItemActivate(this ListView control, Signal signal)
+      {
+         control.ItemActivate += signal;
       }
    }
 }

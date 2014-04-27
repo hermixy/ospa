@@ -12,8 +12,11 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.BusinessLogic;
+using ProgDev.Domain;
 using ProgDev.FrontEnd.Common.FlexForms;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -76,8 +79,26 @@ namespace ProgDev.FrontEnd.Forms
          // Help menu
          _AboutMenuItem.BindClick(viewModel.AboutClick);
          viewModel.Start(this);
+      }
 
-         _ProjectContentForm.Width = 500;
+      /// <summary>
+      /// Called when the Project Content Form wants to open some files.
+      /// </summary>
+      public void OnOpenFiles(IReadOnlyList<PouReference> files)
+      {
+         foreach (var file in files)
+         {
+            try
+            {
+               var projectFile = Project.Contents.GetFile(file.Folder, file.Name);
+               var editorForm = FormsFactory.NewEditorForm(projectFile);
+               editorForm.Show(_DockPanel, DockState.Document);
+            }
+            catch (Exception ex)
+            {
+               FormsFactory.NewErrorForm(ex.Message).ShowDialog(this);
+            }
+         }
       }
 
       private void OnTopToolStripPanelPaint(object sender, PaintEventArgs e)
@@ -92,11 +113,6 @@ namespace ProgDev.FrontEnd.Forms
          Control c = (Control)sender;
          e.Graphics.DrawLine(SystemPens.ControlDark, 0, 0, c.Width - 1, 0);
          e.Graphics.DrawLine(SystemPens.ControlLight, 0, 1, c.Width - 1, 1);
-      }
-
-      protected override void OnClosing(CancelEventArgs e)
-      {
-         base.OnClosing(e);
       }
    }
 }

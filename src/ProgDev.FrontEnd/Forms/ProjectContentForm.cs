@@ -13,10 +13,8 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using ProgDev.FrontEnd.Common.FlexForms;
-using System;
-using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.Docking;
 using ProgDev.FrontEnd.Common.Toolkit;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.FrontEnd.Forms
 {
@@ -27,10 +25,11 @@ namespace ProgDev.FrontEnd.Forms
          InitializeComponent();
 
          _ListView.AutoSizeColumnWidths(_NameCol);
-
          _ListView.BindItems(viewModel.List);
          _ListView.BindSelectedItems(viewModel.SelectedList);
+         _ListView.BindItemActivate(viewModel.ItemActivate);
          _ContextMnu.BindEnabled(viewModel.ContextMenuEnabled);
+         _OpenMnu.BindClick(viewModel.ItemActivate);
          _RenameMnu.BindEnabled(viewModel.RenameEnabled);
          _RenameMnu.BindClick(viewModel.RenameClick);
          _MoveMnu.BindClick(viewModel.MoveClick);

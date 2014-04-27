@@ -23,3 +23,8 @@ type BundleFile = {
 type Bundle = {
    Files : BundleFile list
 }
+
+type PouReference = {
+   Folder : string
+   Name : string
+}
