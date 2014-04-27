@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\NativeMethods.cs" />
+    <Compile Include="Common\Toolkit\NativeMethods.cs" />
     <Compile Include="Common\Toolkit\BufferedListView.cs">
       <SubType>Component</SubType>
     </Compile>

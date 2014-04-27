@@ -14,16 +14,17 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
-namespace ProgDev.FrontEnd.Common
+namespace ProgDev.FrontEnd.Common.Toolkit
 {
    public static class NativeMethods
    {
       [DllImport("user32.dll", SetLastError = true, EntryPoint = "GetScrollBarInfo")]
-      public static extern int GetScrollBarInfo(IntPtr hWnd, uint idObject, ref SCROLLBARINFO psbi);
+      private static extern int GetScrollBarInfo(IntPtr hWnd, uint idObject, ref SCROLLBARINFO psbi);
 
       [StructLayout(LayoutKind.Sequential)]
-      public struct RECT
+      private struct RECT
       {
          public Int32 left;
          public Int32 top;
@@ -32,7 +33,7 @@ namespace ProgDev.FrontEnd.Common
       }
 
       [StructLayout(LayoutKind.Sequential)]
-      public struct SCROLLBARINFO
+      private struct SCROLLBARINFO
       {
          public UInt32 cbSize;
          public RECT rcScrollBar;
@@ -44,10 +45,21 @@ namespace ProgDev.FrontEnd.Common
          public UInt32[] rgstate;
       }
 
-      public const uint OBJID_HSCROLL = 0xFFFFFFFA;
-      public const uint OBJID_VSCROLL = 0xFFFFFFFB;
+      private const uint OBJID_HSCROLL = 0xFFFFFFFA;
+      private const uint OBJID_VSCROLL = 0xFFFFFFFB;
 
-      public const uint STATE_SYSTEM_INVISIBLE = 0x00008000;
+      private const uint STATE_SYSTEM_INVISIBLE = 0x00008000;
+
+      public static bool IsVScrollBarVisible(Control control)
+      {
+         var scrollbarInfo = new SCROLLBARINFO();
+         scrollbarInfo.cbSize = (UInt32)Marshal.SizeOf(scrollbarInfo);
+         int result = GetScrollBarInfo(control.Handle, NativeMethods.OBJID_VSCROLL, ref scrollbarInfo);
+         if (result == 0)
+            throw new Exception("Win32 error: " + Marshal.GetLastWin32Error());
+         else
+            return scrollbarInfo.rgstate[0] != STATE_SYSTEM_INVISIBLE;
+      }
 
    }
 }

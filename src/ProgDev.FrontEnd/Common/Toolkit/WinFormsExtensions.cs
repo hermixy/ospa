@@ -60,13 +60,7 @@ namespace ProgDev.FrontEnd.Common.Toolkit
 
       public static bool IsVScrollBarVisible(this ListView control)
       {
-         var scrollbarInfo = new NativeMethods.SCROLLBARINFO();
-         scrollbarInfo.cbSize = (UInt32)Marshal.SizeOf(scrollbarInfo);
-         int result = NativeMethods.GetScrollBarInfo(control.Handle, NativeMethods.OBJID_VSCROLL, ref scrollbarInfo);
-         if (result == 0)
-            throw new Exception("Win32 error: " + Marshal.GetLastWin32Error());
-         else
-            return scrollbarInfo.rgstate[0] != NativeMethods.STATE_SYSTEM_INVISIBLE;
+         return NativeMethods.IsVScrollBarVisible(control);
       }
    }
 }
