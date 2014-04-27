@@ -28,7 +28,9 @@
       /// </summary>
       private void InitializeComponent()
       {
+         this.components = new System.ComponentModel.Container();
          this._TextEditor = new ICSharpCode.TextEditor.TextEditorControl();
+         this._UpdateTimer = new System.Windows.Forms.Timer(this.components);
          this.SuspendLayout();
          // 
          // _TextEditor
@@ -45,6 +47,10 @@
          this._TextEditor.TabIndent = 3;
          this._TextEditor.TabIndex = 0;
          // 
+         // _UpdateTimer
+         // 
+         this._UpdateTimer.Interval = 500;
+         // 
          // CodeEditorControl
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -59,5 +65,6 @@
       #endregion
 
       private ICSharpCode.TextEditor.TextEditorControl _TextEditor;
+      private System.Windows.Forms.Timer _UpdateTimer;
    }
 }
