@@ -27,6 +27,8 @@ namespace ProgDev.FrontEnd.Forms
 {
    public sealed class AppFormViewModel : FormViewModel
    {
+      private readonly string _InitialFilePath;
+
       // Window frame
       public Field<Point> Location;
       public Field<Size> Size;
@@ -65,6 +67,11 @@ namespace ProgDev.FrontEnd.Forms
       public Field<bool> Project_CanUndo;
       public Field<bool> Project_CanRedo;
 
+      public AppFormViewModel(string initialFilePath)
+      {
+         _InitialFilePath = initialFilePath;
+      }
+
       protected override void Initialize()
       {
          try
@@ -78,6 +85,9 @@ namespace ProgDev.FrontEnd.Forms
 
          OnProjectChanged();
          Project.Events.Changed += OnProjectChanged;
+
+         if (_InitialFilePath != null)
+            Project.Load(_InitialFilePath);
       }
 
       private void LoadWindowPosition()

@@ -12,6 +12,9 @@
 ; You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 ; Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+!define SHCNE_ASSOCCHANGED 0x08000000
+!define SHCNF_IDLIST 0
+
 Name "OSPA ProgDev"
 OutFile "ProgDev-X.X.X.exe"
 InstallDir $PROGRAMFILES\OSPA
@@ -62,21 +65,39 @@ Section "OSPA"
    ; Write the installation path into the registry
    WriteRegStr HKLM SOFTWARE\OSPA "Install_Dir" "$INSTDIR"
 
+   ; Write the file and app assocations into the registry
+   WriteRegStr HKCR "ProgDev.1" "" "OSPA ProgDev project"
+   WriteRegStr HKCR "ProgDev.1" "FriendlyTypeName" "@$INSTDIR\PDC.exe,-201"
+   WriteRegStr HKCR "ProgDev.1\DefaultIcon" "" "$INSTDIR\PDC.exe,-400"
+   WriteRegStr HKCR "ProgDev.1\shell\open\command" "" '"$INSTDIR\ProgDev.exe" "%1"'
+   
+   WriteRegStr HKCR ".osp" "" "ProgDev.1"
+   WriteRegStr HKCR ".osp" "FriendlyTypeName" "@$INSTDIR\PDC.exe,-201"
+   WriteRegStr HKCR ".osp\DefaultIcon" "" "$INSTDIR\PDC.exe,-400"
+
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\PDC.exe" "" "$INSTDIR\PDC.exe"
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\PDC.exe" "Path" "$INSTDIR"
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\ProgDev.exe" "" "$INSTDIR\ProgDev.exe"
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\ProgDev.exe" "Path" "$INSTDIR"
+
+   WriteRegStr HKCR "Applications\ProgDev.exe" "FriendlyAppName" "@$INSTDIR\PDC.exe,-200"
+   WriteRegStr HKCR "Applications\ProgDev.exe\SupportedTypes\.osp" "" ""
+
+   ; SHCNE_ASSOCCHANGED = 0x08000000, SHCNF_IDLIST = 0
+   System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
+
    ; Write the uninstall keys for Windows
-   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" \
-      "DisplayName" "OSPA ProgDev"
-   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" \
-      "Publisher" "Open Source PLC Architecture"
-   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" \
-      "DisplayIcon" "$INSTDIR\ProgDev App Icon 32.ico"
-   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" \
-      "URLInfoAbout" "https://github.com/electroly/ospa"
-   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" \
-      "UninstallString" '"$INSTDIR\uninstall.exe"'
-   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" \
-      "NoModify" 1
-   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" \
-      "NoRepair" 1
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" "DisplayName" "OSPA ProgDev"
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" "Publisher" \
+      "Open Source PLC Architecture"
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" "DisplayIcon" \
+      "$INSTDIR\ProgDev App Icon 32.ico"
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" "URLInfoAbout" \
+      "https://github.com/electroly/ospa"
+   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" "UninstallString" \
+      '"$INSTDIR\uninstall.exe"'
+   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" "NoModify" 1
+   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA" "NoRepair" 1
    
    WriteUninstaller "uninstall.exe"
   
@@ -91,6 +112,12 @@ Section "Uninstall"
    ; Remove registry keys
    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OSPA"
    DeleteRegKey HKLM SOFTWARE\OSPA
+
+   ; Remove the app association but, per MSDN, leave the file association.
+   DeleteRegKey HKCR "ProgDev.1"
+   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\PDC.exe"
+   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\ProgDev.exe"
+   DeleteRegKey HKCR "Applications\ProgDev.exe"
 
    ; Remove files and uninstaller
    Delete $INSTDIR\uninstall.exe

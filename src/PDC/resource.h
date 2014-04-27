@@ -2,4 +2,3 @@
 #define IDC_STATIC (-1)
 #endif
 
-#define IDI_APPICON                             101

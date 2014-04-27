@@ -48,7 +48,6 @@ namespace ProgDev.FrontEnd.Forms
             _Editor.ExternalSetSourceText(File.Content);
          else
             Close();
-         
       }
 
       private void OnSourceTextChange(object sender, EventArgs e)

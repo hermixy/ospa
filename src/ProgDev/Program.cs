@@ -26,9 +26,11 @@ namespace ProgDev
       [STAThread]
       public static void Main(string[] args)
       {
+         string filePath = args.Length == 1 ? args[0] : null;
+
          Application.EnableVisualStyles();
          Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(FormsFactory.NewAppForm());
+         Application.Run(FormsFactory.NewAppForm(filePath));
       }
    }
 }

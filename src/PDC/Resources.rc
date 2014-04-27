@@ -9,10 +9,30 @@
 
 
 //
+// String Table resources
+//
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STRINGTABLE
+{
+    200                           "OSPA ProgDev"
+    201                           "OSPA ProgDev project"
+}
+
+
+
+//
 // Icon resources
 //
 LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
-IDI_APPICON        ICON           ".\\1398580097_92606.ico"
+1                  ICON           ".\\1398580097_92606.ico"
+
+
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+400                ICON           ".\\ProgDev File Icon 32.ico"
+
+
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+401                ICON           ".\\ProgDev App Icon 32.ico"
 
 
 

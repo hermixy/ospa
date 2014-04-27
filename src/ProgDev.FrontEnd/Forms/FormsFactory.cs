@@ -25,7 +25,7 @@ namespace ProgDev.FrontEnd.Forms
 {
    public static class FormsFactory
    {
-      public static AppForm NewAppForm()
+      public static AppForm NewAppForm(string filePath = null)
       {
          AppForm appForm = null; // will assign below
          Func<Project.File, EditorForm> doOpenFile = null; // will assign below
@@ -33,7 +33,7 @@ namespace ProgDev.FrontEnd.Forms
          var projectContentFormViewModel = new ProjectContentFormViewModel(openEditorController);
          var projectContentForm = new ProjectContentForm(projectContentFormViewModel);
          var findForm = new SearchResultsForm();
-         appForm = new AppForm(new AppFormViewModel(), projectContentForm, findForm, out doOpenFile);
+         appForm = new AppForm(new AppFormViewModel(filePath), projectContentForm, findForm, out doOpenFile);
          return appForm;
       }
 
