@@ -64,12 +64,12 @@ namespace ProgDev.FrontEnd.Forms
          switch (file.Language)
          {
             // Graphical languages
-            case PouLanguage.FunctionBlockDiagram:
-               throw new NotImplementedException();
-            case PouLanguage.LadderDiagram:
-               throw new NotImplementedException();
-            case PouLanguage.SequentialFunctionChart:
-               throw new NotImplementedException();
+            case PouLanguage.FunctionBlockDiagram: //TODO: Use FBD editor control
+               return new EditorForm(new SplitEditorControl(new CodeEditorControl(), new CodeEditorControl()), file);
+            case PouLanguage.LadderDiagram: //TODO: Use LD editor control
+               return new EditorForm(new SplitEditorControl(new CodeEditorControl(), new CodeEditorControl()), file);
+            case PouLanguage.SequentialFunctionChart: //TOOD: Use SFC editor control
+               return new EditorForm(new SplitEditorControl(new CodeEditorControl(), new CodeEditorControl()), file);
             // Textual languages
             case PouLanguage.InstructionList:
                return new EditorForm(new CodeEditorControl(), file);

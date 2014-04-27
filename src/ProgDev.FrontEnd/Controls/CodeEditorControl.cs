@@ -55,7 +55,7 @@ namespace ProgDev.FrontEnd.Controls
          _TextEditor.ActiveTextAreaControl.Caret.Position = caret;
 
          // In some cases the text editor doesn't properly update itself without this:
-         _TextEditor.ActiveTextAreaControl.Invalidate();
+         _TextEditor.ActiveTextAreaControl.Refresh();
       }
    }
 }
