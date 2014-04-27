@@ -42,6 +42,12 @@ namespace ProgDev.FrontEnd.Forms
          Project.Events.Changed += OnProjectChanged;
       }
 
+      protected override void OnClosed(EventArgs e)
+      {
+         base.OnClosed(e);
+         Project.Events.Changed -= OnProjectChanged;
+      }
+
       private void OnProjectChanged()
       {
          if (File.Exists) // the file may have been deleted
