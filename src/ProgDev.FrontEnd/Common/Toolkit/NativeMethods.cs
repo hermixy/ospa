@@ -12,6 +12,7 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using ProgDev.Resources;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -50,13 +51,18 @@ namespace ProgDev.FrontEnd.Common.Toolkit
 
       private const uint STATE_SYSTEM_INVISIBLE = 0x00008000;
 
+      private static Exception LastWin32Error()
+      {
+         return new Exception(string.Format(Strings.ErrorWin32, Marshal.GetLastWin32Error()));
+      }
+
       public static bool IsVScrollBarVisible(Control control)
       {
          var scrollbarInfo = new SCROLLBARINFO();
          scrollbarInfo.cbSize = (UInt32)Marshal.SizeOf(scrollbarInfo);
          int result = GetScrollBarInfo(control.Handle, NativeMethods.OBJID_VSCROLL, ref scrollbarInfo);
          if (result == 0)
-            throw new Exception("Win32 error: " + Marshal.GetLastWin32Error());
+            throw LastWin32Error();
          else
             return scrollbarInfo.rgstate[0] != STATE_SYSTEM_INVISIBLE;
       }

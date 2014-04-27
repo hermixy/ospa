@@ -213,6 +213,10 @@
   <data name="ErrorViewModelAlreadyStarted" xml:space="preserve">
     <value>Coding error: view model already started.</value>
   </data>
+  <data name="ErrorWin32" xml:space="preserve">
+    <value>Encountered Windows error #{0}.</value>
+    <comment>0 = error number</comment>
+  </data>
   <data name="FileTypeClass" xml:space="preserve">
     <value>Class</value>
   </data>
