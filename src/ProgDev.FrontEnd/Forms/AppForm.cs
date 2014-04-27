@@ -17,11 +17,7 @@ using ProgDev.Domain;
 using ProgDev.FrontEnd.Common.FlexForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
