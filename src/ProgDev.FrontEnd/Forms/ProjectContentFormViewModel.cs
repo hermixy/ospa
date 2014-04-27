@@ -13,11 +13,10 @@
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 using ProgDev.BusinessLogic;
-using ProgDev.Domain;
 using ProgDev.FrontEnd.Common;
 using ProgDev.FrontEnd.Common.FlexForms;
+using ProgDev.FrontEnd.Controllers;
 using ProgDev.Resources;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,7 +24,7 @@ namespace ProgDev.FrontEnd.Forms
 {
    public sealed class ProjectContentFormViewModel : FormViewModel
    {
-      private readonly Action<IReadOnlyList<PouReference>> _OnOpenFiles;
+      private readonly OpenEditorController _OpenEditors;
 
       // List view
       public ListField<ListViewRow> List;
@@ -38,10 +37,10 @@ namespace ProgDev.FrontEnd.Forms
       public Signal MoveClick;
       public Signal DeleteClick;
       public Signal DuplicateClick;
-      
-      public ProjectContentFormViewModel(Action<IReadOnlyList<PouReference>> onOpenFiles)
+
+      public ProjectContentFormViewModel(OpenEditorController openEditorController)
       {
-         _OnOpenFiles = onOpenFiles;
+         _OpenEditors = openEditorController;
       }
 
       protected override void Initialize()
@@ -104,15 +103,8 @@ namespace ProgDev.FrontEnd.Forms
       [OnSignal("ItemActivate")]
       private void OnItemActivate()
       {
-         if (SelectedList.Any())
-         {
-            _OnOpenFiles(
-               SelectedList
-               .Select(x => x.Tag)
-               .Cast<Project.File>()
-               .Select(x => new PouReference(x.Folder, x.Name))
-               .ToList());
-         }
+         foreach (var row in SelectedList)
+            _OpenEditors.Open((Project.File)row.Tag);
       }
    }
 }

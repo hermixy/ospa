@@ -14,6 +14,7 @@
 
 using ProgDev.BusinessLogic;
 using ProgDev.Domain;
+using ProgDev.FrontEnd.Controllers;
 using ProgDev.FrontEnd.Controls;
 using ProgDev.Resources;
 using System;
@@ -27,10 +28,12 @@ namespace ProgDev.FrontEnd.Forms
       public static AppForm NewAppForm()
       {
          AppForm appForm = null; // will assign below
-         Action<IReadOnlyList<PouReference>> onOpenFiles = x => appForm.OnOpenFiles(x);
-         var projectContentFormViewModel = new ProjectContentFormViewModel(onOpenFiles);
+         Func<Project.File, EditorForm> doOpenFile = null; // will assign below
+         var openEditorController = new OpenEditorController(x => doOpenFile(x));
+         var projectContentFormViewModel = new ProjectContentFormViewModel(openEditorController);
          var projectContentForm = new ProjectContentForm(projectContentFormViewModel);
-         appForm = new AppForm(new AppFormViewModel(), projectContentForm);
+         var findForm = new SearchResultsForm();
+         appForm = new AppForm(new AppFormViewModel(), projectContentForm, findForm, out doOpenFile);
          return appForm;
       }
 

@@ -12,46 +12,24 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-using ProgDev.BusinessLogic;
-using ProgDev.FrontEnd.Controls;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ProgDev.FrontEnd.Forms
 {
-   public partial class EditorForm : DockContent
+   public partial class SearchResultsForm : DockContent
    {
-      private readonly EditorControl _Editor;
-      public readonly Project.File File;
-
-      public EditorForm(EditorControl editorControl, Project.File file)
+      public SearchResultsForm()
       {
          InitializeComponent();
-
-         _Editor = editorControl;
-         _Editor.Dock = DockStyle.Fill;
-         _Editor.SourceTextChange += OnSourceTextChange;
-         Controls.Add(_Editor);
-
-         File = file;
-         _Editor.ExternalSetSourceText(File.Content);
-
-         Project.Events.Changed += OnProjectChanged;
-      }
-
-      private void OnProjectChanged()
-      {
-         if (File.Exists) // the file may have been deleted
-            _Editor.ExternalSetSourceText(File.Content);
-         else
-            Close();
-         
-      }
-
-      private void OnSourceTextChange(object sender, EventArgs e)
-      {
-         Project.Commands.ModifyFile(File, _Editor.SourceText);
       }
    }
 }

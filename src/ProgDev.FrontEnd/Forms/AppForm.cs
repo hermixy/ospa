@@ -26,14 +26,24 @@ namespace ProgDev.FrontEnd.Forms
    public partial class AppForm : Form
    {
       private readonly ProjectContentForm _ProjectContentForm;
+      private readonly SearchResultsForm _SearchResultsForm;
 
-      public AppForm(AppFormViewModel viewModel, ProjectContentForm projectContentForm)
+      public AppForm(AppFormViewModel viewModel, ProjectContentForm projectContentForm, 
+         SearchResultsForm searchResultsForm, out Func<Project.File, EditorForm> doOpenFile)
       {
          InitializeComponent();
+
+         // Exposing this allows the OpenEditorController to manipulate dialogs without needing access to (or knowledge
+         // of) the dock panel control.  Similarly, the AppForm does not need to know how the controller does its job; 
+         // it just does what it's told.
+         doOpenFile = DoOpenFile;
 
          // Project content form
          _ProjectContentForm = projectContentForm;
          _ProjectContentForm.Show(_DockPanel, DockState.DockLeft);
+         // Find form
+         _SearchResultsForm = searchResultsForm;
+         _SearchResultsForm.Show(_DockPanel, DockState.DockLeft);
          // Dock panel
          _DockPanel.BindDockLeftPortion(viewModel.DockLeftPortion);
          _DockPanel.BindDockRightPortion(viewModel.DockRightPortion);
@@ -75,26 +85,16 @@ namespace ProgDev.FrontEnd.Forms
          // Help menu
          _AboutMenuItem.BindClick(viewModel.AboutClick);
          viewModel.Start(this);
+
+         // Bring the Project Content Form to the front.
+         _ProjectContentForm.Show();
       }
 
-      /// <summary>
-      /// Called when the Project Content Form wants to open some files.
-      /// </summary>
-      public void OnOpenFiles(IReadOnlyList<PouReference> files)
+      private EditorForm DoOpenFile(Project.File projectFile)
       {
-         foreach (var file in files)
-         {
-            try
-            {
-               var projectFile = Project.Contents.GetFile(file.Folder, file.Name);
-               var editorForm = FormsFactory.NewEditorForm(projectFile);
-               editorForm.Show(_DockPanel, DockState.Document);
-            }
-            catch (Exception ex)
-            {
-               FormsFactory.NewErrorForm(ex.Message).ShowDialog(this);
-            }
-         }
+         var editorForm = FormsFactory.NewEditorForm(projectFile);
+         editorForm.Show(_DockPanel, DockState.Document);
+         return editorForm;
       }
 
       private void OnTopToolStripPanelPaint(object sender, PaintEventArgs e)
