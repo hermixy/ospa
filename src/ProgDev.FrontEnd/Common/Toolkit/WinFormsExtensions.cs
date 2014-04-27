@@ -12,8 +12,10 @@
 // You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 // Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace ProgDev.FrontEnd.Common.Toolkit
@@ -37,7 +39,12 @@ namespace ProgDev.FrontEnd.Common.Toolkit
          try
          {
             int fixedColumnsWidth = fixedColumns.Select(x => x.Width).Sum();
-            variableColumn.Width = control.Width - fixedColumnsWidth - SystemInformation.VerticalScrollBarWidth - 5;
+            int variableColumnWidth = control.Width - fixedColumnsWidth;
+
+            if (control.IsVScrollBarVisible())
+               variableColumnWidth -= SystemInformation.VerticalScrollBarWidth;
+
+            variableColumn.Width = variableColumnWidth;
          }
          finally
          {
@@ -49,6 +56,17 @@ namespace ProgDev.FrontEnd.Common.Toolkit
       {
          var fixedColumns = control.Columns.Cast<ColumnHeader>().Where(x => x != variableColumn).ToList();
          control.SizeChanged += (sender, e) => control.SetColumnWidths(variableColumn, fixedColumns);
+      }
+
+      public static bool IsVScrollBarVisible(this ListView control)
+      {
+         var scrollbarInfo = new NativeMethods.SCROLLBARINFO();
+         scrollbarInfo.cbSize = (UInt32)Marshal.SizeOf(scrollbarInfo);
+         int result = NativeMethods.GetScrollBarInfo(control.Handle, NativeMethods.OBJID_VSCROLL, ref scrollbarInfo);
+         if (result == 0)
+            throw new Exception("Win32 error: " + Marshal.GetLastWin32Error());
+         else
+            return scrollbarInfo.rgstate[0] != NativeMethods.STATE_SYSTEM_INVISIBLE;
       }
    }
 }

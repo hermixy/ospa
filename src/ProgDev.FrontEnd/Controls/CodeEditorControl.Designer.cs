@@ -37,7 +37,6 @@
          // 
          this._TextEditor.AutoScroll = true;
          this._TextEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-         this._TextEditor.EnableFolding = false;
          this._TextEditor.IsReadOnly = false;
          this._TextEditor.Location = new System.Drawing.Point(0, 0);
          this._TextEditor.Name = "_TextEditor";

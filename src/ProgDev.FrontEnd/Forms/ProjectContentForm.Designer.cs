@@ -41,7 +41,6 @@
          this._ListView = new ProgDev.FrontEnd.Common.Toolkit.BufferedListView();
          this._NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._TypeCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-         this._LanguageCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
          this._ContextMnu.SuspendLayout();
          this.SuspendLayout();
          // 
@@ -56,7 +55,7 @@
             this._Separator2,
             this._DeleteMnu});
          this._ContextMnu.Name = "_ContextMnu";
-         this._ContextMnu.Size = new System.Drawing.Size(162, 148);
+         this._ContextMnu.Size = new System.Drawing.Size(162, 126);
          // 
          // _OpenMnu
          // 
@@ -109,8 +108,7 @@
          this._ListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
          this._ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._NameCol,
-            this._TypeCol,
-            this._LanguageCol});
+            this._TypeCol});
          this._ListView.ContextMenuStrip = this._ContextMnu;
          this._ListView.Dock = System.Windows.Forms.DockStyle.Fill;
          this._ListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -135,12 +133,6 @@
          this._TypeCol.Text = "Type";
          this._TypeCol.Width = 80;
          // 
-         // _LanguageCol
-         // 
-         this._LanguageCol.Text = "Lang.";
-         this._LanguageCol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-         this._LanguageCol.Width = 50;
-         // 
          // ProjectContentForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -164,7 +156,6 @@
       private ProgDev.FrontEnd.Common.Toolkit.BufferedListView _ListView;
       private System.Windows.Forms.ColumnHeader _NameCol;
       private System.Windows.Forms.ColumnHeader _TypeCol;
-      private System.Windows.Forms.ColumnHeader _LanguageCol;
       private System.Windows.Forms.ContextMenuStrip _ContextMnu;
       private System.Windows.Forms.ToolStripMenuItem _DeleteMnu;
       private System.Windows.Forms.ToolStripMenuItem _RenameMnu;

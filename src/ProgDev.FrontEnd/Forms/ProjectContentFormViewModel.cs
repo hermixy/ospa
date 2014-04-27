@@ -56,7 +56,7 @@ namespace ProgDev.FrontEnd.Forms
          {
             Icon = Images.Pou16,
             GroupName = x.Folder,
-            Cells = new List<string> { x.Name, x.Type.ToShortString(), x.Language.ToShortString() },
+            Cells = new List<string> { x.Name, x.Type.ToShortString() },
             Tag = x
          }));
       }
