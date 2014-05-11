@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!--
+ OSPA ProgDev
+ Copyright (C) 2014 Brian Luft
+ 
+ This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public 
+ License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later
+ version.
+ 
+ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more 
+ details.
+ 
+ You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+-->
+<?define ProductVersion = "0.0.1"?>
+<?define ProductUpgradeCode = "31B8B57B-24E8-447E-BCAE-8509F8A98664"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+   <Product Id="*"
+            UpgradeCode="$(var.ProductUpgradeCode)"
+            Name="OSPA ProgDev"
+            Version="$(var.ProductVersion)"
+            Manufacturer="Open Source PLC Architecture"
+            Language="1033">
+      <Package InstallerVersion="200"
+               Compressed="yes"
+               Comments="Windows Installer Package"/>
+      <Media Id="1"
+             Cabinet="product.cab"
+             EmbedCab="yes"/>
+      <Icon Id="ProductIcon" SourceFile="ProgDev App Icon 32.ico"/>
+      <Property Id="ARPPRODUCTICON" Value="ProductIcon"/>
+      <Property Id="ARPHELPLINK" Value="http://ospa.co"/>
+      <Property Id="ARPURLINFOABOUT" Value="http://ospa.co"/>
+      <Property Id="ARPNOREPAIR" Value="1"/>
+      <Property Id="ARPNOMODIFY" Value="1"/>
+      <Upgrade Id="$(var.ProductUpgradeCode)">
+         <UpgradeVersion Minimum="$(var.ProductVersion)"
+                         OnlyDetect="yes"
+                         Property="NEWERVERSIONDETECTED"/>
+         <UpgradeVersion Minimum="0.0.0"
+                         Maximum="$(var.ProductVersion)"
+                         IncludeMinimum="yes"
+                         IncludeMaximum="no"
+                         Property="OLDERVERSIONBEINGUPGRADED"/>
+      </Upgrade>
+      <Condition Message="A newer version of this software is already installed.">
+         NOT NEWERVERSIONDETECTED
+      </Condition>
+
+      <Directory Id="TARGETDIR" Name="SourceDir">
+         <Directory Id="ProgramFilesFolder">
+            <Directory Id="INSTALLDIR" Name="OSPA">
+               <Component Id="ApplicationFiles" Guid="30CC4442-D35F-43A0-AE40-8C07C9CB6D0A">
+                  <RegistryValue Root="HKLM"
+                                 Key="Software\OSPA\ProgDev"
+                                 Name="ApplicationFiles_Installed"
+                                 Type="integer"
+                                 Value="1"
+                                 KeyPath="yes"/>
+
+                  <File Id="Antlr4.Runtime.v4.5.dll" Source="Antlr4.Runtime.v4.5.dll"/>
+                  <File Id="FSharp.Core.dll" Source="FSharp.Core.dll"/>
+                  <File Id="ICSharpCode.TextEditor.dll" Source="ICSharpCode.TextEditor.dll"/>
+                  <File Id="MimeKitLite.dll" Source="MimeKitLite.dll"/>
+                  <File Id="PDC.exe" Source="PDC.exe"/>
+                  <File Id="ProgDev.exe" Source="ProgDev.exe"/>
+                  <File Id="ProgDev_App_Icon_32.ico" Source="ProgDev App Icon 32.ico"/>
+                  <File Id="ProgDev.BusinessLogic.dll" Source="ProgDev.BusinessLogic.dll"/>
+                  <File Id="ProgDev.Domain.dll" Source="ProgDev.Domain.dll"/>
+                  <File Id="ProgDev.exe.config" Source="ProgDev.exe.config"/>
+                  <File Id="ProgDev.exe.manifest" Source="ProgDev.exe.manifest"/>
+                  <File Id="ProgDev.FrontEnd.dll" Source="ProgDev.FrontEnd.dll"/>
+                  <File Id="ProgDev.Parsers.dll" Source="ProgDev.Parsers.dll"/>
+                  <File Id="ProgDev.Resources.dll" Source="ProgDev.Resources.dll"/>
+                  <File Id="ProgDev.Services.dll" Source="ProgDev.Services.dll"/>
+                  <File Id="WeifenLuo.WinFormsUI.dll" Source="WeifenLuo.WinFormsUI.dll"/>
+
+                  <ProgId Id="ProgDev.Project" Description="OSPA ProgDev project">
+                     <Extension Id="osp" ContentType="text/x-vnd.ospa-progdev">
+                        <Verb Id="open" Command="open" TargetFile="ProgDev.exe" Argument="&quot;%1&quot;"/>
+                     </Extension>
+                  </ProgId>
+
+               </Component>
+            </Directory>
+         </Directory>
+
+         <Directory Id="ProgramMenuFolder">
+            <Directory Id="ProgramMenuSubfolder" Name="Open Source PLC Architecture">
+               <Component Id="ApplicationShortcuts" Guid="B4DF7F1A-B768-4DF1-ADF3-F1F31BDE8E26">
+                  <RegistryValue Root="HKCU"
+                                 Key="Software\OSPA\ProgDev"
+                                 Name="ApplicationShortcuts_Installed"
+                                 Type="integer"
+                                 Value="1"
+                                 KeyPath="yes"/>
+                  <Shortcut Id="ApplicationShortcut1"
+                            Name="OSPA ProgDev"
+                            Description="Programming and debugging tool for the Open Source PLC Architecture"
+                            Target="[INSTALLDIR]ProgDev.exe"
+                            WorkingDirectory="INSTALLDIR"/>
+                  <RemoveFolder Id="ProgramMenuSubfolder" On="uninstall"/>
+               </Component>
+            </Directory>
+         </Directory>
+      </Directory>
+
+      <InstallExecuteSequence>
+         <RemoveExistingProducts After="InstallValidate"/>
+      </InstallExecuteSequence>
+
+      <Feature Id="DefaultFeature" Level="1">
+         <ComponentRef Id="ApplicationFiles"/>
+         <ComponentRef Id="ApplicationShortcuts"/>
+      </Feature>
+   </Product>
+</Wix>

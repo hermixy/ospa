@@ -1,4 +1,4 @@
 packages/
 TestResults/
-ProgDev-*.exe
+ProgDev*.msi
 AuthenticateToS3.bat
