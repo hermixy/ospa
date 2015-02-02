@@ -84,6 +84,11 @@ namespace ProgDev.FrontEnd.Forms
          _DebugMnu.BindClick(viewModel.DebugClick);
          // Help menu
          _AboutMenuItem.BindClick(viewModel.AboutClick);
+         // Search box
+         _SearchTxt.BindText(viewModel.SearchText);
+         _SearchTxt.BindForeColor(viewModel.SearchForeColor);
+         _SearchTxt.BindFocused(viewModel.SearchFocused);
+         _SearchTxt.BindKeyPress(viewModel.SearchEnterKeyPress, '\n', '\r');
          viewModel.Start(this);
 
          // Bring the Project Content Form to the front.

@@ -55,6 +55,16 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       {
          control.TextChanged += Bind(field, () => control.Text, x => control.Text = x);
       }
+
+      public static void BindText(this ToolStripControlHost control, Field<string> field)
+      {
+         control.TextChanged += Bind(field, () => control.Text, x => control.Text = x);
+      }
+
+      public static void BindForeColor(this ToolStripControlHost control, Field<Color> field)
+      {
+         control.ForeColorChanged += Bind(field, () => control.ForeColor, x => control.ForeColor = x);
+      }
       
       public static void BindVisible(this Control control, Field<bool> field)
       {
@@ -356,6 +366,37 @@ namespace ProgDev.FrontEnd.Common.FlexForms
       public static void BindItemActivate(this ListView control, Signal signal)
       {
          control.ItemActivate += signal;
+      }
+
+      public static void BindFocused(this Control control, Field<bool> field)
+      {
+         bool isFocused = control.Focused;
+         var handler = Bind(field, () => isFocused, x => 
+         {
+            if (x)
+               control.Focus();
+            else
+               control.SelectNextControl(control, true, true, true, true);
+         });
+         control.GotFocus += (sender, e) => { isFocused = true; handler(sender, e); };
+         control.LostFocus += (sender, e) => { isFocused = false; handler(sender, e); };
+      }
+
+      public static void BindFocused(this ToolStripControlHost control, Field<bool> field)
+      {
+         bool isFocused = control.Focused;
+         var handler = Bind(field, () => isFocused, x => { if (x) control.Focus(); });
+         control.GotFocus += (sender, e) => { isFocused = true; handler(sender, e); };
+         control.LostFocus += (sender, e) => { isFocused = false; handler(sender, e); };
+      }
+
+      public static void BindKeyPress(this ToolStripControlHost control, Signal signal, params char[] keyChars)
+      {
+         control.KeyPress += (sender, e) =>
+         {
+            if (keyChars.Contains(e.KeyChar))
+               signal.Handler(control, e);
+         };
       }
    }
 }

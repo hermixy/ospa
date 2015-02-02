@@ -61,6 +61,11 @@ namespace ProgDev.FrontEnd.Forms
       public Signal DebugClick;
       // Help menu
       public Signal AboutClick;
+      // Search box
+      public Field<string> SearchText;
+      public Field<Color> SearchForeColor;
+      public Field<bool> SearchFocused;
+      public Signal SearchEnterKeyPress;
       // Internals, set from the project in code rather than bound to the window
       public Field<string> Project_Name;
       public Field<bool> Project_IsDirty;
@@ -306,6 +311,27 @@ namespace ProgDev.FrontEnd.Forms
       private void OnAboutClick()
       {
          ShowChildDialog(FormsFactory.NewAboutForm());
+      }
+
+      [OnChange("SearchFocused")]
+      private void OnSearchFocusedChanged()
+      {
+         if (SearchFocused.Value && SearchText.Value == "Search")
+         {
+            SearchText.Value = "";
+            SearchForeColor.Value = SystemColors.WindowText;
+         }
+         else if (!SearchFocused.Value && SearchText.Value == "")
+         {
+            SearchText.Value = "Search";
+            SearchForeColor.Value = SystemColors.ControlDark;
+         }
+      }
+
+      [OnSignal("SearchEnterKeyPress")]
+      private void OnSearchEnterKeyPress()
+      {
+
       }
    }
 }
